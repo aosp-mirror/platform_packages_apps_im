@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accept_invitation">Accepteren</string>
+  <string name="account_title"><xliff:g id="account">%1$s</xliff:g> account:</string>
+  <string name="add_account"><xliff:g id="account">%1$s</xliff:g> account toevoegen</string>
+  <string name="add_account_title">Chatten - Een account toevoegen</string>
+  <string name="add_contact_invalid_input">U moet het adres invoeren van de contact die u wilt toevoegen</string>
+  <string name="add_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" toegevoegd</string>
+  <string name="add_contact_title">Contact toevoegen</string>
+  <string name="add_list_failed">Lijst is niet toegevoegd</string>
+  <string name="avatar_label">Avatar</string>
+  <string name="block_contact_failed">Contact is niet geblokkeerd</string>
+  <string name="block_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" geblokkeerd</string>
+  <string name="blocked_list_title">Geblokkeerde contacten - <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="buddy_list_title">Contactpersonenlijst - <xliff:g id="username">%1$s</xliff:g></string>
+  <string name="button_add">Toevoegen</string>
+  <string name="button_invite">Uitnodigen</string>
+  <string name="button_set_status_text">Instellen</string>
+  <string name="cancel">Annuleren</string>
+  <string name="chat_activity_title">Chats</string>
+  <string name="chat_contact_status"><xliff:g id="user">%1$s</xliff:g> - <xliff:g id="status">%2$s</xliff:g></string>
+  <string name="chat_with">Chatten met <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="choose_account_title">Chatten - Een account selecteren</string>
+  <string name="choose_smiley">Selecteer een smiley:</string>
+  <string name="cir_channel_label">CIR-kanaal</string>
+  <string name="client_id_label">Client-id</string>
+  <string name="close">OK</string>
+  <string name="confirm">Bevestigen</string>
+  <string name="confirm_block_contact">Contact \"<xliff:g id="user">%1$s</xliff:g>\" blokkeren?</string>
+  <string name="confirm_delete_contact">Contact \"<xliff:g id="user">%1$s</xliff:g>\" verwijderen?</string>
+  <string name="confirm_unblock_contact">Contact \"<xliff:g id="user">%1$s</xliff:g>\" weer toelaten?</string>
+  <string name="contact_already_exist">Deze contact bestaat al in de Contactlijst</string>
+  <string name="contact_away"><xliff:g id="user">%1$s</xliff:g> is afwezig</string>
+  <string name="contact_blocked">Deze contact is geblokkeerd</string>
+  <string name="contact_busy"><xliff:g id="user">%1$s</xliff:g> is bezet</string>
+  <string name="contact_filter_hint">Invoeren om contact te zoeken</string>
+  <string name="contact_joined"><xliff:g id="user">%1$s</xliff:g> heeft zich aangesloten</string>
+  <string name="contact_left"><xliff:g id="user">%1$s</xliff:g> is weggegaan</string>
+  <string name="contact_offline"><xliff:g id="user">%1$s</xliff:g> is offline</string>
+  <string name="contact_online"><xliff:g id="user">%1$s</xliff:g> is online</string>
+  <string name="contact_presence_activity_title">profiel van <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="contacts_picker_title">Selecteer contact(en) om uit te nodigen</string>
+  <string name="conversations"><xliff:g id="count">%1$d</xliff:g> gesprekken</string>
+  <string name="create_chat_session_failed">De chatsessie is niet gemaakt\n</string>
+  <string name="data_channel_label">Gegevenskanaal</string>
+  <string name="data_encoding_label">Gegevenscodering</string>
+  <string name="decline_invitation">Weigeren</string>
+  <string name="default_input_title">Invoer</string>
+  <string name="delete_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" verwijderd</string>
+  <string name="disconnected">Verbinding verbroken!\n</string>
+  <string name="edit_presence_failed">Profiel is niet gewijzigd, probeer het opnieuw\n</string>
+  <string name="empty_chat_list">Geen actieve chats</string>
+  <string name="empty_contact_list">Geen overeenkomstige contacten</string>
+  <string name="enable_notification">Melding voor nieuwe inkomende berichten inschakelen</string>
+  <string name="error">Let op!</string>
+  <string name="error_colon">Probleem:\n</string>
+  <string name="general_error">Foutcode <xliff:g id="code">%1$d</xliff:g></string>
+  <string name="global_settings_title">Globale instellingen (alleen dev)</string>
+  <string name="hide_offline_contacts">Offline contacten verbergen</string>
+  <string name="host_label">Host</string>
+  <string name="http">HTTP</string>
+  <string name="im_conn_not_valid">Geen expresberichtverbinding gevonden of geen verbinding</string>
+  <string name="im_label">IMPS</string>
+  <string name="im_label_old">IM (oude UI)</string>
+  <string name="incoming_msg_header"><xliff:g id="user">%1$s</xliff:g> schreef:</string>
+  <string name="invalid_input">Ongeldige invoer</string>
+  <string name="invitation_confirm_question"><xliff:g id="user">%1$s</xliff:g> nodigt u uit voor een groepchat.\n Accepteren?</string>
+  <string name="invitation_prompt"><xliff:g id="user">%1$s</xliff:g> heeft u uitgenodigd voor een groepchat</string>
+  <string name="invitation_sent_prompt">Uitnodiging naar <xliff:g id="user">%1$s</xliff:g> verzonden</string>
+  <string name="invitation_title">Uitnodiging</string>
+  <string name="keep_me_signed_in">Houd me aangemeld</string>
+  <string name="label_password">Wachtwoord</string>
+  <string name="label_username">Gebruikersnaam</string>
+  <string name="load_contact_list_failed">Contactlijst is niet geladen</string>
+  <string name="login_invalid_input">U moet zowel uw naam als wachtwoord invoeren</string>
+  <string name="login_service_failed">Aanmelden bij \"<xliff:g id="service">%1$s</xliff:g>\" dienst mislukt! Probeer later nogmaals\n<xliff:g id="description">%2$s</xliff:g></string>
+  <string name="me">Ik</string>
+  <string name="menu_add_account">Account toevoegen</string>
+  <string name="menu_add_contact">Contact toevoegen\u2026</string>
+  <string name="menu_block_contact">Contact blokkeren</string>
+  <string name="menu_cancel_signin">Aanmelden annuleren</string>
+  <string name="menu_clear_history">Geschiedenis wissen</string>
+  <string name="menu_close_chat">Chat sluiten</string>
+  <string name="menu_contact_presence">Contactinfo weergeven</string>
+  <string name="menu_contact_submenu">Contacten\u2026</string>
+  <string name="menu_edit_account">Account bewerken</string>
+  <string name="menu_edit_service">Dienst bewerken</string>
+  <string name="menu_end_conversation">Gesprek beëindigen</string>
+  <string name="menu_global_settings">Globale instellingen</string>
+  <string name="menu_group_chat">Groepchat starten\u2026</string>
+  <string name="menu_hide_offline_contacts">Offline contacten verbergen</string>
+  <string name="menu_hide_tabs">Tabbladen verbergen</string>
+  <string name="menu_insert_smiley">Smiley invoegen</string>
+  <string name="menu_invite_contact">Uitnodigen\u2026</string>
+  <string name="menu_my_profile">Mijn profiel</string>
+  <string name="menu_open_chat">Chat openen</string>
+  <string name="menu_preference">Instellingen</string>
+  <string name="menu_remove_account">Account verwijderen</string>
+  <string name="menu_remove_contact">Contact verwijderen</string>
+  <string name="menu_send_message">Bericht verzenden</string>
+  <string name="menu_sign_out">Afmelden</string>
+  <string name="menu_start_chat">Chat starten</string>
+  <string name="menu_start_conversation">Gesprek starten</string>
+  <string name="menu_unblock_contact">Blokkering opheffen</string>
+  <string name="menu_user_presence">Mijn profiel\u2026</string>
+  <string name="menu_view_blocked">Geblokkeerde contacten weergeven</string>
+  <string name="menu_view_profile">Profiel weergeven</string>
+  <string name="mood_text_label">Stemmingstekst</string>
+  <string name="msisdn_label">MSISDN</string>
+  <string name="my_status">Mijn <xliff:g id="provider">%1$s</xliff:g> status:</string>
+  <string name="new_invitation">Nieuwe IM-uitnodiging</string>
+  <string name="new_message">Nieuwe IM-uitnodiging</string>
+  <string name="no">Annuleren</string>
+  <string name="no_blocked_contact">Geen geblokkeerde contacten</string>
+  <string name="no_ringtones">Geen beltonen beschikbaar</string>
+  <string name="not_signed_in">U bent momenteel niet aangemeld bij <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="ok">OK</string>
+  <string name="one_conversation">1 gesprek</string>
+  <string name="ongoing_conversation">Actuele gesprekken (<xliff:g id="number">%1$d</xliff:g>)</string>
+  <string name="online_contact_list_title">Online contacten</string>
+  <string name="online_count"><xliff:g id="number">%1$d</xliff:g> online</string>
+  <string name="outgoing_msg_header">U schreef:</string>
+  <string name="perm_desc">Toepassingen mogen expresberichtdienst starten</string>
+  <string name="perm_label">Toegang tot de IM-dienst</string>
+  <string name="preference_title"><xliff:g id="provider">%1$s</xliff:g> instellingen (alleen dev)</string>
+  <string name="presence_available">Online</string>
+  <string name="presence_away">Afwezig</string>
+  <string name="presence_busy">Bezet</string>
+  <string name="presence_idle">Niet-actief</string>
+  <string name="presence_invisible">Offline</string>
+  <string name="presence_offline">Offline</string>
+  <string name="prompt_contact_address">Contactnaam of adres</string>
+  <string name="ringer_mode">Beltoonmodus</string>
+  <string name="ringtone">Beltoon selecteren</string>
+  <string name="save">Opslaan</string>
+  <string name="select_chat_session">Selecteer een chatsessie</string>
+  <string name="select_contact">Selecteer eerst een contact</string>
+  <string name="send">Verzenden</string>
+  <string name="service_error">Servicefout!</string>
+  <string name="sign_in">Aanmelden</string>
+  <string name="signed_out_prompt">U bent afgemeld bij <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signed_out_prompt_with_error">U bent afgemeld bij <xliff:g id="account">%1$s</xliff:g> wegens <xliff:g id="reason">%2$s</xliff:g></string>
+  <string name="signing_in_to">Aanmelden bij <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signing_in_wait">Aanmelden\u2026</string>
+  <string name="signing_out_wait">Afmelden\u2026</string>
+  <string name="sms">SMS</string>
+  <string name="status_label">Status</string>
+  <string name="tcp">TCP</string>
+  <string name="time_stamp">\'Verzonden op\' hh:mm aan \'on\' EEEE</string>
+  <string name="type_message_prompt">Invoeren om samen te stellen; Druk op Enter om te verzenden</string>
+  <string name="unblock_contact_failed">Contact is niet toegelaten</string>
+  <string name="unblock_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" toegelaten</string>
+  <string name="unknown_contact">(<xliff:g ctype="italic">Onbekend</xliff:g>) </string>
+  <string name="update">Bijwerken</string>
+  <string name="user_presence_activity_title">Mijn profiel</string>
+  <string name="warning">Waarschuwing</string>
+  <string name="wbxml">WBXML</string>
+  <string name="xml">XML</string>
+  <string name="yes">OK</string>
+</resources>

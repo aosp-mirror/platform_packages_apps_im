@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accept_invitation">Přijmout</string>
+  <string name="account_title">Účet <xliff:g id="account">%1$s</xliff:g>:</string>
+  <string name="add_account">Přidat účet <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="add_account_title">Konverzace - přidat účet</string>
+  <string name="add_contact_invalid_input">Je nutné zadat adresu kontaktu, který chcete přidat</string>
+  <string name="add_contact_success">Kontakt "<xliff:g id="user">%1$s</xliff:g>" je přidán</string>
+  <string name="add_contact_title">Přidat kontakt</string>
+  <string name="add_list_failed">Seznam nebyl přidán</string>
+  <string name="avatar_label">Avatar</string>
+  <string name="block_contact_failed">Kontakt nebyl zablokován</string>
+  <string name="block_contact_success">Kontakt "<xliff:g id="user">%1$s</xliff:g>" je blokován</string>
+  <string name="blocked_list_title">Blokované kontakty - <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="buddy_list_title">Seznam kontaktů - <xliff:g id="username">%1$s</xliff:g></string>
+  <string name="button_add">Přidat</string>
+  <string name="button_invite">Pozvat</string>
+  <string name="button_set_status_text">Nastavit</string>
+  <string name="cancel">Storno</string>
+  <string name="chat_activity_title">Konverzace</string>
+  <string name="chat_contact_status"><xliff:g id="user">%1$s</xliff:g> - <xliff:g id="status">%2$s</xliff:g></string>
+  <string name="chat_with">Konverzace s <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="choose_account_title">Konverzace - vyberte účet</string>
+  <string name="choose_smiley">Vybrat smajlík:</string>
+  <string name="cir_channel_label">Kanál CIR</string>
+  <string name="client_id_label">ID klienta</string>
+  <string name="close">OK</string>
+  <string name="confirm">Potvrdit</string>
+  <string name="confirm_block_contact">Blokovat kontakt \"<xliff:g id="user">%1$s</xliff:g>\"?</string>
+  <string name="confirm_delete_contact">Odstranit kontakt \"<xliff:g id="user">%1$s</xliff:g>\"?</string>
+  <string name="confirm_unblock_contact">Odblokovat kontakt \"<xliff:g id="user">%1$s</xliff:g>\"?</string>
+  <string name="contact_already_exist">Tento kontakt již existuje v seznamu kontaktů</string>
+  <string name="contact_away">Uživatel <xliff:g id="user">%1$s</xliff:g> je nepřítomen</string>
+  <string name="contact_blocked">Kontakt je blokován</string>
+  <string name="contact_busy">Uživatel <xliff:g id="user">%1$s</xliff:g> je zaneprázdněn</string>
+  <string name="contact_filter_hint">Napište kontakt, který chcete najít</string>
+  <string name="contact_joined">Uživatel <xliff:g id="user">%1$s</xliff:g> se připojil</string>
+  <string name="contact_left">Uživatel <xliff:g id="user">%1$s</xliff:g> odešel</string>
+  <string name="contact_offline">Uživatel <xliff:g id="user">%1$s</xliff:g> je offline</string>
+  <string name="contact_online">Uživatel <xliff:g id="user">%1$s</xliff:g> je online</string>
+  <string name="contact_presence_activity_title">Profil uživatele <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="contacts_picker_title">Vyberte kontakty, které chcete pozvat</string>
+  <string name="conversations"><xliff:g id="count">%1$d</xliff:g> konverzací</string>
+  <string name="create_chat_session_failed">Konverzace nebyla vytvořena\n</string>
+  <string name="data_channel_label">Datový kanál</string>
+  <string name="data_encoding_label">Kódování dat</string>
+  <string name="decline_invitation">Odmítnout</string>
+  <string name="default_input_title">Zadávání</string>
+  <string name="delete_contact_success">Kontakt "<xliff:g id="user">%1$s</xliff:g>" je odstraněn</string>
+  <string name="disconnected">Odpojeno!\n</string>
+  <string name="edit_presence_failed">Profil nebyl změněn, opakujte akci\n</string>
+  <string name="empty_chat_list">Žádné aktivní konverzace</string>
+  <string name="empty_contact_list">Žádné odpovídající kontakty</string>
+  <string name="enable_notification">Zapnout oznámení nově příchozích zpráv</string>
+  <string name="error">Upozornění!</string>
+  <string name="error_colon">Problém:\n</string>
+  <string name="general_error">Kód chyby <xliff:g id="code">%1$d</xliff:g></string>
+  <string name="global_settings_title">Globální nastavení (pouze zař.)</string>
+  <string name="hide_offline_contacts">Pouze kontakty online</string>
+  <string name="host_label">Hostitel</string>
+  <string name="http">HTTP</string>
+  <string name="im_conn_not_valid">Žádné připojení pro rychlé zprávy</string>
+  <string name="im_label">IMPS</string>
+  <string name="im_label_old">Rych. zpr. (původní už. roz.)</string>
+  <string name="incoming_msg_header">Uživatel <xliff:g id="user">%1$s</xliff:g> napsal:</string>
+  <string name="invalid_input">Neplatný vstup</string>
+  <string name="invitation_confirm_question">Uživatel <xliff:g id="user">%1$s</xliff:g> vás zve do skupinové konverzace.\n Chcete pozvání přijmout?</string>
+  <string name="invitation_prompt">Uživatel <xliff:g id="user">%1$s</xliff:g> vás pozval do skupinové konverzace</string>
+  <string name="invitation_sent_prompt"> Uživateli <xliff:g id="user">%1$s</xliff:g> byla odeslána pozvánka</string>
+  <string name="invitation_title">Pozvánka</string>
+  <string name="keep_me_signed_in">Zachovat přihlášení</string>
+  <string name="label_password">Heslo</string>
+  <string name="label_username">Uživatelské jméno</string>
+  <string name="load_contact_list_failed">Načtení seznamu kontaktů se nezdařilo</string>
+  <string name="login_invalid_input">Musíte zadat jméno i heslo</string>
+  <string name="login_service_failed">Přihlášení ke službě \"<xliff:g id="service">%1$s</xliff:g>\" se nezdařilo! Opakujte akci později\n<xliff:g id="description">%2$s</xliff:g></string>
+  <string name="me">Já</string>
+  <string name="menu_add_account">Přidat účet</string>
+  <string name="menu_add_contact">Přidat kontakt\u2026</string>
+  <string name="menu_block_contact">Blokovat kontakt</string>
+  <string name="menu_cancel_signin">Zrušit přihlášení</string>
+  <string name="menu_clear_history">Vymazat historii</string>
+  <string name="menu_close_chat">Zavřít konverzaci</string>
+  <string name="menu_contact_presence">Zobrazit informace o kontaktu</string>
+  <string name="menu_contact_submenu">Kontakty\u2026</string>
+  <string name="menu_edit_account">Upravit účet</string>
+  <string name="menu_edit_service">Upravit službu</string>
+  <string name="menu_end_conversation">Ukončit konverzaci</string>
+  <string name="menu_global_settings">Globální nastavení</string>
+  <string name="menu_group_chat">Zahájit skupinovou konverzaci\u2026</string>
+  <string name="menu_hide_offline_contacts">Pouze kontakty online</string>
+  <string name="menu_hide_tabs">Skrýt karty</string>
+  <string name="menu_insert_smiley">Vložit smajlík</string>
+  <string name="menu_invite_contact">Pozvat\u2026</string>
+  <string name="menu_my_profile">Profil</string>
+  <string name="menu_open_chat">Otevřít konverzaci</string>
+  <string name="menu_preference">Nastavení</string>
+  <string name="menu_remove_account">Odebrat účet</string>
+  <string name="menu_remove_contact">Odstranit kontakt</string>
+  <string name="menu_send_message">Odeslat zprávu</string>
+  <string name="menu_sign_out">Odhlásit se</string>
+  <string name="menu_start_chat">Zahájit konverzaci</string>
+  <string name="menu_start_conversation">Zahájit konverzaci</string>
+  <string name="menu_unblock_contact">Odblokovat kontakt</string>
+  <string name="menu_user_presence">Profil\u2026</string>
+  <string name="menu_view_blocked">Zobrazit blokované kontakty</string>
+  <string name="menu_view_profile">Zobrazit profil</string>
+  <string name="mood_text_label">Nálada</string>
+  <string name="msisdn_label">MSISDN</string>
+  <string name="my_status">Stav <xliff:g id="provider">%1$s</xliff:g>:</string>
+  <string name="new_invitation">Nová pozvánka služby rychlých zpráv</string>
+  <string name="new_message">Nová rychlá zpráva</string>
+  <string name="no">Storno</string>
+  <string name="no_blocked_contact">Žádné blokované kontakty</string>
+  <string name="no_ringtones">Žádné vyzv. tóny k dispozici</string>
+  <string name="not_signed_in">Nyní nejste přihlášeni k účtu <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="ok">OK</string>
+  <string name="one_conversation">1 konverzace</string>
+  <string name="ongoing_conversation">Probíhající konverzace (<xliff:g id="number">%1$d</xliff:g>)</string>
+  <string name="online_contact_list_title">Kontakty online</string>
+  <string name="online_count"><xliff:g id="number">%1$d</xliff:g> online</string>
+  <string name="outgoing_msg_header">Napsal jste:</string>
+  <string name="perm_desc">Povolit aplikacím spouštění služby rychlých zpráv</string>
+  <string name="perm_label">Přistup ke službě rychlých zpráv</string>
+  <string name="preference_title"><xliff:g id="provider">%1$s</xliff:g> nastavení (pouze zař.)</string>
+  <string name="presence_available">Online</string>
+  <string name="presence_away">Pryč</string>
+  <string name="presence_busy">Nerušit</string>
+  <string name="presence_idle">Nečinný</string>
+  <string name="presence_invisible">Zobrazit jako offline</string>
+  <string name="presence_offline">Offline</string>
+  <string name="prompt_contact_address">Jméno nebo adresa kontaktu</string>
+  <string name="ringer_mode">Režim vyzvánění</string>
+  <string name="ringtone">Vybrat vyzváněcí tón</string>
+  <string name="save">Uložit</string>
+  <string name="select_chat_session">Vyberte relaci konverzace</string>
+  <string name="select_contact">Nejprve vyberte kontakt</string>
+  <string name="send">Odeslat</string>
+  <string name="service_error">Chyba služby!</string>
+  <string name="sign_in">Přihlásit se</string>
+  <string name="signed_out_prompt">Byli jste odhlášeni od účtu <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signed_out_prompt_with_error">Byli jste odhlášeni od účtu <xliff:g id="account">%1$s</xliff:g>, protože <xliff:g id="reason">%2$s</xliff:g></string>
+  <string name="signing_in_to">Přihlašování k účtu <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signing_in_wait">Přihlašování\u2026</string>
+  <string name="signing_out_wait">Odhlašování\u2026</string>
+  <string name="sms">SMS</string>
+  <string name="status_label">Stav</string>
+  <string name="tcp">TCP</string>
+  <string name="time_stamp">\'Odesláno v\' hh:mm a \'dne\' EEEE</string>
+  <string name="type_message_prompt">Zadejte zprávu; stisknutím tlačítka Enter zprávu odešlete</string>
+  <string name="unblock_contact_failed">Kontakt nebyl odblokován</string>
+  <string name="unblock_contact_success">Kontakt "<xliff:g id="user">%1$s</xliff:g>" je odblokován</string>
+  <string name="unknown_contact">(<xliff:g ctype="italic">Neznámý</xliff:g>) </string>
+  <string name="update">Aktualizace</string>
+  <string name="user_presence_activity_title">Profil</string>
+  <string name="warning">Upozornění</string>
+  <string name="wbxml">WBXML</string>
+  <string name="xml">XML</string>
+  <string name="yes">OK</string>
+</resources>

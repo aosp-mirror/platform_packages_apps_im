@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">IM</string>
+    <string name="im_label_old">IM (Old UI)</string>
+
+    <!-- menu items -->
+    <string name="menu_add_account">Add account</string>
+    <string name="menu_edit_account">Edit account</string>
+    <string name="menu_remove_account">Remove account</string>
+    <string name="menu_add_contact">Add contact</string>
+    <string name="menu_remove_contact">Delete contact</string>
+    <string name="menu_block_contact">Block contact</string>
+    <string name="menu_view_blocked">Blocked</string>
+    <string name="menu_view_accounts">Account list</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_unblock_contact">Unblock contact</string>
+    <string name="menu_view_contact_list">Contact list</string>
+
+    <string name="menu_start_chat">Start chat</string>
+    <string name="menu_group_chat">Start group chat\u2026</string>
+
+    <string name="menu_sign_out">Sign out</string>
+    <string name="menu_sign_out_all">Sign out all</string>
+
+    <string name="menu_view_friend_list">Contact list</string>
+    <string name="menu_view_profile">View profile</string>
+    <string name="menu_end_conversation">End chat</string>
+    <string name="menu_switch_chats">Switch chats</string>
+
+    <string name="menu_invite_contact">Invite\u2026</string>
+    <string name="menu_preference">Settings</string>
+
+    <string name="menu_insert_smiley">Insert smiley</string>
+    <string name="menu_cancel_signin">Cancel signin</string>
+
+    <!-- activity (screen) titles -->
+    <string name="blocked_list_title">Blocked contacts - <xliff:g id="user">%1$s</xliff:g></string>
+    <string name="preference_title"><xliff:g id="provider">%1$s</xliff:g> settings (dev only)</string>
+    <string name="default_input_title">Input</string>
+    <string name="contacts_picker_title">Select contact(s) to invite</string>
+
+    <!-- alert titles -->
+    <string name="invalid_input">Attention</string>
+    <string name="error">Attention</string>
+    <string name="confirm">Confirm</string>
+    <string name="warning">Warning</string>
+
+    <!-- alert messages -->
+    <string name="login_invalid_input">You must type both your name and password.</string>
+    <string name="login_service_failed">Unable to sign in to the <xliff:g id="service">%1$s</xliff:g> service. Please try again later.\n(Detail: <xliff:g id="description">%2$s</xliff:g>)</string>
+    <string name="add_contact_invalid_input">You must type the address of the contact you want to add.</string>
+
+    <!-- string name="add_contact_failed">Contact was not added, please try again.\n</string -->
+    <string name="confirm_delete_contact">The contact \"<xliff:g id="user">%1$s</xliff:g>\" will be deleted.</string>
+    <string name="confirm_block_contact">The contact \"<xliff:g id="user">%1$s</xliff:g>\" will be blocked.</string>
+    <string name="confirm_unblock_contact">The contact \"<xliff:g id="user">%1$s</xliff:g>\" will be unblocked.</string>
+    <string name="add_list_failed">The list was not added.</string>
+    <string name="edit_presence_failed">Profile was not changed, please try again.\n</string>
+    <string name="block_contact_failed">Contact was not blocked.</string>
+    <string name="unblock_contact_failed">Contact was not unblocked.</string>
+    <string name="select_contact">Please select a contact first.</string>
+    <string name="select_chat_session">Please select a chat session.</string>
+    <string name="disconnected">Disconnected!\n</string>
+    <string name="create_chat_session_failed">The chat session was not created.\n</string>
+    <string name="service_error">Service error!</string>
+    <string name="im_conn_not_valid">No IM connection.</string>
+    <string name="load_contact_list_failed">Contact list did not load.</string>
+    <!-- string name="delete_list_failed">Delete list failed, please try again\n</string -->
+    <!-- string name="rename_list_failed">Rename list failed, please try again\n</string -->
+
+    <string name="general_error">Error code <xliff:g id="code">%1$d</xliff:g></string>
+    <string name="error_colon">Problem:\u0020</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">OK</string>
+    <string name="no">Cancel</string>
+    <string name="save">Save</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="signing_in_to">Signing in to <xliff:g id="account">%1$s</xliff:g></string>
+    <string name="signing_in_wait">Signing in\u2026</string>
+    <string name="signing_out_wait">Signing out\u2026</string>
+    <string name="signed_out_prompt">You have been signed out of <xliff:g id="account">%1$s</xliff:g>.</string>
+    <string name="signed_out_prompt_with_error">You have been signed out of <xliff:g id="account">%1$s</xliff:g> because <xliff:g id="reason">%2$s</xliff:g>.</string>
+    <string name="sign_up">Don\u2019t have an account?</string>
+
+    <string name="empty_chat_list">No active chats.</string>
+    <string name="empty_contact_list">No contacts found.</string>
+    <string name="empty_contact_group">Empty</string>
+    <string name="empty_conversation_group">No conversations</string>
+    <string name="check_auto_sign_in">This option automatically signs you in every time you open this application. To disable the option, sign out, then clear the \"Sign me in automatically\" check box.</string>
+
+    <!-- choose account activity -->
+    <string name="choose_account_title">Chat - Select an account</string>
+    <string name="account_title"><xliff:g id="account">%1$s</xliff:g> account:</string>
+    <string name="one_conversation">1 chat</string>
+    <string name="conversations"><xliff:g id="count">%1$d</xliff:g> chats</string>
+    <string name="add_account">Add <xliff:g id="account">%1$s</xliff:g> account</string>
+    <string name="add_account_title">Chat - Add an account</string>
+
+    <!-- contact list activity -->
+
+    <string name="my_status">My <xliff:g id="provider">%1$s</xliff:g> status:</string>
+    <string name="button_set_status_text">Set</string>
+
+    <!-- login_activity -->
+    <string name="label_username">Username:</string>
+    <string name="label_password">Password:</string>
+    <string name="remember_password">Remember my password.</string>
+    <string name="keep_me_signed_in">Sign me in automatically.</string>
+
+    <!-- preference_activity -->
+    <string name="http">HTTP</string>
+    <string name="sms">SMS</string>
+    <string name="tcp">TCP</string>
+    <string name="xml">XML</string>
+    <string name="wbxml">WBXML</string>
+
+    <string name="ongoing_conversation">Ongoing chats (<xliff:g id="number">%1$d</xliff:g>)</string>
+    <string name="online_count"><xliff:g id="number">%1$d</xliff:g> online</string>
+    <string name="subscriptions">Friend invitations</string>
+
+    <string name="unknown_contact">(<i>Unknown</i>) </string>
+
+    <string name="contact_filter_hint">Type to find contact</string>
+
+    <string name="no_blocked_contact">No blocked contacts.</string>
+
+    <!-- contact info activity-->
+    <string name="contact_profile_title">Contact profile</string>
+    <string name="label_status">Status:</string>
+    <string name="label_client_type">Client type:</string>
+    <string name="client_type_computer">Computer</string>
+    <string name="client_type_mobile">Mobile</string>
+
+    <string name="presence_available">Online</string>
+    <string name="presence_busy">Busy</string>
+    <string name="presence_away">Away</string>
+    <string name="presence_idle">Idle</string>
+    <string name="presence_offline">Offline</string>
+    <string name="presence_invisible">Appear offline</string>
+
+    <string name="button_add">Add</string>
+    <string name="button_invite">Invite</string>
+
+    <!-- connection settings dialog -->
+    <string name="data_channel_label">Data channel</string>
+    <string name="data_encoding_label">Data encoding</string>
+    <string name="cir_channel_label">CIR channel</string>
+    <string name="host_label">Host</string>
+    <string name="msisdn_label">MSISDN</string>
+    <string name="client_id_label">Client ID</string>
+
+    <string name="prompt_contact_address">Contact name or address:</string>
+
+    <!-- chat screen -->
+    <string name="me">Me</string>
+    <string name="chat_with">Chat with <xliff:g id="user">%1$s</xliff:g></string>
+    <string name="chat_contact_status"><xliff:g id="user">%1$s</xliff:g> - <xliff:g id="status">%2$s</xliff:g></string>
+    <string name="outgoing_msg_header">You wrote:</string>
+    <string name="incoming_msg_header"><xliff:g id="user">%1$s</xliff:g> wrote:</string>
+    <string name="type_message_prompt">Type to compose; press Enter to send</string>
+    <string name="contact_online"><xliff:g id="user">%1$s</xliff:g> is online</string>
+    <string name="contact_away"><xliff:g id="user">%1$s</xliff:g> is away</string>
+    <string name="contact_busy"><xliff:g id="user">%1$s</xliff:g> is busy</string>
+    <string name="contact_offline"><xliff:g id="user">%1$s</xliff:g> is offline</string>
+    <string name="contact_joined"><xliff:g id="user">%1$s</xliff:g> has joined</string>
+    <string name="contact_left"><xliff:g id="user">%1$s</xliff:g> has left</string>
+    <string name="time_stamp">\'Sent at\' hh:mm a \'on\' EEEE</string>
+    <string name="send">Send</string>
+    <string name="msg_sent_failed">This message could not be sent.</string>
+    <string name="disconnected_warning">Lost connection to server. Messages will be sent when online.</string>
+    <string name="contact_offline_warning"><xliff:g id="user">%1$s</xliff:g> is offline. Messages you send will be delivered when <xliff:g id="user">%1$s</xliff:g> comes online.</string>
+    <string name="contact_not_in_list_warning"><xliff:g id="user">%1$s</xliff:g> is not in your Contact list.</string>
+    <string name="select_link_title">Select link</string>
+
+    <!-- Add contact screen -->
+    <string name="add_contact_title">Add contact</string>
+    <string name="input_contact_label">Email address of person you wish to invite:</string>
+    <string name="invite_instruction">Type a name to add from Contacts.</string>
+    <!-- Button label -->
+    <string name="invite_label">Send invitation</string>
+
+    <!-- setting screen. A title is the name of the setting; a summary is displayed in smaller text below the title. -->
+    <string name="setting_title">General settings</string>
+    <string name="hide_offline_contacts">Hide offline contacts</string>
+    <string name="notification_group_title">Notification settings</string>
+    <string name="notification_enabled_title">IM notifications</string>
+    <string name="notification_enabled_summary">Notify in status bar when IM arrives</string>
+    <string name="notification_vibrate_title">Vibrate</string>
+    <string name="notification_vibrate_summary">Also vibrate when IM arrives</string>
+    <string name="notification_sound_title">Sound</string>
+    <string name="notification_sound_summary">Also play ringtone when IM arrives</string>
+    <string name="notification_ringtone_title">Select ringtone</string>
+
+    <!-- invitation screen -->
+    <string name="invitation_title">Invitation</string>
+    <string name="invitation_confirm_question"><xliff:g id="user">%1$s</xliff:g> invites you to join a group chat.\n Do you want to accept it?</string>
+    <string name="invitation_prompt"><xliff:g id="user">%1$s</xliff:g> has invited you to join a group chat.</string>
+    <string name="invitation_sent_prompt"> Invitation has been sent to <xliff:g id="user">%1$s</xliff:g>.</string>
+    <string name="accept_invitation">Accept</string>
+    <string name="decline_invitation">Decline</string>
+
+    <!-- subscription screen -->
+    <string name="subscription_prompt"><xliff:g id="user">%1$s</xliff:g> has invited you to be on their Contact list.</string>
+    <string name="approve_subscription">Accept</string>
+    <string name="decline_subscription">Decline</string>
+    <string name="approve_subscription_error">Unable to approve subscription from <xliff:g id="user">%1$s</xliff:g>. Please try again later.</string>
+    <string name="decline_subscription_error">Unable to decline subscription from <xliff:g id="user">%1$s</xliff:g>. Please try again later.</string>
+
+    <!-- notification bar messages -->
+    <string name="newMessages_label">New "<xliff:g id="provider">%1$s</xliff:g>" messages</string>
+    <string name="num_unread_chats">
+        <xliff:g id="number">%1$d</xliff:g> unread chats
+    </string>
+    <string name="subscription_notify_text">
+        New friend invitation from <xliff:g id="user">%s</xliff:g>
+    </string>
+    <string name="notify_groupchat_label">Group chat invitation</string>
+    <string name="group_chat_invite_notify_text">
+        New group chat invitation from <xliff:g id="user">%s</xliff:g>
+    </string>
+
+    <string name="add_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" added.</string>
+    <string name="delete_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" deleted.</string>
+    <string name="block_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" blocked.</string>
+    <string name="unblock_contact_success">Contact "<xliff:g id="user">%1$s</xliff:g>" unblocked.</string>
+
+    <string name="cant_connect_to_server">Cannot connect to server. Please check your connection.</string>
+
+    <!-- IM service permission -->
+    <string name="perm_label">start IM service</string>
+    <string name="perm_desc">Allows applications to start IM service via intent.</string>
+
+    <!-- error messages -->
+    <string name="contact_already_exist">"<xliff:g id="user">%1$s</xliff:g>" already exists in your Contact list.</string>
+    <string name="contact_blocked">Contact "<xliff:g id="user">%1$s</xliff:g>" has been blocked.</string>
+    <string name="contact_not_loaded">Please wait while your Contact list loads.</string>
+    <string name="network_error">A network error occurred.</string>
+    <string name="service_not_support">The server does not support this functionality.</string>
+    <string name="invalid_password">The password you entered is not valid.</string>
+    <string name="internal_server_error">The server encountered an error.</string>
+    <string name="not_implemented">The server does not support this functionality.</string>
+    <string name="service_unavaiable">The server is currently unavailable.</string>
+    <string name="timeout">The server has timed out.</string>
+    <string name="version_not_supported">The server does not support the current version.</string>
+    <string name="message_queue_full">The message queue is full.</string>
+    <string name="domain_not_supported">The server does not support forwarding to the domain.</string>
+    <string name="unknown_user">The username you entered is not recognized.</string>
+    <string name="recipient_blocked_the_user">Sorry, you are blocked by the user.</string>
+    <string name="session_expired">The session has expired, please sign in again.</string>
+    <!-- forced_logout and already_logged_in are used within another sentence so y is not capped. -->
+    <string name="forced_logout">you have signed in from another client.</string>
+    <string name="already_logged_in">you have already signed in from another client.</string>
+    <string name="msisdn_error">Sorry, the phone number cannot be read from your SIM card. Please contact your operator for help.</string>
+    <string name="not_signed_in">You are currently not signed in.</string>
+
+<!-- Smiley names -->
+    <string-array name="default_smiley_names">
+        <item>Happy</item>
+        <item>Sad</item>
+        <item>Winking</item>
+        <item>Tongue sticking out</item>
+        <item>Surprised</item>
+        <item>Kissing</item>
+        <item>Yelling</item>
+        <item>Cool</item>
+        <item>Money mouth</item>
+        <item>Foot in mouth</item>
+        <item>Embarrassed</item>
+        <item>Angel</item>
+        <item>Undecided</item>
+        <item>Crying</item>
+        <item>Lips are sealed</item>
+        <item>Laughing</item>
+        <item>Confused</item>
+    </string-array>
+<!-- Do not localize! Smiley text representations -->
+    <string-array name="default_smiley_texts">
+        <item>:-)</item>
+        <item>:-(</item>
+        <item>;-)</item>
+        <item>:-P</item>
+        <item>=-O</item>
+        <item>:-*</item>
+        <item>:O</item>
+        <item>B-)</item>
+        <item>:-$</item>
+        <item>:-!</item>
+        <item>:-[</item>
+        <item>O:-)</item>
+        <item>:-\\</item>
+        <item>:\'(</item>
+        <item>:-X</item>
+        <item>:-D</item>
+        <item>o_O</item>
+    </string-array>
+</resources>

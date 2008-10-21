@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accept_invitation">接受</string>
+  <string name="account_title"><xliff:g id="account">%1$s</xliff:g> 帳號：</string>
+  <string name="add_account">新增 <xliff:g id="account">%1$s</xliff:g> 帳號</string>
+  <string name="add_account_title">聊天 - 新增帳號</string>
+  <string name="add_contact_invalid_input">您必須輸入想要新增之連絡人的地址。</string>
+  <string name="add_contact_success">已經新增「<xliff:g id="user">%1$s</xliff:g>」連絡人</string>
+  <string name="add_contact_title">新增連絡人</string>
+  <string name="add_list_failed">尚未新增清單。</string>
+  <string name="already_logged_in">您已經從其它的用戶端登入。</string>
+  <string name="approve_subscription">接受</string>
+  <string name="approve_subscription_error">無法核准 <xliff:g id="user">%1$s</xliff:g> 的訂閱。請稍後再試一次。</string>
+  <string name="block_contact_failed">尚未封鎖連絡人。</string>
+  <string name="block_contact_success">已經封鎖「<xliff:g id="user">%1$s</xliff:g>」連絡人</string>
+  <string name="blocked_list_title">封鎖的連絡人 - <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="button_add">新增</string>
+  <string name="button_invite">邀請</string>
+  <string name="button_set_status_text">設定</string>
+  <string name="cancel">取消</string>
+  <string name="cant_connect_to_server">無法連線到伺服器。請檢查您的連線。</string>
+  <string name="chat_contact_status"><xliff:g id="user">%1$s</xliff:g> - <xliff:g id="status">%2$s</xliff:g></string>
+  <string name="chat_with">與 <xliff:g id="user">%1$s</xliff:g> 聊天</string>
+  <string name="check_auto_sign_in">此選項能夠讓您在每次開啟此應用程式時登入。若要停用此選項，請先登出，然後清除 \"讓我自動登入\" 核取方塊。</string>
+  <string name="choose_account_title">聊天 - 選取帳號</string>
+  <string name="cir_channel_label">CIR 頻道</string>
+  <string name="client_id_label">用戶端 ID</string>
+  <string name="client_type_computer">電腦</string>
+  <string name="client_type_mobile">行動電話</string>
+  <string name="confirm">確認</string>
+  <string name="confirm_block_contact">將會封鎖 \"<xliff:g id="user">%1$s</xliff:g>\" 連絡人。</string>
+  <string name="confirm_delete_contact">將會刪除 \"<xliff:g id="user">%1$s</xliff:g>\" 連絡人。</string>
+  <string name="confirm_unblock_contact">將會解除封鎖 \"<xliff:g id="user">%1$s</xliff:g>\" 連絡人。</string>
+  <string name="contact_already_exist">您的連絡人清單中已經存在「<xliff:g id="user">%1$s</xliff:g>」。</string>
+  <string name="contact_away"><xliff:g id="user">%1$s</xliff:g> 目前離開</string>
+  <string name="contact_blocked">已經封鎖「<xliff:g id="user">%1$s</xliff:g>」連絡人。</string>
+  <string name="contact_busy"><xliff:g id="user">%1$s</xliff:g> 目前忙碌</string>
+  <string name="contact_filter_hint">輸入以便尋找連絡人</string>
+  <string name="contact_joined"><xliff:g id="user">%1$s</xliff:g> 已經加入</string>
+  <string name="contact_left"><xliff:g id="user">%1$s</xliff:g> 已經離開</string>
+  <string name="contact_not_in_list_warning">您的連絡人清單中無 <xliff:g id="user">%1$s</xliff:g>。</string>
+  <string name="contact_not_loaded">正在載入您的連絡人清單，請稍候。</string>
+  <string name="contact_offline"><xliff:g id="user">%1$s</xliff:g> 目前離線</string>
+  <string name="contact_offline_warning"><xliff:g id="user">%1$s</xliff:g> 目前離線。您傳送的訊息將會在 <xliff:g id="user">%1$s</xliff:g> 下次上線時發送。</string>
+  <string name="contact_online"><xliff:g id="user">%1$s</xliff:g> 上線</string>
+  <string name="contact_profile_title">連絡人基本資料</string>
+  <string name="contacts_picker_title">選取要邀請的連絡人</string>
+  <string name="conversations"><xliff:g id="count">%1$d</xliff:g> 聊天</string>
+  <string name="create_chat_session_failed">尚未建立聊天工作階段。\n</string>
+  <string name="data_channel_label">資料頻道</string>
+  <string name="data_encoding_label">資料編碼</string>
+  <string name="decline_invitation">拒絕</string>
+  <string name="decline_subscription">拒絕</string>
+  <string name="decline_subscription_error">無法拒絕 <xliff:g id="user">%1$s</xliff:g> 的訂閱。請稍後再試一次。</string>
+  <string name="default_input_title">輸入</string>
+  <string name="delete_contact_success">已經刪除「<xliff:g id="user">%1$s</xliff:g>」連絡人</string>
+  <string name="disconnected">已中斷連線！\n</string>
+  <string name="disconnected_warning">與伺服器的連線中斷。訊息將會在下次上線時發送。</string>
+  <string name="domain_not_supported">伺服器不支援轉寄到網域。</string>
+  <string name="edit_presence_failed">尚未變更個人資料，請再試一次。\n</string>
+  <string name="empty_chat_list">無進行中的聊天。</string>
+  <string name="empty_contact_group">空的</string>
+  <string name="empty_contact_list">找不到連絡人。</string>
+  <string name="empty_conversation_group">無對話</string>
+  <string name="error">注意</string>
+  <string name="error_colon">問題：\u0020</string>
+  <string name="forced_logout">您已經從其它的用戶端登入。</string>
+  <string name="general_error">錯誤碼 <xliff:g id="code">%1$d</xliff:g></string>
+  <string name="group_chat_invite_notify_text">
+        來自 <xliff:g id="user">%s</xliff:g> 的新群組聊天邀請</string>
+  <string name="hide_offline_contacts">隱藏離線的連絡人</string>
+  <string name="host_label">主機</string>
+  <string name="http">HTTP</string>
+  <string name="im_conn_not_valid">無立即訊息連線。</string>
+  <string name="im_label">立即訊息</string>
+  <string name="im_label_old">立即訊息 (舊式介面)</string>
+  <string name="incoming_msg_header"><xliff:g id="user">%1$s</xliff:g> 說：</string>
+  <string name="input_contact_label">想要邀請之人員的電子郵件地址：</string>
+  <string name="internal_server_error">伺服器遭遇錯誤。</string>
+  <string name="invalid_input">注意</string>
+  <string name="invalid_password">輸入的密碼無效。</string>
+  <string name="invitation_confirm_question"><xliff:g id="user">%1$s</xliff:g> 邀請您加入群組聊天。\n 是否要接受？</string>
+  <string name="invitation_prompt"><xliff:g id="user">%1$s</xliff:g> 已經邀請您加入群組聊天。</string>
+  <string name="invitation_sent_prompt"> 已經將邀請傳送給 <xliff:g id="user">%1$s</xliff:g>。</string>
+  <string name="invitation_title">邀請</string>
+  <string name="invite_instruction">輸入名稱，以便從連絡人新增。</string>
+  <string name="invite_label">傳送邀請</string>
+  <string name="keep_me_signed_in">讓我自動登入。</string>
+  <string name="label_client_type">用戶端類型：</string>
+  <string name="label_password">密碼：</string>
+  <string name="label_status">狀態：</string>
+  <string name="label_username">使用者名稱：</string>
+  <string name="load_contact_list_failed">尚未載入連絡人清單。</string>
+  <string name="login_invalid_input">您必須輸入名稱及密碼。</string>
+  <string name="login_service_failed">無法登入 <xliff:g id="service">%1$s</xliff:g> 服務。請稍後再試一次。\n(詳細資料：<xliff:g id="description">%2$s</xliff:g>)</string>
+  <string name="me">我</string>
+  <string name="menu_add_account">新增帳號</string>
+  <string name="menu_add_contact">新增連絡人</string>
+  <string name="menu_block_contact">封鎖連絡人</string>
+  <string name="menu_cancel_signin">取消登入</string>
+  <string name="menu_edit_account">編輯帳號</string>
+  <string name="menu_end_conversation">結束聊天</string>
+  <string name="menu_group_chat">開始群組聊天\u2026</string>
+  <string name="menu_insert_smiley">插入微笑表情</string>
+  <string name="menu_invite_contact">邀請\u2026</string>
+  <string name="menu_preference">設定</string>
+  <string name="menu_remove_account">移除帳號</string>
+  <string name="menu_remove_contact">刪除連絡人</string>
+  <string name="menu_settings">設定</string>
+  <string name="menu_sign_out">登出</string>
+  <string name="menu_sign_out_all">全部登出</string>
+  <string name="menu_start_chat">開始聊天</string>
+  <string name="menu_switch_chats">切換聊天</string>
+  <string name="menu_unblock_contact">解除封鎖連絡人</string>
+  <string name="menu_view_accounts">帳號清單</string>
+  <string name="menu_view_blocked">已封鎖</string>
+  <string name="menu_view_contact_list">連絡人清單</string>
+  <string name="menu_view_friend_list">連絡人清單</string>
+  <string name="menu_view_profile">檢視個人資料</string>
+  <string name="message_queue_full">訊息佇列已滿。</string>
+  <string name="msg_sent_failed">無法傳送此訊息。</string>
+  <string name="msisdn_error">抱歉，無法從 SIM 卡讀取電話號碼。如需說明，請連絡電信業者。</string>
+  <string name="msisdn_label">MSISDN</string>
+  <string name="my_status">我的 <xliff:g id="provider">%1$s</xliff:g> 狀態：</string>
+  <string name="network_error">發生網路錯誤。</string>
+  <string name="newMessages_label">新的「<xliff:g id="provider">%1$s</xliff:g>」訊息</string>
+  <string name="no">取消</string>
+  <string name="no_blocked_contact">無封鎖的連絡人。</string>
+  <string name="not_implemented">伺服器不支援此功能。</string>
+  <string name="not_signed_in">目前無法登入。</string>
+  <string name="notification_enabled_summary">立即訊息到達時在狀態列顯示通知</string>
+  <string name="notification_enabled_title">立即訊息通知</string>
+  <string name="notification_group_title">通知設定</string>
+  <string name="notification_ringtone_title">選取響鈴音調</string>
+  <string name="notification_sound_summary">立即訊息到達時同時播放響鈴音調</string>
+  <string name="notification_sound_title">聲音</string>
+  <string name="notification_vibrate_summary">立即訊息到達時同時震動</string>
+  <string name="notification_vibrate_title">震動</string>
+  <string name="notify_groupchat_label">群組聊天邀請</string>
+  <string name="num_unread_chats"><xliff:g id="number">%1$d</xliff:g> 個未讀取的聊天
+    </string>
+  <string name="ok">確定</string>
+  <string name="one_conversation">1 個聊天</string>
+  <string name="ongoing_conversation">進行中的聊天 (<xliff:g id="number">%1$d</xliff:g>)</string>
+  <string name="online_count"><xliff:g id="number">%1$d</xliff:g> 上線</string>
+  <string name="outgoing_msg_header">您說：</string>
+  <string name="perm_desc">允許應用程式啟動立即訊息服務。</string>
+  <string name="perm_label">啟動立即訊息服務</string>
+  <string name="preference_title"><xliff:g id="provider">%1$s</xliff:g> 設定 (僅裝置支援)</string>
+  <string name="presence_available">線上</string>
+  <string name="presence_away">離開</string>
+  <string name="presence_busy">忙碌</string>
+  <string name="presence_idle">閒置</string>
+  <string name="presence_invisible">顯示為離線</string>
+  <string name="presence_offline">離線</string>
+  <string name="prompt_contact_address">連絡人名稱或地址：</string>
+  <string name="recipient_blocked_the_user">抱歉，您被此使用者封鎖。</string>
+  <string name="remember_password">記住我的密碼。</string>
+  <string name="save">儲存</string>
+  <string name="select_chat_session">請選取聊天工作階段。</string>
+  <string name="select_contact">請先選取連絡人。</string>
+  <string name="select_link_title">選取連結</string>
+  <string name="send">傳送</string>
+  <string name="service_error">服務發生錯誤！</string>
+  <string name="service_not_support">伺服器不支援此功能。</string>
+  <string name="service_unavaiable">服務目前無法使用。</string>
+  <string name="session_expired">工作階段已經逾時，請重新登入。</string>
+  <string name="setting_title">一般設定</string>
+  <string name="sign_in">登入</string>
+  <string name="sign_up">尚未擁有帳號？</string>
+  <string name="signed_out_prompt">您已經登出 <xliff:g id="account">%1$s</xliff:g>。</string>
+  <string name="signed_out_prompt_with_error">您已經登出 <xliff:g id="account">%1$s</xliff:g>；由於 <xliff:g id="reason">%2$s</xliff:g>。</string>
+  <string name="signing_in_to">登入 <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signing_in_wait">正在登入\u2026</string>
+  <string name="signing_out_wait">正在登出\u2026</string>
+  <string name="sms">簡訊</string>
+  <string name="subscription_notify_text">
+        來自 <xliff:g id="user">%s</xliff:g> 的新朋友邀請</string>
+  <string name="subscription_prompt"><xliff:g id="user">%1$s</xliff:g> 已經邀請您加入他們的連絡人清單。</string>
+  <string name="subscriptions">朋友邀請</string>
+  <string name="tcp">TCP</string>
+  <string name="time_stamp">\'寄件日期\'：hh:mm a；\'在\' EEEE</string>
+  <string name="timeout">伺服器已經逾時。</string>
+  <string name="tou_accept">"我接受"</string>
+  <string name="tou_decline">"我拒絕"</string>
+  <string name="tou_message">"除了與 T-Mobile 達成的合約及條款 (包含在 T-Mobile 的隱私權政策) 之外，使用 Windows Live 必須遵守 Windows Live 使用條款 (請參閱 &lt;http://tou.live.com/en-us/default.aspx&gt;) 及 Windows Live 隱私權聲明 (請參閱 &lt;http://privacy.microsoft.com/en-us/fullnotice.aspx&gt;)。您可以選取下方的 \"我接受\" 鍵，表示在此您接受 Windows Live 使用條款及隱私權聲明，並認可其注意事項；而且，對於上述參考之 URL 中的內容已經閱讀完畢。\n"</string>
+  <string name="tou_title">"使用條款"</string>
+  <string name="type_message_prompt">輸入撰寫訊息；按下 Enter 即可傳送</string>
+  <string name="unblock_contact_failed">尚未解除封鎖連絡人。</string>
+  <string name="unblock_contact_success">已經解除封鎖「<xliff:g id="user">%1$s</xliff:g>」連絡人</string>
+  <string name="unknown_contact">(<xliff:g ctype="italic">無法辨識</xliff:g>) </string>
+  <string name="unknown_user">無法辨識輸入的使用者名稱。</string>
+  <string name="version_not_supported">伺服器不支援目前的版本。</string>
+  <string name="warning">警告</string>
+  <string name="wbxml">WBXML</string>
+  <string name="xml">XML</string>
+  <string name="yes">確定</string>
+</resources>

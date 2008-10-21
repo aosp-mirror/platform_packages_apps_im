@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accept_invitation">Aceptar</string>
+  <string name="account_title">Cuenta <xliff:g id="account">%1$s</xliff:g>:</string>
+  <string name="add_account">Agregar cuenta <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="add_account_title">Chat - Agregar una cuenta</string>
+  <string name="add_contact_invalid_input">Debe introducir la dirección del contacto que desea agregar.</string>
+  <string name="add_contact_success">Contacto "<xliff:g id="user">%1$s</xliff:g>" agregado</string>
+  <string name="add_contact_title">Agregar contacto</string>
+  <string name="add_list_failed">La lista no se ha agregado.</string>
+  <string name="already_logged_in">ya ha iniciado sesión desde otro cliente. </string>
+  <string name="approve_subscription">Aceptar</string>
+  <string name="approve_subscription_error">Incapaz de aprobar la suscripción de <xliff:g id="user">%1$s</xliff:g>. Inténtelo de nuevo más tarde.</string>
+  <string name="block_contact_failed">El contacto no se ha bloqueado</string>
+  <string name="block_contact_success">Contacto "<xliff:g id="user">%1$s</xliff:g>" bloqueado</string>
+  <string name="blocked_list_title">Contactos bloqueados - <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="button_add">Agregar</string>
+  <string name="button_invite">Invitar</string>
+  <string name="button_set_status_text">Establecer</string>
+  <string name="cancel">Cancelar</string>
+  <string name="cant_connect_to_server">No se puede conectar con el servidor. Compruebe su conexión.</string>
+  <string name="chat_contact_status"><xliff:g id="user">%1$s</xliff:g> - <xliff:g id="status">%2$s</xliff:g></string>
+  <string name="chat_with">Chatear con <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="check_auto_sign_in">Esta opción le permite iniciar sesión automáticamente cada vez que abra esta aplicación. Para deshabilitar esta opción, cierre sesión, desactive la casilla de verificación \"Añadirme a la sesión automáticamente\".</string>
+  <string name="choose_account_title">Chat - Seleccionar una cuenta</string>
+  <string name="cir_channel_label">Canal CIR</string>
+  <string name="client_id_label">ID de cliente</string>
+  <string name="client_type_computer">Ordenador</string>
+  <string name="client_type_mobile">Móvil</string>
+  <string name="confirm">Confirmar</string>
+  <string name="confirm_block_contact">El contacto \"<xliff:g id="user">%1$s</xliff:g>\" se bloqueará.</string>
+  <string name="confirm_delete_contact">El contacto \"<xliff:g id="user">%1$s</xliff:g>\" se eliminará.</string>
+  <string name="confirm_unblock_contact">El contacto \"<xliff:g id="user">%1$s</xliff:g>\" se desbloqueará.</string>
+  <string name="contact_already_exist">"<xliff:g id="user">%1$s</xliff:g>" ya existe en su lista de contactos. </string>
+  <string name="contact_away"><xliff:g id="user">%1$s</xliff:g> está ausente</string>
+  <string name="contact_blocked">El contacto "<xliff:g id="user">%1$s</xliff:g>" se ha bloqueado. </string>
+  <string name="contact_busy"><xliff:g id="user">%1$s</xliff:g> está ocupado</string>
+  <string name="contact_filter_hint">Escribe para buscar un contacto</string>
+  <string name="contact_joined">Se ha unido <xliff:g id="user">%1$s</xliff:g></string>
+  <string name="contact_left"><xliff:g id="user">%1$s</xliff:g> se ha ido</string>
+  <string name="contact_not_in_list_warning"><xliff:g id="user">%1$s</xliff:g> no está en la lista de contactos.</string>
+  <string name="contact_not_loaded">Espere mientras se carga la lista de contactos.</string>
+  <string name="contact_offline"><xliff:g id="user">%1$s</xliff:g> está desconectado</string>
+  <string name="contact_offline_warning"><xliff:g id="user">%1$s</xliff:g> está fuera de línea. Los mensajes enviados se entregarán cuando <xliff:g id="user">%1$s</xliff:g> esté en línea.</string>
+  <string name="contact_online"><xliff:g id="user">%1$s</xliff:g> está conectado</string>
+  <string name="contact_profile_title">Perfil de contacto</string>
+  <string name="contacts_picker_title">Seleccionar contacto(s) a invitar</string>
+  <string name="conversations"><xliff:g id="count">%1$d</xliff:g> conversaciones</string>
+  <string name="create_chat_session_failed">La sesión de chat no se ha creado.\n</string>
+  <string name="data_channel_label">Canal de datos</string>
+  <string name="data_encoding_label">Cifrado de datos</string>
+  <string name="decline_invitation">Rechazar</string>
+  <string name="decline_subscription">Rechazar</string>
+  <string name="decline_subscription_error">Incapaz de rechazar la suscripción de <xliff:g id="user">%1$s</xliff:g>. Inténtelo de nuevo más tarde.</string>
+  <string name="default_input_title">Entrada</string>
+  <string name="delete_contact_success">Contacto "<xliff:g id="user">%1$s</xliff:g>" eliminado</string>
+  <string name="disconnected">¡Desconectado!\n</string>
+  <string name="disconnected_warning">Se ha perdido la conexión con el servidor. Los mensajes se enviarán cuando vuelva a iniciar sesión.</string>
+  <string name="domain_not_supported">El servidor no admite el reenvío al dominio. </string>
+  <string name="edit_presence_failed">El perfil no ha cambiado. Inténtelo de nuevo.\n</string>
+  <string name="empty_chat_list">Ningún chat activo.</string>
+  <string name="empty_contact_group">Vacío</string>
+  <string name="empty_contact_list">Ningún contacto encontrado.</string>
+  <string name="empty_conversation_group">Sin conversaciones</string>
+  <string name="error">¡Atención!</string>
+  <string name="error_colon">Problema:\u0020</string>
+  <string name="forced_logout">ha iniciado sesión desde otro cliente. </string>
+  <string name="general_error">Código de error <xliff:g id="code">%1$d</xliff:g></string>
+  <string name="group_chat_invite_notify_text">
+        Nueva invitación para un chat en grupo de <xliff:g id="user">%s</xliff:g></string>
+  <string name="hide_offline_contacts">Ocultar contactos sin conex.</string>
+  <string name="host_label">Host</string>
+  <string name="http">HTTP</string>
+  <string name="im_conn_not_valid">Sin conexión de MI.</string>
+  <string name="im_label">MI</string>
+  <string name="im_label_old">MI (antigua IU)</string>
+  <string name="incoming_msg_header"><xliff:g id="user">%1$s</xliff:g> escribió:</string>
+  <string name="input_contact_label">Correo electrónico de la persona que quiere invitar:</string>
+  <string name="internal_server_error">El servidor ha detectado un error. </string>
+  <string name="invalid_input">¡Atención!</string>
+  <string name="invalid_password">La contraseña que ha introducido no es válida. </string>
+  <string name="invitation_confirm_question"><xliff:g id="user">%1$s</xliff:g> le invita a unirse a un chat en grupo.\n ¿Acepta?</string>
+  <string name="invitation_prompt"><xliff:g id="user">%1$s</xliff:g> le ha invitado a unirse a un chat en grupo.</string>
+  <string name="invitation_sent_prompt"> La invitación se ha enviado a <xliff:g id="user">%1$s</xliff:g>.</string>
+  <string name="invitation_title">Invitación</string>
+  <string name="invite_instruction">Escriba un nombre a añadir de Contactos.</string>
+  <string name="invite_label">Enviar invitación</string>
+  <string name="keep_me_signed_in">Añadirme a la sesión automáticamente. </string>
+  <string name="label_client_type">Tipo de cliente:</string>
+  <string name="label_password">Contraseña:</string>
+  <string name="label_status">Estado:</string>
+  <string name="label_username">Nombre de usuario:</string>
+  <string name="load_contact_list_failed">La lista de contactos no se ha cargado.</string>
+  <string name="login_invalid_input">Debe introducir su nombre y contraseña</string>
+  <string name="login_service_failed">Incapaz de iniciar sesión en el servicio <xliff:g id="service">%1$s</xliff:g>. Inténtelo de nuevo más tarde.\n(Detalle: <xliff:g id="description">%2$s</xliff:g>)</string>
+  <string name="me">Yo</string>
+  <string name="menu_add_account">Agregar cuenta</string>
+  <string name="menu_add_contact">Agregar contacto</string>
+  <string name="menu_block_contact">Bloquear contacto</string>
+  <string name="menu_cancel_signin">Cancelar inicio de sesión</string>
+  <string name="menu_edit_account">Editar cuenta</string>
+  <string name="menu_end_conversation">Finalizar chat</string>
+  <string name="menu_group_chat">Iniciar chat en grupo\u2026</string>
+  <string name="menu_insert_smiley">Insertar icono gestual</string>
+  <string name="menu_invite_contact">Invitar\u2026</string>
+  <string name="menu_preference">Configuración</string>
+  <string name="menu_remove_account">Quitar cuenta</string>
+  <string name="menu_remove_contact">Eliminar contacto</string>
+  <string name="menu_settings">Configuración</string>
+  <string name="menu_sign_out">Cerrar sesión</string>
+  <string name="menu_sign_out_all">Cerrar sesión completa</string>
+  <string name="menu_start_chat">Iniciar chat</string>
+  <string name="menu_switch_chats">Cambiar de conversación</string>
+  <string name="menu_unblock_contact">Desbloquear contacto</string>
+  <string name="menu_view_accounts">Lista de cuentas</string>
+  <string name="menu_view_blocked">Bloqueado</string>
+  <string name="menu_view_contact_list">Lista de contactos</string>
+  <string name="menu_view_friend_list">Lista de contactos</string>
+  <string name="menu_view_profile">Ver perfil</string>
+  <string name="message_queue_full">La cola de mensajes está llena. </string>
+  <string name="msg_sent_failed">Este mensaje no se ha podido enviar.</string>
+  <string name="msisdn_error">Lo sentimos, no se puede leer el número de teléfono desde su tarjeta SIM. Póngase en contacto con su operador para obtener ayuda.</string>
+  <string name="msisdn_label">MSISDN</string>
+  <string name="my_status">Mi estado <xliff:g id="provider">%1$s</xliff:g>:</string>
+  <string name="network_error">Se ha producido un error en la red.</string>
+  <string name="newMessages_label">Nuevos mensajes "<xliff:g id="provider">%1$s</xliff:g>"</string>
+  <string name="no">Cancelar</string>
+  <string name="no_blocked_contact">Ningún contacto bloqueado.</string>
+  <string name="not_implemented">El servidor no admite esta funcionalidad. </string>
+  <string name="not_signed_in">Actualmente no ha iniciado sesión.</string>
+  <string name="notification_enabled_summary">Avisar en la barra de estado cuando llegue un MI</string>
+  <string name="notification_enabled_title">Notificaciones de MI</string>
+  <string name="notification_group_title">Configuración de notificación</string>
+  <string name="notification_ringtone_title">Seleccionar tono de timbre</string>
+  <string name="notification_sound_summary">Emitir también un tono de timbre cuando llegue un MI</string>
+  <string name="notification_sound_title">Sonido</string>
+  <string name="notification_vibrate_summary">Vibrar también cuando llegue un MI</string>
+  <string name="notification_vibrate_title">Vibrar</string>
+  <string name="notify_groupchat_label">Invitación a chat en grupo</string>
+  <string name="num_unread_chats"><xliff:g id="number">%1$d</xliff:g> conversaciones no leídas
+    </string>
+  <string name="ok">Aceptar</string>
+  <string name="one_conversation">1 chat</string>
+  <string name="ongoing_conversation">Conversaciones en curso (<xliff:g id="number">%1$d</xliff:g>)</string>
+  <string name="online_count"><xliff:g id="number">%1$d</xliff:g> conectado</string>
+  <string name="outgoing_msg_header">Usted ha escrito:</string>
+  <string name="perm_desc">Permitir que las aplicaciones inicien el servicio de MI.</string>
+  <string name="perm_label">iniciar servicio de MI</string>
+  <string name="preference_title">Configuración de <xliff:g id="provider">%1$s</xliff:g> (sólo des.)</string>
+  <string name="presence_available">Conectado</string>
+  <string name="presence_away">Ausente</string>
+  <string name="presence_busy">Ocupado</string>
+  <string name="presence_idle">Inactivo</string>
+  <string name="presence_invisible">No conectado</string>
+  <string name="presence_offline">Sin conexión</string>
+  <string name="prompt_contact_address">Nombre o dirección de contacto:</string>
+  <string name="recipient_blocked_the_user">Lo siento, ha sido bloqueado por el usuario. </string>
+  <string name="remember_password">Recordar mi contraseña. </string>
+  <string name="save">Guardar</string>
+  <string name="select_chat_session">Seleccione una sesión de chat.</string>
+  <string name="select_contact">Seleccione primero un contacto.</string>
+  <string name="select_link_title">Seleccionar enlace</string>
+  <string name="send">Enviar</string>
+  <string name="service_error">¡Error del servicio!</string>
+  <string name="service_not_support">El servidor no admite esta funcionalidad. </string>
+  <string name="service_unavaiable">El servidor ahora no está disponible. </string>
+  <string name="session_expired">La sesión ha caducado, por favor acceda de nuevo. </string>
+  <string name="setting_title">Configuración generales</string>
+  <string name="sign_in">Inicio de sesión</string>
+  <string name="sign_up">¿Ya dispone de una cuenta?</string>
+  <string name="signed_out_prompt">Se ha desconectado de <xliff:g id="account">%1$s</xliff:g>.</string>
+  <string name="signed_out_prompt_with_error">Se ha desconectado de <xliff:g id="account">%1$s</xliff:g> porque <xliff:g id="reason">%2$s</xliff:g>.</string>
+  <string name="signing_in_to">Iniciando sesión en <xliff:g id="account">%1$s</xliff:g></string>
+  <string name="signing_in_wait">Iniciando sesión\u2026</string>
+  <string name="signing_out_wait">Cerrar sesión\u2026</string>
+  <string name="sms">SMS</string>
+  <string name="subscription_notify_text">
+        Nueva invitación de amigo de <xliff:g id="user">%s</xliff:g></string>
+  <string name="subscription_prompt"><xliff:g id="user">%1$s</xliff:g> le ha invitado a formar parte de su lista de contactos.</string>
+  <string name="subscriptions">Invitaciones de amigo</string>
+  <string name="tcp">TCP</string>
+  <string name="time_stamp">\'Enviado a las \' hh:mm a \'del\' EEEE</string>
+  <string name="timeout">El servidor ha agotado el tiempo de espera. </string>
+  <string name="tou_accept">"Acepto"</string>
+  <string name="tou_decline">"No acepto"</string>
+  <string name="tou_message">"Además del acuerdo que tiene con T-Mobile y las disposiciones incluidas en la política de privacidad de T-Mobile, el uso que usted haga de Windows Live está sujeto a las condiciones de uso de Windows Live (&lt;http://tou.live.com/en-us/default.aspx&gt;) y la declaración de privacidad de Windows Live (&lt;http://privacy.microsoft.com/en-us/fullnotice.aspx&gt;). Al seleccionar el botón \"Acepto\", usted acepta las condiciones de uso y la política de privacidad de Windows Live y confirma que sabe que puede consultarlas en las direcciones URL indicadas anteriormente y que ha tenido la oportunidad de hacerlo.\n"</string>
+  <string name="tou_title">"Condiciones de uso"</string>
+  <string name="type_message_prompt">Escriba para redactar el mensaje; pulse Intro para enviar</string>
+  <string name="unblock_contact_failed">El contacto no se ha desbloqueado.</string>
+  <string name="unblock_contact_success">Contacto "<xliff:g id="user">%1$s</xliff:g>" desbloqueado</string>
+  <string name="unknown_contact">(<xliff:g ctype="italic">Desconocido</xliff:g>) </string>
+  <string name="unknown_user">La contraseña que ha introducido no se reconoce. </string>
+  <string name="version_not_supported">El servidor no admite la versión actual. </string>
+  <string name="warning">Advertencia</string>
+  <string name="wbxml">WBXML</string>
+  <string name="xml">XML</string>
+  <string name="yes">Aceptar</string>
+</resources>

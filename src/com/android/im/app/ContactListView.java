@@ -1,0 +1,486 @@
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.android.im.app;
+
+import com.android.im.IChatSession;
+import com.android.im.IChatSessionManager;
+import com.android.im.IContactListListener;
+import com.android.im.IContactListManager;
+import com.android.im.IImConnection;
+import com.android.im.ISubscriptionListener;
+import com.android.im.R;
+import com.android.im.app.adapter.ContactListListenerAdapter;
+import com.android.im.engine.Contact;
+import com.android.im.engine.ContactListManager;
+import com.android.im.engine.ImErrorInfo;
+import com.android.im.service.ImServiceConstants;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.RemoteException;
+import android.provider.Im;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ExpandableListView.OnChildClickListener;
+
+public class ContactListView extends LinearLayout {
+
+    Activity mScreen;
+    IImConnection mConn;
+    SimpleAlertHandler mHandler;
+    private final IContactListListener mContactListListener;
+
+    UserPresenceView mPresenceView;
+    ExpandableListView mContactsList;
+    private ContactListTreeAdapter mAdapter;
+    private boolean mHideOfflineContacts;
+    private SavedState mSavedState;
+
+    public ContactListView(Context screen, AttributeSet attrs) {
+        super(screen, attrs);
+        mScreen = (Activity)screen;
+        mHandler = new SimpleAlertHandler(mScreen);
+        mContactListListener = new MyContactListListener(mHandler);
+    }
+
+    private class MyContactListListener extends ContactListListenerAdapter {
+        public MyContactListListener(SimpleAlertHandler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onAllContactListsLoaded() {
+            if (mAdapter != null) {
+                mAdapter.startAutoRequery();
+            }
+        }
+    }
+
+    private final ISubscriptionListener.Stub mSubscriptionListener = new ISubscriptionListener.Stub() {
+
+        public void onSubScriptionRequest(Contact from) {
+            querySubscription();
+        }
+
+        public void onSubscriptionApproved(String contact) {
+            querySubscription();
+        }
+
+        public void onSubscriptionDeclined(String contact) {
+            querySubscription();
+        }
+
+        private void querySubscription() {
+            if (mAdapter != null) {
+                mAdapter.startQuerySubscriptions();
+            }
+        }
+     };
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mPresenceView = (UserPresenceView)findViewById(R.id.userPresence);
+        mContactsList = (ExpandableListView) findViewById(R.id.contactsList);
+        mContactsList.setOnChildClickListener(mOnChildClickListener);
+    }
+
+    public ExpandableListView getListView() {
+        return mContactsList;
+    }
+
+    public void setConnection(IImConnection conn) {
+        if (mConn != conn) {
+            if (mConn != null) {
+                unregisterListeners();
+            }
+            mConn = conn;
+
+            if (conn != null) {
+                registerListeners();
+                mPresenceView.setConnection(conn);
+
+                if (mAdapter == null) {
+                    mAdapter = new ContactListTreeAdapter(conn, mScreen);
+                    mAdapter.setHideOfflineContacts(mHideOfflineContacts);
+                    mContactsList.setAdapter(mAdapter);
+                    mContactsList.setOnScrollListener(mAdapter);
+                    if (mSavedState != null) {
+                        int[] expandedGroups = mSavedState.mExpandedGroups;
+                        if(expandedGroups != null) {
+                            for (int group : expandedGroups) {
+                                mContactsList.expandGroup(group);
+                            }
+                        }
+                    }
+                } else {
+                    mAdapter.changeConnection(conn);
+                }
+                try {
+                    IContactListManager listMgr = conn.getContactListManager();
+                    if (listMgr.getState() == ContactListManager.LISTS_LOADED) {
+                        mAdapter.startAutoRequery();
+                    }
+                } catch (RemoteException e) {
+                    Log.e(ImApp.LOG_TAG, "Service died!");
+                }
+            }
+        } else {
+            mContactsList.invalidateViews();
+        }
+    }
+
+    public void setHideOfflineContacts(boolean hide) {
+        if (mAdapter != null) {
+            mAdapter.setHideOfflineContacts(hide);
+        } else {
+            mHideOfflineContacts = hide;
+        }
+    }
+
+    public void startChat() {
+        startChat(getSelectedContact());
+    }
+
+    public void startChatAtPosition(long packedPosition) {
+        startChat(getContactAtPosition(packedPosition));
+    }
+
+    void startChat(Cursor c) {
+        if (c != null) {
+            long id = c.getLong(c.getColumnIndexOrThrow(Im.Contacts._ID));
+            String username = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            try {
+                IChatSessionManager manager = mConn.getChatSessionManager();
+                IChatSession session = manager.getChatSession(username);
+                if(session == null) {
+                    manager.createChatSession(username);
+                }
+
+                Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, id);
+                Intent i = new Intent(Intent.ACTION_VIEW, data);
+                mScreen.startActivity(i);
+            } catch (RemoteException e) {
+                mHandler.showServiceErrorAlert();
+            }
+            clearFocusIfEmpty(c);
+        }
+    }
+
+    private void clearFocusIfEmpty(Cursor c) {
+        // clear focus if there's only one item so that it would focus on the
+        // "empty" item after the contact removed.
+        if (c.getCount() == 1) {
+            clearFocus();
+        }
+    }
+
+    public void endChat() {
+        endChat(getSelectedContact());
+    }
+
+    public void endChatAtPosition(long packedPosition) {
+        endChat(getContactAtPosition(packedPosition));
+    }
+
+    void endChat(Cursor c) {
+        if(c != null) {
+            String username = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            try {
+                IChatSessionManager manager = mConn.getChatSessionManager();
+                IChatSession session = manager.getChatSession(username);
+                if(session != null) {
+                    session.leave();
+                }
+            } catch (RemoteException e) {
+                mHandler.showServiceErrorAlert();
+            }
+            clearFocusIfEmpty(c);
+        }
+    }
+
+    public void viewContactPresence() {
+        viewContactPresence(getSelectedContact());
+    }
+
+    public void viewContactPresenceAtPostion(long packedPosition) {
+        viewContactPresence(getContactAtPosition(packedPosition));
+    }
+
+    public void viewContactPresence(Cursor c) {
+        if (c != null) {
+            long id = c.getLong(c.getColumnIndexOrThrow(Im.Contacts._ID));
+            Uri data = ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, id);
+            Intent i = new Intent(Intent.ACTION_VIEW, data);
+            mScreen.startActivity(i);
+        }
+    }
+
+    public boolean isContactAtPosition(long packedPosition) {
+        int type = ExpandableListView.getPackedPositionType(packedPosition);
+        int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+        return (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD)
+                && !mAdapter.isPosForSubscription(groupPosition);
+    }
+
+    public boolean isContactSelected() {
+        long pos = mContactsList.getSelectedPosition();
+        return isContactAtPosition(pos);
+    }
+
+    public boolean isConversationAtPosition(long packedPosition) {
+        int type = ExpandableListView.getPackedPositionType(packedPosition);
+        int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+        return (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD)
+                && mAdapter.isPosForOngoingConversation(groupPosition);
+    }
+
+    public boolean isConversationSelected () {
+        long pos = mContactsList.getSelectedPosition();
+        return isConversationAtPosition(pos);
+    }
+
+    public boolean isContactsLoaded() {
+        try {
+            IContactListManager manager = mConn.getContactListManager();
+            return (manager.getState() == ContactListManager.LISTS_LOADED);
+        } catch (RemoteException e) {
+            mHandler.showServiceErrorAlert();
+            return false;
+        }
+    }
+
+    public void removeContact() {
+        removeContact(getSelectedContact());
+    }
+
+    public void removeContactAtPosition(long packedPosition) {
+        removeContact(getContactAtPosition(packedPosition));
+    }
+
+    void removeContact(Cursor c) {
+        if (c == null) {
+            mHandler.showAlert(R.string.error, R.string.select_contact);
+        } else {
+            String nickname = c.getString(c.getColumnIndexOrThrow(Im.Contacts.NICKNAME));
+            final String address = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            DialogInterface.OnClickListener confirmListener = new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    try {
+                        IContactListManager manager = mConn.getContactListManager();
+                        int res = manager.removeContact(address);
+                        if (res != ImErrorInfo.NO_ERROR) {
+                            mHandler.showAlert(R.string.error,
+                                    ErrorResUtils.getErrorRes(getResources(), res, address));
+                        }
+                    } catch (RemoteException e) {
+                        mHandler.showServiceErrorAlert();
+                    }
+                }
+            };
+            Resources r = getResources();
+
+            new AlertDialog.Builder(mContext)
+                .setTitle(R.string.confirm)
+                .setMessage(r.getString(R.string.confirm_delete_contact, nickname))
+                .setPositiveButton(R.string.yes, confirmListener) // default button
+                .setNegativeButton(R.string.no, null)
+                .setCancelable(false)
+                .show();
+
+            clearFocusIfEmpty(c);
+        }
+    }
+
+    public void blockContact() {
+        blockContact(getSelectedContact());
+    }
+
+    public void blockContactAtPosition(long packedPosition) {
+        blockContact(getContactAtPosition(packedPosition));
+    }
+
+    void blockContact(Cursor c) {
+        if (c == null) {
+            mHandler.showAlert(R.string.error, R.string.select_contact);
+        } else {
+            String nickname = c.getString(c.getColumnIndexOrThrow(Im.Contacts.NICKNAME));
+            final String address = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            DialogInterface.OnClickListener confirmListener = new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    try {
+                        IContactListManager manager = mConn.getContactListManager();
+                        int res = manager.blockContact(address);
+                        if (res != ImErrorInfo.NO_ERROR) {
+                            mHandler.showAlert(R.string.error,
+                                    ErrorResUtils.getErrorRes(getResources(), res, address));
+                        }
+                    } catch (RemoteException e) {
+                        mHandler.showServiceErrorAlert();
+                    }
+                }
+            };
+
+            Resources r = getResources();
+
+            new AlertDialog.Builder(mContext)
+                .setTitle(R.string.confirm)
+                .setMessage(r.getString(R.string.confirm_block_contact, nickname))
+                .setPositiveButton(R.string.yes, confirmListener) // default button
+                .setNegativeButton(R.string.no, null)
+                .setCancelable(false)
+                .show();
+            clearFocusIfEmpty(c);
+        }
+    }
+
+    public Cursor getContactAtPosition(long packedPosition) {
+        int type = ExpandableListView.getPackedPositionType(packedPosition);
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+            int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
+            return (Cursor) mAdapter.getChild(groupPosition, childPosition);
+        }
+        return null;
+    }
+
+    public Cursor getSelectedContact() {
+        long pos = mContactsList.getSelectedPosition();
+        if (ExpandableListView.getPackedPositionType(pos)
+                == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            return (Cursor)mContactsList.getSelectedItem();
+        }
+        return null;
+    }
+
+    public String getSelectedContactList() {
+        long pos = mContactsList.getSelectedPosition();
+        int groupPos = ExpandableListView.getPackedPositionGroup(pos);
+        if (groupPos == -1) {
+            return null;
+        }
+
+        Cursor cursor = (Cursor)mAdapter.getGroup(groupPos);
+        if (cursor == null) {
+            return null;
+        }
+        return cursor.getString(cursor.getColumnIndexOrThrow(Im.ContactList.NAME));
+    }
+
+    private void registerListeners() {
+        try{
+            IContactListManager listManager = mConn.getContactListManager();
+            listManager.registerContactListListener(mContactListListener);
+            listManager.registerSubscriptionListener(mSubscriptionListener);
+        }catch(RemoteException e) {
+            mHandler.showServiceErrorAlert();
+        }
+    }
+
+    private void unregisterListeners() {
+        try{
+            IContactListManager listManager = mConn.getContactListManager();
+            listManager.unregisterContactListListener(mContactListListener);
+            listManager.unregisterSubscriptionListener(mSubscriptionListener);
+        }catch(RemoteException e) {
+            mHandler.showServiceErrorAlert();
+        }
+    }
+
+    private final OnChildClickListener mOnChildClickListener = new OnChildClickListener() {
+        public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+                int childPosition, long id) {
+            Cursor cursor = (Cursor)parent.getExpandableListAdapter().getChild(
+                    groupPosition, childPosition);
+            int subscriptionType = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_TYPE);
+            int subscriptionStatus = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_STATUS);
+            if ((subscriptionType == Im.Contacts.SUBSCRIPTION_TYPE_FROM)
+                    && (subscriptionStatus == Im.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING)){
+                long providerId = cursor.getLong(ContactView.COLUMN_CONTACT_PROVIDER);
+                String username = cursor.getString(ContactView.COLUMN_CONTACT_USERNAME);
+                Intent intent = new Intent(ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION,
+                        ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, id));
+                intent.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, providerId);
+                intent.putExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS, username);
+                mScreen.startActivity(intent);
+            } else {
+                startChat(cursor);
+            }
+            return true;
+        }
+    };
+
+    static class SavedState extends BaseSavedState {
+        int[] mExpandedGroups;
+
+        SavedState(Parcelable superState, int[] expandedGroups) {
+            super(superState);
+            mExpandedGroups = expandedGroups;
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            mExpandedGroups = in.createIntArray();
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeIntArray(mExpandedGroups);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        int[] expandedGroups = mAdapter == null ? null
+                : mAdapter.getExpandedGroups();
+        return new SavedState(superState, expandedGroups);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        mSavedState = ss;
+    }
+}
