@@ -20,7 +20,7 @@ package com.android.im.imps;
 import java.util.ArrayList;
 import java.util.Date;
 
-import android.pim.Time;
+import android.text.format.Time;
 import android.util.TimeFormatException;
 
 import com.android.im.engine.Address;
@@ -155,7 +155,7 @@ public class ImpsChatSessionManager extends ChatSessionManager
         if (dateTime != null) {
             try {
                 Time t = new Time();
-                t.parse2445(dateTime);
+                t.parse(dateTime);
                 msg.setDateTime(new Date(t.toMillis(false /* use isDst */)));
             } catch (TimeFormatException e) {
                 msg.setDateTime(new Date());

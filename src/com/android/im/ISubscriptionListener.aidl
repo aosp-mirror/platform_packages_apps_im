@@ -19,7 +19,7 @@ package com.android.im;
 
 import com.android.im.engine.Contact;
 
-interface ISubscriptionListener {
+oneway interface ISubscriptionListener {
     /**
      * Called when:
      *  <ul>

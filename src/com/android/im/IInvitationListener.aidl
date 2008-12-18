@@ -17,7 +17,7 @@
 
 package com.android.im;
 
-interface IInvitationListener {
+oneway interface IInvitationListener {
     /**
      * Called when a new invitation received.
      *

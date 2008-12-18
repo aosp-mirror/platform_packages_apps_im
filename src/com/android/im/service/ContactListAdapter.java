@@ -17,8 +17,6 @@
 
 package com.android.im.service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import android.util.Log;
 
@@ -63,19 +61,13 @@ public class ContactListAdapter extends IContactList.Stub {
         return ImErrorInfo.NO_ERROR;
     }
 
-    public List<Contact> getContacts() {
-        ArrayList<Contact> result = new ArrayList<Contact>();
-        result.addAll(mAdaptee.getContacts());
-        return result;
-    }
-
     public String getName() {
         return mAdaptee.getName();
     }
 
-    public int removeContact(Contact contact) {
+    public int removeContact(String address) {
+        Contact contact = mAdaptee.getContact(address);
         if (contact == null) {
-            Log.e(RemoteImService.TAG, "Contact can't be null!");
             return ImErrorInfo.ILLEGAL_CONTACT_ADDRESS;
         }
 

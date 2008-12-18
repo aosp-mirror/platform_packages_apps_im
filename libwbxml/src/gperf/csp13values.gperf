@@ -1,0 +1,224 @@
+%{
+/*
+ * Copyright (C) 2007 Esmertec AG.
+ * Copyright (C) 2007 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <string.h>
+#include "csp13_hash.h"
+
+%}
+
+struct TokenEntry {
+    const char * name;
+    int key;
+};
+
+%%
+AccessType, 0x00
+ActiveUsers, 0x01
+Admin, 0x02
+application/, 0x03
+application/vnd.wap.mms-message, 0x04
+application/x-sms, 0x05
+AutoJoin, 0x06
+BASE64, 0x07
+Closed, 0x08
+Default, 0x09
+DisplayName, 0x0A
+F, 0x0B
+G, 0x0C
+GR, 0x0D
+http://, 0x0E
+https://, 0x0F
+image/, 0x10
+Inband, 0x11
+IM, 0x12
+MaxActiveUsers, 0x13
+Mod, 0x14
+Name, 0x15
+None, 0x16
+N, 0x17
+Open, 0x18
+Outband, 0x19
+PR, 0x1A
+Private, 0x1B
+PrivateMessaging, 0x1C
+PrivilegeLevel, 0x1D
+Public, 0x1E
+P, 0x1F
+Request, 0x20
+Response, 0x21
+Restricted, 0x22
+ScreenName, 0x23
+Searchable, 0x24
+S, 0x25
+SC, 0x26
+text/, 0x27
+text/plain, 0x28
+text/x-vCalendar, 0x29
+text/x-vCard, 0x2A
+Topic, 0x2B
+T, 0x2C
+Type, 0x2D
+U, 0x2E
+US, 0x2F
+www.wireless-village.org, 0x30
+AutoDelete, 0x31
+GM, 0x32
+Validity, 0x33
+DENIED, 0x34
+GRANTED, 0x35
+PENDING, 0x36
+ShowID, 0x37
+RequireInvitation, 0x38
+Tiny, 0x39
+PPU, 0x3A
+SPA, 0x3B
+ANC, 0x3C
+GROUP_ID, 0x3D
+History, 0x3D
+GROUP_NAME, 0x3E
+GROUP_TOPIC, 0x3F
+GROUP_USER_ID_JOINED, 0x40
+GROUP_USER_ID_OWNER, 0x41
+HTTP, 0x42
+SMS, 0x43
+STCP, 0x44
+SUDP, 0x45
+USER_ALIAS, 0x46
+USER_EMAIL_ADDRESS, 0x47
+USER_FIRST_NAME, 0x48
+USER_ID, 0x49
+USER_LAST_NAME, 0x4A
+USER_MOBILE_NUMBER, 0x4B
+USER_ONLINE_STATUS, 0x4C
+WAPSMS, 0x4D
+WAPUDP, 0x4E
+WSP, 0x4F
+GROUP_USER_ID_AUTOJOIN, 0x50
+AND, 0x51
+AC, 0x52
+BLC, 0x53
+BLUC, 0x54
+CLCR, 0x55
+CLD, 0x56
+GC, 0x57
+GD, 0x58
+GLC, 0x59
+ANU, 0x5A
+ANGRY, 0x5B
+ANXIOUS, 0x5C
+ASHAMED, 0x5D
+AVAILABLE, 0x5F
+BORED, 0x60
+CALL, 0x61
+CLI, 0x62
+COMPUTER, 0x63
+DISCREET, 0x64
+EMAIL, 0x65
+EXCITED, 0x66
+HAPPY, 0x67
+AP, 0x68
+IN_LOVE, 0x6B
+INVINCIBLE, 0x6C
+JEALOUS, 0x6D
+MMS, 0x6E
+MOBILE_PHONE, 0x6F
+NOT_AVAILABLE, 0x70
+OTHER, 0x71
+PDA, 0x72
+SAD, 0x73
+SLEEPY, 0x74
+www.openmobilealliance.org, 0x78
+Small, 0x79
+Medium, 0x7A
+Big, 0x7B
+Huge, 0x7C
+Bold, 0x7D
+Italic, 0x7E
+Underline, 0x7F
+Black, 0x80
+Silver, 0x81
+Gray, 0x82
+White, 0x83
+Maroon, 0x84
+Red, 0x85
+Purple, 0x86
+Fuchsia, 0x87
+Green, 0x88
+Lime, 0x89
+Olive, 0x8A
+Yellow, 0x8B
+Navy, 0x8C
+Blue, 0x8D
+Teal, 0x8E
+Aqua, 0x8F
+ATCL, 0x90
+CLC, 0x91
+USER_CITY, 0x93
+USER_COUNTRY, 0x94
+USER_FRIENDLY_NAME, 0x95
+USER_GENDER, 0x96
+USER_INTENTION, 0x97
+USER_INTERESTS_HOBBIES, 0x98
+USER_MARITAL_STATUS, 0x99
+PRIORITYREJECT, 0x9A
+PRIORITYSTORE, 0x9B
+REJECT, 0x9C
+SENDREJECT, 0x9D
+SENDSTORE, 0x9E
+IR, 0x9F
+EC, 0xA0
+GLUC, 0xA1
+IA, 0xA2
+IC, 0xA3
+SSMS, 0xA4
+SHTTP, 0xA5
+DoNotNotify, 0xA6
+GMAU, 0xA7
+GMG, 0xA8
+GMR, 0xA9
+GMU, 0xAA
+DETECT, 0xAB
+FORKALL, 0xAC
+OEU, 0xAD
+SERVERLOGIC, 0xAE
+PP_AGE, 0xAF
+PP_CITY, 0xB0
+PP_COUNTRY, 0xB1
+PP_FRIENDLY_NAME, 0xB2
+PP_FREE_TEXT, 0xB3
+PP_GENDER, 0xB4
+PP_INTENTION, 0xB5
+PP_INTERESTS, 0xB6
+PP_MARITAL_STATUS, 0xB7
+USER_AGE_MAX, 0xB8
+USER_AGE_MIN, 0xB9
+EG, 0xBA
+MinimumAge, 0xBB
+C, 0xBC
+CURRENT_SUBSCRIBER, 0xBD
+FORMER_SUBSCRIBER, 0xBE
+PRESENCE_ACCESS, 0xBF
+R, 0xC0
+%%
+
+int csp13ValueTokenToKey(const char * str, int len)
+{
+    const struct TokenEntry * tag = findToken(str, len);
+    return tag ? tag->key : -1;
+}
+

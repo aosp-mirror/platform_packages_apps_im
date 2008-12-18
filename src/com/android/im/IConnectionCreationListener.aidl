@@ -19,7 +19,7 @@ package com.android.im;
 
 import com.android.im.IImConnection;
 
-interface IConnectionCreationListener {
+oneway interface IConnectionCreationListener {
     /**
      * Called when a connection is created in the service.
      */

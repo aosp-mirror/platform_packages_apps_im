@@ -72,7 +72,7 @@ public class StatusBarNotifier {
         String snippet = nickname + ": " + msg;
         Intent intent = new Intent(Intent.ACTION_VIEW,
                 ContentUris.withAppendedId(Im.Chats.CONTENT_URI, chatId));
-
+        intent.addCategory(com.android.im.app.ImApp.IMPS_CATEGORY);
         notify(username, title, snippet, msg, providerId, accountId, intent);
     }
 

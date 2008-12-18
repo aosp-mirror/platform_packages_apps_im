@@ -172,7 +172,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 return true;
 
             case R.id.menu_view_accounts:
-                Intent intent = new Intent(this, ChooseAccountActivity.class);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType(Im.Provider.CONTENT_TYPE);
                 startActivity(intent);
                 finish();
                 return true;

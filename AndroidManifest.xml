@@ -23,6 +23,7 @@
 
     <uses-permission android:name="com.android.providers.im.permission.READ_ONLY" />
     <uses-permission android:name="com.android.providers.im.permission.WRITE_ONLY" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -45,6 +46,12 @@
              (android.test) library. -->
         <uses-library android:name="android.test.runner" />
 
+        <service android:name=".app.FrontDoorPlugin">
+            <intent-filter>
+                <action android:name="android.im.plugin" />
+            </intent-filter>
+        </service>
+
         <service android:name=".service.RemoteImService"
             android:process="android.process.im"
             android:exported="true"
@@ -54,20 +61,6 @@
                 <action android:name="com.android.im.SERVICE" />
             </intent-filter>
         </service>
-
-        <activity android:name=".app.ChooseAccountActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/im-providers" />
-            </intent-filter>
-        </activity>
 
         <activity android:name=".app.ImUrlActivity" >
             <intent-filter>
@@ -84,8 +77,15 @@
         <activity android:name=".app.AccountActivity">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.im.IMPS_CATEGORY" />
+                <data android:mimeType="vnd.android.cursor.item/im-accounts" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.im.IMPS_CATEGORY" />
+                <data android:mimeType="vnd.android.cursor.item/im-providers" />
             </intent-filter>
         </activity>
 
@@ -96,10 +96,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".app.SignoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".app.ContactListActivity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.android.im.IMPS_CATEGORY" />
                 <data android:mimeType="vnd.android.cursor.dir/im-contacts"/>
             </intent-filter>
         </activity>
@@ -112,6 +120,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.im.IMPS_CATEGORY" />
                 <data android:mimeType="vnd.android.cursor.item/im-chats" />
             </intent-filter>
             <intent-filter>
@@ -159,6 +168,9 @@
         <activity android:name=".app.SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="com.android.im.IMPS_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android-dir/im-providerSettings" />
             </intent-filter>
         </activity>
 
@@ -175,8 +187,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".imps.TcpCirAlarmService"
-            android:process="android.process.im" />
     </application>
 
 </manifest>

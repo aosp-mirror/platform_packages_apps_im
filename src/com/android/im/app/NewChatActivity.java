@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.provider.Im;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,6 +50,10 @@ import java.util.List;
 import java.util.Map;
 
 public class NewChatActivity extends Activity {
+    private static final String GTALK_PACKAGE_NAME_= "com.google.android.talk";
+    private static final String GTALK_CHAT_SCREEN_COMPONENT_NAME =
+        "com.google.android.talk.ChatScreen";
+
     private static final String[] CHAT_SWITCHER_PROJECTION = {
             Im.Contacts._ID,
             Im.Contacts.PROVIDER,
@@ -58,6 +63,10 @@ public class NewChatActivity extends Activity {
     };
 
     private static final int CHAT_SWITCHER_ID_COLUMN = 0;
+    private static final int CHAT_SWITCHER_PROVIDER_COLUMN = 1;
+    private static final int CHAT_SWITCHER_ACCOUNT_COLUMN = 2;
+    private static final int CHAT_SWITCHER_USERNAME_COLUMN = 3;
+    private static final int CHAT_SWITCHER_GROUP_COLUMN = 4;
 
     private static final int REQUEST_PICK_CONTACTS = RESULT_FIRST_USER + 1;
 
@@ -209,6 +218,15 @@ public class NewChatActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            mChatView.closeChatSessionIfInactive();
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
     private void showRosterScreen() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClass(this, ContactListActivity.class);
@@ -291,45 +309,45 @@ public class NewChatActivity extends Activity {
     private void switchChat(int delta) {
         Cursor c = getContentResolver().query(Im.Contacts.CONTENT_URI_CHAT_CONTACTS,
                 CHAT_SWITCHER_PROJECTION, null, null, null);
-        if(c == null) {
-            return;
-        }
 
-        final int N = c.getCount();
-        if (N <= 1) {
-            c.close();
-            return;
-        }
-
-        int current = -1;
-        // find current position
-        for (int i = 0; i < N; i++) {
-            c.moveToNext();
-            long id = c.getLong(CHAT_SWITCHER_ID_COLUMN);
-            if (id == mChatView.getChatId()) {
-                current = i;
+        try {
+            final int N = c.getCount();
+            if (N <= 1) {
+                return;
             }
-        }
-        if (current == -1) {
+
+            int current = -1;
+            // find current position
+            for (int i = 0; i < N; i++) {
+                c.moveToNext();
+                long id = c.getLong(CHAT_SWITCHER_ID_COLUMN);
+                if (id == mChatView.getChatId()) {
+                    current = i;
+                }
+            }
+            if (current == -1) {
+                return;
+            }
+
+            int newPosition = (current + delta) % N;
+            if (newPosition < 0) {
+                newPosition += N;
+            }
+
+            c.moveToPosition(newPosition);
+
+            long providerId = c.getLong(CHAT_SWITCHER_PROVIDER_COLUMN);
+            long accountId = c.getLong(CHAT_SWITCHER_ACCOUNT_COLUMN);
+            String contact = c.getString(CHAT_SWITCHER_USERNAME_COLUMN);
+            long chatId = c.getLong(CHAT_SWITCHER_ID_COLUMN);
+            Intent intent = Dashboard.makeChatIntent(getContentResolver(), providerId, accountId,
+                    contact, chatId);
+
+            startActivity(intent);
+            finish();
+        } finally {
             c.close();
-            return;
         }
-
-        int newPosition = (current + delta) % N;
-        if (newPosition < 0) {
-            newPosition += N;
-        }
-
-        c.moveToPosition(newPosition);
-
-        Intent intent;
-        long id = c.getLong(CHAT_SWITCHER_ID_COLUMN);
-        Uri uri = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, id);
-        intent = new Intent(Intent.ACTION_VIEW, uri);
-
-        c.close();
-        startActivity(intent);
-        finish();
     }
 
     private void startContactPicker() {

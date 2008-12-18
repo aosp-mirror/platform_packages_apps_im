@@ -185,6 +185,7 @@ public class ContactListView extends LinearLayout {
 
                 Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, id);
                 Intent i = new Intent(Intent.ACTION_VIEW, data);
+                i.addCategory(ImApp.IMPS_CATEGORY);
                 mScreen.startActivity(i);
             } catch (RemoteException e) {
                 mHandler.showServiceErrorAlert();

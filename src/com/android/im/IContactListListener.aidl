@@ -21,7 +21,7 @@ import com.android.im.IContactList;
 import com.android.im.engine.Contact;
 import com.android.im.engine.ImErrorInfo;
 
-interface IContactListListener {
+oneway interface IContactListListener {
     /**
      * Called when:
      *  <ul>

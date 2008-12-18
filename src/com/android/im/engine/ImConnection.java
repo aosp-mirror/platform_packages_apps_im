@@ -71,6 +71,7 @@ public abstract class ImConnection {
 
     protected CopyOnWriteArrayList<ConnectionListener> mConnectionListeners;
     protected Presence mUserPresence;
+    protected HeartbeatService mHeartbeatService;
 
     protected ImConnection() {
         mConnectionListeners = new CopyOnWriteArrayList<ConnectionListener>();
@@ -131,6 +132,14 @@ public abstract class ImConnection {
      * on the underlying protocol.
      */
     public void networkTypeChanged(){
+    }
+
+    public void setHeartBeatService(HeartbeatService service) {
+        mHeartbeatService = service;
+    }
+
+    public HeartbeatService getHeartBeatService() {
+        return mHeartbeatService;
     }
 
     /**

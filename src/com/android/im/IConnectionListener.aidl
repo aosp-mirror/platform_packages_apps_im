@@ -21,7 +21,7 @@ import com.android.im.IImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.Presence;
 
-interface IConnectionListener {
+oneway interface IConnectionListener {
     void onStateChanged(in IImConnection connection, int state,
             in ImErrorInfo error);
 

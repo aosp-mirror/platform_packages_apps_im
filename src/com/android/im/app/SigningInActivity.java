@@ -118,7 +118,9 @@ public class SigningInActivity extends Activity {
 
         mApp.callWhenServiceConnected(mHandler, new Runnable() {
             public void run() {
-                signInAccount(provider, accountId, username, pw);
+                if (mApp.serviceConnected()) {
+                    signInAccount(provider, accountId, username, pw);
+                }
             }
         });
 

@@ -28,7 +28,7 @@ import com.android.im.plugin.ImpsConfigNames;
  * The configuration for IMPS connection.
  */
 public class ImpsConnectionConfig extends ConnectionConfig {
-    private static final int DEFAULT_KEEPALIVE_SECONDS  = 120;
+    private static final int DEFAULT_KEEPALIVE_SECONDS  = 2 * 60 * 60; // 2 hour
     private static final int DEFAULT_MIN_SERVER_POLL    = 30;    // seconds
 
     // DeliveryReport is good for acknowledgment but consumes 2 extra

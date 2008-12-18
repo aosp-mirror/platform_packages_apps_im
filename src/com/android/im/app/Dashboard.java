@@ -44,10 +44,13 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
 public class Dashboard extends LinearLayout implements Gallery.OnItemClickListener {
+    private static final String[] PROVIDER_CATEGORY_PROJECTION = new String[] {
+            Im.Provider.CATEGORY
+    };
+    private static final int PROVIDER_CATEGORY_COLUMN = 0;
+
     private Gallery mGallery;
-
     private Cursor mChats;
-
     private long mAccountId;
     private String mUserName;
     Activity mActivity;
@@ -62,8 +65,9 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.TYPE_APPLICATION_PANEL,
-            WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
+            WindowManager.LayoutParams.FLAG_DIM_BEHIND,
             PixelFormat.TRANSLUCENT);
+        lp.dimAmount = .5F;
 
         lp.width = WindowManager.LayoutParams.FILL_PARENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -178,18 +182,50 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
         Cursor c  = (Cursor) mGallery.getItemAtPosition(position);
         String contact = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
         long account = c.getLong(c.getColumnIndexOrThrow(Im.Contacts.ACCOUNT));
+        long provider = c.getLong(c.getColumnIndexOrThrow(Im.Contacts.PROVIDER));
+
+        closeDashboard();
 
         if ((account == mAccountId) && contact.equals(mUserName)) {
-            closeDashboard();
             return;
         }
 
-        Intent intent;
-        Uri uri = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, id);
-        intent = new Intent(Intent.ACTION_VIEW, uri);
-
-        closeDashboard();
+        mActivity.startActivity(
+                makeChatIntent(mActivity.getContentResolver(), provider, account, contact, id));
         mActivity.finish();
-        mActivity.startActivity(intent);
+    }
+
+    private static String findCategory(ContentResolver resolver, long providerId) {
+        // find the provider category for this chat
+        Cursor providerCursor = resolver.query(
+                Im.Provider.CONTENT_URI,
+                PROVIDER_CATEGORY_PROJECTION,
+                "_id = " + providerId,
+                null /* selection args */,
+                null /* sort order */
+        );
+        String category = null;
+
+        try {
+            if (providerCursor.moveToFirst()) {
+                category = providerCursor.getString(PROVIDER_CATEGORY_COLUMN);
+            }
+        } finally {
+            providerCursor.close();
+        }
+
+        return category;
+    }
+
+    public static Intent makeChatIntent(ContentResolver resolver, long provider, long account, 
+            String contact, long chatId) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                ContentUris.withAppendedId(Im.Chats.CONTENT_URI, chatId));
+        intent.addCategory(findCategory(resolver, provider));
+        intent.putExtra("from", contact);
+        intent.putExtra("providerId", provider);
+        intent.putExtra("accountId", account);
+
+        return intent;
     }
 }

@@ -20,7 +20,7 @@ package com.android.im;
 import com.android.im.IChatSession;
 import com.android.im.engine.ImErrorInfo;
 
-interface IChatSessionListener {
+oneway interface IChatSessionListener {
     /**
      * This method is called when a new ChatSession is created. A ChatSession
      * will be created either when the user called explicitly or an incoming

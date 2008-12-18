@@ -45,6 +45,21 @@ abstract class DataChannel {
     public abstract void connect() throws ImException;
 
     /**
+     * Suspend the data channel. No data will be sent through the data channel
+     * after suspended. It can be recovered from {@link #resume()}.
+     */
+    public abstract void suspend();
+
+    /**
+     * Resume the suspended data channel.
+     *
+     * @return <code>true</code> if the channel is resumed successfully;
+     *         <code>false</code> if the channel is timeout and a new one must
+     *         be established.
+     */
+    public abstract boolean resume();
+
+    /**
      * Shutdown the data channel.
      */
     public abstract void shutdown();

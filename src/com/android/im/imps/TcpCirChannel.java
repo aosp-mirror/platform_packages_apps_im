@@ -22,8 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Vector;
-
+import com.android.im.engine.HeartbeatService;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.ImException;
 
@@ -33,7 +32,7 @@ import android.util.Log;
 /**
  * An implementation of CIR channel with standalone TCP/IP banding.
  */
-class TcpCirChannel extends CirChannel implements Runnable{
+class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Callback {
     public static final int PING_INTERVAL = 20 * 60 * 1000; // 20 min
 
     private static final int OK_TIMEOUT = 30000;
@@ -41,6 +40,8 @@ class TcpCirChannel extends CirChannel implements Runnable{
     private String mAddress;
     private int mPort;
     private boolean mDone;
+    private boolean mReconnecting;
+    private Object mReconnectLock = new Object();
     private Socket mSocket;
 
     private boolean mWaitForOK;
@@ -48,15 +49,7 @@ class TcpCirChannel extends CirChannel implements Runnable{
     private String mUser;
     private BufferedReader mReader;
 
-    private static Vector<TcpCirChannel> sChannels;
-
-    static {
-        sChannels = new Vector<TcpCirChannel>();
-    }
-
-    public static Vector<TcpCirChannel> getChannels(){
-        return sChannels;
-    }
+    private Thread mCirThread;
 
     protected TcpCirChannel(ImpsConnection connection) {
         super(connection);
@@ -69,8 +62,13 @@ class TcpCirChannel extends CirChannel implements Runnable{
     public synchronized void connect() throws ImException {
         try {
             connectServer();
-            sChannels.add(this);
-            new Thread(this, "TcpCirChannel").start();
+            mCirThread = new Thread(this, "TcpCirChannel");
+            mCirThread.setDaemon(true);
+            mCirThread.start();
+            HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+            if (heartbeatService != null) {
+                heartbeatService.startHeartbeat(this, PING_INTERVAL);
+            }
         } catch (UnknownHostException e) {
             throw new ImException(ImErrorInfo.UNKNOWN_SERVER,
                     "Can't find the TCP CIR server");
@@ -86,13 +84,22 @@ class TcpCirChannel extends CirChannel implements Runnable{
             ImpsLog.log(mUser + " Shutting down CIR channel");
         }
         mDone = true;
-        sChannels.remove(this);
+        synchronized (mReconnectLock) {
+            if (mReconnecting) {
+                mReconnecting = false;
+                mReconnectLock.notify();
+            }
+        }
         try {
             if(mSocket != null) {
                 mSocket.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore
+        }
+        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        if (heartbeatService != null) {
+            heartbeatService.stopHeartbeat(this);
         }
     }
 
@@ -105,15 +112,17 @@ class TcpCirChannel extends CirChannel implements Runnable{
                     // If client doesn't receive an "OK" message or detects
                     // that the connection is broken, it MUST open a new
                     // TCP/IP connection and send the "HELO" message again.
-                    connectServer();
+                    reconnectAndWait();
                 }
 
                 String line = mReader.readLine();
                 mLastActive = SystemClock.elapsedRealtime();
 
                 if (line == null) {
-                    // socket closed by the server
-                    reconnect();
+                    if (Log.isLoggable(ImpsLog.TAG, Log.DEBUG)) {
+                        ImpsLog.log(mUser + " TCP CIR: socket closed by server.");
+                    }
+                    reconnectAndWait();
                 } else if ("OK".equals(line)) {
                     mWaitForOK = false;
                     if (Log.isLoggable(ImpsLog.TAG, Log.DEBUG)) {
@@ -132,7 +141,7 @@ class TcpCirChannel extends CirChannel implements Runnable{
             } catch (IOException e) {
                 ImpsLog.logError("TCP CIR channel get:" + e);
                 if(!mDone){
-                    reconnect();
+                    reconnectAndWait();
                 }
             }
         }
@@ -150,6 +159,14 @@ class TcpCirChannel extends CirChannel implements Runnable{
 
     @Override
     public void reconnect() {
+        synchronized (mReconnectLock) {
+            if (mReconnecting) {
+                return;
+            } else {
+                mReconnecting = true;
+            }
+        }
+
         if (Log.isLoggable(ImpsLog.TAG, Log.DEBUG)) {
             ImpsLog.log(mUser + " CIR channel reconnecting");
         }
@@ -166,7 +183,7 @@ class TcpCirChannel extends CirChannel implements Runnable{
                 if(!mDone) {
                     mConnection.sendPollingRequest();
                 }
-                return;
+                break;
             } catch (IOException e) {
                 waitTime *= 3;
                 if(waitTime > 27000) {
@@ -181,11 +198,35 @@ class TcpCirChannel extends CirChannel implements Runnable{
                 }
             }
         }
+        synchronized (mReconnectLock) {
+            mReconnecting = false;
+            mReconnectLock.notify();
+        }
+    }
+
+    private void reconnectAndWait() {
+        reconnect();
+        while (!mDone) {
+            synchronized (mReconnectLock) {
+                if (mReconnecting) {
+                    try {
+                        mReconnectLock.wait();
+                    } catch (InterruptedException e) {
+                        // ignore
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
     }
 
     private synchronized void connectServer() throws IOException {
         if(!mDone) {
             if (mSocket != null) {
+                if (Log.isLoggable(ImpsLog.TAG, Log.DEBUG)) {
+                    ImpsLog.log(mUser + " TCP CIR: close previous socket");
+                }
                 try {
                     mSocket.close();
                 } catch (IOException e) {
@@ -211,9 +252,13 @@ class TcpCirChannel extends CirChannel implements Runnable{
         }
     }
 
-    public synchronized void ping() {
-        long time = SystemClock.elapsedRealtime();
-        if(!mDone && time - mLastActive > PING_INTERVAL) {
+    public synchronized long sendHeartbeat() {
+        if (mDone) {
+            return 0;
+        }
+
+        long inactiveTime = SystemClock.elapsedRealtime() - mLastActive;
+        if(needSendPing(inactiveTime)) {
             if (Log.isLoggable(ImpsLog.TAG, Log.DEBUG)) {
                 ImpsLog.log(mUser + " >> TCP CIR: PING");
             }
@@ -225,7 +270,14 @@ class TcpCirChannel extends CirChannel implements Runnable{
                 }
                 reconnect();
             }
+            return PING_INTERVAL;
+        } else {
+            return PING_INTERVAL - inactiveTime;
         }
+    }
+
+    private boolean needSendPing(long inactiveTime) {
+        return (PING_INTERVAL - inactiveTime) < 500;
     }
 
     private void sendData(String s) throws IOException {
@@ -233,4 +285,5 @@ class TcpCirChannel extends CirChannel implements Runnable{
         mWaitForOK = true;
         mLastActive = SystemClock.elapsedRealtime();
     }
+
 }

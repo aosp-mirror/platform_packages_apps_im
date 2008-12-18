@@ -40,4 +40,9 @@ public interface ImConfigNames {
      * The class name of the plugin implementation.
      */
     public static final String PLUGIN_CLASS = "im.plugin.class";
+
+    /**
+     * The version of the plugin.
+     */
+    public static final String PLUGIN_VERSION = "im.plugin.version";
 }

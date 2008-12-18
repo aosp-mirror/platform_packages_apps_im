@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -42,11 +40,11 @@ import android.net.Uri;
 import android.net.NetworkConnectivityListener.State;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.provider.Im;
 import android.telephony.TelephonyManager;
@@ -61,8 +59,6 @@ import com.android.im.engine.ConnectionFactory;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImException;
 import com.android.im.imps.ImpsConnectionConfig;
-import com.android.im.imps.TcpCirAlarmService;
-import com.android.im.imps.ImpsConnectionConfig.CirMethod;
 import com.android.im.plugin.IImPlugin;
 import com.android.im.plugin.ImConfigNames;
 import com.android.im.plugin.ImPluginConstants;
@@ -95,8 +91,10 @@ public class RemoteImService extends Service {
     private boolean mNeedCheckAutoLogin;
 
     Vector<ImConnectionAdapter> mConnections;
+    final RemoteCallbackList<IConnectionCreationListener> mRemoteListeners
+            = new RemoteCallbackList<IConnectionCreationListener>();
 
-    private PendingIntent mTcpCirAlarmSender;
+    private AndroidHeartBeatService mHeartBeatService;
 
     private HashMap<Long, ImPluginInfo> mPlugins;
 
@@ -198,24 +196,50 @@ public class RemoteImService extends Service {
 
     private long updateProviderDb(String providerName, String providerFullName,
             String signUpUrl, Map<String, String> config) {
-        long providerId;
+        long providerId = -1;
         ContentResolver cr = getContentResolver();
         String where = Im.Provider.NAME + "=?";
         String[] selectionArgs = new String[]{providerName};
-        Cursor c = cr.query(Im.Provider.CONTENT_URI, null, where, selectionArgs, null);
-        if (c == null) {
-            return -1;
-        }
-        if (c.moveToFirst()) {
-            providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
-        } else {
-            ContentValues values = new ContentValues(3);
-            values.put(Im.Provider.NAME, providerName);
-            values.put(Im.Provider.FULLNAME, providerFullName);
-            values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+        Cursor c = cr.query(Im.Provider.CONTENT_URI,
+                null /* projection */,
+                where,
+                selectionArgs,
+                null /* sort order */);
+        String pluginVersion = config.get(ImConfigNames.PLUGIN_VERSION);
+        boolean versionChanged;
+        try {
+            if (c.moveToFirst()) {
+                providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
+                versionChanged = isPluginVersionChanged(cr, providerId, pluginVersion);
+                if (versionChanged) {
+                    // Update the full name, signup url and category each time when the plugin change
+                    // instead of specific version change because this is called only once.
+                    // It's ok to update them even the values are not changed.
+                    // Note that we don't update the provider name because it's used as
+                    // identifier at some place and the plugin should never change it.
+                    ContentValues values = new ContentValues(3);
+                    values.put(Im.Provider.FULLNAME, providerFullName);
+                    values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+                    values.put(Im.Provider.CATEGORY, "com.android.im.IMPS_CATEGORY");
+                    Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
+                    cr.update(uri, values, null, null);
+                }
+            } else {
+                ContentValues values = new ContentValues(3);
+                values.put(Im.Provider.NAME, providerName);
+                values.put(Im.Provider.FULLNAME, providerFullName);
+                values.put(Im.Provider.CATEGORY, "com.android.im.IMPS_CATEGORY");
+                values.put(Im.Provider.SIGNUP_URL, signUpUrl);
 
-            Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
-            providerId = ContentUris.parseId(result);
+                Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
+                providerId = ContentUris.parseId(result);
+                versionChanged = true;
+            }
+        } finally {
+            c.close();
+        }
+
+        if (versionChanged) {
             ContentValues[] settingValues = new ContentValues[config.size()];
 
             int index = 0;
@@ -228,31 +252,27 @@ public class RemoteImService extends Service {
             }
             cr.bulkInsert(Im.ProviderSettings.CONTENT_URI, settingValues);
         }
-        c.close();
 
         return providerId;
     }
 
-    public void startTcpCirAlarm() {
-        if (mTcpCirAlarmSender != null) {
-            return;
+    private boolean isPluginVersionChanged(ContentResolver cr, long providerId,
+            String newVersion) {
+        String oldVersion = Im.ProviderSettings.getStringValue(cr, providerId,
+                ImConfigNames.PLUGIN_VERSION);
+        if (oldVersion == null) {
+            return true;
         }
-
-        mTcpCirAlarmSender = PendingIntent.getService(this, 0,
-                new Intent(this, TcpCirAlarmService.class), 0);
-        long firstTime = SystemClock.elapsedRealtime();
-        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime,
-                TcpCirAlarmService.INTERVAL, mTcpCirAlarmSender);
+        return !oldVersion.equals(newVersion);
     }
 
-    public void stopTcpCirAlarm() {
-        if (mTcpCirAlarmSender != null) {
-            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.cancel(mTcpCirAlarmSender);
-            mTcpCirAlarmSender = null;
+    public AndroidHeartBeatService getHeartBeatService() {
+        if (mHeartBeatService == null) {
+            mHeartBeatService = new AndroidHeartBeatService(this);
         }
+        return mHeartBeatService;
     }
+
 
     @Override
     public void onStart(Intent intent, int startId) {
@@ -337,7 +357,6 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener.unregisterHandler(mServiceHandler);
         mNetworkConnectivityListener.stopListening();
         mNetworkConnectivityListener = null;
-        stopTcpCirAlarm();
     }
 
     @Override
@@ -378,13 +397,22 @@ public class RemoteImService extends Service {
         ConnectionFactory factory = ConnectionFactory.getInstance();
         try {
             ImConnection conn = factory.createConnection(config);
+            conn.setHeartBeatService(getHeartBeatService());
             ImConnectionAdapter result = new ImConnectionAdapter(providerId,
                     conn, this);
             mConnections.add(result);
-            if (config.getCirChannelBinding() == CirMethod.STCP) {
-                startTcpCirAlarm();
+
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IConnectionCreationListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onConnectionCreated(result);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
+                }
             }
-            mListenerMgr.notifyConnectionCreated(result);
+            mRemoteListeners.finishBroadcast();
             return result;
         } catch (ImException e) {
             Log.e(TAG, "Error creating connection", e);
@@ -412,9 +440,9 @@ public class RemoteImService extends Service {
         int oldType = mNetworkType;
         mNetworkType = networkInfo.getType();
 
-	// Notify the connection that network type has changed. Note that this
-	// only work for connected connections, we need to reestablish if it's
-	// suspended.
+        // Notify the connection that network type has changed. Note that this
+        // only work for connected connections, we need to reestablish if it's
+        // suspended.
         if (mNetworkType != oldType
                 && isNetworkAvailable()) {
             for (ImConnectionAdapter conn : mConnections) {
@@ -470,12 +498,15 @@ public class RemoteImService extends Service {
         }
 
         public void addConnectionCreatedListener(IConnectionCreationListener listener) {
-            mListenerMgr.addRemoteListener(listener);
-
+            if (listener != null) {
+                mRemoteListeners.register(listener);
+            }
         }
 
         public void removeConnectionCreatedListener(IConnectionCreationListener listener) {
-            mListenerMgr.removeRemoteListener(listener);
+            if (listener != null) {
+                mRemoteListeners.unregister(listener);
+            }
         }
 
         public IImConnection createConnection(long providerId) {
@@ -495,23 +526,6 @@ public class RemoteImService extends Service {
         }
 
     };
-
-    final ConnectionListenerManager mListenerMgr = new ConnectionListenerManager();
-
-    private final static class ConnectionListenerManager
-            extends RemoteListenerManager<IConnectionCreationListener> {
-        public ConnectionListenerManager(){
-        }
-
-        public void notifyConnectionCreated(final ImConnectionAdapter conn) {
-            notifyRemoteListeners(new ListenerInvocation<IConnectionCreationListener>() {
-                public void invoke(IConnectionCreationListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onConnectionCreated(conn);
-                }
-            });
-        }
-    }
 
     private final class ServiceHandler extends Handler {
         public ServiceHandler() {

@@ -698,6 +698,16 @@ public class ChatView extends LinearLayout {
         mScreen.finish();
     }
 
+    public void closeChatSessionIfInactive() {
+        if (mChatSession != null) {
+            try {
+                mChatSession.leaveIfInactive();
+            } catch (RemoteException e) {
+                mHandler.showServiceErrorAlert();
+            }
+        }
+    }
+
     public void viewProfile() {
         Uri data = ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, mChatId);
         Intent intent = new Intent(Intent.ACTION_VIEW, data);

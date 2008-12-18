@@ -31,11 +31,13 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.provider.Im;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.im.IChatListener;
 import com.android.im.IContactList;
 import com.android.im.IContactListListener;
 import com.android.im.IContactListManager;
@@ -60,6 +62,11 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
     private ContactListManager          mAdaptee;
     private ContactListListenerAdapter  mContactListListenerAdapter;
     private SubscriptionRequestListenerAdapter mSubscriptionListenerAdapter;
+
+    final RemoteCallbackList<IContactListListener> mRemoteContactListeners
+            = new RemoteCallbackList<IContactListListener>();
+    final RemoteCallbackList<ISubscriptionListener> mRemoteSubscriptionListeners
+            = new RemoteCallbackList<ISubscriptionListener>();
 
     HashMap<Address, ContactListAdapter> mContactLists;
     HashMap<String, Contact> mTemporaryContacts;
@@ -152,9 +159,13 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
             }
         } else {
             synchronized (mContactLists) {
-                Contact c = getContactByAddress(address);
                 for(ContactListAdapter list : mContactLists.values()) {
-                    int resCode = list.removeContact(c);
+                    int resCode = list.removeContact(address);
+                    if (ImErrorInfo.ILLEGAL_CONTACT_ADDRESS == resCode) {
+                        // Did not find in this list, continue to remove from
+                        // other list.
+                        continue;
+                    }
                     if (ImErrorInfo.NO_ERROR != resCode) {
                         return resCode;
                     }
@@ -204,19 +215,27 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
     }
 
     public void registerContactListListener(IContactListListener listener) {
-        mContactListListenerAdapter.addRemoteListener(listener);
+        if (listener != null) {
+            mRemoteContactListeners.register(listener);
+        }
     }
 
     public void unregisterContactListListener(IContactListListener listener) {
-        mContactListListenerAdapter.removeRemoteListener(listener);
+        if (listener != null) {
+            mRemoteContactListeners.unregister(listener);
+        }
     }
 
     public void registerSubscriptionListener(ISubscriptionListener listener) {
-        mSubscriptionListenerAdapter.addRemoteListener(listener);
+        if (listener != null) {
+            mRemoteSubscriptionListeners.register(listener);
+        }
     }
 
     public void unregisterSubscriptionListener(ISubscriptionListener listener) {
-        mSubscriptionListenerAdapter.removeRemoteListener(listener);
+        if (listener != null) {
+            mRemoteSubscriptionListeners.unregister(listener);
+        }
     }
 
     public IContactList getContactList(String name) {
@@ -374,9 +393,7 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
 
     }
 
-    final class ContactListListenerAdapter
-            extends RemoteListenerManager<IContactListListener>
-            implements ContactListListener {
+    final class ContactListListenerAdapter implements ContactListListener {
         private boolean mAllContactsLoaded;
 
         // class to hold contact changes made before mAllContactsLoaded
@@ -402,14 +419,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
             // updateAvatarsContent(contacts);
             updatePresenceContent(contacts);
 
-            notifyRemoteListeners(new ListenerInvocation<IContactListListener>() {
-
-                public void invoke(IContactListListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onContactsPresenceUpdate(contacts);
+            final int N = mRemoteContactListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IContactListListener listener =
+                        mRemoteContactListeners.getBroadcastItem(i);
+                try {
+                    listener.onContactsPresenceUpdate(contacts);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-
-            });
+            }
+            mRemoteContactListeners.finishBroadcast();
         }
 
         public void onContactChange(final int type, final ContactList list,
@@ -526,13 +547,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
                 listAdapter = (list == null) ? null
                         : getContactListAdapter(list.getAddress());
             }
-
-            notifyRemoteListeners(new ListenerInvocation<IContactListListener>() {
-                public void invoke(IContactListListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onContactChange(type, listAdapter, contact);
+            final int N = mRemoteContactListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IContactListListener listener =
+                        mRemoteContactListeners.getBroadcastItem(i);
+                try {
+                    listener.onContactChange(type, listAdapter, contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteContactListeners.finishBroadcast();
 
             if (mAllContactsLoaded && notificationText != null) {
                 mContext.showToast(notificationText, Toast.LENGTH_SHORT);
@@ -541,13 +567,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
 
         public void onContactError(final int errorType, final ImErrorInfo error,
                 final String listName, final Contact contact) {
-            notifyRemoteListeners(new ListenerInvocation<IContactListListener>() {
-                public void invoke(IContactListListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onContactError(errorType, error, listName,
-                            contact);
+            final int N = mRemoteContactListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IContactListListener listener =
+                        mRemoteContactListeners.getBroadcastItem(i);
+                try {
+                    listener.onContactError(errorType, error, listName, contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteContactListeners.finishBroadcast();
         }
 
         public void handleDelayedContactChanges() {
@@ -560,18 +591,23 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
             mAllContactsLoaded = true;
             handleDelayedContactChanges();
             removeObsoleteContactsAndLists();
-            notifyRemoteListeners(new ListenerInvocation<IContactListListener>() {
-                public void invoke(IContactListListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onAllContactListsLoaded();
+            final int N = mRemoteContactListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IContactListListener listener =
+                        mRemoteContactListeners.getBroadcastItem(i);
+                try {
+                    listener.onAllContactListsLoaded();
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteContactListeners.finishBroadcast();
         }
     }
 
     final class SubscriptionRequestListenerAdapter
-        extends RemoteListenerManager<ISubscriptionListener>
-        implements SubscriptionRequestListener {
+            implements SubscriptionRequestListener {
 
         public void onSubScriptionRequest(final Contact from) {
             String username = from.getAddress().getFullName();
@@ -581,13 +617,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
                     Im.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING);
             mContext.getStatusBarNotifier().notifySubscriptionRequest(mProviderId, mAccountId,
                     ContentUris.parseId(uri), username, nickname);
-
-            notifyRemoteListeners(new ListenerInvocation<ISubscriptionListener>() {
-                public void invoke(ISubscriptionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onSubScriptionRequest(from);
+            final int N = mRemoteSubscriptionListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                ISubscriptionListener listener =
+                    mRemoteSubscriptionListeners.getBroadcastItem(i);
+                try {
+                    listener.onSubScriptionRequest(from);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteSubscriptionListeners.finishBroadcast();
         }
 
         public void onSubscriptionApproved(final String contact) {
@@ -595,12 +636,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
                     Im.Contacts.SUBSCRIPTION_TYPE_NONE,
                     Im.Contacts.SUBSCRIPTION_STATUS_NONE);
 
-            notifyRemoteListeners(new ListenerInvocation<ISubscriptionListener>() {
-                public void invoke(ISubscriptionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onSubscriptionApproved(contact);
+            final int N = mRemoteSubscriptionListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                ISubscriptionListener listener =
+                    mRemoteSubscriptionListeners.getBroadcastItem(i);
+                try {
+                    listener.onSubscriptionApproved(contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteSubscriptionListeners.finishBroadcast();
         }
 
         public void onSubscriptionDeclined(final String contact) {
@@ -608,12 +655,18 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
                     Im.Contacts.SUBSCRIPTION_TYPE_NONE,
                     Im.Contacts.SUBSCRIPTION_STATUS_NONE);
 
-            notifyRemoteListeners(new ListenerInvocation<ISubscriptionListener>() {
-                public void invoke(ISubscriptionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onSubscriptionDeclined(contact);
+            final int N = mRemoteSubscriptionListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                ISubscriptionListener listener =
+                    mRemoteSubscriptionListeners.getBroadcastItem(i);
+                try {
+                    listener.onSubscriptionDeclined(contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteSubscriptionListeners.finishBroadcast();
         }
 
         public void onApproveSubScriptionError(final String contact, final ImErrorInfo error) {
@@ -748,7 +801,7 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
         for(Contact c : contacts) {
             String username = c.getAddress().getFullName();
             Presence p = c.getPresence();
-            int status = getContactStatus(p);
+            int status = convertPresenceStatus(p);
             String customStatus = p.getStatusText();
             int clientType = translateClientType(p);
 
@@ -976,7 +1029,7 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
     private ContentValues getPresenceValues(long contactId, Presence p) {
         ContentValues values = new ContentValues(3);
         values.put(Im.Presence.CONTACT_ID, contactId);
-        values.put(Im.Contacts.PRESENCE_STATUS, getContactStatus(p));
+        values.put(Im.Contacts.PRESENCE_STATUS, convertPresenceStatus(p));
         values.put(Im.Contacts.PRESENCE_CUSTOM_STATUS, p.getStatusText());
         values.put(Im.Presence.CLIENT_TYPE, translateClientType(p));
         return values;
@@ -992,7 +1045,13 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
         }
     }
 
-    private int getContactStatus(Presence presence) {
+    /**
+     * Converts the presence status to the value defined for ImProvider.
+     *
+     * @param presence The presence from the IM engine.
+     * @return The status value defined in for ImProvider.
+     */
+    public static int convertPresenceStatus(Presence presence) {
         switch (presence.getStatus()) {
         case Presence.AVAILABLE:
             return Im.Presence.AVAILABLE;

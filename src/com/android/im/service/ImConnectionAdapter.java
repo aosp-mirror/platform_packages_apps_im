@@ -25,6 +25,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.provider.Im;
 import android.util.Log;
@@ -60,6 +61,9 @@ public class ImConnectionAdapter extends IImConnection.Stub {
     ImConnection mConnection;
     private ConnectionListenerAdapter mConnectionListener;
     private InvitationListenerAdapter mInvitationListener;
+
+    final RemoteCallbackList<IConnectionListener> mRemoteConnListeners
+            = new RemoteCallbackList<IConnectionListener>();
 
     ChatSessionManagerAdapter mChatSessionManager;
     ContactListManagerAdapter mContactListManager;
@@ -184,17 +188,18 @@ public class ImConnectionAdapter extends IImConnection.Stub {
     void suspend() {
         mConnectionState = ImConnection.SUSPENDING;
         mConnection.suspend();
-        if (mContactListManager != null) {
-            mContactListManager.clearPresence();
-        }
     }
 
     public void registerConnectionListener(IConnectionListener listener) {
-        mConnectionListener.addRemoteListener(listener);
+        if (listener != null) {
+            mRemoteConnListeners.register(listener);
+        }
     }
 
     public void unregisterConnectionListener(IConnectionListener listener) {
-        mConnectionListener.removeRemoteListener(listener);
+        if (listener != null) {
+            mRemoteConnListeners.unregister(listener);
+        }
     }
 
     public void setInvitationListener(IInvitationListener listener) {
@@ -295,9 +300,48 @@ public class ImConnectionAdapter extends IImConnection.Stub {
         cr.delete(getSessionCookiesUri(), null, null);
     }
 
-    final class ConnectionListenerAdapter
-            extends RemoteListenerManager<IConnectionListener>
-            implements ConnectionListener{
+    void updateAccountStatusInDb() {
+        Presence p = getUserPresence();
+        int presenceStatus = Im.Presence.OFFLINE;
+        int connectionStatus = convertConnStateForDb(mConnectionState);
+
+        if (p != null) {
+            presenceStatus = ContactListManagerAdapter.convertPresenceStatus(p);
+        }
+
+        ContentResolver cr = mService.getContentResolver();
+        Uri uri = Im.AccountStatus.CONTENT_URI;
+        ContentValues values = new ContentValues();
+
+        values.put(Im.AccountStatus.ACCOUNT, mAccountId);
+        values.put(Im.AccountStatus.PRESENCE_STATUS, presenceStatus);
+        values.put(Im.AccountStatus.CONNECTION_STATUS, connectionStatus);
+
+        cr.insert(uri, values);
+    }
+
+    private static int convertConnStateForDb(int state) {
+        switch (state) {
+        case ImConnection.DISCONNECTED:
+        case ImConnection.LOGGING_OUT:
+            return Im.ConnectionStatus.OFFLINE;
+
+        case ImConnection.LOGGING_IN:
+            return Im.ConnectionStatus.CONNECTING;
+
+        case ImConnection.LOGGED_IN:
+            return Im.ConnectionStatus.ONLINE;
+
+        case ImConnection.SUSPENDED:
+        case ImConnection.SUSPENDING:
+            return Im.ConnectionStatus.SUSPENDED;
+
+        default:
+            return Im.ConnectionStatus.OFFLINE;
+        }
+    }
+
+    final class ConnectionListenerAdapter implements ConnectionListener{
         public void onStateChanged(final int state, final ImErrorInfo error) {
             synchronized (this) {
                 if (state == ImConnection.LOGGED_IN
@@ -349,38 +393,49 @@ public class ImConnectionAdapter extends IImConnection.Stub {
                 mService.scheduleReconnect(15000);
             }
 
-            notifyRemoteListeners(new ListenerInvocation<IConnectionListener>() {
+            updateAccountStatusInDb();
 
-                public void invoke(IConnectionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onStateChanged(ImConnectionAdapter.this,
-                            state, error);
+            final int N = mRemoteConnListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IConnectionListener listener = mRemoteConnListeners.getBroadcastItem(i);
+                try {
+                    listener.onStateChanged(ImConnectionAdapter.this, state, error);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-
-            });
+            }
+            mRemoteConnListeners.finishBroadcast();
         }
 
         public void onUserPresenceUpdated() {
-            notifyRemoteListeners(new ListenerInvocation<IConnectionListener>() {
+            updateAccountStatusInDb();
 
-                public void invoke(IConnectionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onUserPresenceUpdated(ImConnectionAdapter.this);
+            final int N = mRemoteConnListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IConnectionListener listener = mRemoteConnListeners.getBroadcastItem(i);
+                try {
+                    listener.onUserPresenceUpdated(ImConnectionAdapter.this);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-
-            });
+            }
+            mRemoteConnListeners.finishBroadcast();
         }
 
         public void onUpdatePresenceError(final ImErrorInfo error) {
-            notifyRemoteListeners(new ListenerInvocation<IConnectionListener>() {
-
-                public void invoke(IConnectionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onUpdatePresenceError(ImConnectionAdapter.this,
-                            error);
+            final int N = mRemoteConnListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IConnectionListener listener = mRemoteConnListeners.getBroadcastItem(i);
+                try {
+                    listener.onUpdatePresenceError(ImConnectionAdapter.this, error);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-
-            });
+            }
+            mRemoteConnListeners.finishBroadcast();
         }
     }
 

@@ -20,6 +20,8 @@ package com.android.im.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 
 import com.android.im.IChatSession;
@@ -44,6 +46,8 @@ public class ChatSessionManagerAdapter extends IChatSessionManager.Stub {
     ChatGroupManager mGroupManager;
     HashMap<String, ChatSessionAdapter> mActiveSessions;
     ChatSessionListenerAdapter mSessionListenerAdapter;
+    final RemoteCallbackList<IChatSessionListener> mRemoteListeners
+            = new RemoteCallbackList<IChatSessionListener>();
 
     public ChatSessionManagerAdapter(ImConnectionAdapter connection) {
         mConnection = connection;
@@ -122,12 +126,14 @@ public class ChatSessionManagerAdapter extends IChatSessionManager.Stub {
 
     public void registerChatSessionListener(IChatSessionListener listener) {
         if (listener != null) {
-            mSessionListenerAdapter.addRemoteListener(listener);
+            mRemoteListeners.register(listener);
         }
     }
 
     public void unregisterChatSessionListener(IChatSessionListener listener) {
-        mSessionListenerAdapter.removeRemoteListener(listener);
+        if (listener != null) {
+            mRemoteListeners.unregister(listener);
+        }
     }
 
     ChatSessionAdapter getChatSessionAdapter(ChatSession session) {
@@ -143,27 +149,35 @@ public class ChatSessionManagerAdapter extends IChatSessionManager.Stub {
         }
     }
 
-    class ChatSessionListenerAdapter
-            extends RemoteListenerManager<IChatSessionListener>
-            implements ChatSessionListener {
+    class ChatSessionListenerAdapter implements ChatSessionListener {
 
         public void onChatSessionCreated(ChatSession session) {
             final IChatSession sessionAdapter = getChatSessionAdapter(session);
-            notifyRemoteListeners(new ListenerInvocation<IChatSessionListener>() {
-                public void invoke(IChatSessionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onChatSessionCreated(sessionAdapter);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatSessionListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onChatSessionCreated(sessionAdapter);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
 
         public void notifyChatSessionCreateFailed(final String name, final ImErrorInfo error) {
-            notifyRemoteListeners(new ListenerInvocation<IChatSessionListener>() {
-                public void invoke(IChatSessionListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onChatSessionCreateError(name, error);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatSessionListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onChatSessionCreateError(name, error);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
     }
 

@@ -71,6 +71,11 @@ interface IChatSession {
     void leave();
 
     /**
+     * Leaves this ChatSession if there isn't any message sent or received in it.
+     */
+    void leaveIfInactive();
+
+    /**
      * Sends a message to all participants in this ChatSession.
      */
     void sendMessage(String text);

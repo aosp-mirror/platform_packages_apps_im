@@ -126,15 +126,27 @@ public class ImpsConnection extends ImConnection {
         if (!checkAndSetState(SUSPENDED)) {
             return;
         }
-
-        mReestablishing = true;
-        try {
-            mSession = new ImpsSession(this, cookie);
-        } catch (ImException e) {
-            setState(DISCONNECTED, e.getImError());
-            return;
+        // If we can resume from the data channel, which means the
+        // session is still valid, we can just re-use the existing
+        // session and don't need to re-establish it.
+        if (mDataChannel.resume()) {
+            try {
+                setupCIRChannel();
+            } catch(ImException e) {}
+            setState(LOGGED_IN, null);
+        } else {
+            // Failed to resume the data channel which means the
+            // session might have expired, we need to re-establish
+            // the session by signing in again.
+            mReestablishing = true;
+            try {
+                mSession = new ImpsSession(this, cookie);
+            } catch (ImException e) {
+                setState(DISCONNECTED, e.getImError());
+                return;
+            }
+            doLogin();
         }
-        doLogin();
     }
 
     @Override
@@ -690,11 +702,9 @@ public class ImpsConnection extends ImConnection {
         if (mCirChannel != null) {
             mCirChannel.shutdown();
         }
-        if (mDispatcherThread != null) {
-            mDispatcherThread.shutdown();
-        }
+
         if (mDataChannel != null) {
-            mDataChannel.shutdown();
+            mDataChannel.suspend();
         }
 
         setState(SUSPENDED, null);

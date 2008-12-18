@@ -37,6 +37,7 @@ import android.content.ContentValues;
 import android.content.ContentUris;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.Im;
@@ -54,6 +55,12 @@ public class ChatSessionAdapter extends IChatSession.Stub {
 
     static final String TAG = RemoteImService.TAG;
 
+    /**
+     * The registered remote listeners.
+     */
+    final RemoteCallbackList<IChatListener> mRemoteListeners
+            = new RemoteCallbackList<IChatListener>();
+
     ImConnectionAdapter mConnection;
     ChatSessionManagerAdapter mChatManager;
     ChatSession mAdaptee;
@@ -69,7 +76,8 @@ public class ChatSessionAdapter extends IChatSession.Stub {
 
     private static final int MAX_HISTORY_COPY_COUNT = 10;
 
-    private HashMap<String, Integer> mContactStatusMap = new HashMap<String, Integer>();
+    private HashMap<String, Integer> mContactStatusMap
+        = new HashMap<String, Integer>();
 
     public ChatSessionAdapter(ChatSession adaptee,
             ImConnectionAdapter connection) {
@@ -215,6 +223,12 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         mChatManager.closeChatSession(this);
     }
 
+    public void leaveIfInactive() {
+        if (mAdaptee.getHistoryMessages().isEmpty()) {
+            leave();
+        }
+    }
+
     public void sendMessage(String text) {
         if (mConnection.getState() == ImConnection.SUSPENDED) {
             // connection has been suspended, save the message without send it
@@ -257,12 +271,14 @@ public class ChatSessionAdapter extends IChatSession.Stub {
 
     public void registerChatListener(IChatListener listener) {
         if (listener != null) {
-            mListenerAdapter.addRemoteListener(listener);
+            mRemoteListeners.register(listener);
         }
     }
 
     public void unregisterChatListener(IChatListener listener) {
-        mListenerAdapter.removeRemoteListener(listener);
+        if (listener != null) {
+            mRemoteListeners.unregister(listener);
+        }
     }
 
     String getNickName(String username) {
@@ -441,8 +457,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         return mContentResolver.insert(mMessageURI, values);
     }
 
-    class ListenerAdapter extends RemoteListenerManager<IChatListener>
-            implements MessageListener, GroupMemberListener {
+    class ListenerAdapter implements MessageListener, GroupMemberListener {
 
         public void onIncomingMessage(ChatSession ses, final Message msg) {
             String body = msg.getBody();
@@ -455,14 +470,20 @@ public class ChatSessionAdapter extends IChatSession.Stub {
                 insertOrUpdateChat(body);
             }
             insertMessageInDb(nickname, body, time, Im.MessageType.INCOMING);
-            boolean notified = notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onIncomingMessage(ChatSessionAdapter.this,
-                            msg);
+
+            int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onIncomingMessage(ChatSessionAdapter.this, msg);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
-            if (!notified) {
+            }
+            mRemoteListeners.finishBroadcast();
+
+            if (N <= 0) {
                 mStatusBarNotifier.notifyChat(mConnection.getProviderId(),
                         mConnection.getAccountId(), getId(), username, nickname, body);
             }
@@ -473,57 +494,78 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             insertMessageInDb(null, null, System.currentTimeMillis(),
                     Im.MessageType.OUTGOING, error.getCode());
 
-            notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onSendMessageError(ChatSessionAdapter.this,
-                            msg, error);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onSendMessageError(ChatSessionAdapter.this, msg, error);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
 
         public void onMemberJoined(ChatGroup group, final Contact contact) {
             insertGroupMemberInDb(contact);
 
-            notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onContactJoined(ChatSessionAdapter.this,
-                            contact);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onContactJoined(ChatSessionAdapter.this, contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
 
         public void onMemberLeft(ChatGroup group, final Contact contact) {
             deleteGroupMemberInDb(contact);
 
-            notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onContactLeft(ChatSessionAdapter.this,
-                            contact);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onContactLeft(ChatSessionAdapter.this, contact);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
 
         public void onError(ChatGroup group, final ImErrorInfo error) {
             // TODO: insert an error message?
-            notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onInviteError(ChatSessionAdapter.this,
-                            error);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onInviteError(ChatSessionAdapter.this, error);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
 
         public void notifyChatSessionConverted() {
-            notifyRemoteListeners(new ListenerInvocation<IChatListener>() {
-                public void invoke(IChatListener remoteListener)
-                        throws RemoteException {
-                    remoteListener.onConvertedToGroupChat(ChatSessionAdapter.this);
+            final int N = mRemoteListeners.beginBroadcast();
+            for (int i = 0; i < N; i++) {
+                IChatListener listener = mRemoteListeners.getBroadcastItem(i);
+                try {
+                    listener.onConvertedToGroupChat(ChatSessionAdapter.this);
+                } catch (RemoteException e) {
+                    // The RemoteCallbackList will take care of removing the
+                    // dead listeners.
                 }
-            });
+            }
+            mRemoteListeners.finishBroadcast();
         }
     }
 

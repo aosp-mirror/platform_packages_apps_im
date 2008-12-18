@@ -21,7 +21,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_view_friend_list"
-        android:title="@string/menu_view_friend_list"
+        android:title="@string/menu_view_contact_list"
         android:icon="@drawable/ic_menu_friend_list"/>
 
     <item android:id="@+id/menu_switch_chats"

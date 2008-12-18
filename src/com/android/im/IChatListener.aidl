@@ -22,7 +22,7 @@ import com.android.im.engine.Contact;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.Message;
 
-interface IChatListener {
+oneway interface IChatListener {
     /**
      * This method is called when a new message of the ChatSession has arrived.
      */

@@ -25,7 +25,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.http.Header;
@@ -42,6 +41,7 @@ import android.net.http.AndroidHttpClient;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.android.im.engine.HeartbeatService;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.ImException;
 import com.android.im.imps.Primitive.TransactionMode;
@@ -50,7 +50,7 @@ import com.android.im.imps.Primitive.TransactionMode;
  * The <code>HttpDataChannel</code> is an implementation of IMPS data channel
  * in which the protocol binding is HTTP.
  */
-class HttpDataChannel extends DataChannel implements Runnable {
+class HttpDataChannel extends DataChannel implements Runnable, HeartbeatService.Callback {
 
     private static final int MAX_RETRY_COUNT = 10;
     private static final int INIT_RETRY_DELAY_MS = 5000;
@@ -58,6 +58,7 @@ class HttpDataChannel extends DataChannel implements Runnable {
 
     private Thread mSendThread;
     private boolean mStopped;
+    private boolean mSuspended;
     private boolean mConnected;
     private boolean mStopRetry;
     private Object mRetryLock = new Object();
@@ -65,7 +66,7 @@ class HttpDataChannel extends DataChannel implements Runnable {
     private LinkedBlockingQueue<Primitive> mReceiveQueue;
 
     private long mLastActive;
-    private int mKeepAliveMillis;
+    private long mKeepAliveMillis;
     private Primitive mKeepAlivePrimitive;
 
     private AtomicBoolean mHasPendingPolling = new AtomicBoolean(false);
@@ -87,6 +88,11 @@ class HttpDataChannel extends DataChannel implements Runnable {
         mTxManager = connection.getTransactionManager();
         ImpsConnectionConfig cfg = connection.getConfig();
         try {
+            String host = cfg.getHost();
+            if (host == null || host.length() == 0) {
+                throw new ImException(ImErrorInfo.INVALID_HOST_NAME,
+                       "Empty host name.");
+            }
             mPostUri = new URI(cfg.getHost());
             if (mPostUri.getPath() == null || "".equals(mPostUri.getPath())) {
                 mPostUri = new URI(cfg.getHost() + "/");
@@ -131,7 +137,35 @@ class HttpDataChannel extends DataChannel implements Runnable {
     }
 
     @Override
+    public void suspend() {
+        mSuspended = true;
+    }
+
+    @Override
+    public boolean resume() {
+        long now = SystemClock.elapsedRealtime();
+        if (now - mLastActive > mKeepAliveMillis) {
+            shutdown();
+            return false;
+        } else {
+            mSuspended = false;
+
+            // Send a polling request after resume in case we missed some
+            // updates while we are suspended.
+            Primitive polling = new Primitive(ImpsTags.Polling_Request);
+            polling.setSession(mConnection.getSession().getID());
+            sendPrimitive(polling);
+
+            return true;
+        }
+    }
+
+    @Override
     public void shutdown() {
+        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        if (heartbeatService != null) {
+            heartbeatService.stopHeartbeat(this);
+        }
         // Stop the sending thread
         mStopped = true;
         mSendThread.interrupt();
@@ -183,11 +217,29 @@ class HttpDataChannel extends DataChannel implements Runnable {
             interval = mConnection.getConfig().getDefaultKeepAliveInterval();
         }
 
-        mKeepAliveMillis = (int)(interval * 1000 - 100);
+        mKeepAliveMillis = interval * 1000;
         if (mKeepAliveMillis < 0) {
             ImpsLog.log("Negative keep alive time. Won't send keep-alive");
         }
         mKeepAlivePrimitive = new Primitive(ImpsTags.KeepAlive_Request);
+        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        if (heartbeatService != null) {
+            heartbeatService.startHeartbeat(this, mKeepAliveMillis);
+        }
+    }
+
+    public long sendHeartbeat() {
+        long inactiveTime = SystemClock.elapsedRealtime() - mLastActive;
+        if (needSendKeepAlive(inactiveTime)) {
+            sendKeepAlive();
+            return mKeepAliveMillis;
+        } else {
+            return mKeepAliveMillis - inactiveTime;
+        }
+    }
+
+    private boolean needSendKeepAlive(long inactiveTime) {
+        return mKeepAliveMillis - inactiveTime <= 500;
     }
 
     @Override
@@ -204,36 +256,15 @@ class HttpDataChannel extends DataChannel implements Runnable {
     }
 
     public void run() {
-        boolean needKeepAlive = false;
         while (!mStopped) {
-            if (needKeepAlive) {
-                sendKeepAlive();
-                needKeepAlive = false;
-            }
-
-            Primitive primitive;
             try {
-                if (mKeepAliveMillis <= 0) {
-                    primitive = mSendQueue.take();
-                } else {
-                    primitive = mSendQueue.poll(mKeepAliveMillis, TimeUnit.MILLISECONDS);
-                    if (primitive == null) {
-                        if (!mStopped) {
-                            needKeepAlive = true;
-                        }
-                        continue;
-                    }
+                Primitive primitive = mSendQueue.take();
+                if (primitive.getType().equals(ImpsTags.Polling_Request)) {
+                    mHasPendingPolling.set(false);
                 }
+                doSendPrimitive(primitive);
             } catch (InterruptedException e) {
-                if (mStopped) {
-                    break;
-                }
-                continue;
             }
-            if (primitive.getType().equals(ImpsTags.Polling_Request)) {
-                mHasPendingPolling.set(false);
-            }
-            doSendPrimitive(primitive);
         }
         mHttpClient.close();
     }
