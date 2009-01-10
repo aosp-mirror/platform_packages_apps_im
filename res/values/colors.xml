@@ -18,16 +18,10 @@
  */
 -->
 <resources>
-    <color name="incoming_message">#ff172580</color>
-    <color name="outgoing_message">#ff3492c5</color>
-    <color name="presence_updates">#ffaaaaaa</color>
     <color name="chat_msg">#ff000000</color>
     <color name="chat_msg_presence">#ffad45d6</color>
-    <color name="connection_notification">#ffff0000</color>
-    <color name="hint">#ffff0000</color>
     <color name="chat_contact">#000</color>
     <color name="nonchat_contact">#fff</color>
     <color name="status_popup_text">#ff000000</color>
-    <color name="status_popup_bg">#ffffffff</color>
     <color name="error">#ffcc5555</color>
 </resources>
