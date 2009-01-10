@@ -90,7 +90,7 @@ public class Markup {
                 }
                 Drawable smiley = mRes.getSmileyIcon(candidate);
                 smiley.setBounds(0, 0, smiley.getIntrinsicWidth(), smiley.getIntrinsicHeight());
-                result.setSpan(new ImageSpan(smiley),
+                result.setSpan(new ImageSpan(smiley, ImageSpan.ALIGN_BASELINE),
                     offset, lastMatchEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                 candidate = 0;
