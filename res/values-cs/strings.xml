@@ -1,93 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"IMPS"</string>
+    <string name="im_label">"Chat"</string>
     <string name="menu_add_account">"Přidat účet"</string>
     <string name="menu_edit_account">"Upravit účet"</string>
-    <string name="menu_remove_account">"Odebrat účet"</string>
-    <!-- no translation found for menu_sign_out_all (4026512129877786329) -->
-    <skip />
-    <string name="menu_cancel_signin">"Zrušit přihlášení"</string>
-    <string name="menu_add_contact">"Přidat kontakt…"</string>
-    <string name="menu_remove_contact">"Odstranit kontakt"</string>
+    <string name="menu_remove_account">"Odstranit účet"</string>
+    <string name="menu_sign_out_all">"Odhlásit se ze všech služeb"</string>
+    <string name="menu_cancel_signin">"Zrušit přihlašování"</string>
+    <string name="menu_add_contact">"Přidat kontakt"</string>
+    <string name="menu_remove_contact">"Smazat kontakt"</string>
     <string name="menu_block_contact">"Blokovat kontakt"</string>
-    <string name="menu_view_blocked">"Zobrazit blokované kontakty"</string>
-    <!-- no translation found for menu_view_accounts (6975425155216150701) -->
-    <skip />
-    <!-- no translation found for menu_settings (1142751482168124719) -->
-    <skip />
-    <string name="menu_start_chat">"Zahájit konverzaci"</string>
-    <string name="menu_group_chat">"Zahájit skupinovou konverzaci…"</string>
+    <string name="menu_view_blocked">"Blokovaní uživatelé"</string>
+    <string name="menu_view_accounts">"Seznam účtů"</string>
+    <string name="menu_settings">"Nastavení"</string>
+    <string name="menu_start_chat">"Začít chat"</string>
+    <string name="menu_group_chat">"Začít hromadný chat..."</string>
     <string name="menu_sign_out">"Odhlásit se"</string>
     <string name="menu_view_profile">"Zobrazit profil"</string>
-    <string name="menu_end_conversation">"Ukončit konverzaci"</string>
-    <!-- no translation found for menu_view_contact_list (2114383286819041320) -->
-    <skip />
-    <string name="menu_invite_contact">"Pozvat…"</string>
-    <!-- no translation found for menu_switch_chats (2806890425219563008) -->
-    <skip />
+    <string name="menu_end_conversation">"Ukončit chat"</string>
+    <string name="menu_view_contact_list">"Seznam kontaktů"</string>
+    <string name="menu_invite_contact">"Pozvat..."</string>
+    <string name="menu_switch_chats">"Přepnout chat"</string>
     <string name="menu_insert_smiley">"Vložit smajlík"</string>
-    <string name="default_input_title">"Zadávání"</string>
+    <string name="default_input_title">"Vstup"</string>
     <string name="confirm">"Potvrdit"</string>
-    <string name="confirm_delete_contact">"Odstranit kontakt \"<xliff:g id="USER">%1$s</xliff:g>\"?"</string>
-    <string name="confirm_block_contact">"Blokovat kontakt \"<xliff:g id="USER">%1$s</xliff:g>\"?"</string>
-    <string name="confirm_unblock_contact">"Odblokovat kontakt \"<xliff:g id="USER">%1$s</xliff:g>\"?"</string>
+    <string name="confirm_delete_contact">"Kontakt <xliff:g id="USER">%1$s</xliff:g> bude smazán."</string>
+    <string name="confirm_block_contact">"Kontakt <xliff:g id="USER">%1$s</xliff:g> bude blokován."</string>
+    <string name="confirm_unblock_contact">"Kontakt <xliff:g id="USER">%1$s</xliff:g> bude odblokován."</string>
     <string name="ok">"OK"</string>
-    <string name="cancel">"Storno"</string>
+    <string name="cancel">"Zrušit"</string>
     <string name="yes">"OK"</string>
-    <string name="no">"Storno"</string>
-    <string name="signed_out_prompt">"Byli jste odhlášeni od účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="signed_out_prompt_with_error">"Byli jste odhlášeni od účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>, protože <xliff:g id="REASON">%2$s</xliff:g>"</string>
-    <string name="choose_account_title">"Konverzace - vyberte účet"</string>
+    <string name="no">"Zrušit"</string>
+    <string name="signed_out_prompt">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
+    <string name="signed_out_prompt_with_error">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>, protože došlo k chybě <xliff:g id="REASON">%2$s</xliff:g>."</string>
+    <string name="choose_account_title">"Chat – vybrat účet"</string>
     <string name="account_title">"Účet <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 konverzace"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> konverzací"</string>
+    <string name="one_conversation">"1 chat"</string>
+    <string name="conversations">"Probíhající chaty: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
     <string name="add_account">"Přidat účet <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Konverzace - přidat účet"</string>
-    <string name="label_username">"Uživatelské jméno"</string>
-    <string name="label_password">"Heslo"</string>
-    <!-- no translation found for remember_password (5779146033978353058) -->
-    <skip />
-    <string name="keep_me_signed_in">"Zachovat přihlášení"</string>
-    <!-- no translation found for sign_up (6983947107527799386) -->
-    <skip />
-    <!-- no translation found for check_auto_sign_in (2116659858822956799) -->
-    <skip />
+    <string name="add_account_title">"Chat – přidat účet"</string>
+    <string name="label_username">"Uživatelské jméno:"</string>
+    <string name="label_password">"Heslo:"</string>
+    <string name="remember_password">"Zapamatovat heslo."</string>
+    <string name="keep_me_signed_in">"Přihlašovat automaticky."</string>
+    <string name="sign_up">"Nemáte účet?"</string>
+    <string name="check_auto_sign_in">"Pokud povolíte tuto možnost, budete automaticky přihlášeni pokaždé, když spustíte tuto aplikaci. Chcete-li tuto možnost zakázat, odhlaste se a zrušte zaškrtnutí políčka Přihlašovat automaticky."</string>
     <string name="sign_in">"Přihlásit se"</string>
     <string name="signing_in_to">"Přihlašování k účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="signing_in_wait">"Přihlašování…"</string>
-    <string name="ongoing_conversation">"Probíhající konverzace (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
-    <!-- no translation found for subscriptions (1709895886848074911) -->
-    <skip />
-    <!-- unknown placeholder ID_1 in unknown_contact -->
-    <skip />
-    <!-- no translation found for empty_contact_group (7211950514962492996) -->
-    <skip />
-    <!-- no translation found for empty_conversation_group (5077575342274378122) -->
-    <skip />
+    <string name="signing_in_wait">"Přihlašování..."</string>
+    <string name="ongoing_conversation">"Probíhající chaty: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="online_count">"Kontakty online: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="subscriptions">"Nabídky přátelství"</string>
+    <string name="unknown_contact">"("<i>"Neznámý uživatel"</i>")"</string>
+    <string name="empty_contact_group">"Žádné kontakty"</string>
+    <string name="empty_conversation_group">"Skupina je prázdná"</string>
     <string name="contacts_picker_title">"Vyberte kontakty, které chcete pozvat"</string>
-    <string name="contact_filter_hint">"Napište kontakt, který chcete najít"</string>
-    <string name="empty_contact_list">"Žádné odpovídající kontakty"</string>
-    <string name="blocked_list_title">"Blokované kontakty - <xliff:g id="USER">%1$s</xliff:g>"</string>
-    <string name="no_blocked_contact">"Žádné blokované kontakty"</string>
-    <!-- no translation found for contact_profile_title (92366372492062559) -->
-    <skip />
-    <!-- no translation found for label_status (6777974426716611278) -->
-    <skip />
-    <!-- no translation found for label_client_type (1081526447740183415) -->
-    <skip />
-    <!-- no translation found for client_type_computer (7359047979347733945) -->
-    <skip />
-    <!-- no translation found for client_type_mobile (1488733614257782677) -->
-    <skip />
+    <string name="contact_filter_hint">"Zadejte hledaný kontakt"</string>
+    <string name="empty_contact_list">"Nebyly nalezeny žádné kontakty."</string>
+    <string name="blocked_list_title">"Blokované kontakty – <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Žádné kontakty nejsou blokovány."</string>
+    <string name="contact_profile_title">"Profil kontaktu"</string>
+    <string name="label_status">"Stav:"</string>
+    <string name="label_client_type">"Typ klienta:"</string>
+    <string name="client_type_computer">"počítač"</string>
+    <string name="client_type_mobile">"Mobil"</string>
     <string name="presence_available">"Online"</string>
-    <string name="presence_busy">"Nerušit"</string>
+    <string name="presence_busy">"Zaneprázdněn"</string>
     <string name="presence_away">"Pryč"</string>
     <string name="presence_idle">"Nečinný"</string>
     <string name="presence_offline">"Offline"</string>
     <string name="presence_invisible">"Zobrazit jako offline"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> nastavení (pouze zař.)"</string>
+    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
     <string name="data_channel_label">"Datový kanál"</string>
     <string name="data_encoding_label">"Kódování dat"</string>
     <string name="cir_channel_label">"Kanál CIR"</string>
@@ -100,167 +83,125 @@
     <string name="xml">"XML"</string>
     <string name="wbxml">"WBXML"</string>
     <string name="save">"Uložit"</string>
-    <string name="chat_with">"Konverzace s <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="chat_with">"Chat s uživatelem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Já"</string>
-    <string name="contact_online">"Uživatel <xliff:g id="USER">%1$s</xliff:g> je online"</string>
-    <string name="contact_away">"Uživatel <xliff:g id="USER">%1$s</xliff:g> je nepřítomen"</string>
-    <string name="contact_busy">"Uživatel <xliff:g id="USER">%1$s</xliff:g> je zaneprázdněn"</string>
-    <string name="contact_offline">"Uživatel <xliff:g id="USER">%1$s</xliff:g> je offline"</string>
+    <string name="contact_online">"uživatel <xliff:g id="USER">%1$s</xliff:g> je online"</string>
+    <string name="contact_away">"uživatel <xliff:g id="USER">%1$s</xliff:g> je pryč"</string>
+    <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> je zaneprázdněn"</string>
+    <string name="contact_offline">"uživatel <xliff:g id="USER">%1$s</xliff:g> je offline"</string>
     <string name="contact_joined">"Uživatel <xliff:g id="USER">%1$s</xliff:g> se připojil"</string>
-    <string name="contact_left">"Uživatel <xliff:g id="USER">%1$s</xliff:g> odešel"</string>
-    <string name="time_stamp">"\'Odesláno v\' hh:mm a \'dne\' EEEE"</string>
+    <string name="contact_left">"uživatel <xliff:g id="USER">%1$s</xliff:g> odešel"</string>
+    <string name="time_stamp">"Posláno hh:mm dne EEEE"</string>
     <string name="send">"Odeslat"</string>
-    <!-- no translation found for msg_sent_failed (2880346754723669645) -->
-    <skip />
-    <!-- no translation found for disconnected_warning (6109406003786139677) -->
-    <skip />
-    <!-- no translation found for contact_offline_warning (6227811530773817836) -->
-    <skip />
-    <!-- no translation found for contact_not_in_list_warning (4772381463775065627) -->
-    <skip />
-    <!-- no translation found for select_link_title (8882900158233961403) -->
-    <skip />
-    <string name="empty_chat_list">"Žádné aktivní konverzace"</string>
+    <string name="msg_sent_failed">"Zprávu nelze odeslat."</string>
+    <string name="disconnected_warning">"Spojení se serverem bylo ztraceno. Zpráva bude odeslána, jakmile se jej podaří obnovit."</string>
+    <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> je offline. Odeslané zprávy budou doručeny, jakmile se <xliff:g id="USER_1">%1$s</xliff:g> přihlásí online."</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> není ve vašem seznamu kontaktů."</string>
+    <string name="select_link_title">"Zvolit odkaz"</string>
+    <string name="empty_chat_list">"Neprobíhá žádný chat."</string>
     <string name="add_contact_title">"Přidat kontakt"</string>
-    <!-- no translation found for input_contact_label (1630779656043957854) -->
-    <skip />
-    <!-- no translation found for invite_instruction (4573546539342298212) -->
-    <skip />
-    <!-- no translation found for invite_label (4904804749759006552) -->
-    <skip />
-    <!-- no translation found for setting_title (5909933790707365014) -->
-    <skip />
-    <string name="hide_offline_contacts">"Pouze kontakty online"</string>
-    <!-- no translation found for notification_group_title (4558000929993554310) -->
-    <skip />
-    <!-- no translation found for notification_enabled_title (3319288904095653361) -->
-    <skip />
-    <!-- no translation found for notification_enabled_summary (8365717844038035463) -->
-    <skip />
-    <!-- no translation found for notification_vibrate_title (5788997795673135111) -->
-    <skip />
-    <!-- no translation found for notification_vibrate_summary (2266712186494192065) -->
-    <skip />
-    <!-- no translation found for notification_sound_title (8215177079852786219) -->
-    <skip />
-    <!-- no translation found for notification_sound_summary (4616307507467709926) -->
-    <skip />
-    <!-- no translation found for notification_ringtone_title (3349317869157038819) -->
-    <skip />
+    <string name="input_contact_label">"E-mailová adresa osoby, kterou chcete pozvat:"</string>
+    <string name="invite_instruction">"Zadejte jméno uživatele, kterého chcete přidat z Kontaktů."</string>
+    <string name="invite_label">"Odeslat pozvánku"</string>
+    <string name="setting_title">"Obecné nastavení"</string>
+    <string name="hide_offline_contacts">"Skrýt kontakty offline"</string>
+    <string name="notification_group_title">"Nastavení oznámení"</string>
+    <string name="notification_enabled_title">"Oznamování chatových zpráv"</string>
+    <string name="notification_enabled_summary">"Příchod chatové zprávy oznamovat na stavovém panelu."</string>
+    <string name="notification_vibrate_title">"Vibrace"</string>
+    <string name="notification_vibrate_summary">"Oznámit příchozí chatovou zprávu také vibracemi"</string>
+    <string name="notification_sound_title">"Zvuk"</string>
+    <string name="notification_sound_summary">"Oznámit příchozí chatovou zprávu také vyzváněním"</string>
+    <string name="notification_ringtone_title">"Vybrat vyzváněcí tón"</string>
     <string name="invitation_title">"Pozvánka"</string>
-    <string name="invitation_prompt">"Uživatel <xliff:g id="USER">%1$s</xliff:g> vás pozval do skupinové konverzace"</string>
-    <string name="invitation_sent_prompt">"Uživateli <xliff:g id="USER">%1$s</xliff:g> byla odeslána pozvánka"</string>
+    <string name="invitation_prompt">"Uživatel <xliff:g id="USER">%1$s</xliff:g> vás pozval k hromadnému chatu."</string>
+    <string name="invitation_sent_prompt">"Uživateli <xliff:g id="USER">%1$s</xliff:g> byla zaslána pozvánka."</string>
     <string name="accept_invitation">"Přijmout"</string>
     <string name="decline_invitation">"Odmítnout"</string>
-    <!-- no translation found for subscription_prompt (7266435256781259461) -->
-    <skip />
-    <!-- no translation found for approve_subscription (549062217697837528) -->
-    <skip />
-    <!-- no translation found for decline_subscription (6631107867462170665) -->
-    <skip />
-    <!-- no translation found for approve_subscription_error (986150616038127603) -->
-    <skip />
-    <!-- no translation found for decline_subscription_error (764853467449750939) -->
-    <skip />
-    <!-- no translation found for newMessages_label (4811395346229802838) -->
-    <skip />
-    <!-- no translation found for num_unread_chats (7855374160060094761) -->
-    <skip />
-    <!-- no translation found for subscription_notify_text (2214066330484962099) -->
-    <skip />
-    <!-- no translation found for notify_groupchat_label (5104370353953519100) -->
-    <skip />
-    <!-- no translation found for group_chat_invite_notify_text (5485374434471414068) -->
-    <skip />
-    <string name="add_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je přidán"</string>
-    <string name="delete_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je odstraněn"</string>
-    <string name="block_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je blokován"</string>
-    <string name="unblock_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je odblokován"</string>
-    <string name="perm_label">"Přistup ke službě rychlých zpráv"</string>
-    <string name="perm_desc">"Povolit aplikacím spouštění služby rychlých zpráv"</string>
-    <string name="error">"Upozornění!"</string>
-    <string name="login_service_failed">"Přihlášení ke službě \"<xliff:g id="SERVICE">%1$s</xliff:g>\" se nezdařilo! Opakujte akci později"\n"<xliff:g id="DESCRIPTION">%2$s</xliff:g>"</string>
-    <string name="add_list_failed">"Seznam nebyl přidán"</string>
-    <string name="block_contact_failed">"Kontakt nebyl zablokován"</string>
-    <string name="unblock_contact_failed">"Kontakt nebyl odblokován"</string>
-    <string name="select_contact">"Nejprve vyberte kontakt"</string>
-    <string name="select_chat_session">"Vyberte relaci konverzace"</string>
-    <string name="disconnected">"Odpojeno!"\n</string>
-    <string name="service_error">"Chyba služby!"</string>
-    <string name="load_contact_list_failed">"Načtení seznamu kontaktů se nezdařilo"</string>
-    <!-- no translation found for cant_connect_to_server (207932656503788857) -->
-    <skip />
-    <string name="contact_already_exist">"Tento kontakt již existuje v seznamu kontaktů"</string>
-    <string name="contact_blocked">"Kontakt je blokován"</string>
-    <!-- no translation found for contact_not_loaded (8238631085769592066) -->
-    <skip />
-    <!-- no translation found for network_error (3489946932878651341) -->
-    <skip />
-    <!-- no translation found for service_not_support (1832220575920322139) -->
-    <skip />
-    <!-- no translation found for invalid_password (9193094676367248367) -->
-    <skip />
-    <!-- no translation found for internal_server_error (8400687811609713664) -->
-    <skip />
-    <!-- no translation found for not_implemented (4815282690632641452) -->
-    <skip />
-    <!-- no translation found for service_unavaiable (5425561923084893489) -->
-    <skip />
-    <!-- no translation found for timeout (3307079526799266863) -->
-    <skip />
-    <!-- no translation found for version_not_supported (7992057418771149917) -->
-    <skip />
-    <!-- no translation found for message_queue_full (6449386164959381014) -->
-    <skip />
-    <!-- no translation found for domain_not_supported (3142962958802719476) -->
-    <skip />
-    <!-- no translation found for unknown_user (5594569296392146489) -->
-    <skip />
-    <!-- no translation found for recipient_blocked_the_user (2481181889950364735) -->
-    <skip />
-    <!-- no translation found for session_expired (1362776200197129361) -->
-    <skip />
-    <!-- no translation found for forced_logout (917053018164319115) -->
-    <skip />
-    <!-- no translation found for already_logged_in (5313123600643231336) -->
-    <skip />
-    <!-- no translation found for msisdn_error (6951155727915206368) -->
-    <skip />
-    <!-- unknown placeholder ACCOUNT in not_signed_in -->
-    <skip />
-    <string name="general_error">"Kód chyby <xliff:g id="CODE">%1$d</xliff:g>"</string>
-    <!-- no translation found for default_smiley_names:0 (5772932914762835051) -->
-    <!-- no translation found for default_smiley_names:1 (704525349553156274) -->
-    <!-- no translation found for default_smiley_names:2 (4747393515573655781) -->
-    <!-- no translation found for default_smiley_names:3 (4291851270886170314) -->
-    <!-- no translation found for default_smiley_names:4 (8040353020988389714) -->
-    <!-- no translation found for default_smiley_names:5 (3049789304389249061) -->
-    <!-- no translation found for default_smiley_names:6 (4660582216939993565) -->
-    <!-- no translation found for default_smiley_names:7 (2290355916961323298) -->
-    <!-- no translation found for default_smiley_names:8 (7642928861741709937) -->
-    <!-- no translation found for default_smiley_names:9 (7926022181155230966) -->
-    <!-- no translation found for default_smiley_names:10 (2419863261415777729) -->
-    <!-- no translation found for default_smiley_names:11 (2352147898915733469) -->
-    <!-- no translation found for default_smiley_names:12 (802724366909744819) -->
-    <!-- no translation found for default_smiley_names:13 (4506079317772530659) -->
-    <!-- no translation found for default_smiley_names:14 (2626040433602298453) -->
-    <!-- no translation found for default_smiley_names:15 (6226162143034486598) -->
-    <!-- no translation found for default_smiley_names:16 (8430298053727856772) -->
-    <!-- no translation found for default_smiley_texts:0 (6941403499312582433) -->
-    <!-- no translation found for default_smiley_texts:1 (8202006112239461174) -->
-    <!-- no translation found for default_smiley_texts:2 (3602900322040825098) -->
-    <!-- no translation found for default_smiley_texts:3 (5959810901293065606) -->
-    <!-- no translation found for default_smiley_texts:4 (1870235507123618493) -->
-    <!-- no translation found for default_smiley_texts:5 (2703746724013734058) -->
-    <!-- no translation found for default_smiley_texts:6 (556478036312584723) -->
-    <!-- no translation found for default_smiley_texts:7 (8345161540033811653) -->
-    <!-- no translation found for default_smiley_texts:8 (1974488079882764541) -->
-    <!-- no translation found for default_smiley_texts:9 (6225569645070541446) -->
-    <!-- no translation found for default_smiley_texts:10 (586547482881420515) -->
-    <!-- no translation found for default_smiley_texts:11 (1228887766610874919) -->
-    <!-- no translation found for default_smiley_texts:12 (2722161054820283454) -->
-    <!-- no translation found for default_smiley_texts:13 (1600062836928892765) -->
-    <!-- no translation found for default_smiley_texts:14 (151792949578610390) -->
-    <!-- no translation found for default_smiley_texts:15 (5447374705763162531) -->
-    <!-- no translation found for default_smiley_texts:16 (7549451644655193096) -->
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> si vás chce přidat do svého seznamu kontaktů."</string>
+    <string name="approve_subscription">"Přijmout"</string>
+    <string name="decline_subscription">"Odmítnout"</string>
+    <string name="approve_subscription_error">"Přihlášení k odběru uživatele <xliff:g id="USER">%1$s</xliff:g> se nepodařilo schválit. Zkuste to prosím znovu později."</string>
+    <string name="decline_subscription_error">"Odmítnutí odběru uživatele <xliff:g id="USER">%1$s</xliff:g> se nezdařilo. Zkuste to prosím znovu později."</string>
+    <string name="newMessages_label">"Nové zprávy od poskytovatele <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
+    <string name="num_unread_chats">"Nové zprávy: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="subscription_notify_text">"Nová nabídka přátelství od uživatele <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Pozvánka k hromadnému chatu"</string>
+    <string name="group_chat_invite_notify_text">"Nová pozvánka k hromadnému chatu od uživatele <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="add_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> byl přidán."</string>
+    <string name="delete_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> byl smazán."</string>
+    <string name="block_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je blokován."</string>
+    <string name="unblock_contact_success">"Kontakt <xliff:g id="USER">%1$s</xliff:g> je odblokován."</string>
+    <string name="perm_label">"spustit službu Chat"</string>
+    <string name="perm_desc">"Povoluje aplikacím spustit Chat přes službu intent."</string>
+    <string name="error">"Upozornění"</string>
+    <string name="login_service_failed">"Nepodařilo se přihlásit ke službě <xliff:g id="SERVICE">%1$s</xliff:g>. Zkuste to prosím znovu později."\n"(Podrobnosti: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"Seznam se nepodařilo přidat."</string>
+    <string name="block_contact_failed">"Blokování kontaktu se nezdařilo."</string>
+    <string name="unblock_contact_failed">"Odblokování kontaktu se nezdařilo."</string>
+    <string name="select_contact">"Nejprve zvolte kontakt."</string>
+    <string name="select_chat_session">"Zvolte relaci chatu."</string>
+    <string name="disconnected">"Odpojeno"\n</string>
+    <string name="service_error">"Chyba služby."</string>
+    <string name="load_contact_list_failed">"Seznam kontaktů se nepodařilo načíst."</string>
+    <string name="cant_connect_to_server">"K serveru se nelze připojit. Zkontrolujte své připojení."</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> již je ve vašem seznamu kontaktů."</string>
+    <string name="contact_blocked">"Kontakt <xliff:g id="USER">%1$s</xliff:g> byl zablokován."</string>
+    <string name="contact_not_loaded">"Počkejte, než se seznam kontaktů načte."</string>
+    <string name="network_error">"Došlo k chybě sítě."</string>
+    <string name="service_not_support">"Server tuto funkci nepodporuje."</string>
+    <string name="invalid_password">"Zadané heslo není platné."</string>
+    <string name="internal_server_error">"Na serveru došlo k chybě."</string>
+    <string name="not_implemented">"Server tuto funkci nepodporuje."</string>
+    <string name="service_unavaiable">"Server je momentálně nedostupný."</string>
+    <string name="timeout">"Vypršel časový limit serveru."</string>
+    <string name="version_not_supported">"Server nepodporuje aktuální verzi."</string>
+    <string name="message_queue_full">"Fronta zpráv je plná."</string>
+    <string name="domain_not_supported">"Server nepodporuje předávání této doméně."</string>
+    <string name="unknown_user">"Zadané uživatelské jméno nebylo rozpoznáno."</string>
+    <string name="recipient_blocked_the_user">"Tento uživatel vás blokuje."</string>
+    <string name="session_expired">"Této relaci již vypršela platnost, přihlaste se znovu."</string>
+    <string name="forced_logout">"jste přihlášeni z jiného klienta."</string>
+    <string name="already_logged_in">"již jste přihlášeni z jiného klienta."</string>
+    <string name="msisdn_error">"Z karty SIM nelze číst vaše telefonní číslo. Požádejte o pomoc operátora."</string>
+    <string name="not_signed_in">"Momentálně nejste přihlášeni."</string>
+    <string name="general_error">"Kód chyby: <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"Happy"</item>
+    <item>"Smutný"</item>
+    <item>"Mrkající"</item>
+    <item>"Vypláznutý jazyk"</item>
+    <item>"Překvapený"</item>
+    <item>"Pusa"</item>
+    <item>"Hej!"</item>
+    <item>"Cool"</item>
+    <item>"Cinkání zlaťáků"</item>
+    <item>"Šlápota v úsměvu"</item>
+    <item>"V rozpacích"</item>
+    <item>"Andílek"</item>
+    <item>"Nerozhodný"</item>
+    <item>"Rozplakaný"</item>
+    <item>"Ani muk"</item>
+    <item>"Smějící se"</item>
+    <item>"Zmatený"</item>
+  </string-array>
+  <string-array name="default_smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
 </resources>

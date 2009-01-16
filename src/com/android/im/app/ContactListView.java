@@ -419,6 +419,14 @@ public class ContactListView extends LinearLayout {
                 int childPosition, long id) {
             Cursor cursor = (Cursor)parent.getExpandableListAdapter().getChild(
                     groupPosition, childPosition);
+            if (cursor == null) {
+                Log.w(ImApp.LOG_TAG,
+                        "[ContactListView.OnChildClickListener.onChildClick] cursor null! groupPos="
+                                + groupPosition + ", childPos=" + childPosition,
+                        new RuntimeException());
+                return false;
+            }
+            
             int subscriptionType = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_TYPE);
             int subscriptionStatus = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_STATUS);
             if ((subscriptionType == Im.Contacts.SUBSCRIPTION_TYPE_FROM)

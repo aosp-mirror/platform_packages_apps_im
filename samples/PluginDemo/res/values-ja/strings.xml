@@ -1,76 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for menu_add_contact (1577617821180977339) -->
-    <skip />
-    <!-- no translation found for menu_remove_contact (1438737309746209943) -->
-    <skip />
-    <!-- no translation found for menu_block_contact (1418576909122458824) -->
-    <skip />
-    <!-- no translation found for menu_contact_list (7408048984312793527) -->
-    <skip />
-    <!-- no translation found for menu_start_chat (1942461880426180926) -->
-    <skip />
-    <!-- no translation found for menu_view_profile (4594617426877626560) -->
-    <skip />
-    <!-- no translation found for menu_end_conversation (215067667186746690) -->
-    <skip />
-    <!-- no translation found for menu_switch_chats (4616221788780459133) -->
-    <skip />
-    <!-- no translation found for menu_insert_smiley (6880772056965363205) -->
-    <skip />
-    <!-- no translation found for sign_up (3944276728278864333) -->
-    <skip />
-    <!-- no translation found for check_save_password (3554564072443242779) -->
-    <skip />
-    <!-- no translation found for buddy_list_title (5837732412636822107) -->
-    <skip />
-    <!-- no translation found for label_username (7905168188814604370) -->
-    <skip />
-    <!-- no translation found for ongoing_conversation (9097832769731811986) -->
-    <skip />
-    <!-- no translation found for contact_profile_title (5203284525412697232) -->
-    <skip />
-    <!-- no translation found for presence_available (1184051402868736726) -->
-    <skip />
-    <!-- no translation found for add_contact_title (292217657045373736) -->
-    <skip />
-    <!-- no translation found for input_contact_label (2583915568413164449) -->
-    <skip />
-    <!-- no translation found for invite_label (907494221148096012) -->
-    <skip />
-    <!-- no translation found for smiley_names:0 (811476776139578986) -->
-    <!-- no translation found for smiley_names:1 (2764363456492352853) -->
-    <!-- no translation found for smiley_names:2 (416624764294712159) -->
-    <!-- no translation found for smiley_names:3 (7152979870122929989) -->
-    <!-- no translation found for smiley_names:4 (5784780866600056743) -->
-    <!-- no translation found for smiley_names:5 (5454185003381226454) -->
-    <!-- no translation found for smiley_names:6 (1413668617851210441) -->
-    <!-- no translation found for smiley_names:7 (232246158381043538) -->
-    <!-- no translation found for smiley_names:8 (2440257511131202785) -->
-    <!-- no translation found for smiley_names:9 (4571282940807190133) -->
-    <!-- no translation found for smiley_names:10 (3260099163589753993) -->
-    <!-- no translation found for smiley_names:11 (3042531792218744865) -->
-    <!-- no translation found for smiley_names:12 (5227319381647888452) -->
-    <!-- no translation found for smiley_names:13 (6952104030566994554) -->
-    <!-- no translation found for smiley_names:14 (9199616532683270084) -->
-    <!-- no translation found for smiley_names:15 (4338502150254517147) -->
-    <!-- no translation found for smiley_names:16 (1014703928300075245) -->
-    <!-- no translation found for smiley_texts:0 (6682271134385564589) -->
-    <!-- no translation found for smiley_texts:1 (5242689844155076377) -->
-    <!-- no translation found for smiley_texts:2 (521632995149320343) -->
-    <!-- no translation found for smiley_texts:3 (3442897533435789796) -->
-    <!-- no translation found for smiley_texts:4 (682698687423187022) -->
-    <!-- no translation found for smiley_texts:5 (1531701168660725626) -->
-    <!-- no translation found for smiley_texts:6 (7958357467119008619) -->
-    <!-- no translation found for smiley_texts:7 (4638775565490840154) -->
-    <!-- no translation found for smiley_texts:8 (6225545209385623235) -->
-    <!-- no translation found for smiley_texts:9 (5725425598368680891) -->
-    <!-- no translation found for smiley_texts:10 (5365880622794795497) -->
-    <!-- no translation found for smiley_texts:11 (8260692119195572132) -->
-    <!-- no translation found for smiley_texts:12 (6879285154649424413) -->
-    <!-- no translation found for smiley_texts:13 (554517875650930417) -->
-    <!-- no translation found for smiley_texts:14 (8169228040168187510) -->
-    <!-- no translation found for smiley_texts:15 (5444890977206638254) -->
-    <!-- no translation found for smiley_texts:16 (8814856019116253585) -->
+    <string name="menu_add_contact">"連絡先を追加"</string>
+    <string name="menu_remove_contact">"連絡先を削除"</string>
+    <string name="menu_block_contact">"ブロック"</string>
+    <string name="menu_contact_list">"連絡先リスト"</string>
+    <string name="menu_start_chat">"IMを送信"</string>
+    <string name="menu_view_profile">"友だち情報"</string>
+    <string name="menu_end_conversation">"チャットをやめる"</string>
+    <string name="menu_switch_chats">"チャットを切り替え"</string>
+    <string name="menu_insert_smiley">"絵文字を挿入"</string>
+    <string name="sign_up">"新しいアカウントを取得"</string>
+    <string name="check_save_password">"セキュリティ保護のため、携帯電話を紛失したり盗まれたりした場合は、パソコンからウェブサイトにアクセスしてパスワードを変更してください。"</string>
+    <string name="buddy_list_title">"連絡先リスト - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"ユーザー名:"</string>
+    <string name="ongoing_conversation">"チャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
+    <string name="contact_profile_title">"連絡先情報"</string>
+    <string name="presence_available">"オンライン"</string>
+    <string name="add_contact_title">"連絡先を追加"</string>
+    <string name="input_contact_label">"追加する人のスクリーンネーム:"</string>
+    <string name="invite_label">"友だちを追加"</string>
+  <string-array name="smiley_names">
+    <item>"ハッピー"</item>
+    <item>"悲しい"</item>
+    <item>"ウィンク"</item>
+    <item>"アッカンベー"</item>
+    <item>"びっくり"</item>
+    <item>"キス"</item>
+    <item>"激怒"</item>
+    <item>"クール"</item>
+    <item>"気持ち悪い"</item>
+    <item>"しまった"</item>
+    <item>"恥ずかしい"</item>
+    <item>"天使"</item>
+    <item>"迷う"</item>
+    <item>"泣く"</item>
+    <item>"お口にチャック"</item>
+    <item>"笑顔"</item>
+    <item>"混乱"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
 </resources>
