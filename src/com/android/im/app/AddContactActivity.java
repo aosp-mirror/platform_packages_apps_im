@@ -20,10 +20,12 @@ package com.android.im.app;
 import static android.provider.Contacts.ContactMethods.CONTENT_EMAIL_URI;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -39,6 +41,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.ResourceCursorAdapter;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.android.im.IContactList;
 import com.android.im.IContactListManager;
@@ -53,13 +57,20 @@ import java.util.List;
 
 public class AddContactActivity extends Activity {
 
+    private static final String[] CONTACT_LIST_PROJECTION = {
+        Im.ContactList._ID,
+        Im.ContactList.NAME,
+    };
+    private static final int CONTACT_LIST_NAME_COLUMN = 1;
+
     private MultiAutoCompleteTextView mAddressList;
+    private Spinner mListSpinner;
     Button mInviteButton;
     ImApp mApp;
     SimpleAlertHandler mHandler;
 
     private long mProviderId;
-    private String mListName;
+    private long mAccountId;
     private String mDefaultDomain;
 
     @Override
@@ -82,15 +93,54 @@ public class AddContactActivity extends Activity {
         mAddressList.setAdapter(new EmailAddressAdapter(this));
         mAddressList.setTokenizer(new Rfc822Tokenizer());
         mAddressList.addTextChangedListener(mTextWatcher);
+
+        mListSpinner = (Spinner) findViewById(R.id.choose_list);
+
+        Cursor c = queryContactLists();
+        int initSelection = searchInitListPos(c, getIntent().getStringExtra(
+                ImServiceConstants.EXTRA_INTENT_LIST_NAME));
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                c,
+                new String[] {Im.ContactList.NAME},
+                new int[] {android.R.id.text1});
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mListSpinner.setAdapter(adapter);
+        mListSpinner.setSelection(initSelection);
+
         mInviteButton = (Button) findViewById(R.id.invite);
-        mInviteButton.setText(brandingRes.getString(BrandingResourceIDs.STRING_BUTTON_ADD_CONTACT));
+        mInviteButton.setText(brandingRes.getString(
+                BrandingResourceIDs.STRING_BUTTON_ADD_CONTACT));
         mInviteButton.setOnClickListener(mButtonHandler);
         mInviteButton.setEnabled(false);
     }
 
+    private Cursor queryContactLists() {
+        Uri uri = Im.ContactList.CONTENT_URI;
+        uri = ContentUris.withAppendedId(uri, mProviderId);
+        uri = ContentUris.withAppendedId(uri, mAccountId);
+        Cursor c = managedQuery(uri, CONTACT_LIST_PROJECTION, null, null);
+        return c;
+    }
+
+    private int searchInitListPos(Cursor c, String listName) {
+        if (TextUtils.isEmpty(listName)) {
+            return 0;
+        }
+        c.moveToPosition(-1);
+        while (c.moveToNext()) {
+            if (listName.equals(c.getString(CONTACT_LIST_NAME_COLUMN))) {
+                return c.getPosition();
+            }
+        }
+        return 0;
+    }
+
     private void resolveIntent(Intent intent) {
-        mProviderId = intent.getLongExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, -1);
-        mListName = intent.getStringExtra(ImServiceConstants.EXTRA_INTENT_LIST_NAME);
+        mProviderId = intent.getLongExtra(
+                ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, -1);
+        mAccountId = intent.getLongExtra(
+                ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, -1);
         mDefaultDomain = Im.ProviderSettings.getStringValue(getContentResolver(),
                 mProviderId, ImpsConfigNames.DEFAULT_DOMAIN);
     }
@@ -101,7 +151,8 @@ public class AddContactActivity extends Activity {
             IImConnection conn = mApp.getConnection(mProviderId);
             IContactList list = getContactList(conn);
             if (list == null) {
-                Log.e(ImApp.LOG_TAG, "<AddContactActivity> can't find given contact list:" + mListName);
+                Log.e(ImApp.LOG_TAG, "<AddContactActivity> can't find given contact list:"
+                        + getSelectedListName());
                 finish();
             } else {
                 boolean fail = false;
@@ -137,8 +188,9 @@ public class AddContactActivity extends Activity {
 
         try {
             IContactListManager contactListMgr = conn.getContactListManager();
-            if (!TextUtils.isEmpty(mListName)) {
-                return contactListMgr.getContactList(mListName);
+            String listName = getSelectedListName();
+            if (!TextUtils.isEmpty(listName)) {
+                return contactListMgr.getContactList(listName);
             } else {
                 // Use the default list
                 List<IBinder> lists = contactListMgr.getContactLists();
@@ -158,6 +210,11 @@ public class AddContactActivity extends Activity {
             // If the service has died, there is no list for now.
             return null;
         }
+    }
+
+    private String getSelectedListName() {
+        Cursor c = (Cursor) mListSpinner.getSelectedItem();
+        return (c == null) ? null : c.getString(CONTACT_LIST_NAME_COLUMN);
     }
 
     private View.OnClickListener mButtonHandler = new View.OnClickListener() {

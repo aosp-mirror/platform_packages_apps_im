@@ -94,8 +94,6 @@ public class RemoteImService extends Service {
     final RemoteCallbackList<IConnectionCreationListener> mRemoteListeners
             = new RemoteCallbackList<IConnectionCreationListener>();
 
-    private AndroidHeartBeatService mHeartBeatService;
-
     private HashMap<Long, ImPluginInfo> mPlugins;
 
     public RemoteImService() {
@@ -113,6 +111,7 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener.startListening(this);
 
         findAvaiablePlugins();
+        AndroidSystemService.getInstance().initialize(this);
     }
 
     private void findAvaiablePlugins() {
@@ -266,14 +265,6 @@ public class RemoteImService extends Service {
         return !oldVersion.equals(newVersion);
     }
 
-    public AndroidHeartBeatService getHeartBeatService() {
-        if (mHeartBeatService == null) {
-            mHeartBeatService = new AndroidHeartBeatService(this);
-        }
-        return mHeartBeatService;
-    }
-
-
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
@@ -328,21 +319,22 @@ public class RemoteImService extends Service {
         // because the mobile network will take care of it.
         if ("1".equals(SystemProperties.get("ro.kernel.qemu"))) {
             settings.put(ImpsConfigNames.MSISDN, "1231231234");
-        } else if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-            // Wi-Fi network won't insert a MSISDN, we should get from the SIM
-            // card. Assume we can always get the correct MSISDN from SIM, otherwise,
-            // the sign in would fail and an error message should be shown to warn
-            // the user to contact their operator.
-            String msisdn = TelephonyManager.getDefault().getLine1Number();
-            if (!TextUtils.isEmpty(msisdn)) {
-                settings.put(ImpsConfigNames.MSISDN, msisdn);
+        } else if (networkInfo != null
+                && networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+            if (!TextUtils.isEmpty(settings.get(ImpsConfigNames.SMS_ADDR))) {
+                // Send authentication through sms if SMS data channel is
+                // supported and WiFi is used.
+                settings.put(ImpsConfigNames.SMS_AUTH, "true");
+                settings.put(ImpsConfigNames.SECURE_LOGIN, "false");
             } else {
-                // TODO: This should be removed. We can't fetch phone number from
-                // the test T-Mobile SIMs. Use a fake phone number so that we can
-                // work with our test SIMs right now. This can't happen with T-Mobile
-                // production SIMs
-                Log.w(TAG, "Can not get phone number from SIM, use a fake one");
-                settings.put(ImpsConfigNames.MSISDN, "1231231234");
+                // Wi-Fi network won't insert a MSISDN, we should get from the SIM
+                // card. Assume we can always get the correct MSISDN from SIM, otherwise,
+                // the sign in would fail and an error message should be shown to warn
+                // the user to contact their operator.
+                String msisdn = TelephonyManager.getDefault().getLine1Number();
+                if (!TextUtils.isEmpty(msisdn)) {
+                    settings.put(ImpsConfigNames.MSISDN, msisdn);
+                }
             }
         }
         return settings;
@@ -354,6 +346,9 @@ public class RemoteImService extends Service {
         for (ImConnectionAdapter conn : mConnections) {
             conn.logout();
         }
+
+        AndroidSystemService.getInstance().shutdown();
+
         mNetworkConnectivityListener.unregisterHandler(mServiceHandler);
         mNetworkConnectivityListener.stopListening();
         mNetworkConnectivityListener = null;
@@ -397,7 +392,6 @@ public class RemoteImService extends Service {
         ConnectionFactory factory = ConnectionFactory.getInstance();
         try {
             ImConnection conn = factory.createConnection(config);
-            conn.setHeartBeatService(getHeartBeatService());
             ImConnectionAdapter result = new ImConnectionAdapter(providerId,
                     conn, this);
             mConnections.add(result);

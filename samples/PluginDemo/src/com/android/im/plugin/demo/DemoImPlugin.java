@@ -136,23 +136,23 @@ public class DemoImPlugin extends Service {
      * match the smiley texts and smiley names defined in strings.xml.
      */
     static final int[] SMILEY_RES_IDS = {
-        R.drawable.emo_im_happy,
-        R.drawable.emo_im_sad,
-        R.drawable.emo_im_winking,
-        R.drawable.emo_im_tongue_sticking_out,
-        R.drawable.emo_im_surprised,
-        R.drawable.emo_im_kissing,
-        R.drawable.emo_im_yelling,
-        R.drawable.emo_im_cool,
-        R.drawable.emo_im_money_mouth,
-        R.drawable.emo_im_foot_in_mouth,
-        R.drawable.emo_im_embarrased,
-        R.drawable.emo_im_angel,
-        R.drawable.emo_im_undecided,
-        R.drawable.emo_im_crying,
-        R.drawable.emo_im_lips_are_sealed,
-        R.drawable.emo_im_laughing,
-        R.drawable.emo_im_wtf
+        android.R.drawable.emo_im_happy,
+        android.R.drawable.emo_im_sad,
+        android.R.drawable.emo_im_winking,
+        android.R.drawable.emo_im_tongue_sticking_out,
+        android.R.drawable.emo_im_surprised,
+        android.R.drawable.emo_im_kissing,
+        android.R.drawable.emo_im_yelling,
+        android.R.drawable.emo_im_cool,
+        android.R.drawable.emo_im_money_mouth,
+        android.R.drawable.emo_im_foot_in_mouth,
+        android.R.drawable.emo_im_embarrassed,
+        android.R.drawable.emo_im_angel,
+        android.R.drawable.emo_im_undecided,
+        android.R.drawable.emo_im_crying,
+        android.R.drawable.emo_im_lips_are_sealed,
+        android.R.drawable.emo_im_laughing,
+        android.R.drawable.emo_im_wtf
     };
 
 }

@@ -21,15 +21,15 @@
 
     <item android:id="@+id/menu_invite_user"
         android:title="@string/menu_add_contact"
-        android:icon="@drawable/ic_menu_invite" />
+        android:icon="@*android:drawable/ic_menu_invite" />
 
     <item android:id="@+id/menu_blocked_contacts"
         android:title="@string/menu_view_blocked"
-        android:icon="@drawable/ic_menu_blocked_user" />
+        android:icon="@*android:drawable/ic_menu_blocked_user" />
 
     <item android:id="@+id/menu_view_accounts"
         android:title="@string/menu_view_accounts"
-        android:icon="@drawable/ic_menu_account_list" />
+        android:icon="@*android:drawable/ic_menu_account_list" />
 
     <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"

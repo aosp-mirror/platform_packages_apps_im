@@ -373,6 +373,10 @@ public class ImConnectionAdapter extends IImConnection.Stub {
                 for (ChatSessionAdapter session : mChatSessionManager.mActiveSessions.values()) {
                     session.sendPostponedMessages();
                 }
+            } else if (state == ImConnection.LOGGING_OUT) {
+                // The engine has started to logout the connection, remove it
+                // from the active connection list.
+                mService.removeConnection(ImConnectionAdapter.this);
             } else if(state == ImConnection.DISCONNECTED) {
                 mService.removeConnection(ImConnectionAdapter.this);
 

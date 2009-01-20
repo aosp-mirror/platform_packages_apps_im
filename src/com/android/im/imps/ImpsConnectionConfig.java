@@ -31,6 +31,10 @@ public class ImpsConnectionConfig extends ConnectionConfig {
     private static final int DEFAULT_KEEPALIVE_SECONDS  = 2 * 60 * 60; // 2 hour
     private static final int DEFAULT_MIN_SERVER_POLL    = 30;    // seconds
 
+    private static final int DEFAULT_SMS_PORT = 3590;
+    private static final int DEFAULT_SMS_CIR_PORT = 3716;
+    private static final long DEFAULT_PRESENCE_POLL_INTERVAL = 60 * 1000; // 1 minute
+
     // DeliveryReport is good for acknowledgment but consumes 2 extra
     // transactions + 1 possible CIR notification per message. Should not
     // be enabled on limited/slow connections.
@@ -64,6 +68,8 @@ public class ImpsConnectionConfig extends ConnectionConfig {
     private String mCustomPresenceMapping;
 
     private String mPluginPath;
+
+    private Map<String, String> mOthers;
 
     public ImpsConnectionConfig() {
         setupVersionStrings();
@@ -104,11 +110,14 @@ public class ImpsConnectionConfig extends ConnectionConfig {
             mMsisdn = map.get(ImpsConfigNames.MSISDN);
         }
         if (map.get(ImpsConfigNames.SECURE_LOGIN) != null) {
-            mSecureLogin = "true".equalsIgnoreCase(map.get(ImpsConfigNames.SECURE_LOGIN));
+            mSecureLogin = isTrue(map.get(ImpsConfigNames.SECURE_LOGIN));
         }
         if (map.get(ImpsConfigNames.BASIC_PA_ONLY) != null) {
-            mBasicPresenceOnly = "true".equalsIgnoreCase(
-                map.get(ImpsConfigNames.BASIC_PA_ONLY));
+            mBasicPresenceOnly = isTrue(map.get(ImpsConfigNames.BASIC_PA_ONLY));
+        }
+        if (map.containsKey(ImpsConfigNames.VERSION)) {
+            mImpsVersion = ImpsVersion.fromString(
+                    map.get(ImpsConfigNames.VERSION));
         }
         setupVersionStrings();
 
@@ -117,6 +126,8 @@ public class ImpsConnectionConfig extends ConnectionConfig {
         mPluginPath = map.get(ImpsConfigNames.PLUGIN_PATH);
         mCustomPasswordDigest = map.get(ImpsConfigNames.CUSTOM_PASSWORD_DIGEST);
         mCustomPresenceMapping = map.get(ImpsConfigNames.CUSTOM_PRESENCE_MAPPING);
+
+        mOthers = map;
     }
 
     @Override
@@ -125,7 +136,18 @@ public class ImpsConnectionConfig extends ConnectionConfig {
     }
 
     private void setupVersionStrings() {
-        if (mImpsVersion == ImpsVersion.IMPS_VERSION_12) {
+        if (mImpsVersion == ImpsVersion.IMPS_VERSION_11) {
+            if (mDataEncoding == EncodingType.XML) {
+                mContentType = "application/vnd.wv.csp.xml";
+            } else if (mDataEncoding == EncodingType.WBXML) {
+                mContentType = "application/vnd.wv.csp.wbxml";
+            } else if (mDataEncoding == EncodingType.SMS) {
+                mContentType = "application/vnd.wv.csp.sms";
+            }
+            mVersionNs = ImpsConstants.VERSION_11_NS;
+            mTransactionNs = ImpsConstants.TRANSACTION_11_NS;
+            mPresenceNs = ImpsConstants.PRESENCE_11_NS;
+        } else if (mImpsVersion == ImpsVersion.IMPS_VERSION_12) {
             if (mDataEncoding == EncodingType.XML) {
                 mContentType = "application/vnd.wv.csp.xml";
             } else if (mDataEncoding == EncodingType.WBXML) {
@@ -162,6 +184,10 @@ public class ImpsConnectionConfig extends ConnectionConfig {
 
     public boolean use4wayLogin() {
         return mSecureLogin;
+    }
+
+    public boolean useSmsAuth() {
+        return isTrue(mOthers.get(ImpsConfigNames.SMS_AUTH));
     }
 
     public boolean needDeliveryReport() {
@@ -281,6 +307,55 @@ public class ImpsConnectionConfig extends ConnectionConfig {
         return mUdpPort;
     }
 
+    public String getSmsAddr() {
+        return mOthers.get(ImpsConfigNames.SMS_ADDR);
+    }
+
+    public int getSmsPort() {
+        String value = mOthers.get(ImpsConfigNames.SMS_PORT);
+        if (value == null) {
+            return DEFAULT_SMS_PORT;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return DEFAULT_SMS_PORT;
+        }
+    }
+
+    public String getSmsCirAddr() {
+        return mOthers.get(ImpsConfigNames.SMS_CIR_ADDR);
+    }
+
+    public int getSmsCirPort() {
+        String value = mOthers.get(ImpsConfigNames.SMS_CIR_PORT);
+        if (value == null) {
+            return DEFAULT_SMS_CIR_PORT;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return DEFAULT_SMS_CIR_PORT;
+        }
+    }
+
+    public boolean usePrensencePolling() {
+        String value = mOthers.get(ImpsConfigNames.POLL_PRESENCE);
+        return isTrue(value);
+    }
+
+    public long getPresencePollInterval() {
+        String value = mOthers.get(ImpsConfigNames.PRESENCE_POLLING_INTERVAL);
+        if (value == null) {
+            return DEFAULT_PRESENCE_POLL_INTERVAL;
+        }
+        try {
+            return Long.parseLong(value);
+        } catch (NumberFormatException e) {
+            return DEFAULT_PRESENCE_POLL_INTERVAL;
+        }
+    }
+
     public int getDefaultServerPollMin() {
         return DEFAULT_MIN_SERVER_POLL;
     }
@@ -330,6 +405,10 @@ public class ImpsConnectionConfig extends ConnectionConfig {
 
     public String getDefaultDomain() {
         return mDefaultDomain;
+    }
+
+    private boolean isTrue(String value) {
+        return "true".equalsIgnoreCase(value);
     }
 
     /**

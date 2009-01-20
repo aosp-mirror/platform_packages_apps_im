@@ -81,7 +81,7 @@
 
     <!-- Chat screen menu and context menu items.-->
     <!-- Screen menu item on the chat screen to go back the contact list screen.
-    May be overrided by the plugin.--> 
+    May be overrided by the plugin.-->
     <string name="menu_view_contact_list">Contact list</string>
     <!-- Screen menu item on the chat screen to invite another contact to join the chat.
     Currently not supported.-->
@@ -91,6 +91,12 @@
     <string name="menu_switch_chats">Switch chats</string>
     <!-- Screen menu item on the chat screen to insert smiley. May be overrided by the plugin.-->
     <string name="menu_insert_smiley">Insert smiley</string>
+
+    <!-- This string is used in the chat dashboard.  When there is a shortcut assigned to a chat
+     it allows the user to press menu+[0-9] to quickly switch beteen chats.  This string of
+     menu+ is used to build up the UI to show the user which shortcut to use.  A number (0-9) will
+     be appended to the end of this.  -->
+    <string name="menu_plus">Menu+"</string>
 
     <!-- The title of a simple input dialog. Currently not used.-->
     <string name="default_input_title">Input</string>
@@ -265,6 +271,8 @@
     <string name="add_contact_title">Add contact</string>
     <!-- The label of the email input box on the Add Contact Screen. -->
     <string name="input_contact_label">Email address of person you wish to invite:</string>
+    <!-- The label of the list spinner on the Add Contact Screen. -->
+    <string name="choose_list_label">Choose a list:</string>
     <!-- This is an instruction message displayed under the input box on the Add Contact Screen.  -->
     <string name="invite_instruction">Type a name to add from Contacts.</string>
     <!-- The label of the button on the Add Contact Screen to send the invitation. -->

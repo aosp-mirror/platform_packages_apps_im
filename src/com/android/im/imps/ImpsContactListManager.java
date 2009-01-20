@@ -41,6 +41,7 @@ public class ImpsContactListManager extends ContactListManager
     private ImpsConnection mConnection;
     private String mDefaultDomain;
     ImpsTransactionManager mTransactionManager;
+    ImpsConnectionConfig mConfig;
 
     boolean mAllowAutoSubscribe = true;
 
@@ -53,11 +54,14 @@ public class ImpsContactListManager extends ContactListManager
      */
     ImpsContactListManager(ImpsConnection connection) {
         mConnection = connection;
-        mDefaultDomain = connection.getConfig().getDefaultDomain();
+        mConfig = connection.getConfig();
+        mDefaultDomain = mConfig.getDefaultDomain();
         mTransactionManager = connection.getTransactionManager();
 
-        mTransactionManager.setTransactionListener(ImpsTags.PresenceNotification_Request, this);
-        mTransactionManager.setTransactionListener(ImpsTags.PresenceAuth_Request, this);
+        mTransactionManager.setTransactionListener(
+                ImpsTags.PresenceNotification_Request, this);
+        mTransactionManager.setTransactionListener(
+                ImpsTags.PresenceAuth_Request, this);
     }
 
     @Override
@@ -146,6 +150,41 @@ public class ImpsContactListManager extends ContactListManager
         }
 
         return addresses;
+    }
+
+    public void fetchPresence(ImpsAddress[] addresses) {
+        if (addresses == null || addresses.length == 0) {
+            return;
+        }
+
+        Primitive request = new Primitive(ImpsTags.GetPresence_Request);
+        for (ImpsAddress addr : addresses) {
+            request.addElement(addr.toPrimitiveElement());
+        }
+        AsyncTransaction tx = new AsyncTransaction(mTransactionManager){
+            @Override
+            public void onResponseError(ImpsErrorInfo error) {
+                ImpsLog.logError("Failed to get presence:" + error.toString());
+            }
+
+            @Override
+            public void onResponseOk(Primitive response) {
+                extractAndNotifyPresence(response.getContentElement());
+            }
+        };
+        tx.sendRequest(request);
+    }
+
+    public ImpsAddress[] getAllListAddress() {
+        int count = mContactLists.size();
+        ImpsAddress[] res = new ImpsContactListAddress[count];
+
+        int index = 0;
+        for (ContactList l : mContactLists) {
+            res[index++] = (ImpsContactListAddress) l.getAddress();
+        }
+
+        return res;
     }
 
 //    void createDefaultAttributeListAsync() {
@@ -254,7 +293,8 @@ public class ImpsContactListManager extends ContactListManager
         AsyncTransaction tx = new AsyncTransaction(mTransactionManager) {
             @Override
             public void onResponseError(ImpsErrorInfo error) {
-                if (error.getCode() == ImpsConstants.STATUS_AUTO_SUBSCRIPTION_NOT_SUPPORTED) {
+                if (error.getCode()
+                        == ImpsConstants.STATUS_AUTO_SUBSCRIPTION_NOT_SUPPORTED) {
                     mAllowAutoSubscribe = false;
                     ArrayList<Contact> contacts = new ArrayList<Contact>();
                     for (ContactList list : contactLists) {
@@ -263,13 +303,17 @@ public class ImpsContactListManager extends ContactListManager
 
                     subscribeToContactsAsync(contacts, completion);
                 } else {
-                    completion.onError(error);
+                    if (completion != null) {
+                        completion.onError(error);
+                    }
                 }
             }
 
             @Override
             public void onResponseOk(Primitive response) {
-                completion.onComplete();
+                if (completion != null) {
+                    completion.onComplete();
+                }
             }
 
         };
@@ -340,18 +384,13 @@ public class ImpsContactListManager extends ContactListManager
 
             @Override
             public void onResponseOk(Primitive response) {
-                subscribeToListAsync(list, new AsyncCompletion () {
+                notifyContactListCreated(list);
 
-                    public void onComplete() {
-                        notifyContactListCreated(list);
-                    }
-
-                    public void onError(ImErrorInfo error) {
-                        ImpsLog.log("Error subscribing to newly created list: "
-                                + error.getDescription() + "; ignored");
-                        onComplete();
-                    }
-                });
+                if (mConfig.usePrensencePolling()) {
+                    getPresencePollingManager().resetPollingContacts();
+                } else {
+                    subscribeToListAsync(list, null);
+                }
             }
         };
 
@@ -403,8 +442,9 @@ public class ImpsContactListManager extends ContactListManager
             @Override
             public void onResponseOk(Primitive response) {
                 notifyContactListDeleted(list);
-
-                if (!mAllowAutoSubscribe) {
+                if (mConfig.usePrensencePolling()) {
+                    getPresencePollingManager().resetPollingContacts();
+                } else if (!mAllowAutoSubscribe) {
                     unsubscribeToListAsync(list, new AsyncCompletion(){
                         public void onComplete() {}
 
@@ -487,9 +527,9 @@ public class ImpsContactListManager extends ContactListManager
         // attributes are desired but the OZ server doens't quite follow the
         // spec here. It won't send any PresenceNotification either when we
         // don't send PresenceSubList or we request more PA than it supports.
-        if(mConnection.getConfig().supportBasicPresenceOnly()){
+        if(mConfig.supportBasicPresenceOnly()){
             PrimitiveElement presenceList = request.addElement(ImpsTags.PresenceSubList);
-            presenceList.setAttribute(ImpsTags.XMLNS, mConnection.getConfig().getPresenceNs());
+            presenceList.setAttribute(ImpsTags.XMLNS, mConfig.getPresenceNs());
             for(String pa : ImpsClientCapability.getBasicPresenceAttributes()) {
                 presenceList.addChild(pa);
             }
@@ -508,27 +548,8 @@ public class ImpsContactListManager extends ContactListManager
         if (ImpsTags.PresenceNotification_Request.equals(type)) {
             tx.sendStatusResponse(ImpsConstants.SUCCESS_CODE);
 
-            ArrayList<Contact> updated = new ArrayList<Contact>();
-            PresenceMapping presenceMapping = mConnection.getConfig().getPresenceMapping();
-            for (PrimitiveElement presenceElem : request.getContentElement().getChildren()) {
-                String userId = presenceElem.getChildContents(ImpsTags.UserID);
-                if (userId == null) {
-                    continue;
-                }
-                PrimitiveElement presenceSubList = presenceElem.getChild(ImpsTags.PresenceSubList);
-                Presence presence = ImpsPresenceUtils.extractPresence(presenceSubList, presenceMapping);
-                // Find out the contact in all lists and update their presence
-                for(ContactList list : mContactLists) {
-                    Contact contact = list.getContact(userId);
-                    if (contact != null) {
-                        contact.setPresence(presence);
-                        updated.add(contact);
-                    }
-                }
-            }
-            if (updated.size() > 0) {
-                notifyContactsPresenceUpdated(updated.toArray(new Contact[updated.size()]));
-            }
+            PrimitiveElement content = request.getContentElement();
+            extractAndNotifyPresence(content);
         } else if (ImpsTags.PresenceAuth_Request.equals(type)) {
             tx.sendStatusResponse(ImpsConstants.SUCCESS_CODE);
 
@@ -549,6 +570,32 @@ public class ImpsContactListManager extends ContactListManager
                     listener.onSubScriptionRequest(contact);
                 }
             }
+        }
+    }
+
+    private void extractAndNotifyPresence(PrimitiveElement content) {
+        ArrayList<Contact> updated = new ArrayList<Contact>();
+        PresenceMapping presenceMapping = mConfig.getPresenceMapping();
+
+        ArrayList<PrimitiveElement> presenceList = content.getChildren(ImpsTags.Presence);
+        for (PrimitiveElement presenceElem : presenceList) {
+            String userId = presenceElem.getChildContents(ImpsTags.UserID);
+            if (userId == null) {
+                continue;
+            }
+            PrimitiveElement presenceSubList = presenceElem.getChild(ImpsTags.PresenceSubList);
+            Presence presence = ImpsPresenceUtils.extractPresence(presenceSubList, presenceMapping);
+            // Find out the contact in all lists and update their presence
+            for(ContactList list : mContactLists) {
+                Contact contact = list.getContact(userId);
+                if (contact != null) {
+                    contact.setPresence(presence);
+                    updated.add(contact);
+                }
+            }
+        }
+        if (!updated.isEmpty()) {
+            notifyContactsPresenceUpdated(updated.toArray(new Contact[updated.size()]));
         }
     }
 
@@ -574,7 +621,11 @@ public class ImpsContactListManager extends ContactListManager
                     mDefaultContactList = list;
                 }
 
-                subscribeToListAsync(list, completion);
+                if (mConfig.usePrensencePolling()) {
+                    completion.onComplete();
+                } else {
+                    subscribeToListAsync(list, completion);
+                }
             }
         };
 
@@ -583,7 +634,7 @@ public class ImpsContactListManager extends ContactListManager
 
     private Primitive buildBlockContactReq(String address, boolean block) {
         Primitive request = new Primitive(ImpsTags.BlockEntity_Request);
-        ImpsVersion version = mConnection.getConfig().getImpsVersion();
+        ImpsVersion version = mConfig.getImpsVersion();
 
         if (version == ImpsVersion.IMPS_VERSION_13) {
             request.addElement(ImpsTags.BlockListInUse, true);
@@ -757,9 +808,9 @@ public class ImpsContactListManager extends ContactListManager
         }
 
         private final class LoadListCompletion implements AsyncCompletion {
-            private int listIndex;
+            private int mListIndex;
             LoadListCompletion() {
-                listIndex = 0;
+                mListIndex = 0;
             }
 
             public void onComplete() {
@@ -771,7 +822,7 @@ public class ImpsContactListManager extends ContactListManager
             }
 
             private void processResult(ImErrorInfo error) {
-                ImpsAddress addr = mListAddresses.get(listIndex);
+                ImpsAddress addr = mListAddresses.get(mListIndex);
 
                 if (error == null) {
                     notifyContactListLoaded(getContactList(addr));
@@ -780,9 +831,9 @@ public class ImpsContactListManager extends ContactListManager
                             error, addr.getScreenName(), null);
                 }
 
-                listIndex++;
-                if (listIndex < mListAddresses.size()) {
-                    loadContactsOfListAsync(mListAddresses.get(listIndex), this);
+                mListIndex++;
+                if (mListIndex < mListAddresses.size()) {
+                    loadContactsOfListAsync(mListAddresses.get(mListIndex), this);
                 } else {
                     onContactListsLoaded();
                 }
@@ -793,7 +844,12 @@ public class ImpsContactListManager extends ContactListManager
     void onContactListsLoaded() {
         notifyContactListsLoaded();
 
-        // notify the pending subscription requests received before contact lists has been loaded.
+        if (mConfig.usePrensencePolling()) {
+            fetchPresence(getAllListAddress());
+        }
+
+        // notify the pending subscription requests received before contact
+        // lists has been loaded.
         SubscriptionRequestListener listener = getSubscriptionRequestListener();
         if (mSubscriptionRequests != null && listener != null) {
             for (Contact c : mSubscriptionRequests) {
@@ -833,28 +889,40 @@ public class ImpsContactListManager extends ContactListManager
                 notifyContactListUpdated(list,
                         ContactListListener.LIST_CONTACT_ADDED, contact);
 
-                AsyncCompletion subscribeCompletion =  new AsyncCompletion(){
-                    public void onComplete() {}
-
-                    public void onError(ImErrorInfo error) {
-                        notifyContactError(
-                                ContactListListener.ERROR_RETRIEVING_PRESENCE,
-                                error, list.getName(), contact);
-                    }
-                };
-
-                if (mAllowAutoSubscribe) {
-                    // XXX Send subscription again after add contact to make sure we
-                    // can get the presence notification. Although the we set
-                    // AutoSubscribe True when subscribe presence after load contacts,
-                    // the server might not send presence notification.
-                    subscribeToListAsync(list, subscribeCompletion);
+                if (mConfig.usePrensencePolling()) {
+                    fetchPresence(new ImpsAddress[]{
+                            (ImpsAddress) contact.getAddress()});
                 } else {
-                    subscribeToContactsAsync(contacts, subscribeCompletion);
+                    AsyncCompletion subscribeCompletion =  new AsyncCompletion(){
+                        public void onComplete() {}
+
+                        public void onError(ImErrorInfo error) {
+                            notifyContactError(
+                                    ContactListListener.ERROR_RETRIEVING_PRESENCE,
+                                    error, list.getName(), contact);
+                        }
+                    };
+
+                    if (mAllowAutoSubscribe) {
+                        // XXX Send subscription again after add contact to make sure we
+                        // can get the presence notification. Although the we set
+                        // AutoSubscribe True when subscribe presence after load contacts,
+                        // the server might not send presence notification.
+                        subscribeToListAsync(list, subscribeCompletion);
+                    } else {
+                        subscribeToContactsAsync(contacts, subscribeCompletion);
+                    }
                 }
             }
 
             public void onError(ImErrorInfo error) {
+                // XXX Workaround to convert 402 error to 531. Some
+                // servers might return 402 - Bad parameter instead of
+                // 531 - Unknown user if the user input an invalid user ID.
+                if (error.getCode() == ImpsErrorInfo.BAD_PARAMETER) {
+                    error = new ImErrorInfo(ImpsErrorInfo.UNKNOWN_USER,
+                            error.getDescription());
+                }
                 notifyContactError(ContactListListener.ERROR_ADDING_CONTACT,
                         error, list.getName(), contact);
             }
@@ -935,4 +1003,14 @@ public class ImpsContactListManager extends ContactListManager
     protected ImConnection getConnection() {
         return mConnection;
     }
+
+    private PresencePollingManager mPollingMgr;
+    /*package*/PresencePollingManager getPresencePollingManager() {
+        if (mPollingMgr == null) {
+            mPollingMgr = new PresencePollingManager(this,
+                    mConfig.getPresencePollInterval());
+        }
+        return mPollingMgr;
+    }
+
 }

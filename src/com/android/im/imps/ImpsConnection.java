@@ -32,6 +32,7 @@ import com.android.im.engine.LoginInfo;
 import com.android.im.engine.Presence;
 import com.android.im.imps.ImpsConnectionConfig.CirMethod;
 import com.android.im.imps.ImpsConnectionConfig.TransportType;
+import com.android.im.imps.Primitive.TransactionMode;
 
 /**
  * An implementation of ImConnection of Wireless Village IMPS protocol.
@@ -166,7 +167,11 @@ public class ImpsConnection extends ImConnection {
 
     private void doLogin() {
         try {
-            initDataChannel();
+            if (mConfig.useSmsAuth()) {
+                mDataChannel = new SmsDataChannel(this);
+            } else {
+                mDataChannel = createDataChannel();
+            }
             mDataChannel.connect();
         } catch (ImException e) {
             ImErrorInfo error = e.getImError();
@@ -296,6 +301,34 @@ public class ImpsConnection extends ImConnection {
         }
 
         private void onAuthenticated() {
+            // The user has chosen logout before the session established, just
+            // send the Logout-Request in this case.
+            if (mState == LOGGING_OUT) {
+                sendLogoutRequest();
+                return;
+            }
+
+            if (mConfig.useSmsAuth()
+                    && mConfig.getDataChannelBinding() != TransportType.SMS) {
+                // SMS data channel was used if it's set to send authentication
+                // over SMS. Switch to the config data channel after authentication
+                // completed.
+                try {
+                    DataChannel dataChannel = createDataChannel();
+                    dataChannel.connect();
+
+                    mDataChannel.shutdown();
+                    mDataChannel = dataChannel;
+                    mDispatcherThread.changeDataChannel(dataChannel);
+                } catch (ImException e) {
+                    // This should not happen since only http data channel which
+                    // does not do the real network connection in connect() is
+                    // valid here now.
+                    logoutAsync();
+                    return;
+                }
+            }
+
             if(mSession.isCapablityRequestRequired()) {
                 mSession.negotiateCapabilityAsync(new AsyncCompletion(){
                     public void onComplete() {
@@ -365,26 +398,31 @@ public class ImpsConnection extends ImConnection {
             mCirChannel = null;
         }
 
-        LogoutCompletion logoutCompletion = new LogoutCompletion();
-        AsyncTransaction tx = new SimpleAsyncTransaction(mTransactionManager,
-                logoutCompletion);
-        Primitive logoutPrimitive = new Primitive(ImpsTags.Logout_Request);
-        tx.sendRequest(logoutPrimitive);
+        // Only send the Logout-Request if the session has been established.
+        if (mSession.getID() != null) {
+            sendLogoutRequest();
+        }
     }
 
-    // We cannot shut down our connections in ImpsAsyncTransaction.onResponse()
-    // because at that time the logout transaction itself hasn't ended yet. So
-    // we have to do this in this completion object.
-    class LogoutCompletion implements AsyncCompletion {
-        public void onComplete() {
-            shutdown();
-        }
+    void sendLogoutRequest() {
+        // We cannot shut down our connections in ImpsAsyncTransaction.onResponse()
+        // because at that time the logout transaction itself hasn't ended yet. So
+        // we have to do this in this completion object.
+        AsyncCompletion completion = new AsyncCompletion() {
+            public void onComplete() {
+                shutdown();
+            }
 
-        public void onError(ImErrorInfo error) {
-            // We simply ignore all errors when logging out.
-            // NowIMP responds a <Disconnect> instead of <Status> on logout request.
-            shutdown();
-        }
+            public void onError(ImErrorInfo error) {
+                // We simply ignore all errors when logging out.
+                // NowIMP responds a <Disconnect> instead of <Status> on logout request.
+                shutdown();
+            }
+        };
+        AsyncTransaction tx = new SimpleAsyncTransaction(mTransactionManager,
+                completion);
+        Primitive logoutPrimitive = new Primitive(ImpsTags.Logout_Request);
+        tx.sendRequest(logoutPrimitive);
     }
 
     public ImpsSession getSession() {
@@ -444,10 +482,12 @@ public class ImpsConnection extends ImConnection {
         mDataChannel.sendPrimitive(pollingRequest);
     }
 
-    private void initDataChannel() throws ImException {
+    private DataChannel createDataChannel() throws ImException {
         TransportType dataChannelBinding = mConfig.getDataChannelBinding();
         if (dataChannelBinding == TransportType.HTTP) {
-            mDataChannel = new HttpDataChannel(this);
+            return new HttpDataChannel(this);
+        } else if (dataChannelBinding == TransportType.SMS) {
+            return new SmsDataChannel(this);
         } else {
             throw new ImException("Unsupported data channel binding");
         }
@@ -473,6 +513,8 @@ public class ImpsConnection extends ImConnection {
             mCirChannel = new HttpCirChannel(this, mDataChannel);
         } else if (cirMethod == CirMethod.STCP) {
             mCirChannel = new TcpCirChannel(this);
+        } else if (cirMethod == CirMethod.SSMS) {
+            mCirChannel = new SmsCirChannel(this);
         } else if (cirMethod == CirMethod.NONE) {
             //Do nothing
         } else {
@@ -493,6 +535,11 @@ public class ImpsConnection extends ImConnection {
         {
             super("ImpsPrimitiveDispatcher");
             mChannel = channel;
+        }
+
+        public void changeDataChannel(DataChannel channel) {
+            mChannel = channel;
+            interrupt();
         }
 
         @Override
@@ -553,6 +600,19 @@ public class ImpsConnection extends ImConnection {
                 ImErrorInfo error = ImpsUtils.checkResultError(primitive);
                 shutdownOnError(error);
                 return;
+            }
+        }
+
+        if (primitive.getTransactionMode() == TransactionMode.Response) {
+            ImpsErrorInfo error = ImpsUtils.checkResultError(primitive);
+            if (error != null) {
+                int code = error.getCode();
+                if (code == ImpsErrorInfo.SESSION_EXPIRED
+                        || code == ImpsErrorInfo.FORCED_LOGOUT
+                        || code == ImpsErrorInfo.INVALID_SESSION) {
+                    shutdownOnError(error);
+                    return;
+                }
             }
         }
 

@@ -29,11 +29,14 @@ final class WbxmlSerializer {
     private OutputStream mOut;
     private int mNativeHandle;
 
+    private static int PUBLIC_ID_IMPS_11 = 0x10;
     private static int PUBLIC_ID_IMPS_12 = 0x11;
     private static int PUBLIC_ID_IMPS_13 = 0x12;
 
     public WbxmlSerializer(ImpsVersion impsVersion) {
-        if (impsVersion == ImpsVersion.IMPS_VERSION_12) {
+        if (impsVersion == ImpsVersion.IMPS_VERSION_11) {
+            mNativeHandle = nativeCreate(PUBLIC_ID_IMPS_11);
+        } else if (impsVersion == ImpsVersion.IMPS_VERSION_12) {
             mNativeHandle = nativeCreate(PUBLIC_ID_IMPS_12);
         } else if (impsVersion == ImpsVersion.IMPS_VERSION_13) {
             mNativeHandle = nativeCreate(PUBLIC_ID_IMPS_13);

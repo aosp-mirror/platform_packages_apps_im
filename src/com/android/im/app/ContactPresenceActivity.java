@@ -96,9 +96,12 @@ public class ContactPresenceActivity extends Activity {
             String statusString = brandingRes.getString(
                     PresenceUtils.getStatusStringRes(status));
             SpannableString s = new SpannableString("+ " + statusString);
-            ImageSpan imageSpan = new ImageSpan(
-                    brandingRes.getDrawable(PresenceUtils.getStatusIconId(status)));
-            s.setSpan(imageSpan, 0, 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Drawable statusIcon = brandingRes.getDrawable(
+                    PresenceUtils.getStatusIconId(status));
+            statusIcon.setBounds(0, 0, statusIcon.getIntrinsicWidth(),
+                    statusIcon.getIntrinsicHeight());
+            s.setSpan(new ImageSpan(statusIcon), 0, 1,
+                    SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
             txtStatus.setText(s);
 
             txtClientType.setText(getClientTypeString(clientType));
