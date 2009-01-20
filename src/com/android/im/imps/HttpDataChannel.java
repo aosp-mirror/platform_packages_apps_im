@@ -44,6 +44,7 @@ import android.util.Log;
 import com.android.im.engine.HeartbeatService;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.ImException;
+import com.android.im.engine.SystemService;
 import com.android.im.imps.Primitive.TransactionMode;
 
 /**
@@ -116,6 +117,9 @@ class HttpDataChannel extends DataChannel implements Runnable, HeartbeatService.
         mContentTypeHeader = new BasicHeader("Content-Type", cfg.getTransportContentType());
         String msisdn = cfg.getMsisdn();
         mMsisdnHeader = (msisdn != null) ? new BasicHeader("MSISDN", msisdn) : null;
+
+        mParser = cfg.createPrimitiveParser();
+        mSerializer = cfg.createPrimitiveSerializer();
     }
 
     @Override
@@ -155,6 +159,7 @@ class HttpDataChannel extends DataChannel implements Runnable, HeartbeatService.
             Primitive polling = new Primitive(ImpsTags.Polling_Request);
             polling.setSession(mConnection.getSession().getID());
             sendPrimitive(polling);
+            startHeartbeat();
 
             return true;
         }
@@ -162,7 +167,8 @@ class HttpDataChannel extends DataChannel implements Runnable, HeartbeatService.
 
     @Override
     public void shutdown() {
-        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        HeartbeatService heartbeatService
+            = SystemService.getDefault().getHeartbeatService();
         if (heartbeatService != null) {
             heartbeatService.stopHeartbeat(this);
         }
@@ -222,13 +228,22 @@ class HttpDataChannel extends DataChannel implements Runnable, HeartbeatService.
             ImpsLog.log("Negative keep alive time. Won't send keep-alive");
         }
         mKeepAlivePrimitive = new Primitive(ImpsTags.KeepAlive_Request);
-        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        startHeartbeat();
+    }
+
+    private void startHeartbeat() {
+        HeartbeatService heartbeatService
+            = SystemService.getDefault().getHeartbeatService();
         if (heartbeatService != null) {
             heartbeatService.startHeartbeat(this, mKeepAliveMillis);
         }
     }
 
     public long sendHeartbeat() {
+        if (mSuspended) {
+            return 0;
+        }
+
         long inactiveTime = SystemClock.elapsedRealtime() - mLastActive;
         if (needSendKeepAlive(inactiveTime)) {
             sendKeepAlive();

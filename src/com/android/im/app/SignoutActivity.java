@@ -21,6 +21,7 @@ import android.provider.Im;
 import android.os.Handler;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -32,6 +33,7 @@ import com.android.im.IImConnection;
 public class SignoutActivity extends Activity {
 
     private String[] ACCOUNT_SELECTION = new String[] {
+            Im.Account._ID,
             Im.Account.PROVIDER,
     };
 
@@ -58,6 +60,7 @@ public class SignoutActivity extends Activity {
                 null /* selection args */,
                 null /* sort order */);
         final long providerId;
+        final long accountId;
 
         try {
             if (!c.moveToFirst()) {
@@ -67,6 +70,7 @@ public class SignoutActivity extends Activity {
             }
 
             providerId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
+            accountId = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
         } finally {
             c.close();
         }
@@ -74,16 +78,30 @@ public class SignoutActivity extends Activity {
         mApp = ImApp.getApplication(this);
         mApp.callWhenServiceConnected(mHandler, new Runnable() {
             public void run() {
-                signOut(providerId);
+                signOut(providerId, accountId);
             }
         });
     }
 
-    private void signOut(long providerId) {
+    private void signOut(long providerId, long accountId) {
         try {
             IImConnection conn = mApp.getConnection(providerId);
             if (conn != null) {
                 conn.logout();
+            } else {
+                // Normally, we can always get the connection when user chose to
+                // sign out. However, if the application crash unexpectedly, the
+                // status will never be updated. Clear the status in this case
+                // to make it recoverable from the crash.
+                ContentValues values = new ContentValues(2);
+                values.put(Im.AccountStatus.PRESENCE_STATUS,
+                        Im.Presence.OFFLINE);
+                values.put(Im.AccountStatus.CONNECTION_STATUS,
+                        Im.ConnectionStatus.OFFLINE);
+                String where = Im.AccountStatus.ACCOUNT + "=?";
+                getContentResolver().update(Im.AccountStatus.CONTENT_URI,
+                        values, where,
+                        new String[] { Long.toString(accountId) });
             }
         } catch (RemoteException ex) {
             Log.e(ImApp.LOG_TAG, "signout: caught ", ex);

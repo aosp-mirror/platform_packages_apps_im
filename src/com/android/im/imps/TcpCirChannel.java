@@ -25,6 +25,7 @@ import java.net.UnknownHostException;
 import com.android.im.engine.HeartbeatService;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.ImException;
+import com.android.im.engine.SystemService;
 
 import android.os.SystemClock;
 import android.util.Log;
@@ -65,7 +66,8 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
             mCirThread = new Thread(this, "TcpCirChannel");
             mCirThread.setDaemon(true);
             mCirThread.start();
-            HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+            HeartbeatService heartbeatService
+                    = SystemService.getDefault().getHeartbeatService();
             if (heartbeatService != null) {
                 heartbeatService.startHeartbeat(this, PING_INTERVAL);
             }
@@ -97,7 +99,8 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
         } catch (IOException e) {
             // ignore
         }
-        HeartbeatService heartbeatService = mConnection.getHeartBeatService();
+        HeartbeatService heartbeatService
+                = SystemService.getDefault().getHeartbeatService();
         if (heartbeatService != null) {
             heartbeatService.stopHeartbeat(this);
         }
@@ -206,6 +209,8 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
 
     private void reconnectAndWait() {
         reconnect();
+        // in case reconnect() has already been called in another thread, wait
+        // for it to finish
         while (!mDone) {
             synchronized (mReconnectLock) {
                 if (mReconnecting) {

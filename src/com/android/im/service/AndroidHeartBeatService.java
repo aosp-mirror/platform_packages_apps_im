@@ -90,6 +90,13 @@ public class AndroidHeartBeatService extends BroadcastReceiver
         }
     }
 
+    public synchronized void stopAll() {
+        for (int i = 0; i < mAlarms.size(); i++) {
+            Alarm alarm = mAlarms.valueAt(i);
+            cancelAlarm(alarm);
+        }
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         mWakeLock.acquire();

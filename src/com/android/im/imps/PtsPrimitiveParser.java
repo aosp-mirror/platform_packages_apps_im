@@ -51,7 +51,8 @@ public class PtsPrimitiveParser implements PrimitiveParser {
 
     public Primitive parse(InputStream in) throws ParserException, IOException {
         // assuming PTS data is always short
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(in, "UTF-8"), 128);
         mStringBuf.setLength(0);
         mPos = 0;
         int len;

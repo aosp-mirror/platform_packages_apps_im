@@ -189,6 +189,8 @@ public class PtsCodes {
         sTransactionToCode.put(ImpsTags.UpdatePresence_Request, "UP");
 
         sElementToCode.put(ImpsTags.ClientID, ClientID);
+        sElementToCode.put(ImpsTags.DigestSchema, "SH");
+        sElementToCode.put(ImpsTags.DigestBytes, "DB");
         sElementToCode.put(ImpsTags.Password, "PW");
         sElementToCode.put(ImpsTags.SessionCookie, "SC");
         sElementToCode.put(ImpsTags.TimeToLive, "TL");

@@ -159,6 +159,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
             case R.id.menu_invite_user:
                 Intent i = new Intent(ContactListActivity.this, AddContactActivity.class);
                 i.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, mProviderId);
+                i.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mAccountId);
                 i.putExtra(ImServiceConstants.EXTRA_INTENT_LIST_NAME,
                         mContactListView.getSelectedContactList());
                 startActivity(i);
@@ -355,26 +356,26 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
         if (chatSelected) {
             menu.add(0, MENU_END_CONVERSATION, 0, menu_end_conversation)
-                    .setIcon(R.drawable.ic_menu_end_conversation)
+                    .setIcon(com.android.internal.R.drawable.ic_menu_end_conversation)
                     .setOnMenuItemClickListener(mContextMenuHandler);
             menu.add(0, MENU_VIEW_PROFILE, 0, menu_view_profile)
                     .setIcon(R.drawable.ic_menu_my_profile)
                     .setOnMenuItemClickListener(mContextMenuHandler);
             if (allowBlock) {
                 menu.add(0, MENU_BLOCK_CONTACT, 0, menu_block_contact)
-                        .setIcon(R.drawable.ic_menu_block)
+                        .setIcon(com.android.internal.R.drawable.ic_menu_block)
                         .setOnMenuItemClickListener(mContextMenuHandler);
             }
         } else if (contactSelected) {
             menu.add(0, MENU_START_CONVERSATION, 0, menu_start_conversation)
-                    .setIcon(R.drawable.ic_menu_start_conversation)
+                    .setIcon(com.android.internal.R.drawable.ic_menu_start_conversation)
                     .setOnMenuItemClickListener(mContextMenuHandler);
             menu.add(0, MENU_VIEW_PROFILE, 0, menu_view_profile)
                     .setIcon(R.drawable.ic_menu_view_profile)
                     .setOnMenuItemClickListener(mContextMenuHandler);
             if (allowBlock) {
                 menu.add(0, MENU_BLOCK_CONTACT, 0, menu_block_contact)
-                        .setIcon(R.drawable.ic_menu_block)
+                        .setIcon(com.android.internal.R.drawable.ic_menu_block)
                         .setOnMenuItemClickListener(mContextMenuHandler);
             }
             menu.add(0, MENU_DELETE_CONTACT, 0, menu_delete_contact)

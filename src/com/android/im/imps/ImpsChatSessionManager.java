@@ -208,11 +208,10 @@ public class ImpsChatSessionManager extends ChatSessionManager
      * @param msg the incoming message.
      */
     void processMessage(Message msg) {
-        ImpsAddress selfAddress = mConnection.getSession().getLoginUserAddress();
-        // If the message is not sent to the currently logged user, it must be
-        // sent to a group.
-        ImpsAddress address = (msg.getTo().equals(selfAddress) ?
-                (ImpsAddress)msg.getFrom() : (ImpsAddress)msg.getTo());
+        ImpsAddress from = (ImpsAddress) msg.getFrom();
+        ImpsAddress to = (ImpsAddress) msg.getTo();
+
+        ImpsAddress address = (to instanceof ImpsGroupAddress) ? to : from;
 
         synchronized (this) {
             ChatSession ses = findSession(address);

@@ -32,8 +32,6 @@ abstract class DataChannel {
 
     protected DataChannel(ImpsConnection connection) throws ImException {
         mConnection = connection;
-        mParser = mConnection.getConfig().createPrimitiveParser();
-        mSerializer = mConnection.getConfig().createPrimitiveSerializer();
     }
 
     /**

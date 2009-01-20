@@ -99,6 +99,7 @@ final class ImpsClientCapability {
     public static CirMethod[] getSupportedCirMethods() {
         return new CirMethod[] {
                 CirMethod.STCP,
+                CirMethod.SSMS,
                 CirMethod.SHTTP,
         };
     }

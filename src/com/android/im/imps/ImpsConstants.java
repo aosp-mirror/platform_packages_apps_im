@@ -20,25 +20,48 @@ package com.android.im.imps;
 public class ImpsConstants {
 
     public static enum ImpsVersion {
+        IMPS_VERSION_11,
         IMPS_VERSION_12,
-        IMPS_VERSION_13,
+        IMPS_VERSION_13;
+
+        public static ImpsVersion fromString(String value) {
+            if ("1.1".equals(value)) {
+                return IMPS_VERSION_11;
+            } else if ("1.2".equals(value)) {
+                return IMPS_VERSION_12;
+            } else if ("1.3".equals(value)) {
+                return IMPS_VERSION_13;
+            } else {
+                // Unknown version, use 1.2 as default
+                return IMPS_VERSION_12;
+            }
+        }
     }
 
     // TODO: move these to some place else?
     public static final String CLIENT_PRODUCER = "MOKIA";
     public static final String CLIENT_VERSION = "0.1";
 
-    public static final String VERSION_11_NS = "http://www.wireless-village.org/CSP1.1";
-    public static final String TRANSACTION_11_NS = "http://www.wireless-village.org/TRC1.1";
-    public static final String PRESENCE_11_NS = "http://www.wireless-village.org/PA1.1";
+    public static final String VERSION_11_NS
+        = "http://www.wireless-village.org/CSP1.1";
+    public static final String TRANSACTION_11_NS
+        = "http://www.wireless-village.org/TRC1.1";
+    public static final String PRESENCE_11_NS
+        = "http://www.wireless-village.org/PA1.1";
 
-    public static final String VERSION_12_NS = "http://www.openmobilealliance.org/DTD/WV-CSP1.2";
-    public static final String TRANSACTION_12_NS = "http://www.openmobilealliance.org/DTD/WV-TRC1.2";
-    public static final String PRESENCE_12_NS = "http://www.openmobilealliance.org/DTD/WV-PA1.2";
+    public static final String VERSION_12_NS
+        = "http://www.openmobilealliance.org/DTD/WV-CSP1.2";
+    public static final String TRANSACTION_12_NS
+        = "http://www.openmobilealliance.org/DTD/WV-TRC1.2";
+    public static final String PRESENCE_12_NS
+        = "http://www.openmobilealliance.org/DTD/WV-PA1.2";
 
-    public static final String VERSION_13_NS = "http://www.openmobilealliance.org/DTD/IMPS-CSP1.3";
-    public static final String TRANSACTION_13_NS = "http://www.openmobilealliance.org/DTD/IMPS-TRC1.3";
-    public static final String PRESENCE_13_NS = "http://www.openmobilealliance.org/DTD/IMPS-PA1.3";
+    public static final String VERSION_13_NS
+        = "http://www.openmobilealliance.org/DTD/IMPS-CSP1.3";
+    public static final String TRANSACTION_13_NS
+        = "http://www.openmobilealliance.org/DTD/IMPS-TRC1.3";
+    public static final String PRESENCE_13_NS
+        = "http://www.openmobilealliance.org/DTD/IMPS-PA1.3";
 
     public static final String ADDRESS_PREFIX = "wv:";
 

@@ -41,7 +41,9 @@ public class PtsPrimitiveSerializer implements PrimitiveSerializer {
     private static final Pattern sCharsToBeQuoted = Pattern.compile("[ \",\\(\\)=&]");
 
     public PtsPrimitiveSerializer(ImpsVersion impsVersion) throws SerializerException {
-        if (impsVersion == ImpsVersion.IMPS_VERSION_12) {
+        if (impsVersion == ImpsVersion.IMPS_VERSION_11) {
+            mPreampleHead = "WV11";
+        }else if (impsVersion == ImpsVersion.IMPS_VERSION_12) {
             mPreampleHead = "WV12";
         } else if (impsVersion == ImpsVersion.IMPS_VERSION_13) {
             mPreampleHead = "WV13";

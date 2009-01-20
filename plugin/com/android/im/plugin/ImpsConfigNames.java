@@ -42,9 +42,34 @@ public interface ImpsConfigNames extends ImConfigNames {
     public static final String CIR_CHANNEL = "imps.cir-channel";
 
     /**
+     * The backup CIR channel used when the application is in background.
+     */
+    public static final String BACKUP_CIR_CHANNEL = "imps.backup-cir-channel";
+
+    /**
      * The host of the IMPS server.
      */
     public static final String HOST = "imps.host";
+
+    /**
+     * The address for SMS binding.
+     */
+    public static final String SMS_ADDR = "imps.sms.addr";
+
+    /**
+     * The port number for SMS binding.
+     */
+    public static final String SMS_PORT = "imps.sms.port";
+
+    /**
+     * The address for the SMS CIR channel.
+     */
+    public static final String SMS_CIR_ADDR = "imps.sms.cir.addr";
+
+    /**
+     * The port number for SMS CIR channel.
+     */
+    public static final String SMS_CIR_PORT = "imps.sms.cir.port";
 
     /**
      * The client ID.
@@ -62,9 +87,26 @@ public interface ImpsConfigNames extends ImConfigNames {
     public static final String SECURE_LOGIN = "imps.secure-login";
 
     /**
+     * Determines whether to send authentication through sms or not.
+     */
+    public static final String SMS_AUTH = "imps.sms-auth";
+
+    /**
      * Determines whether only the basic presence will be fetched from the server.
      */
     public static final String BASIC_PA_ONLY = "imps.basic-pa-only";
+
+    /**
+     * Determines whether to poll presence from the server or use subscribe/notify
+     * method.
+     */
+    public static final String POLL_PRESENCE = "imps.poll-presence";
+
+    /**
+     * The presence polling interval in milliseconds. Only valid when
+     * {@link #POLL_PRESENCE} is set to true.
+     */
+    public static final String PRESENCE_POLLING_INTERVAL = "imps.presence-polling-interval";
 
     /**
      * The full name of the custom presence mapping is to be used. If not set,

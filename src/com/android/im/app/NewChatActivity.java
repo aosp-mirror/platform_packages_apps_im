@@ -24,6 +24,7 @@ import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -212,6 +213,29 @@ public class NewChatActivity extends Activity {
 
             case R.id.menu_next_chat:
                 switchChat(1);
+                return true;
+
+            case R.id.menu_quick_switch_0:
+            case R.id.menu_quick_switch_1:
+            case R.id.menu_quick_switch_2:
+            case R.id.menu_quick_switch_3:
+            case R.id.menu_quick_switch_4:
+            case R.id.menu_quick_switch_5:
+            case R.id.menu_quick_switch_6:
+            case R.id.menu_quick_switch_7:
+            case R.id.menu_quick_switch_8:
+            case R.id.menu_quick_switch_9:
+                ContentResolver cr = getContentResolver();
+                Cursor c = cr.query(Im.Contacts.CONTENT_URI_CHAT_CONTACTS,
+                        null,
+                        null,
+                        null,
+                        null);
+                int slot = item.getAlphabeticShortcut() - '0';
+                if (Dashboard.quickSwitch(this, c, slot)) {
+                    finish();
+                }
+                c.close();
                 return true;
         }
 

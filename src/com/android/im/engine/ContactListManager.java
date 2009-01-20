@@ -59,6 +59,17 @@ public abstract class ContactListManager {
     private int mState;
 
     /**
+     * A pending list of blocking contacts which is used for checking duplicated
+     * block operation.
+     */
+    private Vector<String> mBlockPending;
+    /**
+     * A pending list of deleting contacts which is used for checking duplicated
+     * delete operation.
+     */
+    private Vector<Contact> mDeletePending;
+
+    /**
      * Creates a new ContactListManager.
      *
      * @param conn The underlying protocol connection.
@@ -67,6 +78,9 @@ public abstract class ContactListManager {
         mContactLists = new Vector<ContactList>();
         mContactListListeners = new CopyOnWriteArrayList<ContactListListener>();
         mBlockedList = new Vector<Contact>();
+
+        mBlockPending = new Vector<String>(4);
+        mDeletePending = new Vector<Contact>(4);
 
         mState = LISTS_NOT_LOADED;
     }
@@ -332,6 +346,9 @@ public abstract class ContactListManager {
             return;
         }
 
+        if (mBlockPending.contains(address)) {
+            return;
+        }
         doBlockContactAsync(address, true);
     }
 
@@ -370,6 +387,10 @@ public abstract class ContactListManager {
     protected void removeContactFromListAsync(Contact contact, ContactList list)
             throws ImException {
         checkState();
+
+        if (mDeletePending.contains(contact)) {
+            return;
+        }
 
         doRemoveContactFromListAsync(contact, list);
     }
@@ -482,6 +503,11 @@ public abstract class ContactListManager {
      */
     protected void notifyContactError(int type, ImErrorInfo error,
             String listName, Contact contact) {
+        if (type == ContactListListener.ERROR_REMOVING_CONTACT) {
+            mDeletePending.remove(contact);
+        } else if (type == ContactListListener.ERROR_BLOCKING_CONTACT) {
+            mBlockPending.remove(contact.getAddress().getFullName());
+        }
         for (ContactListListener listener : mContactListListeners) {
             listener.onContactError(type, error, listName, contact);
         }
@@ -523,6 +549,7 @@ public abstract class ContactListManager {
                 list.insertToCache(contact);
             } else if (type == ContactListListener.LIST_CONTACT_REMOVED) {
                 list.removeFromCache(contact);
+                mDeletePending.remove(contact);
             }
         }
 
@@ -596,6 +623,8 @@ public abstract class ContactListManager {
         synchronized (this) {
             if (blocked) {
                 mBlockedList.add(contact);
+                String addr = contact.getAddress().getFullName();
+                mBlockPending.remove(addr);
             } else {
                 mBlockedList.remove(contact);
             }

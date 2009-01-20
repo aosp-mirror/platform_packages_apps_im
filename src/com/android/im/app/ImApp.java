@@ -321,6 +321,10 @@ public class ImApp extends Application {
                 android.R.drawable.presence_invisible);
         resMapping.put(BrandingResourceIDs.DRAWABLE_PRESENCE_OFFLINE,
                 android.R.drawable.presence_offline);
+        resMapping.put(BrandingResourceIDs.DRAWABLE_READ_CHAT,
+                R.drawable.status_chat);
+        resMapping.put(BrandingResourceIDs.DRAWABLE_UNREAD_CHAT,
+                R.drawable.status_chat_new);
         resMapping.put(BrandingResourceIDs.DRAWABLE_BLOCK,
                 R.drawable.ic_im_block);
 
@@ -635,21 +639,6 @@ public class ImApp extends Application {
                 switch (state) {
                 case ImConnection.LOGGED_IN:
                     what = EVENT_CONNECTION_LOGGED_IN;
-
-                    // Update the active value. We restrict to only one active
-                    // account per provider right now, so update all accounts of
-                    // this provider to inactive first and then update this
-                    // account to active.
-                    ContentValues values = new ContentValues(1);
-                    values.put(Im.Account.ACTIVE, 0);
-                    ContentResolver cr = getContentResolver();
-                    cr.update(Im.Account.CONTENT_URI, values,
-                            Im.Account.PROVIDER + "=" + providerId, null);
-
-                    values.put(Im.Account.ACTIVE, 1);
-                    cr.update(ContentUris.withAppendedId(Im.Account.CONTENT_URI, conn.getAccountId()),
-                            values, null, null);
-
                     break;
 
                 case ImConnection.LOGGING_IN:

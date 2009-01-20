@@ -31,6 +31,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -91,12 +92,13 @@ public class SigningInActivity extends Activity {
             return;
         }
 
-        long providerId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
+        final long providerId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
         final long accountId = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
         final String username = c.getString(c.getColumnIndexOrThrow(Im.Account.USERNAME));
         String pwExtra = intent.getStringExtra(ImApp.EXTRA_INTENT_PASSWORD);
         final String pw = pwExtra != null ? pwExtra
                 : c.getString(c.getColumnIndexOrThrow(Im.Account.PASSWORD));
+        final boolean isActive = c.getInt(c.getColumnIndexOrThrow(Im.Account.ACTIVE)) == 1;
 
         c.close();
         mApp = ImApp.getApplication(this);
@@ -119,6 +121,9 @@ public class SigningInActivity extends Activity {
         mApp.callWhenServiceConnected(mHandler, new Runnable() {
             public void run() {
                 if (mApp.serviceConnected()) {
+                    if (!isActive) {
+                        activateAccount(providerId, accountId);
+                    }
                     signInAccount(provider, accountId, username, pw);
                 }
             }
@@ -148,10 +153,27 @@ public class SigningInActivity extends Activity {
                 mConn.registerConnectionListener(mListener);
                 mConn.login(accountId, username, pw, true);
             }
+
         } catch (RemoteException e) {
             mHandler.showServiceErrorAlert();
             finish();
         }
+    }
+
+    private void activateAccount(long providerId, long accountId) {
+        // Update the active value. We restrict to only one active
+        // account per provider right now, so update all accounts of
+        // this provider to inactive first and then update this
+        // account to active.
+        ContentValues values = new ContentValues(1);
+        values.put(Im.Account.ACTIVE, 0);
+        ContentResolver cr = getContentResolver();
+        cr.update(Im.Account.CONTENT_URI, values,
+                Im.Account.PROVIDER + "=" + providerId, null);
+
+        values.put(Im.Account.ACTIVE, 1);
+        cr.update(ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId),
+                values, null, null);
     }
 
     @Override
@@ -174,7 +196,8 @@ public class SigningInActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, ID_CANCEL_SIGNIN, 0, R.string.menu_cancel_signin);
+        menu.add(0, ID_CANCEL_SIGNIN, 0, R.string.menu_cancel_signin)
+            .setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 
         return true;
     }
