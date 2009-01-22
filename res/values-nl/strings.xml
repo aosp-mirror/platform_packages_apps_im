@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
@@ -22,6 +36,8 @@
     <string name="menu_invite_contact">"Uitnodigen..."</string>
     <string name="menu_switch_chats">"Schakelen tussen chats"</string>
     <string name="menu_insert_smiley">"Smiley invoegen"</string>
+    <!-- no translation found for menu_plus (5000617247235760106) -->
+    <skip />
     <string name="default_input_title">"Invoer"</string>
     <string name="confirm">"Bevestigen"</string>
     <string name="confirm_delete_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt verwijderd."</string>
@@ -101,6 +117,8 @@
     <string name="empty_chat_list">"Geen actieve chats."</string>
     <string name="add_contact_title">"Contactpersoon toevoegen"</string>
     <string name="input_contact_label">"E-mailadres van persoon die u wilt uitnodigen:"</string>
+    <!-- no translation found for choose_list_label (1430489448508574145) -->
+    <skip />
     <string name="invite_instruction">"Typ een naam om toe te voegen vanuit \'Contactpersonen\'."</string>
     <string name="invite_label">"Uitnodiging verzenden"</string>
     <string name="setting_title">"Algemene instellingen"</string>
