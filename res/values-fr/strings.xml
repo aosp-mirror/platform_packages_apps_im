@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"MI"</string>
-    <string name="menu_add_account">"Ajouter un compte"</string>
-    <string name="menu_edit_account">"Modifier le compte"</string>
-    <string name="menu_remove_account">"Supprimer le compte"</string>
-    <string name="menu_sign_out_all">"Se déconnecter de tout"</string>
     <string name="menu_cancel_signin">"Annuler la connexion"</string>
     <string name="menu_add_contact">"Ajouter un contact"</string>
     <string name="menu_remove_contact">"Supprimer le contact"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Liste des comptes"</string>
     <string name="menu_settings">"Paramètres"</string>
     <string name="menu_start_chat">"Commencer une conversation"</string>
-    <string name="menu_group_chat">"Démarrer une conversation de groupe..."</string>
     <string name="menu_sign_out">"Se déconnecter"</string>
     <string name="menu_view_profile">"Afficher le profil"</string>
     <string name="menu_end_conversation">"Arrêter la conversation"</string>
@@ -49,12 +44,7 @@
     <string name="no">"Annuler"</string>
     <string name="signed_out_prompt">"Vous avez été déconnecté de <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Vous avez été déconnecté de <xliff:g id="ACCOUNT">%1$s</xliff:g> parce que <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Conversation : sélectionnez un compte"</string>
-    <string name="account_title">"Compte <xliff:g id="ACCOUNT">%1$s</xliff:g> :"</string>
-    <string name="one_conversation">"1 conversation"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> conversations"</string>
     <string name="add_account">"Ajouter un compte <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Conversation - ajouter un compte"</string>
     <string name="label_username">"Nom d\'utilisateur :"</string>
     <string name="label_password">"Mot de passe :"</string>
     <string name="remember_password">"Mémoriser mon mot de passe."</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"Canal CIR"</string>
     <string name="host_label">"Hôte"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID du client"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"Son"</string>
     <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un MI"</string>
     <string name="notification_ringtone_title">"Sélectionner une sonnerie"</string>
-    <string name="invitation_title">"Invitation"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre une conversation de groupe."</string>
     <string name="invitation_sent_prompt">"L\'invitation a été envoyé à <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accepter"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"Le contact n\'a pas été bloqué."</string>
     <string name="unblock_contact_failed">"Le contact n\'a pas été débloqué."</string>
     <string name="select_contact">"Veuillez d\'abord sélectionner un contact."</string>
-    <string name="select_chat_session">"Veuillez sélectionner une session de conversation."</string>
     <string name="disconnected">"Déconnecté !"\n</string>
     <string name="service_error">"Erreur du service !"</string>
     <string name="load_contact_list_failed">"La liste de contact n\'a pas pu être chargée."</string>

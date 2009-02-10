@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
-    <string name="menu_add_account">"Přidat účet"</string>
-    <string name="menu_edit_account">"Upravit účet"</string>
-    <string name="menu_remove_account">"Odstranit účet"</string>
-    <string name="menu_sign_out_all">"Odhlásit se ze všech služeb"</string>
     <string name="menu_cancel_signin">"Zrušit přihlašování"</string>
     <string name="menu_add_contact">"Přidat kontakt"</string>
     <string name="menu_remove_contact">"Smazat kontakt"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Seznam účtů"</string>
     <string name="menu_settings">"Nastavení"</string>
     <string name="menu_start_chat">"Začít chat"</string>
-    <string name="menu_group_chat">"Začít hromadný chat..."</string>
     <string name="menu_sign_out">"Odhlásit se"</string>
     <string name="menu_view_profile">"Zobrazit profil"</string>
     <string name="menu_end_conversation">"Ukončit chat"</string>
@@ -49,12 +44,7 @@
     <string name="no">"Zrušit"</string>
     <string name="signed_out_prompt">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>, protože došlo k chybě <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Chat – vybrat účet"</string>
-    <string name="account_title">"Účet <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 chat"</string>
-    <string name="conversations">"Probíhající chaty: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
     <string name="add_account">"Přidat účet <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Chat – přidat účet"</string>
     <string name="label_username">"Uživatelské jméno:"</string>
     <string name="label_password">"Heslo:"</string>
     <string name="remember_password">"Zapamatovat heslo."</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"Kanál CIR"</string>
     <string name="host_label">"Hostitel"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID klienta"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"Zvuk"</string>
     <string name="notification_sound_summary">"Oznámit příchozí chatovou zprávu také vyzváněním"</string>
     <string name="notification_ringtone_title">"Vybrat vyzváněcí tón"</string>
-    <string name="invitation_title">"Pozvánka"</string>
     <string name="invitation_prompt">"Uživatel <xliff:g id="USER">%1$s</xliff:g> vás pozval k hromadnému chatu."</string>
     <string name="invitation_sent_prompt">"Uživateli <xliff:g id="USER">%1$s</xliff:g> byla zaslána pozvánka."</string>
     <string name="accept_invitation">"Přijmout"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"Blokování kontaktu se nezdařilo."</string>
     <string name="unblock_contact_failed">"Odblokování kontaktu se nezdařilo."</string>
     <string name="select_contact">"Nejprve zvolte kontakt."</string>
-    <string name="select_chat_session">"Zvolte relaci chatu."</string>
     <string name="disconnected">"Odpojeno"\n</string>
     <string name="service_error">"Chyba služby."</string>
     <string name="load_contact_list_failed">"Seznam kontaktů se nepodařilo načíst."</string>

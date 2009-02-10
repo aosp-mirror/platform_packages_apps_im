@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"IM"</string>
-    <string name="menu_add_account">"アカウントを追加"</string>
-    <string name="menu_edit_account">"アカウントを編集"</string>
-    <string name="menu_remove_account">"アカウントを削除"</string>
-    <string name="menu_sign_out_all">"すべてログアウト"</string>
     <string name="menu_cancel_signin">"ログインをキャンセル"</string>
     <string name="menu_add_contact">"連絡先を追加"</string>
     <string name="menu_remove_contact">"連絡先を削除"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"アカウントリスト"</string>
     <string name="menu_settings">"設定"</string>
     <string name="menu_start_chat">"チャットを始める"</string>
-    <string name="menu_group_chat">"グループチャットを始めます..."</string>
     <string name="menu_sign_out">"ログアウト"</string>
     <string name="menu_view_profile">"プロフィールを表示"</string>
     <string name="menu_end_conversation">"チャットをやめる"</string>
@@ -49,12 +44,7 @@
     <string name="no">"キャンセル"</string>
     <string name="signed_out_prompt">"既に<xliff:g id="ACCOUNT">%1$s</xliff:g>をログアウトしています。"</string>
     <string name="signed_out_prompt_with_error">"既に<xliff:g id="ACCOUNT">%1$s</xliff:g>をログアウトしています。理由:<xliff:g id="REASON">%2$s</xliff:g>"</string>
-    <string name="choose_account_title">"チャット-アカウントを選択"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>アカウント:"</string>
-    <string name="one_conversation">"1件のチャット"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g>件のチャット"</string>
     <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>アカウントを追加"</string>
-    <string name="add_account_title">"チャット-アカウントを追加"</string>
     <string name="label_username">"ユーザー名:"</string>
     <string name="label_password">"パスワード"</string>
     <string name="remember_password">"パスワードを保存する"</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"CIRチャネル"</string>
     <string name="host_label">"ホスト"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"クライアントID"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"サウンド"</string>
     <string name="notification_sound_summary">"IMが届いたときも着信音を鳴らす"</string>
     <string name="notification_ringtone_title">"着信音を選択"</string>
-    <string name="invitation_title">"招待"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g>さんからグループチャットに招待されました。"</string>
     <string name="invitation_sent_prompt">"招待状を<xliff:g id="USER">%1$s</xliff:g>さんに送りました。"</string>
     <string name="accept_invitation">"承認"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"連絡先をブロックできませんでした。"</string>
     <string name="unblock_contact_failed">"連絡先のブロックを解除できませんでした。"</string>
     <string name="select_contact">"まず連絡先を選択してください。"</string>
-    <string name="select_chat_session">"チャットセッションを選択してください。"</string>
     <string name="disconnected">"切断されました。"\n</string>
     <string name="service_error">"サービスエラーです。"</string>
     <string name="load_contact_list_failed">"連絡先リストをロードできませんでした。"</string>

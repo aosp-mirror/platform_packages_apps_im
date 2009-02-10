@@ -52,6 +52,7 @@ public class SigningInActivity extends Activity {
     private IConnectionListener mListener;
     private SimpleAlertHandler mHandler;
     private ImApp mApp;
+    private long mProviderId;
     private String mToAddress;
 
     protected static final int ID_CANCEL_SIGNIN = Menu.FIRST + 1;
@@ -92,7 +93,7 @@ public class SigningInActivity extends Activity {
             return;
         }
 
-        final long providerId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
+        mProviderId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
         final long accountId = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
         final String username = c.getString(c.getColumnIndexOrThrow(Im.Account.USERNAME));
         String pwExtra = intent.getStringExtra(ImApp.EXTRA_INTENT_PASSWORD);
@@ -102,9 +103,9 @@ public class SigningInActivity extends Activity {
 
         c.close();
         mApp = ImApp.getApplication(this);
-        final ProviderDef provider = mApp.getProvider(providerId);
+        final ProviderDef provider = mApp.getProvider(mProviderId);
 
-        BrandingResources brandingRes = mApp.getBrandingResource(providerId);
+        BrandingResources brandingRes = mApp.getBrandingResource(mProviderId);
         getWindow().setFeatureDrawable(Window.FEATURE_LEFT_ICON,
                 brandingRes.getDrawable(BrandingResourceIDs.DRAWABLE_LOGO));
 
@@ -122,7 +123,7 @@ public class SigningInActivity extends Activity {
             public void run() {
                 if (mApp.serviceConnected()) {
                     if (!isActive) {
-                        activateAccount(providerId, accountId);
+                        activateAccount(mProviderId, accountId);
                     }
                     signInAccount(provider, accountId, username, pw);
                 }
@@ -234,19 +235,24 @@ public class SigningInActivity extends Activity {
             finish();
             try {
                 Intent intent;
+                long accountId = mConn.getAccountId();
+
                 if (mToAddress != null) {
                     IChatSessionManager manager = mConn.getChatSessionManager();
                     IChatSession session = manager.getChatSession(mToAddress);
                     if(session == null) {
                         session = manager.createChatSession(mToAddress);
                     }
-                    Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI,
-                            session.getId());
+                    Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, session.getId());                   
                     intent = new Intent(Intent.ACTION_VIEW, data);
+                    intent.putExtra("from", mToAddress);
+                    intent.putExtra("providerId", mProviderId);
+                    intent.putExtra("accountId", accountId);
+                    intent.addCategory(ImApp.IMPS_CATEGORY);
+
                 } else {
                     intent = new Intent(this, ContactListActivity.class);
-                    intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID,
-                            mConn.getAccountId());
+                    intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, accountId);
                 }
                 startActivity(intent);
             } catch (RemoteException e) {

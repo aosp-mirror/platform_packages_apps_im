@@ -39,6 +39,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.graphics.drawable.Drawable;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
@@ -75,7 +76,7 @@ public class ContactView extends LinearLayout {
     static final int COLUMN_LAST_MESSAGE_DATE = 10;
     static final int COLUMN_LAST_MESSAGE = 11;
 
-    private ImageView mPresence;
+    //private ImageView mPresence;
     private TextView mLine1;
     private TextView mLine2;
     private TextView mTimeStamp;
@@ -92,9 +93,10 @@ public class ContactView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mPresence = (ImageView) findViewById(R.id.presence);
+        //mPresence = (ImageView) findViewById(R.id.presence);
         mLine1 = (TextView) findViewById(R.id.line1);
         mLine2 = (TextView) findViewById(R.id.line2);
+        mLine2.setCompoundDrawablePadding(5);
         mTimeStamp = (TextView)findViewById(R.id.timestamp);
 
         mHandler = new Handler();
@@ -169,20 +171,21 @@ public class ContactView extends LinearLayout {
         BrandingResources brandingRes = app.getBrandingResource(providerId);
 
         int presence = cursor.getInt(COLUMN_CONTACT_PRESENCE_STATUS);
+        int iconId = 0;
+
         // status icon
 
         if (Im.Contacts.TYPE_GROUP == type) {
-            int iconId = lastMsg == null ? R.drawable.group_chat
-                    : R.drawable.group_chat_new;
-            mPresence.setImageResource(iconId);
+            iconId = lastMsg == null ? R.drawable.group_chat : R.drawable.group_chat_new;
         } else if (hasChat) {
-            int iconId = lastMsg == null ? BrandingResourceIDs.DRAWABLE_READ_CHAT
+            iconId = lastMsg == null ? BrandingResourceIDs.DRAWABLE_READ_CHAT
                     : BrandingResourceIDs.DRAWABLE_UNREAD_CHAT;
-            mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
         } else {
-            int iconId = PresenceUtils.getStatusIconId(presence);
-            mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
+            iconId = PresenceUtils.getStatusIconId(presence);
         }
+
+        //mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
+        Drawable presenceIcon = brandingRes.getDrawable(iconId);
 
         // line1
         CharSequence line1;
@@ -255,6 +258,8 @@ public class ContactView extends LinearLayout {
         }
 
         mLine2.setText(line2);
+        mLine2.setCompoundDrawablesWithIntrinsicBounds(null, null, presenceIcon, null);
+
 
         View contactInfoPanel = findViewById(R.id.contactInfo);
         if (hasChat && showChatMsg) {

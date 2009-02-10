@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
-    <string name="menu_add_account">"Account toevoegen"</string>
-    <string name="menu_edit_account">"Account bewerken"</string>
-    <string name="menu_remove_account">"Account verwijderen"</string>
-    <string name="menu_sign_out_all">"Overal afmelden"</string>
     <string name="menu_cancel_signin">"Aanmelding annuleren"</string>
     <string name="menu_add_contact">"Contactpersoon toevoegen"</string>
     <string name="menu_remove_contact">"Contactpersoon verwijderen"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Accountlijst"</string>
     <string name="menu_settings">"Instellingen"</string>
     <string name="menu_start_chat">"Chat starten"</string>
-    <string name="menu_group_chat">"Groepchat starten..."</string>
     <string name="menu_sign_out">"Afmelden"</string>
     <string name="menu_view_profile">"Profiel weergeven"</string>
     <string name="menu_end_conversation">"Chat beëindigen"</string>
@@ -49,12 +44,7 @@
     <string name="no">"Annuleren"</string>
     <string name="signed_out_prompt">"U bent afgemeld bij <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"U bent afgemeld bij <xliff:g id="ACCOUNT">%1$s</xliff:g> vanwege <xliff:g id="REASON">%2$s</xliff:g>"</string>
-    <string name="choose_account_title">"Chatten - Een account selecteren"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-account:"</string>
-    <string name="one_conversation">"1 chat"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> chats"</string>
     <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-account toevoegen"</string>
-    <string name="add_account_title">"Chatten - Een account toevoegen"</string>
     <string name="label_username">"Gebruikersnaam:"</string>
     <string name="label_password">"Wachtwoord:"</string>
     <string name="remember_password">"Mijn wachtwoord onthouden."</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"CIR-kanaal"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"Klant-id"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"Geluid"</string>
     <string name="notification_sound_summary">"Ook beltoon afspelen wanneer een chatbericht wordt ontvangen"</string>
     <string name="notification_ringtone_title">"Beltoon selecteren"</string>
-    <string name="invitation_title">"Uitnodiging"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> heeft u uitgenodigd deel te nemen aan een groepchat"</string>
     <string name="invitation_sent_prompt">"Er is een uitnodiging verzonden naar <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accepteren"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"Contactpersoon is niet geblokkeerd."</string>
     <string name="unblock_contact_failed">"Contactpersoon is niet gedeblokkeerd."</string>
     <string name="select_contact">"Selecteer eerst een contactpersoon."</string>
-    <string name="select_chat_session">"Selecteer een chatsessie."</string>
     <string name="disconnected">"Verbinding verbroken!"\n</string>
     <string name="service_error">"Servicefout."</string>
     <string name="load_contact_list_failed">"De lijst met contactpersonen is niet geladen."</string>

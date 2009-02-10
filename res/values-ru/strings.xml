@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Чат"</string>
-    <string name="menu_add_account">"Добавить аккаунт"</string>
-    <string name="menu_edit_account">"Изменить аккаунт"</string>
-    <string name="menu_remove_account">"Удалить аккаунт"</string>
-    <string name="menu_sign_out_all">"Выйти из всех"</string>
     <string name="menu_cancel_signin">"Отменить вход"</string>
     <string name="menu_add_contact">"Добавить знакомого"</string>
     <string name="menu_remove_contact">"Удалить контакт"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Список аккаунтов"</string>
     <string name="menu_settings">"Настройки"</string>
     <string name="menu_start_chat">"Начать чат"</string>
-    <string name="menu_group_chat">"Начать групповой чат…"</string>
     <string name="menu_sign_out">"Выйти"</string>
     <string name="menu_view_profile">"Просмотреть профиль"</string>
     <string name="menu_end_conversation">"Завершить чат"</string>
@@ -49,12 +44,7 @@
     <string name="no">"Отмена"</string>
     <string name="signed_out_prompt">"Выполнен выход из аккаунта <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Выполнен выход из аккаунта <xliff:g id="ACCOUNT">%1$s</xliff:g> по следующей причине: <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Чат – выбрать аккаунт"</string>
-    <string name="account_title">"Аккаунт <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 чат"</string>
-    <string name="conversations">"Чатов: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
     <string name="add_account">"Добавить аккаунт <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Чат – добавить аккаунт"</string>
     <string name="label_username">"Имя пользователя:"</string>
     <string name="label_password">"Пароль:"</string>
     <string name="remember_password">"Запомнить пароль."</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"Канал CIR"</string>
     <string name="host_label">"Хост"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"Идентификатор клиента"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"Звук"</string>
     <string name="notification_sound_summary">"Играть мелодию звонка при получении сообщения в чате"</string>
     <string name="notification_ringtone_title">"Выбрать мелодию звонка"</string>
-    <string name="invitation_title">"Приглашение"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> приглашает вас в групповой чат."</string>
     <string name="invitation_sent_prompt">"Приглашение отправлено пользователю <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Принять"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"Контакт не был заблокирован."</string>
     <string name="unblock_contact_failed">"Контакт не был разблокирован."</string>
     <string name="select_contact">"Сначала выберите контакт."</string>
-    <string name="select_chat_session">"Выберите сеанс чата."</string>
     <string name="disconnected">"Подключение прервано!"\n</string>
     <string name="service_error">"Ошибка службы!"</string>
     <string name="load_contact_list_failed">"Список контактов не загружен."</string>

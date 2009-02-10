@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Legg til kontakt"</string>
+    <string name="menu_remove_contact">"Fjern kontakt"</string>
+    <string name="menu_block_contact">"Blokker kontakt"</string>
+    <!-- no translation found for menu_contact_list (7408048984312793527) -->
+    <skip />
+    <string name="menu_start_chat">"Start samtale"</string>
+    <string name="menu_view_profile">"Vis profil"</string>
+    <string name="menu_end_conversation">"Avslutt samtale"</string>
+    <string name="menu_switch_chats">"Bytt mellom samtaler"</string>
+    <string name="menu_insert_smiley">"Sett inn smilefjes"</string>
+    <string name="sign_up">"Mangler du konto?"</string>
+    <!-- no translation found for check_save_password (3554564072443242779) -->
+    <skip />
+    <!-- no translation found for buddy_list_title (5837732412636822107) -->
+    <skip />
+    <string name="label_username">"Brukernavn:"</string>
+    <string name="ongoing_conversation">"Pågående samtaler (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Kontaktprofil"</string>
+    <string name="presence_available">"Tilgjengelig"</string>
+    <string name="add_contact_title">"Legg til kontakt"</string>
+    <string name="input_contact_label">"E-postadresse til den du ønsker å invitere:"</string>
+    <string name="invite_label">"Send invitasjon"</string>
+    <!-- no translation found for smiley_names:0 (811476776139578986) -->
+    <!-- no translation found for smiley_names:1 (2764363456492352853) -->
+    <!-- no translation found for smiley_names:2 (416624764294712159) -->
+    <!-- no translation found for smiley_names:3 (7152979870122929989) -->
+    <!-- no translation found for smiley_names:4 (5784780866600056743) -->
+    <!-- no translation found for smiley_names:5 (5454185003381226454) -->
+    <!-- no translation found for smiley_names:6 (1413668617851210441) -->
+    <!-- no translation found for smiley_names:7 (232246158381043538) -->
+    <!-- no translation found for smiley_names:8 (2440257511131202785) -->
+    <!-- no translation found for smiley_names:9 (4571282940807190133) -->
+    <!-- no translation found for smiley_names:10 (3260099163589753993) -->
+    <!-- no translation found for smiley_names:11 (3042531792218744865) -->
+    <!-- no translation found for smiley_names:12 (5227319381647888452) -->
+    <!-- no translation found for smiley_names:13 (6952104030566994554) -->
+    <!-- no translation found for smiley_names:14 (9199616532683270084) -->
+    <!-- no translation found for smiley_names:15 (4338502150254517147) -->
+    <!-- no translation found for smiley_names:16 (1014703928300075245) -->
+    <!-- no translation found for smiley_texts:0 (6682271134385564589) -->
+    <!-- no translation found for smiley_texts:1 (5242689844155076377) -->
+    <!-- no translation found for smiley_texts:2 (521632995149320343) -->
+    <!-- no translation found for smiley_texts:3 (3442897533435789796) -->
+    <!-- no translation found for smiley_texts:4 (682698687423187022) -->
+    <!-- no translation found for smiley_texts:5 (1531701168660725626) -->
+    <!-- no translation found for smiley_texts:6 (7958357467119008619) -->
+    <!-- no translation found for smiley_texts:7 (4638775565490840154) -->
+    <!-- no translation found for smiley_texts:8 (6225545209385623235) -->
+    <!-- no translation found for smiley_texts:9 (5725425598368680891) -->
+    <!-- no translation found for smiley_texts:10 (5365880622794795497) -->
+    <!-- no translation found for smiley_texts:11 (8260692119195572132) -->
+    <!-- no translation found for smiley_texts:12 (6879285154649424413) -->
+    <!-- no translation found for smiley_texts:13 (554517875650930417) -->
+    <!-- no translation found for smiley_texts:14 (8169228040168187510) -->
+    <!-- no translation found for smiley_texts:15 (5444890977206638254) -->
+    <!-- no translation found for smiley_texts:16 (8814856019116253585) -->
+</resources>

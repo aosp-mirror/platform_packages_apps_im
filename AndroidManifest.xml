@@ -64,15 +64,31 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".app.ChooseAccountActivity"
+                android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".app.ImUrlActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <!-- this needs to match the entries in android.provider.Im.ProviderCategories -->
                 <category android:name="com.android.im.category.AIM" />
                 <category android:name="com.android.im.category.MSN" />
                 <category android:name="com.android.im.category.YAHOO" />
                 <data android:scheme="im" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="imto" android:host="aim"/>
+                <data android:scheme="imto" android:host="yahoo"/>
+                <data android:scheme="imto" android:host="msn"/>
             </intent-filter>
         </activity>
 
@@ -118,7 +134,8 @@
             android:label="@string/add_contact_title"/>
 
         <activity android:name=".app.NewChatActivity"
-                android:configChanges="orientation|keyboardHidden">
+                android:configChanges="orientation|keyboardHidden"
+                android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"MI"</string>
-    <string name="menu_add_account">"Añadir cuenta"</string>
-    <string name="menu_edit_account">"Editar cuenta"</string>
-    <string name="menu_remove_account">"Eliminar cuenta"</string>
-    <string name="menu_sign_out_all">"Salir de todo"</string>
     <string name="menu_cancel_signin">"Cancelar acceso"</string>
     <string name="menu_add_contact">"Añadir contacto"</string>
     <string name="menu_remove_contact">"Eliminar contacto"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Lista de cuentas"</string>
     <string name="menu_settings">"Configuración"</string>
     <string name="menu_start_chat">"Iniciar chat"</string>
-    <string name="menu_group_chat">"Iniciar chat en grupo..."</string>
     <string name="menu_sign_out">"Salir"</string>
     <string name="menu_view_profile">"Ver perfil"</string>
     <string name="menu_end_conversation">"Finalizar chat"</string>
@@ -49,12 +44,7 @@
     <string name="no">"Cancelar"</string>
     <string name="signed_out_prompt">"Se ha cerrado tu cuenta de <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Se ha cerrado la cuenta de <xliff:g id="ACCOUNT">%1$s</xliff:g> porque <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Chat: seleccionar una cuenta"</string>
-    <string name="account_title">"Cuenta de <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 chat"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> chats"</string>
     <string name="add_account">"Añadir cuenta <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Chat: añadir una cuenta"</string>
     <string name="label_username">"Nombre de usuario:"</string>
     <string name="label_password">"Contraseña:"</string>
     <string name="remember_password">"Recordar mi contraseña"</string>
@@ -92,7 +82,6 @@
     <string name="cir_channel_label">"Canal CIR"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID de cliente"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -131,7 +120,6 @@
     <string name="notification_sound_title">"Sonido"</string>
     <string name="notification_sound_summary">"Reproducir tono al recibir mensaje instantáneo"</string>
     <string name="notification_ringtone_title">"Seleccionar tono"</string>
-    <string name="invitation_title">"Invitación"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> te ha invitado a unirte a un chat en grupo."</string>
     <string name="invitation_sent_prompt">"Se ha enviado la invitación a <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Aceptar"</string>
@@ -158,7 +146,6 @@
     <string name="block_contact_failed">"No se ha podido bloquear el contacto."</string>
     <string name="unblock_contact_failed">"No se ha podido desbloquear el contacto."</string>
     <string name="select_contact">"Selecciona primero un contacto."</string>
-    <string name="select_chat_session">"Selecciona una sesión de chat."</string>
     <string name="disconnected">"Desconectado"\n</string>
     <string name="service_error">"Error del servicio"</string>
     <string name="load_contact_list_failed">"No se ha podido cargar la lista de contactos."</string>
