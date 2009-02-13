@@ -90,13 +90,16 @@
     <string name="save">"Enregistrer"</string>
     <string name="chat_with">"Chatter avec <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Moi"</string>
+    <!-- no translation found for compose_hint (1735533889811320962) -->
+    <skip />
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> est en ligne"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> est absent"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> est occupé"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> est hors ligne"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> a rejoint la conversation"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> a quitté la conversation"</string>
-    <string name="time_stamp">"\"Envoyé à\" hh:mm \"sur\" EEEE"</string>
+    <!-- no translation found for time_stamp (8952691401963972802) -->
+    <skip />
     <string name="send">"Envoyer"</string>
     <string name="msg_sent_failed">"Ce message n\'a pas pu être envoyé."</string>
     <string name="disconnected_warning">"Connexion au serveur interrompue. Les messages seront transmis lorsque vous serez de nouveau connecté."</string>

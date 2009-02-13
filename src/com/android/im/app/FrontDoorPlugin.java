@@ -114,6 +114,26 @@ public class FrontDoorPlugin extends Service {
         try {
             if (c.moveToFirst()) {
                 providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
+                String origFullName = c.getString(
+                        c.getColumnIndexOrThrow(Im.Provider.FULLNAME));
+                String origCategory = c.getString(
+                        c.getColumnIndexOrThrow(Im.Provider.CATEGORY));
+                String origSignupUrl = c.getString(
+                        c.getColumnIndexOrThrow(Im.Provider.SIGNUP_URL));
+                ContentValues values = new ContentValues();
+                if (origFullName == null || !origFullName.equals(providerFullName)) {
+                    values.put(Im.Provider.FULLNAME, providerFullName);
+                }
+                if (origCategory == null) {
+                    values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+                }
+                if (origSignupUrl == null || !origSignupUrl.equals(signUpUrl)) {
+                    values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+                }
+                if (values.size() > 0) {
+                    Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
+                    cr.update(uri, values, null, null);
+                }
             } else {
                 ContentValues values = new ContentValues(3);
                 values.put(Im.Provider.NAME, providerName);
@@ -148,7 +168,7 @@ public class FrontDoorPlugin extends Service {
 
     private Map<Integer, Integer> loadBrandingResource(String className, String srcPath) {
         Map retVal = null;
-        
+
         if (LOCAL_DEBUG) log("loadBrandingResource: className=" + className +
                 ", srcPath=" + srcPath);
 
@@ -194,7 +214,7 @@ public class FrontDoorPlugin extends Service {
         */
         return getClassLoader();
     }
-    
+
     private void log(String msg) {
         Log.d(TAG, "[ImFrontDoor] " + msg);
     }

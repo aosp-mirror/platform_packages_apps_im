@@ -158,13 +158,14 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textImeMultiLine"
+            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine|textImeMultiLine"
+            android:maxLines="4"
             android:maxLength="2000"
             android:hint="@string/compose_hint"/>
 
         <Button android:id="@+id/btnSend"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:text="@string/send" />
     </LinearLayout>
 </com.android.im.app.ChatView>

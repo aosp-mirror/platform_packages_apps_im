@@ -31,6 +31,7 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Broadcaster;
 import android.os.Bundle;
@@ -254,6 +255,12 @@ public class ImApp extends Application {
 
     public boolean serviceConnected() {
         return mImService != null;
+    }
+
+    public boolean isBackgroundDataEnabled() {
+        ConnectivityManager manager =
+                (ConnectivityManager) mApplicationContext.getSystemService(CONNECTIVITY_SERVICE);
+        return manager.getBackgroundDataSetting();
     }
 
     public static long insertOrUpdateAccount(ContentResolver cr,

@@ -26,10 +26,13 @@ import java.util.Map;
 import java.util.Vector;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
@@ -90,6 +93,10 @@ public class RemoteImService extends Service {
     private int mNetworkType;
     private boolean mNeedCheckAutoLogin;
 
+    private boolean mBackgroundDataEnabled;
+
+    private SettingsMonitor mSettingsMonitor;
+
     Vector<ImConnectionAdapter> mConnections;
     final RemoteCallbackList<IConnectionCreationListener> mRemoteListeners
             = new RemoteCallbackList<IConnectionCreationListener>();
@@ -109,6 +116,16 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener = new NetworkConnectivityListener();
         mNetworkConnectivityListener.registerHandler(mServiceHandler, EVENT_NETWORK_STATE_CHANGED);
         mNetworkConnectivityListener.startListening(this);
+
+        mSettingsMonitor = new SettingsMonitor();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED);
+        registerReceiver(mSettingsMonitor, intentFilter);
+
+        ConnectivityManager manager
+            = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        setBackgroundData(manager.getBackgroundDataSetting());
 
         findAvaiablePlugins();
         AndroidSystemService.getInstance().initialize(this);
@@ -352,6 +369,8 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener.unregisterHandler(mServiceHandler);
         mNetworkConnectivityListener.stopListening();
         mNetworkConnectivityListener = null;
+
+        unregisterReceiver(mSettingsMonitor);
     }
 
     @Override
@@ -420,6 +439,22 @@ public class RemoteImService extends Service {
 
     private boolean isNetworkAvailable() {
         return mNetworkConnectivityListener.getState() == State.CONNECTED;
+    }
+
+    private boolean isBackgroundDataEnabled() {
+        return mBackgroundDataEnabled;
+    }
+
+    private void setBackgroundData(boolean flag) {
+        mBackgroundDataEnabled = flag;
+    }
+
+    void handleBackgroundDataSettingChange(){
+        if (!isBackgroundDataEnabled()) {
+            for (ImConnectionAdapter conn : mConnections) {
+                conn.logout();
+            }
+        }
     }
 
     void networkStateChanged() {
@@ -520,6 +555,20 @@ public class RemoteImService extends Service {
         }
 
     };
+
+    private final class SettingsMonitor extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED.equals(action)) {
+                ConnectivityManager manager =
+                    (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+                setBackgroundData(manager.getBackgroundDataSetting());
+                handleBackgroundDataSettingChange();
+            }
+        }
+    }
 
     private final class ServiceHandler extends Handler {
         public ServiceHandler() {

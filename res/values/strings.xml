@@ -131,6 +131,21 @@
     <string name="signing_in_to">Signing in to <xliff:g id="account">%1$s</xliff:g></string>
     <!-- This is the progress/status text displayed in the middle of the sign-in progress screen. -->
     <string name="signing_in_wait">Signing in\u2026</string>
+    <!-- Dialog title -->
+    <!-- This is the title for the background data prompt dialog, asking the user whether
+    to enable the background data if it is disabled when launch the IM app -->
+    <string name="bg_data_prompt_title">Background data disabled</string>
+    <!-- Dialog messages: -->
+    <!-- This is the message displayed in the prompt dialog when we launch IM but found
+    the background data is disabled -->
+    <string name="bg_data_prompt_message">
+         <xliff:g id="provider">%1$s</xliff:g> needs background data to be enabled.
+    </string>
+    <!-- Dialog buttons: -->
+    <!-- OK button for the prompt dialog -->
+    <string name="bg_data_prompt_ok">Enable</string>
+    <!-- Cancel button for the prompt dialog -->
+    <string name="bg_data_prompt_cancel">Quit</string>
 
     <!-- These strings are displayed on the contact list page. -->
     <!-- The title of the ongoing chat group. May be overrided by the plugin.-->
