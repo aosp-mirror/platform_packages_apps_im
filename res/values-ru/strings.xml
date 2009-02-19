@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"Пригласить…"</string>
     <string name="menu_switch_chats">"Переключить чат"</string>
     <string name="menu_insert_smiley">"Вставить смайлик"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Мenu+"</string>
     <string name="default_input_title">"Ввод"</string>
     <string name="confirm">"Подтверждение"</string>
     <string name="confirm_delete_contact">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" будет удален."</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"Войти"</string>
     <string name="signing_in_to">"Вход в аккаунт <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Выполняется вход…"</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Открыто чатов: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="online_count">"В сети: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"Предложения дружбы"</string>
@@ -90,16 +97,14 @@
     <string name="save">"Сохранить"</string>
     <string name="chat_with">"Чат: <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Я"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"Введите текст"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> в сети"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> отсутствует"</string>
     <string name="contact_busy">"Пользователь <xliff:g id="USER">%1$s</xliff:g> занят"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> не в сети"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> в чате"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> не в чате"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'Отправлено в '<xliff:g id="HOUR">hh</xliff:g><xliff:g id="MINUTE">mm</xliff:g><xliff:g id="AMPM">a</xliff:g>', '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Отправить"</string>
     <string name="msg_sent_failed">"Не удалось отправить сообщение."</string>
     <string name="disconnected_warning">"Подключение к серверу прервано. Сообщения будут отправлены при подключении к Интернету."</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"Нет активных чатов."</string>
     <string name="add_contact_title">"Добавить знакомого"</string>
     <string name="input_contact_label">"Адрес электронной почты приглашаемого:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Выберите список:"</string>
     <string name="invite_instruction">"Введите имя для добавления из контактов."</string>
     <string name="invite_label">"Отправить приглашение"</string>
     <string name="setting_title">"Общие настройки"</string>

@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"초대..."</string>
     <string name="menu_switch_chats">"채팅 전환"</string>
     <string name="menu_insert_smiley">"이모티콘 삽입"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"입력"</string>
     <string name="confirm">"확인"</string>
     <string name="confirm_delete_contact">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 삭제됩니다."</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"로그인"</string>
     <string name="signing_in_to">"<xliff:g id="ACCOUNT">%1$s</xliff:g>에 로그인하는 중"</string>
     <string name="signing_in_wait">"로그인하는 중..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"진행 중인 채팅(<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"온라인 <xliff:g id="NUMBER">%1$d</xliff:g>명"</string>
     <string name="subscriptions">"친구 초대"</string>
@@ -90,16 +97,14 @@
     <string name="save">"저장"</string>
     <string name="chat_with">"<xliff:g id="USER">%1$s</xliff:g>님과 채팅"</string>
     <string name="me">"나"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"메시지 내용을 입력하세요."</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g>님이 온라인 상태입니다."</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g>님이 자리에 없습니다."</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g>님이 다른 용무 중입니다."</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g>님이 오프라인 상태입니다."</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g>님이 참여하셨습니다."</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g>님이 채팅룸을 나가셨습니다."</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"<xliff:g id="DATE">EEEE</xliff:g>', '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>'에 전송'"</string>
     <string name="send">"보내기"</string>
     <string name="msg_sent_failed">"메시지를 보내지 못했습니다."</string>
     <string name="disconnected_warning">"서버와의 연결이 끊어졌습니다. 메시지는 온라인 상태일 때 전송됩니다."</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"진행 중인 채팅이 없습니다."</string>
     <string name="add_contact_title">"연락처 추가"</string>
     <string name="input_contact_label">"초대할 사람의 이메일 주소:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"목록 선택:"</string>
     <string name="invite_instruction">"연락처에서 추가할 이름을 입력하세요."</string>
     <string name="invite_label">"초대장 보내기"</string>
     <string name="setting_title">"일반 설정"</string>

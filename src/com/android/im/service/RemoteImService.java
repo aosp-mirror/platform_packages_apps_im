@@ -554,6 +554,9 @@ public class RemoteImService extends Service {
             mStatusBarNotifier.dismissNotifications(providerId);
         }
 
+        public void dismissChatNotification(long providerId, String username) {
+            mStatusBarNotifier.dismissChatNotification(providerId, username);
+        }
     };
 
     private final class SettingsMonitor extends BroadcastReceiver {

@@ -16,11 +16,17 @@
  */
 package com.android.im.app;
 
+import static com.android.im.service.ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_PROVIDER_ID;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_SHOW_MULTIPLE;
+
 import com.android.im.IChatSession;
 import com.android.im.R;
+import com.android.im.app.Dashboard.OnCancelListener;
 import com.android.im.app.adapter.ChatListenerAdapter;
 import com.android.im.plugin.BrandingResourceIDs;
-import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -77,6 +83,7 @@ public class NewChatActivity extends Activity {
     SimpleAlertHandler mHandler;
 
     private AlertDialog mSmileyDialog;
+    private Dashboard mDashboard;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -116,9 +123,38 @@ public class NewChatActivity extends Activity {
     }
 
     void resolveIntent(Intent intent) {
-        if (ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION.equals(intent.getAction())) {
-            long providerId = intent.getLongExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, -1);
-            String from = intent.getStringExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS);
+        if (requireOpenDashboardOnStart(intent)) {
+            long providerId = intent.getLongExtra(EXTRA_INTENT_PROVIDER_ID, -1L);
+            final long accountId = intent.getLongExtra(EXTRA_INTENT_ACCOUNT_ID, -1L);
+            if (providerId == -1L || accountId == -1L) {
+                finish();
+            } else {
+                mApp.dismissNotifications(providerId);
+                // TODO: the delay runnable is a hack. If we don't put any delay, showing the
+                // Dashboard window will cause
+                //
+                //   android.view.WindowManager$BadTokenException: Unable to add window --
+                //           token null is not valid; is your activity running?
+                //
+                // exception. This problem should go away when the new chat switcher UI is
+                // implemented. The new chat switcher is just another view in the chat screen.
+                mHandler.postDelayed(new Runnable() {
+                    public void run() {
+                        mDashboard = Dashboard.openDashboard(NewChatActivity.this, accountId, null);
+                        mDashboard.setOnCancelListener(new OnCancelListener() {
+                            public void onCancel() {
+                                finish();
+                            }
+                        });
+                    }
+                }, 500);
+            }
+            return;
+        }
+
+        if (ACTION_MANAGE_SUBSCRIPTION.equals(intent.getAction())) {
+            long providerId = intent.getLongExtra(EXTRA_INTENT_PROVIDER_ID, -1);
+            String from = intent.getStringExtra(EXTRA_INTENT_FROM_ADDRESS);
             if ((providerId == -1) || (from == null)) {
                 finish();
             } else {
@@ -251,10 +287,17 @@ public class NewChatActivity extends Activity {
         return super.dispatchKeyEvent(event);
     }
 
+    /**
+     * Check whether we are asked to open Dashboard on startup.
+     */
+    private boolean requireOpenDashboardOnStart(Intent intent) {
+        return intent.getBooleanExtra(EXTRA_INTENT_SHOW_MULTIPLE, false);
+    }
+
     private void showRosterScreen() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClass(this, ContactListActivity.class);
-        intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mChatView.getAccountId());
+        intent.putExtra(EXTRA_INTENT_ACCOUNT_ID, mChatView.getAccountId());
         startActivity(intent);
     }
 

@@ -594,6 +594,15 @@ public class ImApp extends Application {
         }
     }
 
+    public void dismissChatNotification(long providerId, String username) {
+        if (mImService != null) {
+            try {
+                mImService.dismissChatNotification(providerId, username);
+            } catch (RemoteException e) {
+            }
+        }
+    }
+
     private void fetchActiveConnections() {
           try {
             // register the listener before fetch so that we won't miss any connection.

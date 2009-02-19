@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"邀请..."</string>
     <string name="menu_switch_chats">"切换聊天"</string>
     <string name="menu_insert_smiley">"插入表情符号"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"“菜单”+"</string>
     <string name="default_input_title">"输入"</string>
     <string name="confirm">"确认"</string>
     <string name="confirm_delete_contact">"联系人“<xliff:g id="USER">%1$s</xliff:g>”会被删除。"</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"登录"</string>
     <string name="signing_in_to">"登录<xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"正在登录..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"正在进行的聊天数 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> 人在线"</string>
     <string name="subscriptions">"好友邀请"</string>
@@ -90,16 +97,14 @@
     <string name="save">"保存"</string>
     <string name="chat_with">"与<xliff:g id="USER">%1$s</xliff:g>聊天"</string>
     <string name="me">"我"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"键入内容"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g>在线"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g>离开"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g>正忙"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g>脱机"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g>已加入"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g>已离开"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'发送时间：'<xliff:g id="DATE">EEEE</xliff:g><xliff:g id="AMPM">a</xliff:g>' '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>"</string>
     <string name="send">"发送"</string>
     <string name="msg_sent_failed">"该消息无法发送。"</string>
     <string name="disconnected_warning">"与服务器断开连接。消息将在您上线时发送。"</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"没有正在进行的聊天。"</string>
     <string name="add_contact_title">"添加联系人"</string>
     <string name="input_contact_label">"您要邀请的人的电子邮件地址："</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"选择一个列表："</string>
     <string name="invite_instruction">"键入要从“联系人”添加的名称。"</string>
     <string name="invite_label">"发送邀请"</string>
     <string name="setting_title">"常规设置"</string>

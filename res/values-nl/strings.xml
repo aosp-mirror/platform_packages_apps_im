@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"Uitnodigen..."</string>
     <string name="menu_switch_chats">"Schakelen tussen chats"</string>
     <string name="menu_insert_smiley">"Smiley invoegen"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Invoer"</string>
     <string name="confirm">"Bevestigen"</string>
     <string name="confirm_delete_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt verwijderd."</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"Aanmelden"</string>
     <string name="signing_in_to">"Aanmelden bij <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Aanmelden..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Actieve chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Uitnodigingen voor vriendschap"</string>
@@ -90,16 +97,14 @@
     <string name="save">"Opslaan"</string>
     <string name="chat_with">"Chatten met <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Ik"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"Typ om een bericht te schrijven"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> is online"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> is afwezig"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> is bezet"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> is offline"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> is online gekomen"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> is weggegaan"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'Verzonden om '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' op '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Verzenden"</string>
     <string name="msg_sent_failed">"Dit bericht kan niet worden verzonden."</string>
     <string name="disconnected_warning">"Verbinding met de server is verbroken. Berichten worden verzonden wanneer u online bent."</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"Geen actieve chats."</string>
     <string name="add_contact_title">"Contactpersoon toevoegen"</string>
     <string name="input_contact_label">"E-mailadres van persoon die u wilt uitnodigen:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Een lijst kiezen:"</string>
     <string name="invite_instruction">"Typ een naam om toe te voegen vanuit \'Contactpersonen\'."</string>
     <string name="invite_label">"Uitnodiging verzenden"</string>
     <string name="setting_title">"Algemene instellingen"</string>

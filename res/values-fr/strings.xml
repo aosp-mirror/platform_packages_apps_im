@@ -23,16 +23,15 @@
     <string name="menu_view_blocked">"Bloqué"</string>
     <string name="menu_view_accounts">"Liste des comptes"</string>
     <string name="menu_settings">"Paramètres"</string>
-    <string name="menu_start_chat">"Commencer une conversation"</string>
+    <string name="menu_start_chat">"Lancer un chat"</string>
     <string name="menu_sign_out">"Se déconnecter"</string>
     <string name="menu_view_profile">"Afficher le profil"</string>
-    <string name="menu_end_conversation">"Arrêter la conversation"</string>
+    <string name="menu_end_conversation">"Arrêter le chat"</string>
     <string name="menu_view_contact_list">"Liste de contacts"</string>
     <string name="menu_invite_contact">"Inviter..."</string>
-    <string name="menu_switch_chats">"Basculer entre les conversations"</string>
+    <string name="menu_switch_chats">"Changer de chat"</string>
     <string name="menu_insert_smiley">"Insérer un émoticône"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Entrée"</string>
     <string name="confirm">"Confirmer"</string>
     <string name="confirm_delete_contact">"Le contact \"<xliff:g id="USER">%1$s</xliff:g>\" sera supprimé."</string>
@@ -54,13 +53,21 @@
     <string name="sign_in">"Se connecter"</string>
     <string name="signing_in_to">"Se connecter à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Connexion..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Conversations en cours (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> en ligne"</string>
     <string name="subscriptions">"Inviter des amis"</string>
     <string name="unknown_contact">"("<i>"Inconnu"</i>")"</string>
     <string name="empty_contact_group">"Vide"</string>
     <string name="empty_conversation_group">"Aucune conversation"</string>
-    <string name="contacts_picker_title">"Sélectionner les contacts à inviter"</string>
+    <string name="contacts_picker_title">"Sélectionnez les contacts à inviter"</string>
     <string name="contact_filter_hint">"Saisissez le nom du contact à rechercher"</string>
     <string name="empty_contact_list">"Aucun contact trouvé."</string>
     <string name="blocked_list_title">"Contacts bloqués : <xliff:g id="USER">%1$s</xliff:g>"</string>
@@ -73,7 +80,7 @@
     <string name="presence_available">"En ligne"</string>
     <string name="presence_busy">"Occupé"</string>
     <string name="presence_away">"Absent"</string>
-    <string name="presence_idle">"Vide"</string>
+    <string name="presence_idle">"Absent"</string>
     <string name="presence_offline">"Hors ligne"</string>
     <string name="presence_invisible">"Apparaître hors ligne"</string>
     <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
@@ -90,27 +97,24 @@
     <string name="save">"Enregistrer"</string>
     <string name="chat_with">"Chatter avec <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Moi"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"Cliquer pour composer"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> est en ligne"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> est absent"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> est occupé"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> est hors ligne"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> a rejoint la conversation"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> a quitté la conversation"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'Date d\'\'envoi : le '<xliff:g id="DATE">EEEE</xliff:g>' à '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>"</string>
     <string name="send">"Envoyer"</string>
     <string name="msg_sent_failed">"Ce message n\'a pas pu être envoyé."</string>
     <string name="disconnected_warning">"Connexion au serveur interrompue. Les messages seront transmis lorsque vous serez de nouveau connecté."</string>
     <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> est hors ligne. Les messages que vous lui envoyez lui seront remis lors de la prochaine connexion de <xliff:g id="USER_1">%1$s</xliff:g>."</string>
     <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> n\'est pas dans votre liste de contacts."</string>
     <string name="select_link_title">"Sélectionner le lien"</string>
-    <string name="empty_chat_list">"Aucune conversation active."</string>
+    <string name="empty_chat_list">"Aucun chat actif."</string>
     <string name="add_contact_title">"Ajouter un contact"</string>
     <string name="input_contact_label">"Adresse e-mail de la personne que vous souhaitez inviter :"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Sélectionnez une liste :"</string>
     <string name="invite_instruction">"Saisissez un nom à ajouter à partir de vos contacts"</string>
     <string name="invite_label">"Envoyer une invitation"</string>
     <string name="setting_title">"Paramètres généraux"</string>
@@ -123,7 +127,7 @@
     <string name="notification_sound_title">"Son"</string>
     <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un MI"</string>
     <string name="notification_ringtone_title">"Sélectionner une sonnerie"</string>
-    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre une conversation de groupe."</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre un chat en groupe."</string>
     <string name="invitation_sent_prompt">"L\'invitation a été envoyé à <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accepter"</string>
     <string name="decline_invitation">"Refuser"</string>
@@ -133,10 +137,10 @@
     <string name="approve_subscription_error">"Impossible d\'approuver l\'inscription de <xliff:g id="USER">%1$s</xliff:g>. Veuillez réessayer ultérieurement."</string>
     <string name="decline_subscription_error">"Impossible de refuser l\'inscription de <xliff:g id="USER">%1$s</xliff:g>. Veuillez réessayer ultérieurement."</string>
     <string name="newMessages_label">"Nouveaux messages de <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
-    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> conversations non lues"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> chats non lus"</string>
     <string name="subscription_notify_text">"Nouvelle invitation de <xliff:g id="USER">%s</xliff:g>"</string>
-    <string name="notify_groupchat_label">"Invitation à une conversation de groupe"</string>
-    <string name="group_chat_invite_notify_text">"Nouvelle invitation à une conversation de groupe de la part de <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Invitation à un chat en groupe"</string>
+    <string name="group_chat_invite_notify_text">"Nouvelle invitation à un chat en groupe de la part de <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="add_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" ajouté."</string>
     <string name="delete_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" supprimé."</string>
     <string name="block_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" bloqué."</string>

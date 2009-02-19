@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"Pozvat..."</string>
     <string name="menu_switch_chats">"Přepnout chat"</string>
     <string name="menu_insert_smiley">"Vložit smajlík"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Vstup"</string>
     <string name="confirm">"Potvrdit"</string>
     <string name="confirm_delete_contact">"Kontakt <xliff:g id="USER">%1$s</xliff:g> bude smazán."</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"Přihlásit se"</string>
     <string name="signing_in_to">"Přihlašování k účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Přihlašování..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Probíhající chaty: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="online_count">"Kontakty online: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"Nabídky přátelství"</string>
@@ -90,16 +97,14 @@
     <string name="save">"Uložit"</string>
     <string name="chat_with">"Chat s uživatelem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Já"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"Sem zadejte zprávu"</string>
     <string name="contact_online">"uživatel <xliff:g id="USER">%1$s</xliff:g> je online"</string>
     <string name="contact_away">"uživatel <xliff:g id="USER">%1$s</xliff:g> je pryč"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> je zaneprázdněn"</string>
     <string name="contact_offline">"uživatel <xliff:g id="USER">%1$s</xliff:g> je offline"</string>
     <string name="contact_joined">"Uživatel <xliff:g id="USER">%1$s</xliff:g> se připojil"</string>
     <string name="contact_left">"uživatel <xliff:g id="USER">%1$s</xliff:g> odešel"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'Odesláno v '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' dne '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Odeslat"</string>
     <string name="msg_sent_failed">"Zprávu nelze odeslat."</string>
     <string name="disconnected_warning">"Spojení se serverem bylo ztraceno. Zpráva bude odeslána, jakmile se jej podaří obnovit."</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"Neprobíhá žádný chat."</string>
     <string name="add_contact_title">"Přidat kontakt"</string>
     <string name="input_contact_label">"E-mailová adresa osoby, kterou chcete pozvat:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Zvolte seznam:"</string>
     <string name="invite_instruction">"Zadejte jméno uživatele, kterého chcete přidat z Kontaktů."</string>
     <string name="invite_label">"Odeslat pozvánku"</string>
     <string name="setting_title">"Obecné nastavení"</string>

@@ -31,8 +31,7 @@
     <string name="menu_invite_contact">"Invita..."</string>
     <string name="menu_switch_chats">"Cambia conversazione"</string>
     <string name="menu_insert_smiley">"Inserisci smile"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Input"</string>
     <string name="confirm">"Conferma"</string>
     <string name="confirm_delete_contact">"Il contatto \"<xliff:g id="USER">%1$s</xliff:g>\" sarà eliminato."</string>
@@ -54,6 +53,14 @@
     <string name="sign_in">"Accedi"</string>
     <string name="signing_in_to">"Accesso a <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Accesso..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Conversazioni in corso (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Inviti amici"</string>
@@ -90,16 +97,14 @@
     <string name="save">"Salva"</string>
     <string name="chat_with">"Conversazione con <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Io"</string>
-    <!-- no translation found for compose_hint (1735533889811320962) -->
-    <skip />
+    <string name="compose_hint">"Digita per comporre"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> è online"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> non è al computer"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> è occupato"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> è offline"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> è entrato"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> è uscito"</string>
-    <!-- no translation found for time_stamp (8952691401963972802) -->
-    <skip />
+    <string name="time_stamp" format="date">"'Inviato alle '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' il '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Invia"</string>
     <string name="msg_sent_failed">"Impossibile inviare il messaggio."</string>
     <string name="disconnected_warning">"Connessione al server persa. I messaggi saranno inviati quando verrà ristabilita."</string>
@@ -109,8 +114,7 @@
     <string name="empty_chat_list">"Nessuna conversazione attiva."</string>
     <string name="add_contact_title">"Aggiungi contatto"</string>
     <string name="input_contact_label">"Indirizzo email della persona da invitare:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Selezionare un elenco:"</string>
     <string name="invite_instruction">"Digita un nome da aggiungere dai contatti."</string>
     <string name="invite_label">"Invia invito"</string>
     <string name="setting_title">"Impostazioni generali"</string>

@@ -55,6 +55,7 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
     private long mAccountId;
     private String mUserName;
     Activity mActivity;
+    private OnCancelListener mCancelListener;
 
     private int mProviderIdColumn;
     private int mAccountIdColumn;
@@ -68,7 +69,7 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
         super(screen, attrs);
     }
 
-    public static final void openDashboard(Activity parent, long accountId, String username) {
+    public static final Dashboard openDashboard(Activity parent, long accountId, String username) {
         LayoutInflater inflate = LayoutInflater.from(parent);
         View v = inflate.inflate(R.layout.dashboard, null);
 
@@ -84,7 +85,9 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
 
         WindowManagerImpl.getDefault().addView(v, lp);
 
-        ((Dashboard) v).init(parent, accountId, username);
+        Dashboard dashboard = (Dashboard) v;
+        dashboard.init(parent, accountId, username);
+        return dashboard;
     }
 
     public final void init(Activity activity, long accountId, String username) {
@@ -124,6 +127,9 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
         int code = event.getKeyCode();
         if (code == KeyEvent.KEYCODE_BACK) {
             closeDashboard();
+            if (mCancelListener != null) {
+                mCancelListener.onCancel();
+            }
             return true;
         }
 
@@ -240,6 +246,10 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
         mActivity.finish();
     }
 
+    public void setOnCancelListener(OnCancelListener listener) {
+        mCancelListener = listener;
+    }
+
     private static String findCategory(ContentResolver resolver, long providerId) {
         // find the provider category for this chat
         Cursor providerCursor = resolver.query(
@@ -305,5 +315,9 @@ public class Dashboard extends LinearLayout implements Gallery.OnItemClickListen
         intent.putExtra("accountId", account);
 
         return intent;
+    }
+
+    public interface OnCancelListener {
+        void onCancel();
     }
 }
