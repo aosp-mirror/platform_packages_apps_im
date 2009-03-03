@@ -50,6 +50,16 @@ public class FrontDoorPlugin extends Service {
     private final static String TAG = ImApp.LOG_TAG;
     private final static boolean LOCAL_DEBUG = false;
 
+    // database access constants for branding resource map cache table
+    private final static String[] BRANDING_RESOURCE_MAP_CACHE_PROJECTION = {
+        Im.BrandingResourceMapCache.PROVIDER_ID,
+        Im.BrandingResourceMapCache.APP_RES_ID,
+        Im.BrandingResourceMapCache.PLUGIN_RES_ID
+    };
+    private final static int BRANDING_RESOURCE_MAP_CACHE_PROVIDER_ID_COLUMN = 0;
+    private final static int BRANDING_RESOURCE_MAP_CACHE_APP_RES_ID_COLUMN = 1;
+    private final static int BRANDING_RESOURCE_MAP_CACHE_PLUGIN_RES_ID_COLUMN = 2;
+
     private ArrayList<String> mProviderNames;
     private HashMap<String, String> mPackageNames;
     private HashMap<String, String> mClassNames;
@@ -58,12 +68,18 @@ public class FrontDoorPlugin extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        loadThirdPartyPlugins();
-        loadBrandingResources();
+        // temporary provider ID<->Name mappings
+        HashMap<String, Long> providerNameToId = new HashMap<String, Long>();
+        HashMap<Long, String> providerIdToName = new HashMap<Long, String>();
+
+        loadThirdPartyPlugins(providerNameToId, providerIdToName);
+        loadBrandingResources(providerNameToId, providerIdToName);
+
         return mBinder;
     }
 
-    private void loadThirdPartyPlugins() {
+    private void loadThirdPartyPlugins(HashMap<String, Long> providerNameToId,
+            HashMap<Long, String> providerIdToName) {
         mProviderNames = new ArrayList<String>();
         mPackageNames = new HashMap<String, String>();
         mClassNames = new HashMap<String, String>();
@@ -100,7 +116,9 @@ public class FrontDoorPlugin extends Service {
             mClassNames.put(providerName, serviceInfo.name);
             mSrcPaths.put(providerName, serviceInfo.applicationInfo.sourceDir);
 
-            updateProviderDb(providerName, providerFullName, signUpUrl);
+            long providerId = updateProviderDb(providerName, providerFullName, signUpUrl);
+            providerNameToId.put(providerName, providerId);
+            providerIdToName.put(providerId, providerName);
         }
     }
 
@@ -151,9 +169,102 @@ public class FrontDoorPlugin extends Service {
         return providerId;
     }
 
-    private void loadBrandingResources() {
+    private void loadBrandingResources(HashMap<String, Long> providerNameToId,
+            HashMap<Long, String> providerIdToName) {
         mBrandingResources = new HashMap<String, Map<Integer, Integer>>();
 
+        if (loadBrandingResourcesFromCache(providerIdToName) <= 0) {
+            Log.w(TAG, "Can't load from cache. Load from plugins...");
+            loadBrandingResourcesFromPlugins();
+            saveBrandingResourcesToCache(providerNameToId);
+        }
+    }
+
+    /**
+     * Try loading the branding resources from the database.
+     * @param providerIdToName a map between provider ID and name.
+     * @return 0 if the resources are not cached yet; otherwise the total count of res id
+     * pairs.
+     */
+    private int loadBrandingResourcesFromCache(HashMap<Long, String> providerIdToName) {
+        ContentResolver cr = getContentResolver();
+        Cursor c = cr.query(
+                Im.BrandingResourceMapCache.CONTENT_URI, /* URI */
+                BRANDING_RESOURCE_MAP_CACHE_PROJECTION,  /* projection */
+                null,                                    /* where */
+                null,                                    /* where args */
+                null                                     /* sort */);
+
+        int count = 0;
+        if (c != null) {
+            try {
+                while (c.moveToNext()) {
+                    long providerId = c.getLong(BRANDING_RESOURCE_MAP_CACHE_PROVIDER_ID_COLUMN);
+                    String provider = providerIdToName.get(providerId);
+                    if (TextUtils.isEmpty(provider)) {
+                        Log.e(TAG, "Empty provider name in branding resource map cache table.");
+                        continue;
+                    }
+                    int appResId = c.getInt(BRANDING_RESOURCE_MAP_CACHE_APP_RES_ID_COLUMN);
+                    int pluginResId = c.getInt(BRANDING_RESOURCE_MAP_CACHE_PLUGIN_RES_ID_COLUMN);
+
+                    Map<Integer, Integer> resMap = mBrandingResources.get(provider);
+                    if (resMap == null) {
+                        resMap = new HashMap<Integer, Integer>();
+                        mBrandingResources.put(provider, resMap);
+                    }
+
+                    resMap.put(appResId, pluginResId);
+
+                    count++;
+                }
+            } finally {
+                c.close();
+            }
+        } else {
+            Log.e(TAG, "Query of branding resource map cache table returns empty cursor"); 
+        }
+
+        return count;
+    }
+
+    /**
+     * Cache the loaded branding resources in IM database table, so that we can use it
+     * directly and save loading time.
+     * @param providerNameToId a map between provider name and ID.
+     */
+    private void saveBrandingResourcesToCache(HashMap<String, Long> providerNameToId) {
+        ContentResolver cr = getContentResolver();
+
+        ArrayList<ContentValues> valuesList = new ArrayList<ContentValues>();
+        for (String provider : mBrandingResources.keySet()) {
+            long providerId = providerNameToId.get(provider);
+
+            Map<Integer, Integer> resMap = mBrandingResources.get(provider);
+            for (int appResId : resMap.keySet()) {
+                int pluginResId = resMap.get(appResId);
+
+                ContentValues values = new ContentValues();
+                values.put(Im.BrandingResourceMapCache.PROVIDER_ID, providerId);
+                values.put(Im.BrandingResourceMapCache.APP_RES_ID, appResId);
+                values.put(Im.BrandingResourceMapCache.PLUGIN_RES_ID, pluginResId);
+
+                valuesList.add(values);
+            }
+        }
+
+        int size = valuesList.size();
+        if (size > 0) {
+            cr.bulkInsert(
+                    Im.BrandingResourceMapCache.CONTENT_URI,
+                    valuesList.toArray(new ContentValues[size]));
+        }
+    }
+
+    /**
+     * Load the branding resources from all plugin packages.
+     */
+    private void loadBrandingResourcesFromPlugins() {
         for (String provider : mProviderNames) {
             if (!mBrandingResources.containsKey(provider)) {
                 if (LOCAL_DEBUG) log("loadBrandingResources: load resource map for " + provider);
@@ -166,6 +277,9 @@ public class FrontDoorPlugin extends Service {
         }
     }
 
+    /**
+     * Load branding resources from one plugin package.
+     */
     private Map<Integer, Integer> loadBrandingResource(String className, String srcPath) {
         Map retVal = null;
 

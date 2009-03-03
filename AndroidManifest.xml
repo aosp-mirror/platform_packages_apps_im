@@ -136,7 +136,7 @@
 
         <activity android:name=".app.NewChatActivity"
                 android:configChanges="orientation|keyboardHidden"
-                android:windowSoftInputMode="stateHidden">
+                android:windowSoftInputMode="stateUnchanged">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

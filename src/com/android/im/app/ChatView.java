@@ -348,15 +348,27 @@ public class ChatView extends LinearLayout {
                         case KeyEvent.KEYCODE_ENTER:
                             if (event.isAltPressed()) {
                                 mEdtInput.append("\n");
-                            } else {
-                                handleEnterKey();
+                                return true;
                             }
-                            return true;
                     }
                 }
                 return false;
             }
         });
+
+        mEdtInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event != null) {
+                    if (event.isAltPressed()) {
+                        return false;
+                    }
+                }
+
+                sendMessage();
+                return true;
+            }
+        });
+
         // TODO: this is a hack to implement BUG #1611278, when dispatchKeyEvent() works with
         // the soft keyboard, we should remove this hack.
         mEdtInput.addTextChangedListener(new TextWatcher() {
@@ -409,26 +421,6 @@ public class ChatView extends LinearLayout {
         unregisterChatListener();
         unregisterForConnEvents();
         unregisterChatSessionListener();
-    }
-
-    private void handleEnterKey() {
-        Configuration config = getResources().getConfiguration();
-        if (config.orientation == config.ORIENTATION_LANDSCAPE) {
-            // in the landscape mode, we'll send the message if the user is using a physical
-            // keyboard. However, on the soft keyboard, we'll close the keyboard and put the
-            // focus on the Send button, in order to prevent accidental sending the message.
-            if (config.hardKeyboardHidden == config.HARDKEYBOARDHIDDEN_NO) {
-                sendMessage();
-            } else {
-                closeSoftKeyboard();
-                mSendButton.requestFocus();
-            }
-        } else {
-            // in the portrait mode, the user would always be using the soft keyboard, so pressing
-            // the Enter key would close the keyboard and puts the focus on the Send button.
-            closeSoftKeyboard();
-            mSendButton.requestFocus();
-        }
     }
 
     private void closeSoftKeyboard() {

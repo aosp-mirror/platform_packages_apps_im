@@ -15,12 +15,12 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"MI"</string>
+    <string name="im_label">"Chat"</string>
     <string name="menu_cancel_signin">"Annuler la connexion"</string>
     <string name="menu_add_contact">"Ajouter un contact"</string>
     <string name="menu_remove_contact">"Supprimer le contact"</string>
     <string name="menu_block_contact">"Bloquer le contact"</string>
-    <string name="menu_view_blocked">"Bloqué"</string>
+    <string name="menu_view_blocked">"Bloqués"</string>
     <string name="menu_view_accounts">"Liste des comptes"</string>
     <string name="menu_settings">"Paramètres"</string>
     <string name="menu_start_chat">"Lancer un chat"</string>
@@ -46,12 +46,12 @@
     <string name="add_account">"Ajouter un compte <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="label_username">"Nom d\'utilisateur :"</string>
     <string name="label_password">"Mot de passe :"</string>
-    <string name="remember_password">"Mémoriser mon mot de passe."</string>
-    <string name="keep_me_signed_in">"Me connecter automatiquement."</string>
+    <string name="remember_password">"Mémoriser mon mot de passe"</string>
+    <string name="keep_me_signed_in">"Me connecter automatiquement"</string>
     <string name="sign_up">"Vous ne possédez pas de compte ?"</string>
     <string name="check_auto_sign_in">"Cette option vous connecte automatiquement à chaque fois que vous ouvrez cette application. Pour désactiver l\'option, déconnectez-vous, puis décochez la case \"Connexion automatique\"."</string>
     <string name="sign_in">"Se connecter"</string>
-    <string name="signing_in_to">"Se connecter à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_to">"Connexion à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Connexion..."</string>
     <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
     <skip />
@@ -120,12 +120,12 @@
     <string name="setting_title">"Paramètres généraux"</string>
     <string name="hide_offline_contacts">"Masquer les contacts hors ligne"</string>
     <string name="notification_group_title">"Paramètres des notifications"</string>
-    <string name="notification_enabled_title">"Notifications de MI"</string>
-    <string name="notification_enabled_summary">"Signaler la réception d\'un MI dans la barre d\'état"</string>
-    <string name="notification_vibrate_title">"Vibrer"</string>
-    <string name="notification_vibrate_summary">"Vibre également à la réception d\'un MI"</string>
+    <string name="notification_enabled_title">"Notifications de chat"</string>
+    <string name="notification_enabled_summary">"Signaler la réception d\'un chat dans la barre d\'état"</string>
+    <string name="notification_vibrate_title">"Vibreur"</string>
+    <string name="notification_vibrate_summary">"Vibre également à la réception d\'un chat"</string>
     <string name="notification_sound_title">"Son"</string>
-    <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un MI"</string>
+    <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un chat"</string>
     <string name="notification_ringtone_title">"Sélectionner une sonnerie"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre un chat en groupe."</string>
     <string name="invitation_sent_prompt">"L\'invitation a été envoyé à <xliff:g id="USER">%1$s</xliff:g>."</string>
@@ -145,8 +145,8 @@
     <string name="delete_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" supprimé."</string>
     <string name="block_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" bloqué."</string>
     <string name="unblock_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" débloqué."</string>
-    <string name="perm_label">"démarrer le service de MI"</string>
-    <string name="perm_desc">"Permet aux applications de lancer le service de MI via Intent."</string>
+    <string name="perm_label">"démarrer le service de chat"</string>
+    <string name="perm_desc">"Permet aux applications de lancer le service de chat via Intent."</string>
     <string name="error">"Avertissement"</string>
     <string name="login_service_failed">"Connexion au service <xliff:g id="SERVICE">%1$s</xliff:g> impossible. Veuillez réessayer ultérieurement."\n"(Détails : <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"La liste n\'a pas été ajoutée."</string>
@@ -175,7 +175,7 @@
     <string name="session_expired">"La session a expiré. Veuillez vous reconnecter."</string>
     <string name="forced_logout">"vous vous êtes connecté depuis un autre client."</string>
     <string name="already_logged_in">"vous êtes déjà connecté depuis un autre client."</string>
-    <string name="msisdn_error">"Désolé, impossible de lire le numéro de téléphone de votre carte SIM. Veuillez contacter votre opérateur pour obtenir de l\'aide."</string>
+    <string name="msisdn_error">"Impossible de lire le numéro de téléphone de votre carte SIM. Veuillez contacter votre opérateur pour obtenir de l\'aide."</string>
     <string name="not_signed_in">"Vous n\'êtes pas connecté actuellement."</string>
     <string name="general_error">"Code d\'erreur <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
@@ -184,8 +184,8 @@
     <item>"Clin d\'oeil"</item>
     <item>"Tire la langue"</item>
     <item>"Surpris"</item>
-    <item>"Bisous"</item>
-    <item>"Crier"</item>
+    <item>"Bisou"</item>
+    <item>"Hurle"</item>
     <item>"Cool"</item>
     <item>"Argent"</item>
     <item>"Embarrassé"</item>
@@ -194,7 +194,7 @@
     <item>"Indécis"</item>
     <item>"Pleure"</item>
     <item>"Motus et bouche cousue"</item>
-    <item>"Rire"</item>
+    <item>"Rigole"</item>
     <item>"Confus"</item>
   </string-array>
   <string-array name="default_smiley_texts">
