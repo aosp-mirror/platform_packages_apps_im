@@ -15,12 +15,12 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"Chat"</string>
+    <string name="im_label">"IM"</string>
     <string name="menu_cancel_signin">"Annulla accesso"</string>
     <string name="menu_add_contact">"Aggiungi contatto"</string>
     <string name="menu_remove_contact">"Elimina contatto"</string>
     <string name="menu_block_contact">"Blocca contatto"</string>
-    <string name="menu_view_blocked">"Bloccati"</string>
+    <string name="menu_view_blocked">"Bloccato"</string>
     <string name="menu_view_accounts">"Elenco account"</string>
     <string name="menu_settings">"Impostazioni"</string>
     <string name="menu_start_chat">"Inizia conversazione"</string>
@@ -120,12 +120,12 @@
     <string name="setting_title">"Impostazioni generali"</string>
     <string name="hide_offline_contacts">"Nascondi contatti offline"</string>
     <string name="notification_group_title">"Impostazioni notifiche"</string>
-    <string name="notification_enabled_title">"Notifiche chat"</string>
-    <string name="notification_enabled_summary">"Notifica in barra di stato all\'arrivo di un messaggio"</string>
+    <string name="notification_enabled_title">"Notifiche IM"</string>
+    <string name="notification_enabled_summary">"Notifica in barra di stato quando arriva msg IM"</string>
     <string name="notification_vibrate_title">"Vibrazione"</string>
-    <string name="notification_vibrate_summary">"Vibra anche all\'arrivo di msg chat"</string>
+    <string name="notification_vibrate_summary">"Vibra anche quando arriva msg IM"</string>
     <string name="notification_sound_title">"Allarme"</string>
-    <string name="notification_sound_summary">"Usa anche suoneria all\'arrivo di msg chat"</string>
+    <string name="notification_sound_summary">"Usa suoneria anche quando arriva msg IM"</string>
     <string name="notification_ringtone_title">"Seleziona suoneria"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> ti ha invitato a unirti a una conversazione di gruppo."</string>
     <string name="invitation_sent_prompt">"L\'invito è stato inviato a <xliff:g id="USER">%1$s</xliff:g>."</string>
@@ -181,20 +181,20 @@
   <string-array name="default_smiley_names">
     <item>"Felice"</item>
     <item>"Triste"</item>
-    <item>"Occhiolino"</item>
-    <item>"Linguaccia"</item>
+    <item>"Fare l\'occhiolino"</item>
+    <item>"Lingua fuori"</item>
     <item>"Sorpreso"</item>
-    <item>"Bacio"</item>
-    <item>"Urlo"</item>
-    <item>"Fico"</item>
-    <item>"Fatti, non parole"</item>
+    <item>"Baciare"</item>
+    <item>"Urlare"</item>
+    <item>"Favoloso"</item>
+    <item>"Bocca a forma di dollaro"</item>
     <item>"Gaffe"</item>
     <item>"Imbarazzato"</item>
     <item>"Angelo"</item>
     <item>"Indeciso"</item>
-    <item>"Piango"</item>
+    <item>"Piangere"</item>
     <item>"Labbra cucite"</item>
-    <item>"Risata"</item>
+    <item>"Sorridere"</item>
     <item>"Confuso"</item>
   </string-array>
   <string-array name="default_smiley_texts">

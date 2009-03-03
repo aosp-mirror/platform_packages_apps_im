@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.Im;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,6 +34,8 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,8 +81,12 @@ public class ContactView extends LinearLayout {
     private TextView mLine2;
     private TextView mTimeStamp;
 
+    private Handler mHandler;
+    private boolean mLayoutDirty;
+
     public ContactView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mLayoutDirty = true;
     }
 
     @Override
@@ -91,6 +98,58 @@ public class ContactView extends LinearLayout {
         mLine2 = (TextView) findViewById(R.id.line2);
         mLine2.setCompoundDrawablePadding(5);
         mTimeStamp = (TextView)findViewById(R.id.timestamp);
+
+        mHandler = new Handler();
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+        if(selected) {
+            // While layout, the width of children is unknown, we have to start
+            // animation when layout is done.
+            if (mLayoutDirty) {
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        startAnimationNow();
+                    }
+                });
+            } else {
+                startAnimationNow();
+            }
+        } else {
+            mLine2.clearAnimation();
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        mLayoutDirty = false;
+        super.onLayout(changed, l, t, r, b);
+    }
+
+    @Override
+    public void requestLayout() {
+        super.requestLayout();
+        mLayoutDirty = true;
+    }
+
+    /*package*/ void startAnimationNow() {
+        View parent = (View)mLine2.getParent();
+        int width = mLine2.getWidth();
+
+        int parentWidth = parent.getWidth() - parent.getPaddingLeft()
+                - parent.getPaddingRight();
+        if(width > parentWidth) {
+            int fromXDelta = parentWidth;
+            int toXDelta = - width;
+            int duration = (fromXDelta - toXDelta) * 32;
+            Animation animation = new TranslateAnimation(fromXDelta, toXDelta, 0, 0);
+            animation.setDuration(duration);
+            animation.setRepeatMode(Animation.RESTART);
+            animation.setRepeatCount(Animation.INFINITE);
+            mLine2.startAnimation(animation);
+        }
     }
 
     public void bind(Cursor cursor, String underLineText, boolean scrolling) {
@@ -204,7 +263,7 @@ public class ContactView extends LinearLayout {
 
         View contactInfoPanel = findViewById(R.id.contactInfo);
         if (hasChat && showChatMsg) {
-            contactInfoPanel.setBackgroundResource(R.drawable.bubble);
+            contactInfoPanel.setBackgroundResource(R.drawable.list_item_im_bubble);
             mLine1.setTextColor(r.getColor(R.color.chat_contact));
         } else {
             contactInfoPanel.setBackgroundDrawable(null);

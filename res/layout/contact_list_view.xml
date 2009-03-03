@@ -27,13 +27,13 @@
         android:id="@+id/userPresence"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="64dip"
-        android:layout_centerVertical="true"
-        android:paddingTop="9dip"
-        android:paddingLeft="5dip"
-        android:paddingBottom="5dip"
+        android:layout_height="wrap_content"
+        android:paddingLeft="9dip"
+        android:paddingTop="5dip"
         android:paddingRight="5dip"
-        android:background="#ffa9a9a9">
+        android:paddingBottom="5dip"            
+        android:layout_centerVertical="true"
+        android:background="#ffff">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,20 +57,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMediumInverse"
-            android:visibility="gone"/>
-
-        <TextView android:id="@+id/statusView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingTop="5dip"
-            android:paddingLeft="3dip"
-            android:singleLine="true"
-            android:visibility="gone"
-            android:textAppearance="?android:attr/textAppearanceLargeInverse"/>
+            android:layout_height="wrap_content"/>
 
     </com.android.im.app.UserPresenceView>
 

@@ -34,9 +34,9 @@
     <string name="menu_plus">"Meny+"</string>
     <string name="default_input_title">"Inndata"</string>
     <string name="confirm">"Bekreft"</string>
-    <string name="confirm_delete_contact">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" vil bli slettet."</string>
-    <string name="confirm_block_contact">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" vil bli blokkert."</string>
-    <string name="confirm_unblock_contact">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" vil bli avblokkert."</string>
+    <string name="confirm_delete_contact">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" vil bli slettet."</string>
+    <string name="confirm_block_contact">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" vil bli blokkert."</string>
+    <string name="confirm_unblock_contact">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" vil bli avblokkert."</string>
     <string name="ok">"OK"</string>
     <string name="cancel">"Avbryt"</string>
     <string name="yes">"OK"</string>
@@ -49,7 +49,7 @@
     <string name="remember_password">"Husk passord."</string>
     <string name="keep_me_signed_in">"Logg inn automatisk."</string>
     <string name="sign_up">"Mangler du konto?"</string>
-    <string name="check_auto_sign_in">"Dette valget logger deg automatisk inn hver gang du åpner applikasjonen. For å avmerke valget, logg ut og fjern så haken ved \"Logg inn automatis\"."</string>
+    <string name="check_auto_sign_in">"Dette valget logger deg automatisk inn hver gang du åpner applikasjonen. For å avmerke valget, logg ut og fjern så haken ved \\\\\\\"Logg inn automatis\\\\\\\"."</string>
     <string name="sign_in">"Logg inn"</string>
     <string name="signing_in_to">"Logger inn på <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Logger inn…"</string>
@@ -143,10 +143,10 @@
     <string name="subscription_notify_text">"Ny venneinvitasjon fra <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="notify_groupchat_label">"Invitasjon til gruppesamtale"</string>
     <string name="group_chat_invite_notify_text">"Ny invitasjon til gruppesamtale fra <xliff:g id="USER">%s</xliff:g>"</string>
-    <string name="add_contact_success">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" ble lagt til."</string>
-    <string name="delete_contact_success">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" ble slettet."</string>
-    <string name="block_contact_success">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" ble blokkert."</string>
-    <string name="unblock_contact_success">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" ble avblokkert."</string>
+    <string name="add_contact_success">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" ble lagt til."</string>
+    <string name="delete_contact_success">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" ble slettet."</string>
+    <string name="block_contact_success">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" ble blokkert."</string>
+    <string name="unblock_contact_success">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" ble avblokkert."</string>
     <string name="perm_label">"start lynmeldingstjeneste"</string>
     <string name="perm_desc">"Tillater applikasjoner å starte lynmeldingstjenesten."</string>
     <string name="error">"NB"</string>
@@ -160,7 +160,7 @@
     <string name="load_contact_list_failed">"Kontaktlisten ble ikke lastet."</string>
     <string name="cant_connect_to_server">"Kan ikke koble til tjeneren. Sjekk tilkoblingen."</string>
     <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> finnes allerede i kontaktlisten."</string>
-    <string name="contact_blocked">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" er nå blokkert."</string>
+    <string name="contact_blocked">"Kontakten \\\\\\\"<xliff:g id="USER">%1$s</xliff:g>\\\\\\\" er nå blokkert."</string>
     <string name="contact_not_loaded">"Vent mens kontaktlisten lastes."</string>
     <string name="network_error">"Det oppsto en nettfeil."</string>
     <string name="service_not_support">"Tjeneren støtter ikke denne funksjonen."</string>
@@ -212,8 +212,8 @@
     <item>":-!"</item>
     <item>":-["</item>
     <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\\\\\'("</item>
+    <item>":-\\\\\\\\"</item>
+    <item>":\\\\\\\'("</item>
     <item>":-X"</item>
     <item>":-D"</item>
     <item>"o_O"</item>
