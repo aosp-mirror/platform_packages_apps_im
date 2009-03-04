@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">"即時訊息"</string>
+    <string name="menu_cancel_signin">"取消登入"</string>
+    <string name="menu_add_contact">"新增連絡人"</string>
+    <string name="menu_remove_contact">"刪除連絡人"</string>
+    <string name="menu_block_contact">"封鎖連絡人"</string>
+    <string name="menu_view_blocked">"封鎖"</string>
+    <string name="menu_view_accounts">"帳戶清單"</string>
+    <string name="menu_settings">"設定"</string>
+    <string name="menu_start_chat">"開始交談"</string>
+    <string name="menu_sign_out">"登出"</string>
+    <string name="menu_view_profile">"觀看個人檔案"</string>
+    <string name="menu_end_conversation">"結束交談"</string>
+    <string name="menu_view_contact_list">"連絡人清單"</string>
+    <string name="menu_invite_contact">"邀請…"</string>
+    <string name="menu_switch_chats">"切換交談"</string>
+    <string name="menu_insert_smiley">"插入表情符號"</string>
+    <string name="menu_plus">"選單+"</string>
+    <string name="default_input_title">"輸入"</string>
+    <string name="confirm">"確認"</string>
+    <string name="confirm_delete_contact">"「<xliff:g id="USER">%1$s</xliff:g>」會被刪除。"</string>
+    <string name="confirm_block_contact">"封鎖「<xliff:g id="USER">%1$s</xliff:g>」。"</string>
+    <string name="confirm_unblock_contact">"「<xliff:g id="USER">%1$s</xliff:g>」會被解除封鎖。"</string>
+    <string name="ok">"確定"</string>
+    <string name="cancel">"取消"</string>
+    <string name="yes">"確定"</string>
+    <string name="no">"取消"</string>
+    <string name="signed_out_prompt">"您已登出 <xliff:g id="ACCOUNT">%1$s</xliff:g>。"</string>
+    <string name="signed_out_prompt_with_error">"由於 <xliff:g id="REASON">%2$s</xliff:g>，您已登出 <xliff:g id="ACCOUNT">%1$s</xliff:g>。"</string>
+    <string name="add_account">"新增 <xliff:g id="ACCOUNT">%1$s</xliff:g> 帳戶"</string>
+    <string name="label_username">"使用者名稱："</string>
+    <string name="label_password">"密碼："</string>
+    <string name="remember_password">"記住我的密碼。"</string>
+    <string name="keep_me_signed_in">"自動登入"</string>
+    <string name="sign_up">"您有帳戶嗎？"</string>
+    <string name="check_auto_sign_in">"此選項可以讓您開啟應用程式時自動登入。若要停用請登出，並清除「自動登入」核取方塊。"</string>
+    <string name="sign_in">"登入"</string>
+    <string name="signing_in_to">"登入 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_wait">"登入中…"</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
+    <string name="ongoing_conversation">"進行中的交談 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="online_count">"線上人數 <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="subscriptions">"邀請朋友"</string>
+    <string name="unknown_contact">"("<i>" 未知的 "</i>")"</string>
+    <string name="empty_contact_group">"沒有連絡人"</string>
+    <string name="empty_conversation_group">"沒有對話"</string>
+    <string name="contacts_picker_title">"選取要邀請的連絡人"</string>
+    <string name="contact_filter_hint">"輸入關鍵字尋找連絡人"</string>
+    <string name="empty_contact_list">"找不到連絡人。"</string>
+    <string name="blocked_list_title">"已封鎖連絡人 - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"沒有封鎖的連絡人。"</string>
+    <string name="contact_profile_title">"連絡人檔案"</string>
+    <string name="label_status">"狀態："</string>
+    <string name="label_client_type">"客戶端類型："</string>
+    <string name="client_type_computer">"電腦"</string>
+    <string name="client_type_mobile">"行動"</string>
+    <string name="presence_available">"線上"</string>
+    <string name="presence_busy">"忙碌"</string>
+    <string name="presence_away">"外出"</string>
+    <string name="presence_idle">"閒置"</string>
+    <string name="presence_offline">"離線"</string>
+    <string name="presence_invisible">"顯示離線"</string>
+    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
+    <string name="data_channel_label">"資料頻道"</string>
+    <string name="data_encoding_label">"紀錄日期"</string>
+    <string name="cir_channel_label">"多重路徑頻道"</string>
+    <string name="host_label">"主機"</string>
+    <string name="msisdn_label">"MSISDN"</string>
+    <string name="http">"HTTP"</string>
+    <string name="sms">"SMS"</string>
+    <string name="tcp">"TCP"</string>
+    <string name="xml">"XML"</string>
+    <string name="wbxml">"WBXML"</string>
+    <string name="save">"儲存"</string>
+    <string name="chat_with">"與 <xliff:g id="USER">%1$s</xliff:g> 交談"</string>
+    <string name="me">"我"</string>
+    <string name="compose_hint">"輸入文字開始撰寫"</string>
+    <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> 在線上"</string>
+    <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> 顯示離開"</string>
+    <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> 目前忙碌"</string>
+    <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> 顯示離線"</string>
+    <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> 加入交談"</string>
+    <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> 已離開"</string>
+    <string name="time_stamp" format="date">"'傳送時間：'<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>'，'<xliff:g id="DATE">EEEE</xliff:g>"</string>
+    <string name="send">"傳送"</string>
+    <string name="msg_sent_failed">"訊息無法傳送。"</string>
+    <string name="disconnected_warning">"與伺服器連線中斷。您的訊息將在下次登入時傳送。"</string>
+    <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> 顯示離線。您的訊息將在 <xliff:g id="USER_1">%1$s</xliff:g> 登入時傳送。"</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> 不在您的連絡人清單。"</string>
+    <string name="select_link_title">"選取連結"</string>
+    <string name="empty_chat_list">"沒有交談"</string>
+    <string name="add_contact_title">"新增連絡人"</string>
+    <string name="input_contact_label">"您要邀請的對象電子郵件地址："</string>
+    <string name="choose_list_label">"選擇一個清單："</string>
+    <string name="invite_instruction">"輸入連絡人姓名。"</string>
+    <string name="invite_label">"傳送邀請"</string>
+    <string name="setting_title">"一般設定"</string>
+    <string name="hide_offline_contacts">"隱藏離線連絡人"</string>
+    <string name="notification_group_title">"通知設定"</string>
+    <string name="notification_enabled_title">"即時訊息通知"</string>
+    <string name="notification_enabled_summary">"收到訊息時在狀態列顯示通知"</string>
+    <string name="notification_vibrate_title">"震動"</string>
+    <string name="notification_vibrate_summary">"收到訊息時震動視窗"</string>
+    <string name="notification_sound_title">"音效"</string>
+    <string name="notification_sound_summary">"收到訊息時播放鈴聲"</string>
+    <string name="notification_ringtone_title">"選取鈴聲"</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> 邀請您加入群組交談。"</string>
+    <string name="invitation_sent_prompt">"已傳送邀請給 <xliff:g id="USER">%1$s</xliff:g>。"</string>
+    <string name="accept_invitation">"接受"</string>
+    <string name="decline_invitation">"拒絕"</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> 想要將您新增到連絡人清單。"</string>
+    <string name="approve_subscription">"接受"</string>
+    <string name="decline_subscription">"拒絕"</string>
+    <string name="approve_subscription_error">"訂閱 <xliff:g id="USER">%1$s</xliff:g> 資訊失敗。請稍後再試一次。"</string>
+    <string name="decline_subscription_error">"拒絕訂閱 <xliff:g id="USER">%1$s</xliff:g> 資訊失敗。請稍後再試一次。"</string>
+    <string name="newMessages_label">"來自 <xliff:g id="PROVIDER">%1$s</xliff:g> 的新訊息"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> 個未讀交談"</string>
+    <string name="subscription_notify_text">"<xliff:g id="USER">%s</xliff:g> 邀請您"</string>
+    <string name="notify_groupchat_label">"群組交談邀請"</string>
+    <string name="group_chat_invite_notify_text">"來自 <xliff:g id="USER">%s</xliff:g> 的群組交談邀請"</string>
+    <string name="add_contact_success">"「<xliff:g id="USER">%1$s</xliff:g>」已新增。"</string>
+    <string name="delete_contact_success">"「<xliff:g id="USER">%1$s</xliff:g>」已刪除。"</string>
+    <string name="block_contact_success">"「<xliff:g id="USER">%1$s</xliff:g>」已封鎖。"</string>
+    <string name="unblock_contact_success">"「<xliff:g id="USER">%1$s</xliff:g>」已解除封鎖。"</string>
+    <string name="perm_label">"開始即時訊息服務"</string>
+    <string name="perm_desc">"允許應用程式透過網際網路啟動即時訊息服務"</string>
+    <string name="error">"注意"</string>
+    <string name="login_service_failed">"無法登入 <xliff:g id="SERVICE">%1$s</xliff:g> 服務。請稍候再試一次。"\n" (詳細內容：<xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"清單未增加"</string>
+    <string name="block_contact_failed">"連絡人未封鎖。"</string>
+    <string name="unblock_contact_failed">"連絡人未解除封鎖。"</string>
+    <string name="select_contact">"請先選取連絡人。"</string>
+    <string name="disconnected">"連線中斷！"\n</string>
+    <string name="service_error">"服務錯誤！"</string>
+    <string name="load_contact_list_failed">"未載入連絡人清單。"</string>
+    <string name="cant_connect_to_server">"無法連線到伺服器。請檢查連線狀態。"</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> 已在您的連絡人清單。"</string>
+    <string name="contact_blocked">"「<xliff:g id="USER">%1$s</xliff:g>」已封鎖。"</string>
+    <string name="contact_not_loaded">"請等待連絡人清單載入完成。"</string>
+    <string name="network_error">"網路發生問題。"</string>
+    <string name="service_not_support">"伺服器不支援此功能。"</string>
+    <string name="invalid_password">"您輸入的密碼無效。"</string>
+    <string name="internal_server_error">"伺服器發生問題。"</string>
+    <string name="not_implemented">"伺服器不支援此功能。"</string>
+    <string name="service_unavaiable">"目前無法存取伺服器。"</string>
+    <string name="timeout">"伺服器連線逾時。"</string>
+    <string name="version_not_supported">"伺服器不支援目前版本。"</string>
+    <string name="message_queue_full">"訊息佇列已滿。"</string>
+    <string name="domain_not_supported">"伺服器不支援網域名稱轉址。"</string>
+    <string name="unknown_user">"您輸入的使用者名稱無法辨識。"</string>
+    <string name="recipient_blocked_the_user">"抱歉，您被此使用者封鎖。"</string>
+    <string name="session_expired">"登入時限已到，請重新登入。"</string>
+    <string name="forced_logout">"您已在其他程式登入。"</string>
+    <string name="already_logged_in">"您已在另一台機器上登入。"</string>
+    <string name="msisdn_error">"抱歉，無法從 SIM 卡讀取電話號碼。請與您的服務商尋求協助。"</string>
+    <string name="not_signed_in">"您尚未登入。"</string>
+    <string name="general_error">"錯誤代碼 <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"開心"</item>
+    <item>"傷心"</item>
+    <item>"眨眼"</item>
+    <item>"吐舌頭"</item>
+    <item>"驚訝"</item>
+    <item>"紅唇"</item>
+    <item>"大喊"</item>
+    <item>"酷"</item>
+    <item>"滿嘴錢"</item>
+    <item>"說錯話"</item>
+    <item>"害羞"</item>
+    <item>"天使"</item>
+    <item>"還沒決定"</item>
+    <item>"嚎啕大哭"</item>
+    <item>"不要告訴別人"</item>
+    <item>"開懷大笑"</item>
+    <item>"疑惑"</item>
+  </string-array>
+  <string-array name="default_smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"添加联系人"</string>
+    <string name="menu_remove_contact">"删除联系人"</string>
+    <string name="menu_block_contact">"阻止"</string>
+    <string name="menu_contact_list">"“联系人”列表"</string>
+    <string name="menu_start_chat">"发送即时消息"</string>
+    <string name="menu_view_profile">"好友信息"</string>
+    <string name="menu_end_conversation">"结束交谈"</string>
+    <string name="menu_switch_chats">"切换聊天"</string>
+    <string name="menu_insert_smiley">"插入表情符号"</string>
+    <string name="sign_up">"获取新帐户"</string>
+    <string name="check_save_password">"出于安全起见，如果您的手机丢失或被盗，请通过计算机访问网站并更改您的密码。"</string>
+    <string name="buddy_list_title">"“联系人”列表 - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"用户名："</string>
+    <string name="ongoing_conversation">"交谈 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"联系人信息"</string>
+    <string name="presence_available">"可用"</string>
+    <string name="add_contact_title">"添加联系人"</string>
+    <string name="input_contact_label">"您要添加的人的屏幕名称："</string>
+    <string name="invite_label">"添加好友"</string>
+  <string-array name="smiley_names">
+    <item>"开心"</item>
+    <item>"忧伤"</item>
+    <item>"眨眼"</item>
+    <item>"吐舌"</item>
+    <item>"吃惊"</item>
+    <item>"亲吻"</item>
+    <item>"叫喊"</item>
+    <item>"酷"</item>
+    <item>"财迷"</item>
+    <item>"不知所云"</item>
+    <item>"尴尬"</item>
+    <item>"天使"</item>
+    <item>"犹豫不定"</item>
+    <item>"哭泣"</item>
+    <item>"闭嘴"</item>
+    <item>"大笑"</item>
+    <item>"困惑"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

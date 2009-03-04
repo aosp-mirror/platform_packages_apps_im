@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Ajouter un contact"</string>
+    <string name="menu_remove_contact">"Supprimer un contact"</string>
+    <string name="menu_block_contact">"Bloquer"</string>
+    <string name="menu_contact_list">"Liste de contacts"</string>
+    <string name="menu_start_chat">"Envoyer un message instantané"</string>
+    <string name="menu_view_profile">"Infos sur le contact"</string>
+    <string name="menu_end_conversation">"Terminer la conversation"</string>
+    <string name="menu_switch_chats">"Changer de chat"</string>
+    <string name="menu_insert_smiley">"Insérer une émoticône"</string>
+    <string name="sign_up">"Créer un nouveau compte"</string>
+    <string name="check_save_password">"Pour votre sécurité, en cas de vol ou de perte de votre téléphone, rendez-vous sur le site Web depuis votre ordinateur et modifiez votre mot de passe."</string>
+    <string name="buddy_list_title">"Liste de contacts :<xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"Nom d\'utilisateur :"</string>
+    <string name="ongoing_conversation">"Conversations (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Infos sur le contact"</string>
+    <string name="presence_available">"Disponible"</string>
+    <string name="add_contact_title">"Ajouter le contact"</string>
+    <string name="input_contact_label">"Identifiant du contact que vous souhaitez ajouter :"</string>
+    <string name="invite_label">"Ajouter un contact"</string>
+  <string-array name="smiley_names">
+    <item>"Content"</item>
+    <item>"Triste"</item>
+    <item>"Clin d\'œil"</item>
+    <item>"Tire la langue"</item>
+    <item>"Surpris"</item>
+    <item>"Bisou"</item>
+    <item>"Hurle"</item>
+    <item>"Cool"</item>
+    <item>"Argent"</item>
+    <item>"Embarrassé"</item>
+    <item>"Gêné"</item>
+    <item>"Ange"</item>
+    <item>"Indécis"</item>
+    <item>"Pleure"</item>
+    <item>"Motus et bouche cousue"</item>
+    <item>"Rigole"</item>
+    <item>"Confus"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

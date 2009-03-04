@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Добавить контакт"</string>
+    <string name="menu_remove_contact">"Удалить контакт"</string>
+    <string name="menu_block_contact">"Заблокировать"</string>
+    <string name="menu_contact_list">"Список контактов"</string>
+    <string name="menu_start_chat">"Отправить сообщение"</string>
+    <string name="menu_view_profile">"Сведения о друге"</string>
+    <string name="menu_end_conversation">"Завершить разговор"</string>
+    <string name="menu_switch_chats">"Переключить чат"</string>
+    <string name="menu_insert_smiley">"Вставить значки настроения"</string>
+    <string name="sign_up">"Получить новый аккаунт"</string>
+    <string name="check_save_password">"В целях безопасности при утере или краже телефона откройте веб-сайт с компьютера и измените пароль."</string>
+    <string name="buddy_list_title">"Список контактов – <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"Имя пользователя:"</string>
+    <string name="ongoing_conversation">"Разговоры (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Сведения о контакте"</string>
+    <string name="presence_available">"Доступен"</string>
+    <string name="add_contact_title">"Добавить контакт"</string>
+    <string name="input_contact_label">"Экранное имя добавляемого:"</string>
+    <string name="invite_label">"Добавить друга"</string>
+  <string-array name="smiley_names">
+    <item>"Счастье"</item>
+    <item>"Грустно"</item>
+    <item>"Подмигиваю"</item>
+    <item>"Высунутый язык"</item>
+    <item>"Удивление"</item>
+    <item>"Целую"</item>
+    <item>"Кричу"</item>
+    <item>"Круто"</item>
+    <item>"Знаю, что говорю"</item>
+    <item>"Молчок"</item>
+    <item>"В смущении"</item>
+    <item>"Ангел"</item>
+    <item>"В нерешительности"</item>
+    <item>"Плачу"</item>
+    <item>"Никому не скажу"</item>
+    <item>"Смешно"</item>
+    <item>"В замешательстве"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

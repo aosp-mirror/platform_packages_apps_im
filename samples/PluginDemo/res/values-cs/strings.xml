@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Přidat kontakt"</string>
+    <string name="menu_remove_contact">"Smazat kontakt"</string>
+    <string name="menu_block_contact">"Blokovat"</string>
+    <string name="menu_contact_list">"Seznam kontaktů"</string>
+    <string name="menu_start_chat">"Odeslat zprávu"</string>
+    <string name="menu_view_profile">"Info o kamarádovi"</string>
+    <string name="menu_end_conversation">"Konec konverzace"</string>
+    <string name="menu_switch_chats">"Přepnout chat"</string>
+    <string name="menu_insert_smiley">"Vložit emotikony"</string>
+    <string name="sign_up">"Zřízení nového účtu"</string>
+    <string name="check_save_password">"Pokud je váš telefon ukraden nebo jej ztratíte, přejděte v zájmu vlastní bezpečnosti na počítači na web a změňte své heslo."</string>
+    <string name="buddy_list_title">"Seznam kontaktů – <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"Uživatelské jméno:"</string>
+    <string name="ongoing_conversation">"Konverzace (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Kontaktní informace"</string>
+    <string name="presence_available">"Povoleno"</string>
+    <string name="add_contact_title">"Přidat kontakt"</string>
+    <string name="input_contact_label">"Jméno osoby, kterou chcete přidat:"</string>
+    <string name="invite_label">"Přidat kamaráda"</string>
+  <string-array name="smiley_names">
+    <item>"Happy"</item>
+    <item>"Smutný"</item>
+    <item>"Mrkající"</item>
+    <item>"Vypláznutý jazyk"</item>
+    <item>"Překvapený"</item>
+    <item>"Pusa"</item>
+    <item>"Hej!"</item>
+    <item>"Cool"</item>
+    <item>"Cinkání zlaťáků"</item>
+    <item>"Šlápota v úsměvu"</item>
+    <item>"V rozpacích"</item>
+    <item>"Andílek"</item>
+    <item>"Nerozhodný"</item>
+    <item>"Rozplakaný"</item>
+    <item>"Ani muk"</item>
+    <item>"Smějící se"</item>
+    <item>"Zmatený"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"新增連絡人"</string>
+    <string name="menu_remove_contact">"刪除連絡人"</string>
+    <string name="menu_block_contact">"封鎖"</string>
+    <string name="menu_contact_list">"連絡人清單"</string>
+    <string name="menu_start_chat">"傳送即時訊息"</string>
+    <string name="menu_view_profile">"好友資訊"</string>
+    <string name="menu_end_conversation">"結束對談"</string>
+    <string name="menu_switch_chats">"切換交談"</string>
+    <string name="menu_insert_smiley">"插入表情符號"</string>
+    <string name="sign_up">"取得新帳戶"</string>
+    <string name="check_save_password">"為了安全起見，如果電話遺失或遭竊，請使用電腦前往該網站並變更密碼。"</string>
+    <string name="buddy_list_title">"連絡人清單 - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"使用者名稱："</string>
+    <string name="ongoing_conversation">"對談 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"連絡人資訊"</string>
+    <string name="presence_available">"可用"</string>
+    <string name="add_contact_title">"新增連絡人"</string>
+    <string name="input_contact_label">"要新增之連絡人在畫面上的名稱："</string>
+    <string name="invite_label">"新增好友"</string>
+  <string-array name="smiley_names">
+    <item>"開心"</item>
+    <item>"傷心"</item>
+    <item>"眨眼"</item>
+    <item>"吐舌頭"</item>
+    <item>"驚訝"</item>
+    <item>"紅唇"</item>
+    <item>"大喊"</item>
+    <item>"酷"</item>
+    <item>"滿嘴錢"</item>
+    <item>"說錯話"</item>
+    <item>"害羞"</item>
+    <item>"天使"</item>
+    <item>"還沒決定"</item>
+    <item>"嚎啕大哭"</item>
+    <item>"不要告訴別人"</item>
+    <item>"開懷大笑"</item>
+    <item>"疑惑"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

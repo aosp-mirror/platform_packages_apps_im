@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2008 Esmertec Inc.
+ * Copyright (C) 2008 The Android Open Source Project
+
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">Add Contact</string>
+    <string name="menu_remove_contact">Delete Contact</string>
+    <string name="menu_block_contact">Block</string>
+    <string name="menu_contact_list">Contact List</string>
+    <string name="menu_start_chat">Send IM</string>
+    <string name="menu_view_profile">Buddy Info</string>
+    <string name="menu_end_conversation">End Conversation</string>
+    <string name="menu_switch_chats">Switch Chats</string>
+    <string name="menu_insert_smiley">Insert Emoticons</string>
+    <string name="sign_up">Get a new account</string>
+    <string name="check_save_password">For your security, if your phone is lost or stolen, go to the Web site on your computer and change your password.</string>
+    <string name="buddy_list_title">Contact List - <xliff:g id="username">%1$s</xliff:g></string>
+    <string name="label_username">Username:</string>
+    <string name="ongoing_conversation">Conversations (<xliff:g id="number">%1$d</xliff:g>)</string>
+    <string name="contact_profile_title">Contact Info</string>
+    <string name="presence_available">Available</string>
+    <string name="add_contact_title">Add Contact</string>
+    <string name="input_contact_label">Screen name of person you wish to add:</string>
+    <string name="invite_label">Add Buddy</string>
+
+    <string-array name="smiley_names">
+        <item>Happy</item>
+        <item>Sad</item>
+        <item>Winking</item>
+        <item>Tongue sticking out</item>
+        <item>Surprised</item>
+        <item>Kissing</item>
+        <item>Yelling</item>
+        <item>Cool</item>
+        <item>Money mouth</item>
+        <item>Foot in mouth</item>
+        <item>Embarrassed</item>
+        <item>Angel</item>
+        <item>Undecided</item>
+        <item>Crying</item>
+        <item>Lips are sealed</item>
+        <item>Laughing</item>
+        <item>Confused</item>
+    </string-array>
+
+    <string-array name="smiley_texts">
+        <item>:-)</item>
+        <item>:-(</item>
+        <item>;-)</item>
+        <item>:-P</item>
+        <item>=-O</item>
+        <item>:-*</item>
+        <item>:O</item>
+        <item>B-)</item>
+        <item>:-$</item>
+        <item>:-!</item>
+        <item>:-[</item>
+        <item>O:-)</item>
+        <item>:-\\</item>
+        <item>:\'(</item>
+        <item>:-X</item>
+        <item>:-D</item>
+        <item>o_O</item>
+    </string-array>
+</resources>
