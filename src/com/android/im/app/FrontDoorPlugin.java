@@ -16,6 +16,7 @@
  */
 package com.android.im.app;
 
+import com.android.im.plugin.ImConfigNames;
 import com.android.im.plugin.ImPluginConstants;
 
 import android.app.Service;
@@ -62,28 +63,26 @@ public class FrontDoorPlugin extends Service {
 
     private ArrayList<String> mProviderNames;
     private HashMap<String, String> mPackageNames;
-    private HashMap<String, String> mClassNames;
-    private HashMap<String, String> mSrcPaths;
     private HashMap<String, Map<Integer, Integer>> mBrandingResources;
 
     @Override
     public IBinder onBind(Intent intent) {
-        // temporary provider ID<->Name mappings
+        // temporary mappings
         HashMap<String, Long> providerNameToId = new HashMap<String, Long>();
         HashMap<Long, String> providerIdToName = new HashMap<Long, String>();
+        HashMap<String, Class> classes = new HashMap<String, Class>();
 
-        loadThirdPartyPlugins(providerNameToId, providerIdToName);
-        loadBrandingResources(providerNameToId, providerIdToName);
+        loadThirdPartyPlugins(providerNameToId, providerIdToName, classes);
+        loadBrandingResources(providerNameToId, providerIdToName, classes);
 
         return mBinder;
     }
 
-    private void loadThirdPartyPlugins(HashMap<String, Long> providerNameToId,
-            HashMap<Long, String> providerIdToName) {
+    private void loadThirdPartyPlugins(
+            HashMap<String, Long> providerNameToId, HashMap<Long, String> providerIdToName,
+            HashMap<String, Class> classes) {
         mProviderNames = new ArrayList<String>();
         mPackageNames = new HashMap<String, String>();
-        mClassNames = new HashMap<String, String>();
-        mSrcPaths = new HashMap<String, String>();
 
         PackageManager pm = getPackageManager();
         List<ResolveInfo> plugins = pm.queryIntentServices(
@@ -103,7 +102,8 @@ public class FrontDoorPlugin extends Service {
             Bundle metaData = serviceInfo.metaData;
             if (metaData != null) {
                 providerName = metaData.getString(ImPluginConstants.METADATA_PROVIDER_NAME);
-                providerFullName = metaData.getString(ImPluginConstants.METADATA_PROVIDER_FULL_NAME);
+                providerFullName =
+                    metaData.getString(ImPluginConstants.METADATA_PROVIDER_FULL_NAME);
                 signUpUrl = metaData.getString(ImPluginConstants.METADATA_SIGN_UP_URL);
             }
             if (TextUtils.isEmpty(providerName) || TextUtils.isEmpty(providerFullName)) {
@@ -113,65 +113,34 @@ public class FrontDoorPlugin extends Service {
 
             mProviderNames.add(providerName);
             mPackageNames.put(providerName, serviceInfo.packageName);
-            mClassNames.put(providerName, serviceInfo.name);
-            mSrcPaths.put(providerName, serviceInfo.applicationInfo.sourceDir);
 
-            long providerId = updateProviderDb(providerName, providerFullName, signUpUrl);
+            String className = serviceInfo.name;
+            String srcPath = serviceInfo.applicationInfo.sourceDir;
+            Class pluginClass = loadClass(className, srcPath);
+            if (pluginClass == null) {
+                Log.e(TAG, "Can not load package for plugin " + providerName);
+                continue;
+            }
+            classes.put(providerName, pluginClass);
+
+            Map<String, String> config = loadProviderConfigFromPlugin(pluginClass);
+            if (config == null) {
+                Log.e(TAG, "Can not load config for plugin " + providerName);
+                continue;
+            }
+            config.put(ImConfigNames.PLUGIN_PATH, srcPath);
+            config.put(ImConfigNames.PLUGIN_CLASS, className);
+
+            long providerId = DatabaseUtils.updateProviderDb(getContentResolver(),
+                    providerName, providerFullName, signUpUrl, config);
             providerNameToId.put(providerName, providerId);
             providerIdToName.put(providerId, providerName);
         }
     }
 
-    private long updateProviderDb(
-            String providerName, String providerFullName, String signUpUrl) {
-        long providerId;
-        ContentResolver cr = getContentResolver();
-        String where = Im.Provider.NAME + "=?";
-        String[] selectionArgs = new String[]{providerName};
-        Cursor c = cr.query(Im.Provider.CONTENT_URI, null, where, selectionArgs, null);
-
-        try {
-            if (c.moveToFirst()) {
-                providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
-                String origFullName = c.getString(
-                        c.getColumnIndexOrThrow(Im.Provider.FULLNAME));
-                String origCategory = c.getString(
-                        c.getColumnIndexOrThrow(Im.Provider.CATEGORY));
-                String origSignupUrl = c.getString(
-                        c.getColumnIndexOrThrow(Im.Provider.SIGNUP_URL));
-                ContentValues values = new ContentValues();
-                if (origFullName == null || !origFullName.equals(providerFullName)) {
-                    values.put(Im.Provider.FULLNAME, providerFullName);
-                }
-                if (origCategory == null) {
-                    values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-                }
-                if (origSignupUrl == null || !origSignupUrl.equals(signUpUrl)) {
-                    values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-                }
-                if (values.size() > 0) {
-                    Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
-                    cr.update(uri, values, null, null);
-                }
-            } else {
-                ContentValues values = new ContentValues(3);
-                values.put(Im.Provider.NAME, providerName);
-                values.put(Im.Provider.FULLNAME, providerFullName);
-                values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-                values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-
-                Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
-                providerId = ContentUris.parseId(result);
-            }
-        } finally {
-            c.close();
-        }
-
-        return providerId;
-    }
-
-    private void loadBrandingResources(HashMap<String, Long> providerNameToId,
-            HashMap<Long, String> providerIdToName) {
+    private void loadBrandingResources(
+            HashMap<String, Long> providerNameToId, HashMap<Long, String> providerIdToName,
+            HashMap<String, Class> classes) {
         mBrandingResources = new HashMap<String, Map<Integer, Integer>>();
 
         // first try load from cache
@@ -182,8 +151,7 @@ public class FrontDoorPlugin extends Service {
         for (String provider : mProviderNames) {
             long providerId = providerNameToId.get(provider);
             if (!mBrandingResources.containsKey(provider)) {
-                Map<Integer, Integer> resMap = loadBrandingResource(mClassNames.get(provider),
-                        mSrcPaths.get(provider));
+                Map<Integer, Integer> resMap = loadBrandingResource(classes.get(provider));
                 if (resMap != null) {
                     mBrandingResources.put(provider, resMap);
                     for (int appResId : resMap.keySet()) {
@@ -254,27 +222,15 @@ public class FrontDoorPlugin extends Service {
     /**
      * Load branding resources from one plugin.
      */
-    private Map<Integer, Integer> loadBrandingResource(String className, String srcPath) {
-        Map retVal = null;
-
-        if (LOCAL_DEBUG) log("loadBrandingResource: className=" + className +
-                ", srcPath=" + srcPath);
-
-        PathClassLoader classLoader = new PathClassLoader(srcPath,
-                getCustomClassLoader());
-
+    private Map<Integer, Integer> loadBrandingResource(Class cls) {
         try {
-            Class cls = classLoader.loadClass(className);
             Method m = cls.getMethod("getResourceMap");
-
             // TODO: this would still cause a VM verifier exception to be thrown if.
             // the landing page Android.mk and AndroidManifest.xml don't include use-library for
             // "com.android.im.plugin". This is even with getCustomClassLoader() as the parent
             // class loader.
-            retVal = (Map)m.invoke(cls.newInstance(), new Object[]{});
+            return (Map)m.invoke(cls.newInstance(), new Object[]{});
 
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, "Failed load the plugin resource map", e);
         } catch (IllegalAccessException e) {
             Log.e(TAG, "Failed load the plugin resource map", e);
         } catch (InstantiationException e) {
@@ -288,19 +244,44 @@ public class FrontDoorPlugin extends Service {
         } catch (InvocationTargetException e) {
             Log.e(TAG, "Failed load the plugin resource map", e);
         }
-
-        return retVal;
+        return null;
     }
 
-    private ClassLoader getCustomClassLoader() {
-        /*
-        // TODO: should not hard code the path!
-        ClassLoader retVal = new PathClassLoader("/System/framework/com.android.im.plugin.jar",
-                getClassLoader());
-        if (LOCAL_DEBUG) log("getCustomClassLoader: " + retVal);
-        return retVal;
-        */
-        return getClassLoader();
+    /**
+     * Load plugin config.
+     */
+    private Map<String, String> loadProviderConfigFromPlugin(Class cls) {
+        try {
+            Method m = cls.getMethod("onBind", Intent.class);
+            com.android.im.plugin.IImPlugin plugin =
+                (com.android.im.plugin.IImPlugin)m.invoke(cls.newInstance(), new Object[]{null});
+            return plugin.getProviderConfig();
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "Could not create plugin instance", e);
+        } catch (InstantiationException e) {
+            Log.e(TAG, "Could not create plugin instance", e);
+        } catch (SecurityException e) {
+            Log.e(TAG, "Could not load config from the plugin", e);
+        } catch (NoSuchMethodException e) {
+            Log.e(TAG, "Could not load config from the plugin", e);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Could not load config from the plugin", e);
+        } catch (InvocationTargetException e) {
+            Log.e(TAG, "Could not load config from the plugin", e);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Could not load config from the plugin", e);
+        }
+        return null;
+    }
+
+    private Class loadClass(String className, String srcPath) {
+        PathClassLoader loader = new PathClassLoader(srcPath, getClassLoader());
+        try {
+            return loader.loadClass(className);
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, "Could not find plugin class", e);
+        }
+        return null;
     }
 
     private void log(String msg) {
