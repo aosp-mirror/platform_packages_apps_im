@@ -147,7 +147,7 @@ public class FrontDoorPlugin extends Service {
         loadBrandingResourcesFromCache(providerIdToName);
 
         // check and load any un-cached resources
-        ArrayList<ContentValues> valuesList = new ArrayList<ContentValues>();
+        final ArrayList<ContentValues> valuesList = new ArrayList<ContentValues>();
         for (String provider : mProviderNames) {
             long providerId = providerNameToId.get(provider);
             if (!mBrandingResources.containsKey(provider)) {
@@ -170,11 +170,14 @@ public class FrontDoorPlugin extends Service {
         }
 
         // save the changes to cache
-        int size = valuesList.size();
-        if (size > 0) {
-            getContentResolver().bulkInsert(
-                    Im.BrandingResourceMapCache.CONTENT_URI,
-                    valuesList.toArray(new ContentValues[size]));
+        if (valuesList.size() > 0) {
+            new Thread(new Runnable() {
+                public void run() {
+                    getContentResolver().bulkInsert(
+                            Im.BrandingResourceMapCache.CONTENT_URI,
+                            valuesList.toArray(new ContentValues[]{}));
+                }
+            }).start();
         }
     }
 
