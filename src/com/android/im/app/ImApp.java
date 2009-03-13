@@ -294,24 +294,31 @@ public class ImApp extends Application {
         if (mProviders != null) {
             return;
         }
+        
         mProviders = new HashMap<Long, ProviderDef>();
         ContentResolver cr = getContentResolver();
+
+        String selectionArgs[] = new String[1];
+        selectionArgs[0] = ImApp.IMPS_CATEGORY;
+
         Cursor c = cr.query(Im.Provider.CONTENT_URI, PROVIDER_PROJECTION,
-                null, null, null);
+                Im.Provider.CATEGORY+"=?", selectionArgs, null);
         if (c == null) {
             return;
         }
 
-        while (c.moveToNext()) {
-            long id = c.getLong(0);
-            String providerName = c.getString(1);
-            String fullName = c.getString(2);
-            String signUpUrl = c.getString(3);
+        try {
+            while (c.moveToNext()) {
+                long id = c.getLong(0);
+                String providerName = c.getString(1);
+                String fullName = c.getString(2);
+                String signUpUrl = c.getString(3);
 
-            mProviders.put(id, new ProviderDef(id, providerName, fullName, signUpUrl));
+                mProviders.put(id, new ProviderDef(id, providerName, fullName, signUpUrl));
+            }
+        } finally {
+            c.close();
         }
-
-        c.close();
     }
 
     private void loadDefaultBrandingRes() {

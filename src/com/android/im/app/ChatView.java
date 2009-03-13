@@ -26,7 +26,6 @@ import android.app.AlertDialog;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,6 +41,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.RemoteException;
+import android.provider.Browser;
 import android.provider.Im;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -208,7 +208,7 @@ public class ChatView extends LinearLayout {
                 public void onClick(DialogInterface dialog, int which) {
                     Uri uri = Uri.parse(linkUrls.get(which));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.putExtra(Browser.EXTRA_APPLICATION_ID, mScreen.getPackageName());
                     mScreen.startActivity(intent);
                 }
             });
