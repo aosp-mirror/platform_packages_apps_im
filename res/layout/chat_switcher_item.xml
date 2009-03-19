@@ -20,20 +20,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/dashboard_highlight"
     android:layout_gravity="center_horizontal"
-    android:layout_width="87dip"
+    android:layout_width="92dip"
     android:layout_height="fill_parent">
 
     <!-- avatar -->
     <ImageView android:id="@+id/avatar"
         android:background="@drawable/im_avatar_picture_border_normal"
         android:scaleType="centerCrop"
-        android:padding="5dip"
         android:layout_marginLeft="4dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="5dip"
         android:layout_width="58dip"
         android:layout_height="58dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
+        
+    <ImageView android:id="@+id/presence"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/avatar"
+        android:layout_toRightOf="@id/avatar" />
 
     <TextView android:id="@+id/name"
         android:layout_marginTop="3dip"

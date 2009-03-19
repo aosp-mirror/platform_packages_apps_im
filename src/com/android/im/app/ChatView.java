@@ -772,8 +772,8 @@ public class ChatView extends LinearLayout {
         new AlertDialog.Builder(mContext)
             .setTitle(R.string.confirm)
             .setMessage(r.getString(R.string.confirm_block_contact, mNickName))
-            .setPositiveButton(R.string.no, null) // default button
-            .setNegativeButton(R.string.yes, confirmListener)
+            .setPositiveButton(R.string.yes, confirmListener) // default button
+            .setNegativeButton(R.string.no, null)
             .setCancelable(false)
             .show();
     }

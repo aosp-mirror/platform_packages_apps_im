@@ -306,6 +306,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     protected void onResume() {
         super.onResume();
         mApp.registerForConnEvents(mHandler);
+        mContactListView.setAutoRefreshContacts(true);
     }
 
     @Override

@@ -61,12 +61,12 @@
     <skip />
     <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
     <skip />
-    <string name="ongoing_conversation">"継続中のチャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
+    <string name="ongoing_conversation">"チャット中（<xliff:g id="NUMBER">%1$d</xliff:g>）"</string>
     <string name="online_count">"オンライン<xliff:g id="NUMBER">%1$d</xliff:g>人"</string>
     <string name="subscriptions">"友だちの招待"</string>
     <string name="unknown_contact">"（"<i>"不明"</i>"）"</string>
     <string name="empty_contact_group">"未登録"</string>
-    <string name="empty_conversation_group">"チャットしていません"</string>
+    <string name="empty_conversation_group">"チャットなし"</string>
     <string name="contacts_picker_title">"招待する連絡先を選択してください"</string>
     <string name="contact_filter_hint">"検索する連絡先を入力"</string>
     <string name="empty_contact_list">"連絡先がありません。"</string>
@@ -83,18 +83,6 @@
     <string name="presence_idle">"アイドル状態"</string>
     <string name="presence_offline">"オフライン"</string>
     <string name="presence_invisible">"オフラインとして表示"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
-    <string name="data_channel_label">"データチャネル"</string>
-    <string name="data_encoding_label">"データのエンコード"</string>
-    <string name="cir_channel_label">"CIRチャネル"</string>
-    <string name="host_label">"ホスト"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"保存"</string>
     <string name="chat_with">"<xliff:g id="USER">%1$s</xliff:g>とチャット"</string>
     <string name="me">"自分"</string>
     <string name="compose_hint">"メッセージを入力"</string>
@@ -196,24 +184,5 @@
     <item>"お口にチャック"</item>
     <item>"笑顔"</item>
     <item>"混乱"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

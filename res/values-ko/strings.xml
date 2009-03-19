@@ -83,18 +83,6 @@
     <string name="presence_idle">"한가함"</string>
     <string name="presence_offline">"오프라인"</string>
     <string name="presence_invisible">"오프라인"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
-    <string name="data_channel_label">"데이터 채널"</string>
-    <string name="data_encoding_label">"데이터 인코딩"</string>
-    <string name="cir_channel_label">"CIR 채널"</string>
-    <string name="host_label">"호스트"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"저장"</string>
     <string name="chat_with">"<xliff:g id="USER">%1$s</xliff:g>님과 채팅"</string>
     <string name="me">"나"</string>
     <string name="compose_hint">"메시지 내용을 입력하세요."</string>
@@ -196,24 +184,5 @@
     <item>"입막음"</item>
     <item>"웃음"</item>
     <item>"어리둥절"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

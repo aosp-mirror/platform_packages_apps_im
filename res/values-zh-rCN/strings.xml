@@ -83,18 +83,6 @@
     <string name="presence_idle">"空闲"</string>
     <string name="presence_offline">"脱机"</string>
     <string name="presence_invisible">"显示为脱机"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g>设置（仅限开发人员）"</string>
-    <string name="data_channel_label">"数据通道"</string>
-    <string name="data_encoding_label">"数据编码"</string>
-    <string name="cir_channel_label">"承诺信息速率通道"</string>
-    <string name="host_label">"主机"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"保存"</string>
     <string name="chat_with">"与<xliff:g id="USER">%1$s</xliff:g>聊天"</string>
     <string name="me">"我"</string>
     <string name="compose_hint">"键入内容"</string>
@@ -196,24 +184,5 @@
     <item>"闭嘴"</item>
     <item>"大笑"</item>
     <item>"困惑"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

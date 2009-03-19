@@ -146,7 +146,7 @@ public class ChatSwitcher {
         private View mEmptyView;
 
         public ChatSwitcherDialog(Context context, ChatSwitcher switcher) {
-            super(context);
+            super(context, R.style.Theme_ChatSwitcher);
             mSwitcher = switcher;
         }
 
@@ -173,6 +173,28 @@ public class ChatSwitcher {
                     mSwitcherAdapter.bindView(v, mActivity, c);
                 }
             }
+        }
+
+        private void updateViewListeners(View v, final Cursor c, final int position) {
+            v.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    select(c, position);
+                }});
+
+            v.setOnKeyListener(new View.OnKeyListener() {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() != KeyEvent.ACTION_DOWN) {
+                        return false;
+                    }
+                    switch (keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                        select(c, position);
+                        return true;
+                    }
+                    return false;
+                }
+            });
         }
 
         public void update() {
@@ -208,29 +230,13 @@ public class ChatSwitcher {
                         mInflater.inflate(R.layout.chat_switcher_item, mContainer, true);
                         v = mContainer.getChildAt(mContainer.getChildCount() - 1);
                         mViews.add(v);
-                        final int position = pos;
-                        v.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View view) {
-                                select(c, position);
-                            }});
-                        v.setOnKeyListener(new View.OnKeyListener() {
-                            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                                if (event.getAction() != KeyEvent.ACTION_DOWN) {
-                                    return false;
-                                }
-                                switch (keyCode) {
-                                case KeyEvent.KEYCODE_ENTER:
-                                case KeyEvent.KEYCODE_DPAD_CENTER:
-                                    select(c, position);
-                                    return true;
-                                }
-                                return false;
-                            }
-                        });
                         v.setFocusable(true);
                     } else {
                         v = mViews.get(pos);
                     }
+                    
+                    updateViewListeners(v, c, pos);
+
                     v.setVisibility(View.VISIBLE);
                     mSwitcherAdapter.bindView(v, mActivity, c);
                     v.setTag(c.getLong(mProviderIdColumn));
@@ -318,7 +324,7 @@ public class ChatSwitcher {
         private String mMenuPlus;
 
         private int mLayout;
-        private android.database.ContentObserver mContentObserver =
+        private android.database.ContentObserver mContentObserver = 
             new android.database.ContentObserver(null) {
                 @Override
                 public void onChange(boolean selfChange) {
@@ -327,25 +333,11 @@ public class ChatSwitcher {
                 }
         };
 
-        private android.database.DataSetObserver mDataSetObserver =
-            new android.database.DataSetObserver() {
-                @Override
-                public void onChanged() {
-                    if (isOpen())
-                        startQuery();
-                }
-
-                @Override
-                public void onInvalidated() {
-                }
-        };
-
-
         public SwitcherAdapter(Cursor c, Activity a) {
             // use false as the third parameter to the CursorAdapter constructor
-            // to indicate that we should not auto-requery the cursor
+            // to indicate that we should not auto-requery the cursor 
             super(a, c, false);
-            mLayout = R.layout.chat_switcher_item;
+            mLayout = R.layout.chat_switcher_item; 
             mActivity = a;
             mMenuPlus = a.getString(R.string.menu_plus);
 
@@ -355,7 +347,6 @@ public class ChatSwitcher {
         private void setupObservers(Cursor oldCursor) {
             if (oldCursor != null) {
                 oldCursor.unregisterContentObserver(mContentObserver);
-                oldCursor.unregisterDataSetObserver(mDataSetObserver);
             }
 
             Cursor c = getCursor();
@@ -363,7 +354,6 @@ public class ChatSwitcher {
                 return;
 
             c.registerContentObserver(mContentObserver);
-            c.registerDataSetObserver(mDataSetObserver);
         }
 
         @Override
@@ -406,18 +396,16 @@ public class ChatSwitcher {
                 presence = brandingRes.getDrawable(
                         PresenceUtils.getStatusIconId(presenceMode));
             }
-            presence.setBounds(0, 0, presence.getIntrinsicWidth(),
-                    presence.getIntrinsicHeight());
-            t.setCompoundDrawables(null, null, presence, null);
-            t.setCompoundDrawablePadding(3);
+            ImageView presenceView = (ImageView) view.findViewById(R.id.presence);
+            presenceView.setImageDrawable(presence);
 
             //  If there is a shortcut assigned to this chat, then show it, otherwise
             //  hide the shortcut text view.
-            String shortcut = c.getString(mShortcutColumn);
+            long shortcut = c.getLong(mShortcutColumn);
             TextView shortcutView = (TextView) view.findViewById(R.id.shortcut);
 
             shortcutView.setVisibility(mPreferMenuShortcut ? View.VISIBLE : View.GONE);
-            if (!TextUtils.isEmpty(shortcut)) {
+            if (shortcut >= 0 && shortcut < 10) {
                 shortcutView.setText(mMenuPlus + shortcut);
             } else {
                 shortcutView.setText("");
@@ -436,7 +424,7 @@ public class ChatSwitcher {
             tv.setText(android.text.format.DateUtils.getRelativeTimeSpanString(
                         c.getLong(mLastChatColumn),
                         System.currentTimeMillis(),
-                        android.text.format.DateUtils.MINUTE_IN_MILLIS,
+                        android.text.format.DateUtils.MINUTE_IN_MILLIS, 
                         android.text.format.DateUtils.FORMAT_ABBREV_RELATIVE));
             tv.setVisibility(mPreferMenuShortcut ? View.GONE : View.VISIBLE);
         }
@@ -650,8 +638,8 @@ public class ChatSwitcher {
 
         c.moveToPosition(-1);
         while (c.moveToNext()) {
-            String shortcut = c.getString(mShortcutColumn);
-            if (shortcut != null && shortcut.length() > 0 && shortcut.charAt(0) == key) {
+            long shortcut = c.getLong(mShortcutColumn);
+            if (shortcut >= 0 && shortcut < 10 && key == (shortcut + '0')) {
                 select(c, c.getPosition());
                 break;
             }
@@ -713,8 +701,7 @@ public class ChatSwitcher {
     /*
      * +1 to go forward, -1 to go backward
      */
-    public void rotateChat(final int direction, final String contact,
-            final long accountId, final long providerId) {
+    public void rotateChat(final int direction, final String contact, final long accountId, final long providerId) {
         if (direction != 1 && direction != -1) {
             return;
         }

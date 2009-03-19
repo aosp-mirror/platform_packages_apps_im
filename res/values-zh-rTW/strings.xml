@@ -83,18 +83,6 @@
     <string name="presence_idle">"閒置"</string>
     <string name="presence_offline">"離線"</string>
     <string name="presence_invisible">"顯示離線"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
-    <string name="data_channel_label">"資料頻道"</string>
-    <string name="data_encoding_label">"紀錄日期"</string>
-    <string name="cir_channel_label">"多重路徑頻道"</string>
-    <string name="host_label">"主機"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"儲存"</string>
     <string name="chat_with">"與 <xliff:g id="USER">%1$s</xliff:g> 交談"</string>
     <string name="me">"我"</string>
     <string name="compose_hint">"輸入文字開始撰寫"</string>
@@ -196,24 +184,5 @@
     <item>"不要告訴別人"</item>
     <item>"開懷大笑"</item>
     <item>"疑惑"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>
