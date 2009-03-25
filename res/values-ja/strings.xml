@@ -111,7 +111,7 @@
     <string name="notification_enabled_title">"IM通知"</string>
     <string name="notification_enabled_summary">"IM受信: ステータスバーで通知"</string>
     <string name="notification_vibrate_title">"バイブレーション"</string>
-    <string name="notification_vibrate_summary">"IM受信: バイブレーションもON"</string>
+    <string name="notification_vibrate_summary">"IM受信: バイブレーションON"</string>
     <string name="notification_sound_title">"サウンド"</string>
     <string name="notification_sound_summary">"IM受信: 着信音も鳴らす"</string>
     <string name="notification_ringtone_title">"着信音を選択"</string>
