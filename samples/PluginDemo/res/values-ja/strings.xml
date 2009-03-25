@@ -19,9 +19,9 @@
     <string name="menu_remove_contact">"連絡先を削除"</string>
     <string name="menu_block_contact">"ブロック"</string>
     <string name="menu_contact_list">"連絡先リスト"</string>
-    <string name="menu_start_chat">"IMを送信"</string>
+    <string name="menu_start_chat">"チャットを送信"</string>
     <string name="menu_view_profile">"友だち情報"</string>
-    <string name="menu_end_conversation">"チャットをやめる"</string>
+    <string name="menu_end_conversation">"チャット終了"</string>
     <string name="menu_switch_chats">"チャットを切り替え"</string>
     <string name="menu_insert_smiley">"絵文字を挿入"</string>
     <string name="sign_up">"新しいアカウントを取得"</string>
