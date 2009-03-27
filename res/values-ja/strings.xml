@@ -15,18 +15,18 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"IM"</string>
+    <string name="im_label">"チャット"</string>
     <string name="menu_cancel_signin">"ログインをキャンセル"</string>
     <string name="menu_add_contact">"連絡先を追加"</string>
     <string name="menu_remove_contact">"連絡先を削除"</string>
     <string name="menu_block_contact">"連絡先をブロック"</string>
     <string name="menu_view_blocked">"ブロック"</string>
-    <string name="menu_view_accounts">"アカウントリスト"</string>
+    <string name="menu_view_accounts">"チャットアカウント一覧"</string>
     <string name="menu_settings">"設定"</string>
     <string name="menu_start_chat">"チャットを始める"</string>
     <string name="menu_sign_out">"ログアウト"</string>
     <string name="menu_view_profile">"プロフィールを表示"</string>
-    <string name="menu_end_conversation">"チャットをやめる"</string>
+    <string name="menu_end_conversation">"チャット終了"</string>
     <string name="menu_view_contact_list">"連絡先リスト"</string>
     <string name="menu_invite_contact">"招待..."</string>
     <string name="menu_switch_chats">"チャットを切り替え"</string>
@@ -53,20 +53,16 @@
     <string name="sign_in">"ログイン"</string>
     <string name="signing_in_to">"<xliff:g id="ACCOUNT">%1$s</xliff:g>にログインしています"</string>
     <string name="signing_in_wait">"ログインしています..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
-    <string name="ongoing_conversation">"継続中のチャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
+    <string name="bg_data_prompt_title">"バックグラウンドデータが無効です"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g>ではバックグラウンドデータを有効にする必要があります。"</string>
+    <string name="bg_data_prompt_ok">"有効にする"</string>
+    <string name="bg_data_prompt_cancel">"終了"</string>
+    <string name="ongoing_conversation">"チャット中（<xliff:g id="NUMBER">%1$d</xliff:g>）"</string>
     <string name="online_count">"オンライン<xliff:g id="NUMBER">%1$d</xliff:g>人"</string>
     <string name="subscriptions">"友だちの招待"</string>
     <string name="unknown_contact">"（"<i>"不明"</i>"）"</string>
     <string name="empty_contact_group">"未登録"</string>
-    <string name="empty_conversation_group">"チャットしていません"</string>
+    <string name="empty_conversation_group">"チャットなし"</string>
     <string name="contacts_picker_title">"招待する連絡先を選択してください"</string>
     <string name="contact_filter_hint">"検索する連絡先を入力"</string>
     <string name="empty_contact_list">"連絡先がありません。"</string>
@@ -83,18 +79,6 @@
     <string name="presence_idle">"アイドル状態"</string>
     <string name="presence_offline">"オフライン"</string>
     <string name="presence_invisible">"オフラインとして表示"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
-    <string name="data_channel_label">"データチャネル"</string>
-    <string name="data_encoding_label">"データのエンコード"</string>
-    <string name="cir_channel_label">"CIRチャネル"</string>
-    <string name="host_label">"ホスト"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"保存"</string>
     <string name="chat_with">"<xliff:g id="USER">%1$s</xliff:g>とチャット"</string>
     <string name="me">"自分"</string>
     <string name="compose_hint">"メッセージを入力"</string>
@@ -120,12 +104,12 @@
     <string name="setting_title">"全般設定"</string>
     <string name="hide_offline_contacts">"オフラインの連絡先を表示しない"</string>
     <string name="notification_group_title">"通知設定"</string>
-    <string name="notification_enabled_title">"IM通知"</string>
-    <string name="notification_enabled_summary">"IM受信: ステータスバーで通知"</string>
+    <string name="notification_enabled_title">"チャットの通知"</string>
+    <string name="notification_enabled_summary">"チャット受信: ステータスバーで通知"</string>
     <string name="notification_vibrate_title">"バイブレーション"</string>
-    <string name="notification_vibrate_summary">"IM受信: バイブレーションもON"</string>
+    <string name="notification_vibrate_summary">"チャット受信: バイブレーションON"</string>
     <string name="notification_sound_title">"サウンド"</string>
-    <string name="notification_sound_summary">"IM受信: 着信音も鳴らす"</string>
+    <string name="notification_sound_summary">"チャット受信: 着信音ON"</string>
     <string name="notification_ringtone_title">"着信音を選択"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g>さんからグループチャットに招待されました。"</string>
     <string name="invitation_sent_prompt">"招待状を<xliff:g id="USER">%1$s</xliff:g>さんに送りました。"</string>
@@ -145,7 +129,7 @@
     <string name="delete_contact_success">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」を削除しました。"</string>
     <string name="block_contact_success">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」をブロックしました。"</string>
     <string name="unblock_contact_success">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」のブロックを解除しました。"</string>
-    <string name="perm_label">"IMサービスの開始"</string>
+    <string name="perm_label">"IM/チャットの起動"</string>
     <string name="perm_desc">"intent経由でのIMサービスの開始をアプリケーションに許可します。"</string>
     <string name="error">"注意"</string>
     <string name="login_service_failed">"<xliff:g id="SERVICE">%1$s</xliff:g>サービスにログインできませんでした。しばらくしてからやり直してください。"\n"（詳細:<xliff:g id="DESCRIPTION">%2$s</xliff:g>）"</string>
@@ -159,7 +143,7 @@
     <string name="cant_connect_to_server">"サーバーに接続できません。接続を確認してください。"</string>
     <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g>さんは既に連絡先リストに登録されています。"</string>
     <string name="contact_blocked">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」はブロックされています。"</string>
-    <string name="contact_not_loaded">"連絡先リストをロードしています。しばらくお待ちください。"</string>
+    <string name="contact_not_loaded">"連絡先リストを読み込んでいます。しばらくお待ちください。"</string>
     <string name="network_error">"ネットワークエラーが発生しました。"</string>
     <string name="service_not_support">"この機能はサーバーでサポートされていません。"</string>
     <string name="invalid_password">"入力されたパスワードは無効です。"</string>
@@ -196,24 +180,5 @@
     <item>"お口にチャック"</item>
     <item>"笑顔"</item>
     <item>"混乱"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

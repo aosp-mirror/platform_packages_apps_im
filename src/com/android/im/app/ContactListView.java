@@ -37,6 +37,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -61,6 +62,7 @@ public class ContactListView extends LinearLayout {
     private ContactListTreeAdapter mAdapter;
     private boolean mHideOfflineContacts;
     private SavedState mSavedState;
+    private boolean mAutoRefresh = true;
 
     public ContactListView(Context screen, AttributeSet attrs) {
         super(screen, attrs);
@@ -187,6 +189,7 @@ public class ContactListView extends LinearLayout {
                 Intent i = new Intent(Intent.ACTION_VIEW, data);
                 i.addCategory(ImApp.IMPS_CATEGORY);
                 mScreen.startActivity(i);
+                setAutoRefreshContacts(false);
             } catch (RemoteException e) {
                 mHandler.showServiceErrorAlert();
             }
@@ -491,5 +494,16 @@ public class ContactListView extends LinearLayout {
         super.onRestoreInstanceState(ss.getSuperState());
 
         mSavedState = ss;
+    }
+
+    protected void setAutoRefreshContacts(boolean isRefresh) {
+        mAutoRefresh = isRefresh;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        if (mAutoRefresh) {
+            super.onLayout(changed, l, t, r, b);
+        }
     }
 }

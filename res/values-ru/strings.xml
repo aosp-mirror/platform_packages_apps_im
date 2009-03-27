@@ -83,18 +83,6 @@
     <string name="presence_idle">"Не активен"</string>
     <string name="presence_offline">"Не в сети"</string>
     <string name="presence_invisible">"Невидимость"</string>
-    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
-    <string name="data_channel_label">"Канал данных"</string>
-    <string name="data_encoding_label">"Кодировка данных"</string>
-    <string name="cir_channel_label">"Канал CIR"</string>
-    <string name="host_label">"Хост"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"Сохранить"</string>
     <string name="chat_with">"Чат: <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Я"</string>
     <string name="compose_hint">"Введите текст"</string>
@@ -196,24 +184,5 @@
     <item>"Никому не скажу"</item>
     <item>"Смешно"</item>
     <item>"В замешательстве"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

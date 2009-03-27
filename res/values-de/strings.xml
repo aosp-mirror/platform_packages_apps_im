@@ -83,18 +83,6 @@
     <string name="presence_idle">"Leerlauf"</string>
     <string name="presence_offline">"Offline"</string>
     <string name="presence_invisible">"Als offline anzeigen"</string>
-    <string name="preference_title">"Einstellungen für <xliff:g id="PROVIDER">%1$s</xliff:g> (nur für Entwickler)"</string>
-    <string name="data_channel_label">"Datenkanal"</string>
-    <string name="data_encoding_label">"Datenkodierung"</string>
-    <string name="cir_channel_label">"CIR-Kanal"</string>
-    <string name="host_label">"Host"</string>
-    <string name="msisdn_label">"MSISDN"</string>
-    <string name="http">"HTTP"</string>
-    <string name="sms">"SMS"</string>
-    <string name="tcp">"TCP"</string>
-    <string name="xml">"XML"</string>
-    <string name="wbxml">"WBXML"</string>
-    <string name="save">"Speichern"</string>
     <string name="chat_with">"Mit <xliff:g id="USER">%1$s</xliff:g> chatten"</string>
     <string name="me">"Eigene"</string>
     <string name="compose_hint">"Zum Erstellen eintippen"</string>
@@ -196,24 +184,5 @@
     <item>"Versiegelte Lippen"</item>
     <item>"Lachen"</item>
     <item>"Verwirrt"</item>
-  </string-array>
-  <string-array name="default_smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
   </string-array>
 </resources>

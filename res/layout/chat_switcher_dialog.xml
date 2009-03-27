@@ -20,13 +20,9 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="138dip" >
+    android:layout_height="112dip" >
 
     <HorizontalScrollView
-        android:layout_marginLeft="10dip"
-        android:layout_marginTop="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginBottom="10dip"
         android:scrollbars="none"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">

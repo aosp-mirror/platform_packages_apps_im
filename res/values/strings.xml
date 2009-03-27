@@ -204,18 +204,18 @@
     <string name="presence_invisible">Appear offline</string>
 
     <!-- These strings are displayed on the connection setting activity. They are used for development only. Do not localize! -->
-    <string name="preference_title"><xliff:g id="provider">%1$s</xliff:g> settings (dev only)</string>
-    <string name="data_channel_label">Data channel</string>
-    <string name="data_encoding_label">Data encoding</string>
-    <string name="cir_channel_label">CIR channel</string>
-    <string name="host_label">Host</string>
-    <string name="msisdn_label">MSISDN</string>
-    <string name="http">HTTP</string>
-    <string name="sms">SMS</string>
-    <string name="tcp">TCP</string>
-    <string name="xml">XML</string>
-    <string name="wbxml">WBXML</string>
-    <string name="save">Save</string>
+    <string name="preference_title" translatable="false"><xliff:g id="provider">%1$s</xliff:g> settings (dev only)</string>
+    <string name="data_channel_label" translatable="false">Data channel</string>
+    <string name="data_encoding_label" translatable="false">Data encoding</string>
+    <string name="cir_channel_label" translatable="false">CIR channel</string>
+    <string name="host_label" translatable="false">Host</string>
+    <string name="msisdn_label" translatable="false">MSISDN</string>
+    <string name="http" translatable="false">HTTP</string>
+    <string name="sms" translatable="false">SMS</string>
+    <string name="tcp" translatable="false">TCP</string>
+    <string name="xml" translatable="false">XML</string>
+    <string name="wbxml" translatable="false">WBXML</string>
+    <string name="save" translatable="false">Save</string>
 
     <!-- These strings are displayed on the chat screen -->
     <!-- Chat screen title (i.e. Chat with Anne Clarkson) -->
@@ -426,7 +426,7 @@
         <item>Confused</item>
     </string-array>
     <!-- Do not localize! Smiley text representations. May be overrided by the plugin. -->
-    <string-array name="default_smiley_texts">
+    <string-array name="default_smiley_texts" translatable="false">
         <item>:-)</item>
         <item>:-(</item>
         <item>;-)</item>

@@ -264,7 +264,7 @@ public class RemoteImService extends Service {
         // Insert a fake msisdn on emulator. We don't need this on device
         // because the mobile network will take care of it.
         if ("1".equals(SystemProperties.get("ro.kernel.qemu"))) {
-            settings.put(ImpsConfigNames.MSISDN, "1231231234");
+            settings.put(ImpsConfigNames.MSISDN, "15555218135");
         } else if (networkInfo != null
                 && networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
             if (!TextUtils.isEmpty(settings.get(ImpsConfigNames.SMS_ADDR))) {
@@ -278,9 +278,12 @@ public class RemoteImService extends Service {
                 // the sign in would fail and an error message should be shown to warn
                 // the user to contact their operator.
                 String msisdn = TelephonyManager.getDefault().getLine1Number();
-                if (!TextUtils.isEmpty(msisdn)) {
-                    settings.put(ImpsConfigNames.MSISDN, msisdn);
+                if (TextUtils.isEmpty(msisdn)) {
+                    Log.w(TAG, "Can not read MSISDN from SIM, use a fake one."
+                         + " SMS related feature won't work.");
+                    msisdn = "15555218135";
                 }
+                settings.put(ImpsConfigNames.MSISDN, msisdn);
             }
         }
         return settings;

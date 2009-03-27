@@ -692,7 +692,12 @@ public class ImpsContactListManager extends ContactListManager
             return;
         }
         for (PrimitiveElement entity : entityList.getChildren()) {
-            if (entity.getTagName().equals(ImpsTags.UserID)) {
+            if (ImpsTags.UserID.equals(entity.getTagName())) {
+                String userId = entity.getContents();
+                if (userId == null || userId.length() == 0) {
+                    ImpsLog.logError("Empty UserID in BlockList");
+                    continue;
+                }
                 ImpsAddress userAddress = new ImpsUserAddress(entity.getContents());
                 notifyBlockContact(new Contact(userAddress, userAddress.getScreenName()),
                         true);

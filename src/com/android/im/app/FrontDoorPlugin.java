@@ -87,12 +87,23 @@ public class FrontDoorPlugin extends Service {
         PackageManager pm = getPackageManager();
         List<ResolveInfo> plugins = pm.queryIntentServices(
                 new Intent(ImPluginConstants.PLUGIN_ACTION_NAME), PackageManager.GET_META_DATA);
+        int numPlugins = plugins.size();
+
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            log("loadThirdPartyPlugins: # plugins found: " + numPlugins);
+        }
+
+        if (numPlugins == 0) {
+            Log.e(TAG, "[IM.FrontDoorPlugin] no plugins found! bail...");
+            return;
+        }
+
         for (ResolveInfo info : plugins) {
-            if (LOCAL_DEBUG) log("loadThirdPartyPlugins: found plugin " + info);
+            if (Log.isLoggable(TAG, Log.DEBUG)) log("loadThirdPartyPlugins: found plugin " + info);
 
             ServiceInfo serviceInfo = info.serviceInfo;
             if (serviceInfo == null) {
-                Log.e(TAG, "loadThirdPartyPlugins: ignore bad plugin: " + info);
+                Log.e(TAG, "[FrontDoorPlugin] loadThirdPartyPlugins: ignore bad plugin: " + info);
                 continue;
             }
 
@@ -107,7 +118,8 @@ public class FrontDoorPlugin extends Service {
                 signUpUrl = metaData.getString(ImPluginConstants.METADATA_SIGN_UP_URL);
             }
             if (TextUtils.isEmpty(providerName) || TextUtils.isEmpty(providerFullName)) {
-                Log.e(TAG, "Ignore bad IM plugin: " + info + ". Lack of required meta data");
+                Log.e(TAG, "[FrontDoorPlugin] Ignore bad IM plugin: " + info +
+                        ". Lack of required meta data");
                 continue;
             }
 
@@ -118,14 +130,14 @@ public class FrontDoorPlugin extends Service {
             String srcPath = serviceInfo.applicationInfo.sourceDir;
             Class pluginClass = loadClass(className, srcPath);
             if (pluginClass == null) {
-                Log.e(TAG, "Can not load package for plugin " + providerName);
+                Log.e(TAG, "[FrontDoorPlugin] Can not load package for plugin " + providerName);
                 continue;
             }
             classes.put(providerName, pluginClass);
 
             Map<String, String> config = loadProviderConfigFromPlugin(pluginClass);
             if (config == null) {
-                Log.e(TAG, "Can not load config for plugin " + providerName);
+                Log.e(TAG, "[FrontDoorPlugin] Can not load config for plugin " + providerName);
                 continue;
             }
             config.put(ImConfigNames.PLUGIN_PATH, srcPath);
