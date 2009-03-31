@@ -53,14 +53,10 @@
     <string name="sign_in">"Anmelden"</string>
     <string name="signing_in_to">"Anmeldung bei <xliff:g id="ACCOUNT">%1$s</xliff:g> wird ausgeführt."</string>
     <string name="signing_in_wait">"Anmeldung wird ausgeführt..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Hintergrunddaten deaktiviert"</string>
+    <string name="bg_data_prompt_message">"Für <xliff:g id="PROVIDER">%1$s</xliff:g> müssen die Hintergrunddaten aktiviert sein."</string>
+    <string name="bg_data_prompt_ok">"Aktivieren"</string>
+    <string name="bg_data_prompt_cancel">"Beenden"</string>
     <string name="ongoing_conversation">"Derzeit ausgeführte Chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Freundschaftseinladungen"</string>
