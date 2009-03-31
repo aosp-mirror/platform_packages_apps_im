@@ -53,14 +53,10 @@
     <string name="sign_in">"Zaloguj"</string>
     <string name="signing_in_to">"Logowanie do konta <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Trwa logowanie…"</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Dane w tle są wyłączone"</string>
+    <string name="bg_data_prompt_message">"Usługa <xliff:g id="PROVIDER">%1$s</xliff:g> wymaga, aby włączone były dane w tle."</string>
+    <string name="bg_data_prompt_ok">"Włącz"</string>
+    <string name="bg_data_prompt_cancel">"Zamknij"</string>
     <string name="ongoing_conversation">"Aktywne czaty (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Zaproszenia"</string>

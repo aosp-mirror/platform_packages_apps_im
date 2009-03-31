@@ -53,14 +53,10 @@
     <string name="sign_in">"Accedi"</string>
     <string name="signing_in_to">"Accesso a <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Accesso..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Dati in background disattivati"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> richiede l\'attivazione dei dati in background."</string>
+    <string name="bg_data_prompt_ok">"Attiva"</string>
+    <string name="bg_data_prompt_cancel">"Esci"</string>
     <string name="ongoing_conversation">"Conversazioni in corso (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Inviti amici"</string>

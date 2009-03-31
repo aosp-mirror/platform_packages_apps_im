@@ -53,14 +53,10 @@
     <string name="sign_in">"Se connecter"</string>
     <string name="signing_in_to">"Connexion à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Connexion..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Données d\'arrière-plan désactivées"</string>
+    <string name="bg_data_prompt_message">"Les données d\'arrière-plan sont requises pour l\'activation de <xliff:g id="PROVIDER">%1$s</xliff:g>."</string>
+    <string name="bg_data_prompt_ok">"Activer"</string>
+    <string name="bg_data_prompt_cancel">"Quitter"</string>
     <string name="ongoing_conversation">"Conversations en cours (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> en ligne"</string>
     <string name="subscriptions">"Inviter des amis"</string>

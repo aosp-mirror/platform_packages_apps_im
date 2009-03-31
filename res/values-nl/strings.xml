@@ -53,14 +53,10 @@
     <string name="sign_in">"Aanmelden"</string>
     <string name="signing_in_to">"Aanmelden bij <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Aanmelden..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Achtergrondgegevens uitgeschakeld"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> heeft achtergrondgegevens nodig om te worden ingeschakeld."</string>
+    <string name="bg_data_prompt_ok">"Inschakelen"</string>
+    <string name="bg_data_prompt_cancel">"Sluiten"</string>
     <string name="ongoing_conversation">"Actieve chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Uitnodigingen voor vriendschap"</string>
