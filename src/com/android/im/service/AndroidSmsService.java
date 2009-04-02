@@ -31,8 +31,8 @@ import android.net.Uri;
 import android.provider.Telephony;
 import static android.provider.Telephony.Sms.Intents.DATA_SMS_RECEIVED_ACTION;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.gsm.SmsManager;
-import android.telephony.gsm.SmsMessage;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.util.Log;
 
 import com.android.im.engine.SmsService;
