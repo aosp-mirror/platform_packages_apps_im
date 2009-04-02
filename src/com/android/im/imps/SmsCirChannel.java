@@ -22,8 +22,8 @@ import com.android.im.engine.SmsService;
 import com.android.im.engine.SystemService;
 import com.android.im.engine.SmsService.SmsListener;
 import com.android.im.engine.SmsService.SmsSendFailureCallback;
-import com.android.internal.telephony.gsm.EncodeException;
-import com.android.internal.telephony.gsm.GsmAlphabet;
+import com.android.internal.telephony.EncodeException;
+import com.android.internal.telephony.GsmAlphabet;
 
 public class SmsCirChannel extends CirChannel
         implements SmsListener, SmsSendFailureCallback {
