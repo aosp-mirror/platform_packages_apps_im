@@ -72,7 +72,7 @@
     <string name="label_status">"État :"</string>
     <string name="label_client_type">"Type de client :"</string>
     <string name="client_type_computer">"Ordinateur"</string>
-    <string name="client_type_mobile">"Mobile"</string>
+    <string name="client_type_mobile">"Portable"</string>
     <string name="presence_available">"En ligne"</string>
     <string name="presence_busy">"Occupé"</string>
     <string name="presence_away">"Absent"</string>
