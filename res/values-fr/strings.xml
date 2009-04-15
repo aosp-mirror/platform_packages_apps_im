@@ -81,7 +81,7 @@
     <string name="presence_invisible">"Apparaître hors ligne"</string>
     <string name="chat_with">"Chatter avec <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Moi"</string>
-    <string name="compose_hint">"Saisir votre message"</string>
+    <string name="compose_hint">"Saisissez votre message"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> est en ligne"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> est absent"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> est occupé"</string>
