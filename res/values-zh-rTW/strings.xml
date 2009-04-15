@@ -53,14 +53,10 @@
     <string name="sign_in">"登入"</string>
     <string name="signing_in_to">"登入 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"登入中…"</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"已停用背景資料"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> 需要啟用背景資料。"</string>
+    <string name="bg_data_prompt_ok">"啟用"</string>
+    <string name="bg_data_prompt_cancel">"結束"</string>
     <string name="ongoing_conversation">"進行中的交談 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"線上人數 <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"邀請朋友"</string>

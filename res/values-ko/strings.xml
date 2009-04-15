@@ -53,14 +53,10 @@
     <string name="sign_in">"로그인"</string>
     <string name="signing_in_to">"<xliff:g id="ACCOUNT">%1$s</xliff:g>에 로그인하는 중"</string>
     <string name="signing_in_wait">"로그인하는 중..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"백그라운드 데이터 사용 안 함"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g>을(를) 사용하려면 백그라운드 데이터를 사용하도록 설정해야 합니다."</string>
+    <string name="bg_data_prompt_ok">"사용"</string>
+    <string name="bg_data_prompt_cancel">"종료"</string>
     <string name="ongoing_conversation">"진행 중인 채팅(<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"온라인 <xliff:g id="NUMBER">%1$d</xliff:g>명"</string>
     <string name="subscriptions">"친구 초대"</string>

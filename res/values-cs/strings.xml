@@ -53,14 +53,10 @@
     <string name="sign_in">"Přihlásit se"</string>
     <string name="signing_in_to">"Přihlašování k účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Přihlašování..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Přenos dat na pozadí je zakázán"</string>
+    <string name="bg_data_prompt_message">"Poskytovatel <xliff:g id="PROVIDER">%1$s</xliff:g> vyžaduje povolení přenosu dat na pozadí."</string>
+    <string name="bg_data_prompt_ok">"Povolit"</string>
+    <string name="bg_data_prompt_cancel">"Ukončit"</string>
     <string name="ongoing_conversation">"Probíhající chaty: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="online_count">"Kontakty online: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"Nabídky přátelství"</string>

@@ -17,9 +17,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
     <string name="menu_cancel_signin">"Aanmelding annuleren"</string>
-    <string name="menu_add_contact">"Contactpersoon toevoegen"</string>
-    <string name="menu_remove_contact">"Contactpersoon verwijderen"</string>
-    <string name="menu_block_contact">"Contactpersoon blokkeren"</string>
+    <string name="menu_add_contact">"Contact toevoegen"</string>
+    <string name="menu_remove_contact">"Contact verwijderen"</string>
+    <string name="menu_block_contact">"Contact blokkeren"</string>
     <string name="menu_view_blocked">"Geblokkeerd"</string>
     <string name="menu_view_accounts">"Accountlijst"</string>
     <string name="menu_settings">"Instellingen"</string>
@@ -34,9 +34,9 @@
     <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Invoer"</string>
     <string name="confirm">"Bevestigen"</string>
-    <string name="confirm_delete_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt verwijderd."</string>
-    <string name="confirm_block_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt geblokkeerd."</string>
-    <string name="confirm_unblock_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt gedeblokkeerd."</string>
+    <string name="confirm_delete_contact">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' wordt verwijderd."</string>
+    <string name="confirm_block_contact">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' wordt geblokkeerd."</string>
+    <string name="confirm_unblock_contact">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' wordt gedeblokkeerd."</string>
     <string name="ok">"OK"</string>
     <string name="cancel">"Annuleren"</string>
     <string name="yes">"OK"</string>
@@ -53,14 +53,10 @@
     <string name="sign_in">"Aanmelden"</string>
     <string name="signing_in_to">"Aanmelden bij <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Aanmelden..."</string>
-    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
-    <skip />
-    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
-    <skip />
+    <string name="bg_data_prompt_title">"Achtergrondgegevens uitgeschakeld"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> heeft achtergrondgegevens nodig om te worden ingeschakeld."</string>
+    <string name="bg_data_prompt_ok">"Inschakelen"</string>
+    <string name="bg_data_prompt_cancel">"Sluiten"</string>
     <string name="ongoing_conversation">"Actieve chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Uitnodigingen voor vriendschap"</string>
@@ -68,11 +64,11 @@
     <string name="empty_contact_group">"Leeg"</string>
     <string name="empty_conversation_group">"Geen gesprekken"</string>
     <string name="contacts_picker_title">"Contacten selecteren om uit te nodigen"</string>
-    <string name="contact_filter_hint">"Typ om een contactpersoon te vinden"</string>
+    <string name="contact_filter_hint">"Typ om een contact te vinden"</string>
     <string name="empty_contact_list">"Kan geen contacten vinden."</string>
     <string name="blocked_list_title">"Geblokkeerde contacten - <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="no_blocked_contact">"Geen geblokkeerde contacten."</string>
-    <string name="contact_profile_title">"Profiel van contactpersoon"</string>
+    <string name="contact_profile_title">"Profiel van contact"</string>
     <string name="label_status">"Status:"</string>
     <string name="label_client_type">"Type client:"</string>
     <string name="client_type_computer">"Computer"</string>
@@ -100,7 +96,7 @@
     <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> staat niet in uw lijst met contacten"</string>
     <string name="select_link_title">"Link selecteren"</string>
     <string name="empty_chat_list">"Geen actieve chats."</string>
-    <string name="add_contact_title">"Contactpersoon toevoegen"</string>
+    <string name="add_contact_title">"Contact toevoegen"</string>
     <string name="input_contact_label">"E-mailadres van persoon die u wilt uitnodigen:"</string>
     <string name="choose_list_label">"Een lijst kiezen:"</string>
     <string name="invite_instruction">"Typ een naam om toe te voegen vanuit \'Contacten\'."</string>
@@ -129,24 +125,24 @@
     <string name="subscription_notify_text">"Nieuwe uitnodiging voor vriendschap van <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="notify_groupchat_label">"Uitnodiging voor groepchat"</string>
     <string name="group_chat_invite_notify_text">"Nieuwe uitnodiging voor groepchat van <xliff:g id="USER">%s</xliff:g>"</string>
-    <string name="add_contact_success">"Contactpersoon \' <xliff:g id="USER">%1$s</xliff:g>\' is toegevoegd."</string>
-    <string name="delete_contact_success">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' is verwijderd."</string>
-    <string name="block_contact_success">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' is geblokkeerd."</string>
-    <string name="unblock_contact_success">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' is gedeblokkeerd."</string>
+    <string name="add_contact_success">"Contact \' <xliff:g id="USER">%1$s</xliff:g>\' is toegevoegd."</string>
+    <string name="delete_contact_success">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' is verwijderd."</string>
+    <string name="block_contact_success">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' is geblokkeerd."</string>
+    <string name="unblock_contact_success">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' is gedeblokkeerd."</string>
     <string name="perm_label">"chatservice starten"</string>
     <string name="perm_desc">"Toepassingen toestaan om chatservice te starten zoals bedoeld."</string>
     <string name="error">"Aandacht vereist"</string>
     <string name="login_service_failed">"Kan niet aanmelden bij de <xliff:g id="SERVICE">%1$s</xliff:g>-service. Probeer het later opnieuw."\n"(Details: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"De lijst is niet toegevoegd."</string>
-    <string name="block_contact_failed">"Contactpersoon is niet geblokkeerd."</string>
-    <string name="unblock_contact_failed">"Contactpersoon is niet gedeblokkeerd."</string>
-    <string name="select_contact">"Selecteer eerst een contactpersoon."</string>
+    <string name="block_contact_failed">"Contact is niet geblokkeerd."</string>
+    <string name="unblock_contact_failed">"Contact is niet gedeblokkeerd."</string>
+    <string name="select_contact">"Selecteer eerst een contact."</string>
     <string name="disconnected">"Verbinding verbroken!"\n</string>
     <string name="service_error">"Servicefout."</string>
     <string name="load_contact_list_failed">"De lijst met contacten is niet geladen."</string>
     <string name="cant_connect_to_server">"Kan geen verbinding maken met de server. Controleer uw verbinding."</string>
     <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> staat al in uw lijst met contacten."</string>
-    <string name="contact_blocked">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' is geblokkeerd."</string>
+    <string name="contact_blocked">"Contact \'<xliff:g id="USER">%1$s</xliff:g>\' is geblokkeerd."</string>
     <string name="contact_not_loaded">"Uw lijst met contacten wordt geladen."</string>
     <string name="network_error">"Er is een netwerkfout opgetreden."</string>
     <string name="service_not_support">"Deze functionaliteit wordt niet ondersteund door de server."</string>
