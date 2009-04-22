@@ -163,12 +163,12 @@
     <string name="not_signed_in">"Użytkownik nie jest aktualnie zalogowany."</string>
     <string name="general_error">"Kod błędu <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
-    <item>"Zadowolenie"</item>
+    <item>"Wesoły"</item>
     <item>"Smutek"</item>
     <item>"Mrugnięcie"</item>
     <item>"Wystający język"</item>
-    <item>"Zdziwienie"</item>
-    <item>"Całus"</item>
+    <item>"Zdziwiony"</item>
+    <item>"Całuje"</item>
     <item>"Krzyk"</item>
     <item>"Super"</item>
     <item>"Pazerność"</item>
@@ -177,7 +177,7 @@
     <item>"Anioł"</item>
     <item>"Niezdecydowanie"</item>
     <item>"Płacz"</item>
-    <item>"Milczę jak grób"</item>
+    <item>"Milczy jak grób"</item>
     <item>"Śmiech"</item>
     <item>"Zakłopotanie"</item>
   </string-array>

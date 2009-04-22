@@ -43,15 +43,15 @@
     <item>"Całus"</item>
     <item>"Krzyk"</item>
     <item>"Super"</item>
-    <item>"Pazerność"</item>
-    <item>"Gafa"</item>
+    <item>"Pazerny"</item>
+    <item>"Nietaktowny"</item>
     <item>"Zakłopotanie"</item>
     <item>"Anioł"</item>
     <item>"Niezdecydowanie"</item>
-    <item>"Płacz"</item>
+    <item>"Płacze"</item>
     <item>"Milczę jak grób"</item>
-    <item>"Śmiech"</item>
-    <item>"Zakłopotanie"</item>
+    <item>"Śmieje się"</item>
+    <item>"Zmieszany"</item>
   </string-array>
   <string-array name="smiley_texts">
     <item>":-)"</item>
