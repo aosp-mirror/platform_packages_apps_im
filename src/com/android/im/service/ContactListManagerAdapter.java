@@ -1021,8 +1021,7 @@ public class ContactListManagerAdapter extends IContactListManager.Stub {
     }
 
     void clearHistoryMessages(String contact) {
-        Uri uri = Im.Messages.getContentUriByContact(mProviderId,
-            mAccountId, contact);
+        Uri uri = Im.Messages.getContentUriByContact(mAccountId, contact);
         mResolver.delete(uri, null, null);
     }
 
