@@ -17,9 +17,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"即時訊息"</string>
     <string name="menu_cancel_signin">"取消登入"</string>
-    <string name="menu_add_contact">"新增連絡人"</string>
-    <string name="menu_remove_contact">"刪除連絡人"</string>
-    <string name="menu_block_contact">"封鎖連絡人"</string>
+    <string name="menu_add_contact">"新增聯絡人"</string>
+    <string name="menu_remove_contact">"刪除聯絡人"</string>
+    <string name="menu_block_contact">"封鎖聯絡人"</string>
     <string name="menu_view_blocked">"封鎖"</string>
     <string name="menu_view_accounts">"帳戶清單"</string>
     <string name="menu_settings">"設定"</string>
@@ -27,14 +27,14 @@
     <string name="menu_sign_out">"登出"</string>
     <string name="menu_view_profile">"觀看個人檔案"</string>
     <string name="menu_end_conversation">"結束交談"</string>
-    <string name="menu_view_contact_list">"連絡人清單"</string>
+    <string name="menu_view_contact_list">"聯絡人清單"</string>
     <string name="menu_invite_contact">"邀請…"</string>
     <string name="menu_switch_chats">"切換交談"</string>
     <string name="menu_insert_smiley">"插入表情符號"</string>
     <string name="menu_plus">"選單+"</string>
     <string name="default_input_title">"輸入"</string>
     <string name="confirm">"確認"</string>
-    <string name="confirm_delete_contact">"「<xliff:g id="USER">%1$s</xliff:g>」會被刪除。"</string>
+    <string name="confirm_delete_contact">"刪除「<xliff:g id="USER">%1$s</xliff:g>」？"</string>
     <string name="confirm_block_contact">"封鎖「<xliff:g id="USER">%1$s</xliff:g>」。"</string>
     <string name="confirm_unblock_contact">"「<xliff:g id="USER">%1$s</xliff:g>」會被解除封鎖。"</string>
     <string name="ok">"確定"</string>
@@ -61,14 +61,14 @@
     <string name="online_count">"線上人數 <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"邀請朋友"</string>
     <string name="unknown_contact">"("<i>" 未知的 "</i>")"</string>
-    <string name="empty_contact_group">"沒有連絡人"</string>
+    <string name="empty_contact_group">"沒有聯絡人"</string>
     <string name="empty_conversation_group">"沒有對話"</string>
-    <string name="contacts_picker_title">"選取要邀請的連絡人"</string>
-    <string name="contact_filter_hint">"輸入關鍵字尋找連絡人"</string>
-    <string name="empty_contact_list">"找不到連絡人。"</string>
-    <string name="blocked_list_title">"已封鎖連絡人 - <xliff:g id="USER">%1$s</xliff:g>"</string>
-    <string name="no_blocked_contact">"沒有封鎖的連絡人。"</string>
-    <string name="contact_profile_title">"連絡人檔案"</string>
+    <string name="contacts_picker_title">"選取要邀請的聯絡人"</string>
+    <string name="contact_filter_hint">"輸入關鍵字尋找聯絡人"</string>
+    <string name="empty_contact_list">"找不到聯絡人"</string>
+    <string name="blocked_list_title">"已封鎖聯絡人 - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"沒有封鎖的聯絡人"</string>
+    <string name="contact_profile_title">"聯絡人檔案"</string>
     <string name="label_status">"狀態："</string>
     <string name="label_client_type">"客戶端類型："</string>
     <string name="client_type_computer">"電腦"</string>
@@ -93,21 +93,21 @@
     <string name="msg_sent_failed">"訊息無法傳送。"</string>
     <string name="disconnected_warning">"與伺服器連線中斷。您的訊息將在下次登入時傳送。"</string>
     <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> 顯示離線。您的訊息將在 <xliff:g id="USER_1">%1$s</xliff:g> 登入時傳送。"</string>
-    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> 不在您的連絡人清單。"</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> 不在您的聯絡人清單。"</string>
     <string name="select_link_title">"選取連結"</string>
     <string name="empty_chat_list">"沒有交談"</string>
-    <string name="add_contact_title">"新增連絡人"</string>
+    <string name="add_contact_title">"新增聯絡人"</string>
     <string name="input_contact_label">"您要邀請的對象電子郵件地址："</string>
     <string name="choose_list_label">"選擇一個清單："</string>
-    <string name="invite_instruction">"輸入連絡人姓名。"</string>
+    <string name="invite_instruction">"輸入聯絡人姓名。"</string>
     <string name="invite_label">"傳送邀請"</string>
     <string name="setting_title">"一般設定"</string>
-    <string name="hide_offline_contacts">"隱藏離線連絡人"</string>
+    <string name="hide_offline_contacts">"隱藏離線聯絡人"</string>
     <string name="notification_group_title">"通知設定"</string>
     <string name="notification_enabled_title">"即時訊息通知"</string>
-    <string name="notification_enabled_summary">"收到訊息時在狀態列顯示通知"</string>
-    <string name="notification_vibrate_title">"震動"</string>
-    <string name="notification_vibrate_summary">"收到訊息時震動視窗"</string>
+    <string name="notification_enabled_summary">"收到即時訊息時，在狀態列中顯示通知"</string>
+    <string name="notification_vibrate_title">"振動"</string>
+    <string name="notification_vibrate_summary">"收到即時訊息時同時開啟振動提醒"</string>
     <string name="notification_sound_title">"音效"</string>
     <string name="notification_sound_summary">"收到訊息時播放鈴聲"</string>
     <string name="notification_ringtone_title">"選取鈴聲"</string>
@@ -115,7 +115,7 @@
     <string name="invitation_sent_prompt">"已傳送邀請給 <xliff:g id="USER">%1$s</xliff:g>。"</string>
     <string name="accept_invitation">"接受"</string>
     <string name="decline_invitation">"拒絕"</string>
-    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> 想要將您新增到連絡人清單。"</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> 想要將您新增到聯絡人清單。"</string>
     <string name="approve_subscription">"接受"</string>
     <string name="decline_subscription">"拒絕"</string>
     <string name="approve_subscription_error">"訂閱 <xliff:g id="USER">%1$s</xliff:g> 資訊失敗。請稍後再試一次。"</string>
@@ -134,16 +134,16 @@
     <string name="error">"注意"</string>
     <string name="login_service_failed">"無法登入 <xliff:g id="SERVICE">%1$s</xliff:g> 服務。請稍候再試一次。"\n" (詳細內容：<xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"清單未增加"</string>
-    <string name="block_contact_failed">"連絡人未封鎖。"</string>
-    <string name="unblock_contact_failed">"連絡人未解除封鎖。"</string>
-    <string name="select_contact">"請先選取連絡人。"</string>
+    <string name="block_contact_failed">"聯絡人未封鎖。"</string>
+    <string name="unblock_contact_failed">"聯絡人未解除封鎖。"</string>
+    <string name="select_contact">"請先選取聯絡人。"</string>
     <string name="disconnected">"連線中斷！"\n</string>
     <string name="service_error">"服務錯誤！"</string>
-    <string name="load_contact_list_failed">"未載入連絡人清單。"</string>
+    <string name="load_contact_list_failed">"未載入聯絡人清單。"</string>
     <string name="cant_connect_to_server">"無法連線到伺服器。請檢查連線狀態。"</string>
-    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> 已在您的連絡人清單。"</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> 已在您的聯絡人清單。"</string>
     <string name="contact_blocked">"「<xliff:g id="USER">%1$s</xliff:g>」已封鎖。"</string>
-    <string name="contact_not_loaded">"請等待連絡人清單載入完成。"</string>
+    <string name="contact_not_loaded">"請等待聯絡人清單載入完成。"</string>
     <string name="network_error">"網路發生問題。"</string>
     <string name="service_not_support">"伺服器不支援此功能。"</string>
     <string name="invalid_password">"您輸入的密碼無效。"</string>
@@ -155,11 +155,11 @@
     <string name="message_queue_full">"訊息佇列已滿。"</string>
     <string name="domain_not_supported">"伺服器不支援網域名稱轉址。"</string>
     <string name="unknown_user">"您輸入的使用者名稱無法辨識。"</string>
-    <string name="recipient_blocked_the_user">"抱歉，您被此使用者封鎖。"</string>
+    <string name="recipient_blocked_the_user">"很抱歉，您被此使用者封鎖。"</string>
     <string name="session_expired">"登入時限已到，請重新登入。"</string>
     <string name="forced_logout">"您已在其他程式登入。"</string>
     <string name="already_logged_in">"您已在另一台機器上登入。"</string>
-    <string name="msisdn_error">"抱歉，無法從 SIM 卡讀取電話號碼。請與您的服務商尋求協助。"</string>
+    <string name="msisdn_error">"很抱歉，無法從 SIM 卡讀取電話號碼。請向您的服務業者尋求協助。"</string>
     <string name="not_signed_in">"您尚未登入。"</string>
     <string name="general_error">"錯誤代碼 <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
