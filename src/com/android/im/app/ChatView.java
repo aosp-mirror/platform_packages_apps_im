@@ -658,9 +658,9 @@ public class ChatView extends LinearLayout {
 
         Uri uri;
         if (Im.Contacts.TYPE_GROUP == mType) {
-            uri = ContentUris.withAppendedId(Im.GroupMessages.CONTENT_URI_GROUP_MESSAGES_BY, mChatId);
+            uri = Im.Messages.getGroupChatContentUriByThreadId(mChatId);
         } else {
-            uri = Im.Messages.getContentUriByContact(mProviderId, mAccountId, mUserName);
+            uri = Im.Messages.getContentUriByThreadId(mChatId);
         }
 
         if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)){
@@ -1054,7 +1054,7 @@ public class ChatView extends LinearLayout {
 
             for (int i = 0 ; i < len ; i++) {
                 mColumnNames[i] = columnNames[i];
-                if (mColumnNames[i].equals(Im.BaseMessageColumns.DATE)) {
+                if (mColumnNames[i].equals(Im.Messages.DATE)) {
                     mDateColumn = i;
                 }
             }
@@ -1418,7 +1418,7 @@ public class ChatView extends LinearLayout {
         private int mScrollState;
         private boolean mNeedRequeryCursor;
 
-        private int mContactColumn;
+        private int mNicknameColumn;
         private int mBodyColumn;
         private int mDateColumn;
         private int mTypeColumn;
@@ -1438,11 +1438,11 @@ public class ChatView extends LinearLayout {
         }
 
         private void resolveColumnIndex(Cursor c) {
-            mContactColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.CONTACT);
-            mBodyColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.BODY);
-            mDateColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.DATE);
-            mTypeColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.TYPE);
-            mErrCodeColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.ERROR_CODE);
+            mNicknameColumn = c.getColumnIndexOrThrow(Im.Messages.NICKNAME);
+            mBodyColumn = c.getColumnIndexOrThrow(Im.Messages.BODY);
+            mDateColumn = c.getColumnIndexOrThrow(Im.Messages.DATE);
+            mTypeColumn = c.getColumnIndexOrThrow(Im.Messages.TYPE);
+            mErrCodeColumn = c.getColumnIndexOrThrow(Im.Messages.ERROR_CODE);
             mDeltaColumn = c.getColumnIndexOrThrow(DeltaCursor.DELTA_COLUMN_NAME);
         }
 
@@ -1464,7 +1464,7 @@ public class ChatView extends LinearLayout {
             MessageView chatMsgView = (MessageView) view;
 
             int type = cursor.getInt(mTypeColumn);
-            String contact = isGroupChat() ? cursor.getString(mContactColumn) : mNickName;
+            String contact = isGroupChat() ? cursor.getString(mNicknameColumn) : mNickName;
             String body = cursor.getString(mBodyColumn);
             long delta = cursor.getLong(mDeltaColumn);
             boolean showTimeStamp = (delta > SHOW_TIME_STAMP_INTERVAL);
