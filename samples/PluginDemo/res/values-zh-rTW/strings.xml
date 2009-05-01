@@ -22,7 +22,7 @@
     <string name="menu_start_chat">"傳送即時訊息"</string>
     <string name="menu_view_profile">"好友資訊"</string>
     <string name="menu_end_conversation">"結束對談"</string>
-    <string name="menu_switch_chats">"切換交談"</string>
+    <string name="menu_switch_chats">"切換即時通訊"</string>
     <string name="menu_insert_smiley">"插入表情符號"</string>
     <string name="sign_up">"取得新帳戶"</string>
     <string name="check_save_password">"為了安全起見，如果電話遺失或遭竊，請使用電腦前往該網站並變更密碼。"</string>
