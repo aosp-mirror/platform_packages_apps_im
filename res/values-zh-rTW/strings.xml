@@ -31,7 +31,7 @@
     <string name="menu_invite_contact">"邀請…"</string>
     <string name="menu_switch_chats">"切換交談"</string>
     <string name="menu_insert_smiley">"插入表情符號"</string>
-    <string name="menu_plus">"選單+"</string>
+    <string name="menu_plus">"[選單] +"</string>
     <string name="default_input_title">"輸入"</string>
     <string name="confirm">"確認"</string>
     <string name="confirm_delete_contact">"刪除「<xliff:g id="USER">%1$s</xliff:g>」？"</string>
@@ -49,7 +49,7 @@
     <string name="remember_password">"記住我的密碼。"</string>
     <string name="keep_me_signed_in">"自動登入"</string>
     <string name="sign_up">"您有帳戶嗎？"</string>
-    <string name="check_auto_sign_in">"此選項可以讓您開啟應用程式時自動登入。若要停用請登出，並清除「自動登入」核取方塊。"</string>
+    <string name="check_auto_sign_in">"此選項可讓您開啟應用程式時自動登入。如要停用，請登出並清除 [自動登入] 核取方塊。"</string>
     <string name="sign_in">"登入"</string>
     <string name="signing_in_to">"登入 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"登入中…"</string>
@@ -137,7 +137,7 @@
     <string name="block_contact_failed">"聯絡人未封鎖。"</string>
     <string name="unblock_contact_failed">"聯絡人未解除封鎖。"</string>
     <string name="select_contact">"請先選取聯絡人。"</string>
-    <string name="disconnected">"連線中斷！"\n</string>
+    <string name="disconnected">"已中斷連線！"\n</string>
     <string name="service_error">"服務錯誤！"</string>
     <string name="load_contact_list_failed">"未載入聯絡人清單。"</string>
     <string name="cant_connect_to_server">"無法連線到伺服器。請檢查連線狀態。"</string>
