@@ -656,12 +656,7 @@ public class ChatView extends LinearLayout {
             mQueryHandler.cancelOperation(QUERY_TOKEN);
         }
 
-        Uri uri;
-        if (Im.Contacts.TYPE_GROUP == mType) {
-            uri = Im.Messages.getGroupChatContentUriByThreadId(mChatId);
-        } else {
-            uri = Im.Messages.getContentUriByThreadId(mChatId);
-        }
+        Uri uri = Im.Messages.getContentUriByThreadId(mChatId);
 
         if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)){
             log("queryCursor: uri=" + uri);

@@ -106,7 +106,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         mIsGroupChat = true;
         long groupId = insertGroupContactInDb(group);
         group.addMemberListener(mListenerAdapter);
-        mMessageURI = Im.Messages.getGroupChatContentUriByThreadId(groupId);
+        mMessageURI = Im.Messages.getContentUriByThreadId(groupId);
         mChatURI = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, groupId);
         insertOrUpdateChat(null);
 
