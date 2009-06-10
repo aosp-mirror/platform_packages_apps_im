@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">"MI"</string>
+    <string name="menu_cancel_signin">"Cancelar login."</string>
+    <string name="menu_add_contact">"Adicionar contato"</string>
+    <string name="menu_remove_contact">"Excluir contato"</string>
+    <string name="menu_block_contact">"Bloquear contato"</string>
+    <string name="menu_view_blocked">"Bloqueados"</string>
+    <string name="menu_view_accounts">"Lista de contas"</string>
+    <string name="menu_settings">"Configurações"</string>
+    <string name="menu_start_chat">"Iniciar chat"</string>
+    <string name="menu_sign_out">"Sair"</string>
+    <string name="menu_view_profile">"Exibir perfil."</string>
+    <string name="menu_end_conversation">"Encerrar chat"</string>
+    <string name="menu_view_contact_list">"Lista de contatos"</string>
+    <string name="menu_invite_contact">"Convidar…"</string>
+    <string name="menu_switch_chats">"Trocar chat"</string>
+    <string name="menu_insert_smiley">"Inserir emoticon"</string>
+    <!-- no translation found for menu_plus (5000617247235760106) -->
+    <skip />
+    <string name="default_input_title">"Entrada"</string>
+    <string name="confirm">"Confirmar"</string>
+    <string name="confirm_delete_contact">"O contato \"<xliff:g id="USER">%1$s</xliff:g>\" será excluído."</string>
+    <string name="confirm_block_contact">"O contato \"<xliff:g id="USER">%1$s</xliff:g>\" será bloqueado."</string>
+    <string name="confirm_unblock_contact">"O contato \"<xliff:g id="USER">%1$s</xliff:g>\" será desbloqueado."</string>
+    <string name="ok">"OK"</string>
+    <string name="cancel">"Cancelar"</string>
+    <string name="yes">"OK"</string>
+    <string name="no">"Cancelar"</string>
+    <string name="signed_out_prompt">"Você foi desconectado de <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
+    <string name="signed_out_prompt_with_error">"Você foi desconectado de <xliff:g id="ACCOUNT">%1$s</xliff:g> porque <xliff:g id="REASON">%2$s</xliff:g>."</string>
+    <string name="add_account">"Adicionar conta <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="label_username">"Nome de usuário:"</string>
+    <string name="label_password">"Senha:"</string>
+    <string name="remember_password">"Lembrar minha senha."</string>
+    <string name="keep_me_signed_in">"Fazer login automaticamente."</string>
+    <string name="sign_up">"Não tem uma conta?"</string>
+    <string name="check_auto_sign_in">"Esta opção realiza seu login automaticamente toda vez que você abre este aplicativo. Para desativá-la, saia de sua conta e desmarque a caixa de seleção \"Fazer login automaticamente\"."</string>
+    <string name="sign_in">"Fazer login"</string>
+    <string name="signing_in_to">"Fazendo login em <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_wait">"Fazendo login"</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
+    <string name="ongoing_conversation">"Chats ativos (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> on-line"</string>
+    <string name="subscriptions">"Convites de amigo"</string>
+    <string name="unknown_contact">"("<i>"Desconhecido"</i>")"</string>
+    <string name="empty_contact_group">"Vazia"</string>
+    <string name="empty_conversation_group">"Sem conversas"</string>
+    <string name="contacts_picker_title">"Selecione os contatos para convidar"</string>
+    <string name="contact_filter_hint">"Digite para localizar contato"</string>
+    <string name="empty_contact_list">"Nenhum contato localizado."</string>
+    <string name="blocked_list_title">"Contatos bloqueados - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Nenhum contato bloqueado."</string>
+    <string name="contact_profile_title">"Perfil do contato"</string>
+    <string name="label_status">"Status:"</string>
+    <string name="label_client_type">"Tipo de cliente:"</string>
+    <string name="client_type_computer">"Computador"</string>
+    <string name="client_type_mobile">"Celular"</string>
+    <string name="presence_available">"On-line"</string>
+    <string name="presence_busy">"Ocupado"</string>
+    <string name="presence_away">"Ausente"</string>
+    <string name="presence_idle">"Inativo"</string>
+    <string name="presence_offline">"Off-line"</string>
+    <string name="presence_invisible">"Aparecer off-line"</string>
+    <string name="chat_with">"Chat com <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="me">"Eu"</string>
+    <!-- no translation found for compose_hint (1735533889811320962) -->
+    <skip />
+    <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> está on-line"</string>
+    <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> está ausente"</string>
+    <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> está ocupado"</string>
+    <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> está off-line"</string>
+    <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> entrou"</string>
+    <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> saiu"</string>
+    <!-- no translation found for time_stamp (8952691401963972802) -->
+    <skip />
+    <string name="send">"Enviar"</string>
+    <string name="msg_sent_failed">"Esta mensagem não foi enviada."</string>
+    <string name="disconnected_warning">"Conexão com o servidor perdida. As mensagens serão enviadas ao reestabelecer a conexão."</string>
+    <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> está off-line. As mensagens que você enviar serão entregues quando <xliff:g id="USER_1">%1$s</xliff:g> estiver on-line."</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> não está na sua Lista de contatos."</string>
+    <string name="select_link_title">"Selecionar link"</string>
+    <string name="empty_chat_list">"Nenhum chat ativo."</string>
+    <string name="add_contact_title">"Adicionar contato"</string>
+    <string name="input_contact_label">"Endereço de e-mail da pessoa que você deseja convidar:"</string>
+    <!-- no translation found for choose_list_label (1430489448508574145) -->
+    <skip />
+    <string name="invite_instruction">"Digite um nome para adicionar a partir dos contatos."</string>
+    <string name="invite_label">"Enviar convite"</string>
+    <string name="setting_title">"Configurações gerais"</string>
+    <string name="hide_offline_contacts">"Ocultar contatos off-line"</string>
+    <string name="notification_group_title">"Configurações de notificação"</string>
+    <string name="notification_enabled_title">"Notificações de MI"</string>
+    <string name="notification_enabled_summary">"Notificar na barra de status ao receber MI"</string>
+    <string name="notification_vibrate_title">"Vibrar"</string>
+    <string name="notification_vibrate_summary">"Também vibrar ao receber MI"</string>
+    <string name="notification_sound_title">"Som"</string>
+    <string name="notification_sound_summary">"Também tocar ringtone ao receber MI"</string>
+    <string name="notification_ringtone_title">"Selecionar ringtone"</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> convidou você para entrar em um chat em grupo."</string>
+    <string name="invitation_sent_prompt">"O convite foi enviado para <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="accept_invitation">"Aceitar"</string>
+    <string name="decline_invitation">"Recusar"</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> convidou você para fazer parte de sua Lista de contatos."</string>
+    <string name="approve_subscription">"Aceitar"</string>
+    <string name="decline_subscription">"Recusar"</string>
+    <string name="approve_subscription_error">"Inscrição de <xliff:g id="USER">%1$s</xliff:g> não foi aprovada. Tente novamente mais tarde."</string>
+    <string name="decline_subscription_error">"Não foi possível recusar a inscrição de <xliff:g id="USER">%1$s</xliff:g>. Tente novamente mais tarde."</string>
+    <string name="newMessages_label">"Novas mensagens de <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> chats não lidos"</string>
+    <string name="subscription_notify_text">"Novo convite de amigo de <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Convite para chat em grupo"</string>
+    <string name="group_chat_invite_notify_text">"Novo convite para chat em grupo de <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="add_contact_success">"Contato \"<xliff:g id="USER">%1$s</xliff:g>\" adicionado."</string>
+    <string name="delete_contact_success">"Contato \"<xliff:g id="USER">%1$s</xliff:g>\" excluído."</string>
+    <string name="block_contact_success">"Contato \"<xliff:g id="USER">%1$s</xliff:g>\" bloqueado."</string>
+    <string name="unblock_contact_success">"Contato \"<xliff:g id="USER">%1$s</xliff:g>\" desbloqueado."</string>
+    <string name="perm_label">"iniciar serviço de MI"</string>
+    <string name="perm_desc">"Permite que os aplicativos iniciem o serviço de MI pela internet."</string>
+    <string name="error">"Atenção"</string>
+    <string name="login_service_failed">"Não foi possível acessar o serviço <xliff:g id="SERVICE">%1$s</xliff:g>. Tente novamente mais tarde."\n"(Detalhes: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"A lista não foi adicionada."</string>
+    <string name="block_contact_failed">"O contato não foi bloqueado."</string>
+    <string name="unblock_contact_failed">"O contato não foi desbloqueado."</string>
+    <string name="select_contact">"Selecione um contato antes."</string>
+    <string name="disconnected">"Desconectado!"\n</string>
+    <string name="service_error">"Erro do serviço."</string>
+    <string name="load_contact_list_failed">"A Lista de contatos não foi carregada."</string>
+    <string name="cant_connect_to_server">"Não foi possível conectar com o servidor. Verifique sua conexão."</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> já existe na sua Lista de contatos."</string>
+    <string name="contact_blocked">"Contato \"<xliff:g id="USER">%1$s</xliff:g>\" foi bloqueado."</string>
+    <string name="contact_not_loaded">"Aguarde enquanto a Lista de contatos é carregada."</string>
+    <string name="network_error">"Ocorreu um erro de rede."</string>
+    <string name="service_not_support">"O servidor não suporta este recurso."</string>
+    <string name="invalid_password">"A senha inserida não é válida."</string>
+    <string name="internal_server_error">"O servidor encontrou um erro."</string>
+    <string name="not_implemented">"O servidor não suporta este recurso."</string>
+    <string name="service_unavaiable">"O servidor está indisponível no momento."</string>
+    <string name="timeout">"O tempo do servidor expirou."</string>
+    <string name="version_not_supported">"O servidor não suporta a versão atual."</string>
+    <string name="message_queue_full">"A fila de mensagens está cheia."</string>
+    <string name="domain_not_supported">"O servidor não suporta o envio de dados para o domínio."</string>
+    <string name="unknown_user">"O nome de usuário inserido não foi reconhecido."</string>
+    <string name="recipient_blocked_the_user">"Você foi bloqueado pelo usuário."</string>
+    <string name="session_expired">"A sessão expirou; faça login novamente."</string>
+    <string name="forced_logout">"você fez login como outro cliente."</string>
+    <string name="already_logged_in">"você já fez login como outro cliente."</string>
+    <string name="msisdn_error">"Não é possível ler o número do telefone no cartão SIM. Entre em contato com o seu operador para obter ajuda."</string>
+    <string name="not_signed_in">"Você não está conectado."</string>
+    <string name="general_error">"Código de erro <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"Feliz"</item>
+    <item>"Triste"</item>
+    <item>"Piscando"</item>
+    <item>"Língua de fora"</item>
+    <item>"Surpreso"</item>
+    <item>"Beijo"</item>
+    <item>"Gritando"</item>
+    <item>"Descontraído"</item>
+    <item>"Cifrão na boca"</item>
+    <item>"Opa"</item>
+    <item>"Constrangido"</item>
+    <item>"Anjo"</item>
+    <item>"Indeciso"</item>
+    <item>"Chorando"</item>
+    <item>"Boca fechada"</item>
+    <item>"Sorrindo"</item>
+    <item>"Confuso"</item>
+  </string-array>
+</resources>
