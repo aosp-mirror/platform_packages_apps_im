@@ -35,23 +35,23 @@
     <string name="input_contact_label">"Widoczna nazwa dodawanej osoby:"</string>
     <string name="invite_label">"Dodaj znajomego"</string>
   <string-array name="smiley_names">
-    <item>"Zadowolenie"</item>
-    <item>"Smutek"</item>
-    <item>"Mrugnięcie"</item>
-    <item>"Wystający język"</item>
+    <item>"Wesoły"</item>
+    <item>"Smutny"</item>
+    <item>"Mruga"</item>
+    <item>"Pokazuje język"</item>
     <item>"Zdziwienie"</item>
-    <item>"Całus"</item>
-    <item>"Krzyk"</item>
-    <item>"Super"</item>
-    <item>"Pazerność"</item>
-    <item>"Gafa"</item>
+    <item>"Całuje"</item>
+    <item>"Krzyczy"</item>
+    <item>"Na luzie"</item>
+    <item>"Pazerny"</item>
+    <item>"Nietaktowny"</item>
     <item>"Zakłopotanie"</item>
     <item>"Anioł"</item>
-    <item>"Niezdecydowanie"</item>
-    <item>"Płacz"</item>
-    <item>"Milczę jak grób"</item>
-    <item>"Śmiech"</item>
-    <item>"Zakłopotanie"</item>
+    <item>"Niezdecydowany"</item>
+    <item>"Płacze"</item>
+    <item>"Milczy jak grób"</item>
+    <item>"Śmieje się"</item>
+    <item>"Zmieszany"</item>
   </string-array>
   <string-array name="smiley_texts">
     <item>":-)"</item>

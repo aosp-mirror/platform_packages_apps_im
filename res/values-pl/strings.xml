@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"Komunikator"</string>
+    <string name="im_label">"Czat"</string>
     <string name="menu_cancel_signin">"Anuluj logowanie"</string>
     <string name="menu_add_contact">"Dodaj kontakt"</string>
     <string name="menu_remove_contact">"Usuń kontakt"</string>
@@ -30,7 +30,7 @@
     <string name="menu_view_contact_list">"Lista kontaktów"</string>
     <string name="menu_invite_contact">"Zaproś…"</string>
     <string name="menu_switch_chats">"Przełącz czaty"</string>
-    <string name="menu_insert_smiley">"Wstaw buźkę"</string>
+    <string name="menu_insert_smiley">"Wstaw emotikon"</string>
     <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Katalog wejściowy"</string>
     <string name="confirm">"Potwierdź"</string>
@@ -79,7 +79,7 @@
     <string name="presence_idle">"Bezczynność"</string>
     <string name="presence_offline">"Offline"</string>
     <string name="presence_invisible">"Pokazuj jako offline"</string>
-    <string name="chat_with">"Czatuj z użytkownikiem <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="chat_with">"Czat z użytkownikiem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Ja"</string>
     <string name="compose_hint">"Wpisz, aby utworzyć"</string>
     <string name="contact_online">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> jest dostępny"</string>
@@ -105,11 +105,11 @@
     <string name="hide_offline_contacts">"Ukryj kontakty offline"</string>
     <string name="notification_group_title">"Ustawienia powiadomień"</string>
     <string name="notification_enabled_title">"Powiadamiaj o czacie"</string>
-    <string name="notification_enabled_summary">"Sygnalizuj nową wiadomość na czacie na pasku stanu"</string>
+    <string name="notification_enabled_summary">"Sygnalizuj nową wiadomość czatu na pasku stanu"</string>
     <string name="notification_vibrate_title">"Wibracje"</string>
-    <string name="notification_vibrate_summary">"Sygnalizuj wiadomość na czacie wibracją"</string>
+    <string name="notification_vibrate_summary">"Sygnalizuj wiadomość czatu wibracją"</string>
     <string name="notification_sound_title">"Dźwięk"</string>
-    <string name="notification_sound_summary">"Sygnalizuj wiadomość na czacie dzwonkiem"</string>
+    <string name="notification_sound_summary">"Sygnalizuj wiadomość czatu dzwonkiem"</string>
     <string name="notification_ringtone_title">"Wybierz dzwonek"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> przesyła zaproszenie do czatu grupowego."</string>
     <string name="invitation_sent_prompt">"Wysłano zaproszenie do użytkownika <xliff:g id="USER">%1$s</xliff:g>."</string>
@@ -129,7 +129,7 @@
     <string name="delete_contact_success">"Usunięto kontakt „<xliff:g id="USER">%1$s</xliff:g>”."</string>
     <string name="block_contact_success">"Zablokowano kontakt „<xliff:g id="USER">%1$s</xliff:g>”."</string>
     <string name="unblock_contact_success">"Odblokowano kontakt „<xliff:g id="USER">%1$s</xliff:g>”."</string>
-    <string name="perm_label">"uruchom usługę wiadomości błyskawicznych"</string>
+    <string name="perm_label">"uruchom usługę czatu"</string>
     <string name="perm_desc">"Umożliwia aplikacjom uruchamianie czatu na żądanie."</string>
     <string name="error">"Uwaga"</string>
     <string name="login_service_failed">"Nie można zalogować do usługi <xliff:g id="SERVICE">%1$s</xliff:g>. Spróbuj ponownie później."\n"(Szczegóły: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
@@ -163,22 +163,22 @@
     <string name="not_signed_in">"Użytkownik nie jest aktualnie zalogowany."</string>
     <string name="general_error">"Kod błędu <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
-    <item>"Zadowolenie"</item>
-    <item>"Smutek"</item>
-    <item>"Mrugnięcie"</item>
-    <item>"Wystający język"</item>
-    <item>"Zdziwienie"</item>
-    <item>"Całus"</item>
-    <item>"Krzyk"</item>
-    <item>"Super"</item>
-    <item>"Pazerność"</item>
-    <item>"Gafa"</item>
+    <item>"Wesoły"</item>
+    <item>"Smutny"</item>
+    <item>"Mruga"</item>
+    <item>"Pokazuje język"</item>
+    <item>"Zdziwiony"</item>
+    <item>"Całuje"</item>
+    <item>"Krzyczy"</item>
+    <item>"Na luzie"</item>
+    <item>"Pazerny"</item>
+    <item>"Nietaktowny"</item>
     <item>"Zakłopotanie"</item>
     <item>"Anioł"</item>
-    <item>"Niezdecydowanie"</item>
-    <item>"Płacz"</item>
-    <item>"Milczę jak grób"</item>
-    <item>"Śmiech"</item>
+    <item>"Niezdecydowany"</item>
+    <item>"Płacze"</item>
+    <item>"Milczy jak grób"</item>
+    <item>"Śmieje się"</item>
     <item>"Zakłopotanie"</item>
   </string-array>
 </resources>
