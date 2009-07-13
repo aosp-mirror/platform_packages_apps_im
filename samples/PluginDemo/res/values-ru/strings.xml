@@ -19,39 +19,39 @@
     <string name="menu_remove_contact">"Удалить контакт"</string>
     <string name="menu_block_contact">"Заблокировать"</string>
     <string name="menu_contact_list">"Список контактов"</string>
-    <string name="menu_start_chat">"Отправить сообщение"</string>
-    <string name="menu_view_profile">"Сведения о друге"</string>
-    <string name="menu_end_conversation">"Завершить разговор"</string>
-    <string name="menu_switch_chats">"Переключить чат"</string>
-    <string name="menu_insert_smiley">"Вставить значки настроения"</string>
+    <string name="menu_start_chat">"Отправить сообщение чата"</string>
+    <string name="menu_view_profile">"О приятеле"</string>
+    <string name="menu_end_conversation">"Закончить разговор"</string>
+    <string name="menu_switch_chats">"Сменить чат"</string>
+    <string name="menu_insert_smiley">"Вставить значки настроений"</string>
     <string name="sign_up">"Получить новый аккаунт"</string>
-    <string name="check_save_password">"В целях безопасности при утере или краже телефона откройте веб-сайт с компьютера и измените пароль."</string>
+    <string name="check_save_password">"В случае потери или кражи телефона для обеспечения вашей безопасности перейдите со своего компьютера на веб-сайт и поменяйте пароль."</string>
     <string name="buddy_list_title">"Список контактов – <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
     <string name="label_username">"Имя пользователя:"</string>
-    <string name="ongoing_conversation">"Разговоры (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="ongoing_conversation">"Разговоров: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="contact_profile_title">"Сведения о контакте"</string>
-    <string name="presence_available">"Доступен"</string>
+    <string name="presence_available">"На месте"</string>
     <string name="add_contact_title">"Добавить контакт"</string>
-    <string name="input_contact_label">"Экранное имя добавляемого:"</string>
-    <string name="invite_label">"Добавить друга"</string>
+    <string name="input_contact_label">"Псевдоним человека, которого необходимо добавить:"</string>
+    <string name="invite_label">"Добавить приятеля"</string>
   <string-array name="smiley_names">
-    <item>"Счастье"</item>
-    <item>"Грустно"</item>
-    <item>"Подмигиваю"</item>
-    <item>"Высунутый язык"</item>
+    <item>"Веселый"</item>
+    <item>"Грустный"</item>
+    <item>"Подмигивает"</item>
+    <item>"Показывает язык"</item>
     <item>"Удивление"</item>
-    <item>"Целую"</item>
-    <item>"Кричу"</item>
-    <item>"Круто"</item>
-    <item>"Знаю, что говорю"</item>
-    <item>"Молчок"</item>
-    <item>"В смущении"</item>
-    <item>"Ангел"</item>
-    <item>"В нерешительности"</item>
-    <item>"Плачу"</item>
-    <item>"Никому не скажу"</item>
-    <item>"Смешно"</item>
+    <item>"Поцелуй"</item>
+    <item>"Кричит"</item>
+    <item>"Крутой"</item>
+    <item>"Молчание – золото"</item>
     <item>"В замешательстве"</item>
+    <item>"Смущение"</item>
+    <item>"Ангел"</item>
+    <item>"Нерешительный"</item>
+    <item>"Плачет"</item>
+    <item>"Не скажу"</item>
+    <item>"Смех"</item>
+    <item>"Озадаченный"</item>
   </string-array>
   <string-array name="smiley_texts">
     <item>":-)"</item>

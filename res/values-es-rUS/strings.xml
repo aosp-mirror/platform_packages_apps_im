@@ -130,7 +130,7 @@
     <string name="block_contact_success">"Contacto \"<xliff:g id="USER">%1$s</xliff:g>\" bloqueado."</string>
     <string name="unblock_contact_success">"Contacto \"<xliff:g id="USER">%1$s</xliff:g>\" desbloqueado."</string>
     <string name="perm_label">"iniciar servicio de mensajería instantánea"</string>
-    <string name="perm_desc">"Permite a las aplicaciones iniciar el servicio de mensajería instantánea por Internet."</string>
+    <string name="perm_desc">"Permite a las aplicaciones iniciar el servicio de mensajería instantánea por medio de intent."</string>
     <string name="error">"Atención"</string>
     <string name="login_service_failed">"No es posible iniciar sesión en el servicio <xliff:g id="SERVICE">%1$s</xliff:g>. Vuelve a intentarlo más tarde."\n"(Detalle:<xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"La lista no se agregó."</string>

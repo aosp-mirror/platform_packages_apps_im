@@ -20,7 +20,7 @@
     <string name="menu_add_contact">"Kontakt hinzufügen"</string>
     <string name="menu_remove_contact">"Kontakt löschen"</string>
     <string name="menu_block_contact">"Kontakt blockieren"</string>
-    <string name="menu_view_blocked">"Blockiert"</string>
+    <string name="menu_view_blocked">"Gesperrt"</string>
     <string name="menu_view_accounts">"Liste der Konten"</string>
     <string name="menu_settings">"Einstellungen"</string>
     <string name="menu_start_chat">"Chat starten"</string>
@@ -35,7 +35,7 @@
     <string name="default_input_title">"Eingabe"</string>
     <string name="confirm">"Bestätigen"</string>
     <string name="confirm_delete_contact">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wird gelöscht."</string>
-    <string name="confirm_block_contact">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wird blockiert."</string>
+    <string name="confirm_block_contact">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wird gesperrt."</string>
     <string name="confirm_unblock_contact">"Blockierung des Kontakts \"<xliff:g id="USER">%1$s</xliff:g>\" wird aufgehoben."</string>
     <string name="ok">"OK"</string>
     <string name="cancel">"Abbrechen"</string>
@@ -66,8 +66,8 @@
     <string name="contacts_picker_title">"Kontakte für Einladung auswählen"</string>
     <string name="contact_filter_hint">"Gesuchten Kontakt eingeben"</string>
     <string name="empty_contact_list">"Keine Kontakte gefunden"</string>
-    <string name="blocked_list_title">"Blockierte Kontakte - <xliff:g id="USER">%1$s</xliff:g>"</string>
-    <string name="no_blocked_contact">"Keine blockierten Kontakte"</string>
+    <string name="blocked_list_title">"Gesperrte Kontakte - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Keine gesperrten Kontakte"</string>
     <string name="contact_profile_title">"Kontaktprofil"</string>
     <string name="label_status">"Status:"</string>
     <string name="label_client_type">"Clienttyp:"</string>
@@ -127,14 +127,14 @@
     <string name="group_chat_invite_notify_text">"Neue Einladung zum Gruppenchat von <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="add_contact_success">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" hinzugefügt"</string>
     <string name="delete_contact_success">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" gelöscht"</string>
-    <string name="block_contact_success">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" blockiert"</string>
+    <string name="block_contact_success">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" gesperrt"</string>
     <string name="unblock_contact_success">"Blockierung des Kontakts \"<xliff:g id="USER">%1$s</xliff:g>\" aufgehoben"</string>
     <string name="perm_label">"Chat-Service starten"</string>
     <string name="perm_desc">"Ermöglicht Anwendungen das eigenständige Starten von Chat-Services."</string>
     <string name="error">"Achtung"</string>
     <string name="login_service_failed">"Anmeldung beim <xliff:g id="SERVICE">%1$s</xliff:g>-Service nicht möglich. Bitte versuchen Sie es später erneut."\n"(Details: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"Die Liste wurde nicht hinzugefügt."</string>
-    <string name="block_contact_failed">"Kontakt wurde nicht blockiert."</string>
+    <string name="block_contact_failed">"Kontakt wurde nicht gesperrt."</string>
     <string name="unblock_contact_failed">"Blockierung des Kontakts wurde nicht aufgehoben."</string>
     <string name="select_contact">"Wählen Sie zunächst einen Kontakt aus."</string>
     <string name="disconnected">"Getrennt"\n</string>
@@ -142,7 +142,7 @@
     <string name="load_contact_list_failed">"Kontaktliste wurde nicht geladen."</string>
     <string name="cant_connect_to_server">"Verbindung zum Server kann nicht hergestellt werden. Überprüfen Sie die Verbindung."</string>
     <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> ist bereits in der Kontaktliste vorhanden."</string>
-    <string name="contact_blocked">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wurde blockiert."</string>
+    <string name="contact_blocked">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wurde gesperrt."</string>
     <string name="contact_not_loaded">"Kontaktliste wird geladen, bitte warten."</string>
     <string name="network_error">"Ein Netzwerkfehler ist aufgetreten."</string>
     <string name="service_not_support">"Diese Funktion wird vom Server nicht unterstützt."</string>
@@ -155,7 +155,7 @@
     <string name="message_queue_full">"Die Nachrichtenwarteschlange ist voll."</string>
     <string name="domain_not_supported">"Das Weiterleiten an die Domäne wird vom Server nicht unterstützt."</string>
     <string name="unknown_user">"Der eingegebene Benutzername wird nicht erkannt."</string>
-    <string name="recipient_blocked_the_user">"Sie werden leider vom Benutzer blockiert."</string>
+    <string name="recipient_blocked_the_user">"Sie werden leider vom Benutzer gesperrt."</string>
     <string name="session_expired">"Die Sitzung ist abgelaufen, bitte melden Sie sich erneut an."</string>
     <string name="forced_logout">"Sie haben sich von einem anderen Client aus angemeldet."</string>
     <string name="already_logged_in">"Sie haben sich bereits von einem anderen Client aus angemeldet."</string>
@@ -166,7 +166,7 @@
     <item>"Glücklich"</item>
     <item>"Traurig"</item>
     <item>"Zwinkern"</item>
-    <item>"Zunge herausstrecken"</item>
+    <item>"Zunge rausstrecken"</item>
     <item>"Überrascht"</item>
     <item>"Kuss"</item>
     <item>"Schreien"</item>

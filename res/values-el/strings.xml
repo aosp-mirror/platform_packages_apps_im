@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">"Ανταλλαγή άμεσων μηνυμάτων (IM)"</string>
+    <string name="menu_cancel_signin">"Ακύρωση σύνδεσης"</string>
+    <string name="menu_add_contact">"Προσθήκη επαφής"</string>
+    <string name="menu_remove_contact">"Διαγραφή επαφής"</string>
+    <string name="menu_block_contact">"Αποκλεισμός επαφής"</string>
+    <string name="menu_view_blocked">"Αποκλεισμένος/η"</string>
+    <string name="menu_view_accounts">"Λίστα λογαριασμών"</string>
+    <string name="menu_settings">"Ρυθμίσεις"</string>
+    <string name="menu_start_chat">"Έναρξη συζήτησης"</string>
+    <string name="menu_sign_out">"Αποσύνδεση"</string>
+    <string name="menu_view_profile">"Προβολή προφίλ"</string>
+    <string name="menu_end_conversation">"Τερματισμός συζήτησης"</string>
+    <string name="menu_view_contact_list">"Λίστα επαφών"</string>
+    <string name="menu_invite_contact">"Πρόσκληση..."</string>
+    <string name="menu_switch_chats">"Εναλλαγή συζητήσεων"</string>
+    <string name="menu_insert_smiley">"Εισαγωγή εικονιδίου smiley"</string>
+    <string name="menu_plus">"Μενού+"</string>
+    <string name="default_input_title">"Είσοδος"</string>
+    <string name="confirm">"Επιβεβαίωση"</string>
+    <string name="confirm_delete_contact">"Η επαφή \"<xliff:g id="USER">%1$s</xliff:g>\" θα διαγραφεί."</string>
+    <string name="confirm_block_contact">"Θα γίνει αποκλεισμός της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="confirm_unblock_contact">"Θα γίνει κατάργηση αποκλεισμού της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="ok">"OK"</string>
+    <string name="cancel">"Ακύρωση"</string>
+    <string name="yes">"OK"</string>
+    <string name="no">"Ακύρωση"</string>
+    <string name="signed_out_prompt">"Πραγματοποιήσατε έξοδο από το <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
+    <string name="signed_out_prompt_with_error">"Πραγματοποιήθηκε έξοδός σας από το <xliff:g id="ACCOUNT">%1$s</xliff:g> επειδή <xliff:g id="REASON">%2$s</xliff:g>."</string>
+    <string name="add_account">"Προσθήκη λογαριασμού <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="label_username">"Όνομα χρήστη:"</string>
+    <string name="label_password">"Κωδικός πρόσβασης:"</string>
+    <string name="remember_password">"Απομνημόνευση του κωδικού πρόσβασης."</string>
+    <string name="keep_me_signed_in">"Αυτόματη σύνδεση."</string>
+    <string name="sign_up">"Δεν έχετε λογαριασμό;"</string>
+    <string name="check_auto_sign_in">"Αυτή η επιλογή σάς συνδέει αυτόματα κάθε φορά που ανοίγετε αυτήν την εφαρμογή. Για να απενεργοποιήσετε αυτήν την επιλογή, αποσυνδεθείτε και αφήστε κενό το πλαίσιο επιλογής \"Αυτόματη σύνδεση\"."</string>
+    <string name="sign_in">"Σύνδεση"</string>
+    <string name="signing_in_to">"Σύνδεση στον λογαριασμό: <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_wait">"Σύνδεση..."</string>
+    <string name="bg_data_prompt_title">"Τα δεδομένα παρασκηνίου είναι απενεργοποιημένα"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> χρειάζεται ενεργοποιημένα τα δεδομένα παρασκηνίου."</string>
+    <string name="bg_data_prompt_ok">"Ενεργοποίηση"</string>
+    <string name="bg_data_prompt_cancel">"Τερματισμός"</string>
+    <string name="ongoing_conversation">"Ενεργές συζητήσεις (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> συνδεδεμένες επαφές"</string>
+    <string name="subscriptions">"Προσκλήσεις φίλων"</string>
+    <string name="unknown_contact">"("<i>"Άγνωστος"</i>")"</string>
+    <string name="empty_contact_group">"Κενή"</string>
+    <string name="empty_conversation_group">"Δεν υπάρχουν συνομιλίες"</string>
+    <string name="contacts_picker_title">"Επιλογή επαφής (επαφών) για αποστολή πρόσκλησης"</string>
+    <string name="contact_filter_hint">"Πληκτρολογήστε για να βρείτε την επαφή"</string>
+    <string name="empty_contact_list">"Δεν βρέθηκαν επαφές."</string>
+    <string name="blocked_list_title">"Αποκλεισμένες επαφές - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Δεν υπάρχουν αποκλεισμένες επαφές."</string>
+    <string name="contact_profile_title">"Προφίλ επαφής"</string>
+    <string name="label_status">"Κατάσταση:"</string>
+    <string name="label_client_type">"Τύπος προγράμματος-πελάτη:"</string>
+    <string name="client_type_computer">"Υπολογιστής"</string>
+    <string name="client_type_mobile">"Κινητό"</string>
+    <string name="presence_available">"Συνδεδεμένος"</string>
+    <string name="presence_busy">"Απασχολημένος/η"</string>
+    <string name="presence_away">"Μακριά από τον υπολογιστή"</string>
+    <string name="presence_idle">"Αδρανής"</string>
+    <string name="presence_offline">"Εκτός σύνδεσης"</string>
+    <string name="presence_invisible">"Να εμφανίζομαι εκτός σύνδεσης"</string>
+    <string name="chat_with">"Συζήτηση με τον χρήστη <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="me">"Εγώ"</string>
+    <string name="compose_hint">"Για σύνθεση κειμένου, πληκτρολογήστε"</string>
+    <string name="contact_online">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> συνδέθηκε"</string>
+    <string name="contact_away">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> βρίσκεται μακριά από τον υπολογιστή του"</string>
+    <string name="contact_busy">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> είναι απασχολημένος/η"</string>
+    <string name="contact_offline">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> βρίσκεται εκτός σύνδεσης"</string>
+    <string name="contact_joined">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> συνδέθηκε"</string>
+    <string name="contact_left">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> αποχώρησε"</string>
+    <string name="time_stamp" format="date">"'Η αποστολή έγινε '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>', '<xliff:g id="DATE">EEEE</xliff:g>"</string>
+    <string name="send">"Αποστολή"</string>
+    <string name="msg_sent_failed">"Δεν ήταν δυνατή η αποστολή αυτού του μηνύματος."</string>
+    <string name="disconnected_warning">"Χάθηκε η σύνδεση με τον διακομιστή. Η αποστολή των μηνυμάτων θα γίνει μόλις επανέλθει η σύνδεση."</string>
+    <string name="contact_offline_warning">"Ο χρήστης <xliff:g id="USER_0">%1$s</xliff:g> βρίσκεται εκτός σύνδεσης. Τα μηνύματα που στέλνετε θα παραδοθούν όταν ο χρήστης <xliff:g id="USER_1">%1$s</xliff:g> συνδεθεί στο διαδίκτυο."</string>
+    <string name="contact_not_in_list_warning">"Η επαφή <xliff:g id="USER">%1$s</xliff:g> δεν υπάρχει στη λίστα επαφών σας."</string>
+    <string name="select_link_title">"Επιλογή συνδέσμου"</string>
+    <string name="empty_chat_list">"Δεν υπάρχουν ενεργές συζητήσεις."</string>
+    <string name="add_contact_title">"Προσθήκη επαφής"</string>
+    <string name="input_contact_label">"Διεύθυνση ηλεκτρονικού ταχυδρομείου του ατόμου που θέλετε να προσκαλέσετε:"</string>
+    <string name="choose_list_label">"Επιλέξτε μια λίστα:"</string>
+    <string name="invite_instruction">"Πληκτρολογήστε ένα όνομα για να το προσθέσετε από τις επαφές."</string>
+    <string name="invite_label">"Αποστολή πρόσκλησης"</string>
+    <string name="setting_title">"Γενικές ρυθμίσεις"</string>
+    <string name="hide_offline_contacts">"Απόκρυψη επαφών εκτός σύνδεσης"</string>
+    <string name="notification_group_title">"Ρυθμίσεις ειδοποιήσεων"</string>
+    <string name="notification_enabled_title">"Ειδοποιήσεις άμεσων μηνυμάτων (IM)"</string>
+    <string name="notification_enabled_summary">"Να εμφανίζεται ειδοποίηση στη γραμμή κατάστασης όταν γίνεται λήψη άμεσου μηνύματος (IM)"</string>
+    <string name="notification_vibrate_title">"Δόνηση"</string>
+    <string name="notification_vibrate_summary">"Δόνηση κατά τη λήψη άμεσων μηνυμάτων (IM)"</string>
+    <string name="notification_sound_title">"Ήχος"</string>
+    <string name="notification_sound_summary">"Αναπαραγωγή ήχου κλήσης κατά τη λήψη άμεσου μηνύματος (IM)"</string>
+    <string name="notification_ringtone_title">"Επιλογή ήχου κλήσης"</string>
+    <string name="invitation_prompt">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> σας προσκάλεσε να συμμετέχετε σε ομαδική συζήτηση."</string>
+    <string name="invitation_sent_prompt">"Έγινε αποστολή πρόσκλησης στον χρήστη: <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="accept_invitation">"Αποδοχή"</string>
+    <string name="decline_invitation">"Απόρριψη"</string>
+    <string name="subscription_prompt">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> σας έστειλε πρόσκληση για να σας προσθέσει στη λίστα επαφών του."</string>
+    <string name="approve_subscription">"Αποδοχή"</string>
+    <string name="decline_subscription">"Απόρριψη"</string>
+    <string name="approve_subscription_error">"Δεν ήταν δυνατή η έγκριση συνδρομής από τον χρήστη <xliff:g id="USER">%1$s</xliff:g>. Δοκιμάστε ξανά αργότερα."</string>
+    <string name="decline_subscription_error">"Δεν ήταν δυνατή η απόρριψη συνδρομής από τον χρήστη <xliff:g id="USER">%1$s</xliff:g>. Δοκιμάστε ξανά αργότερα."</string>
+    <string name="newMessages_label">"Νέα μηνύματα <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> μη αναγνωσμένες συζητήσεις"</string>
+    <string name="subscription_notify_text">"Νέα πρόσκληση φίλου από τον χρήστη <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Πρόσκληση σε ομαδική συζήτηση"</string>
+    <string name="group_chat_invite_notify_text">"Νέα πρόσκληση για ομαδική συζήτηση από τον χρήστη <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="add_contact_success">"Έγινε προσθήκη της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="delete_contact_success">"Η επαφή \"<xliff:g id="USER">%1$s</xliff:g>\" διαγράφηκε."</string>
+    <string name="block_contact_success">"Έγινε αποκλεισμός της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="unblock_contact_success">"Κατάργηση αποκλεισμού της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="perm_label">"Έναρξη υπηρεσίας ανταλλαγής άμεσων μηνυμάτων (IM)"</string>
+    <string name="perm_desc">"Επιτρέπει στις εφαρμογές να εκκινούν την υπηρεσία ανταλλαγής άμεσων μηνυμάτων (IM) μέσω του intent."</string>
+    <string name="error">"Προσοχή"</string>
+    <string name="login_service_failed">"Δεν είναι δυνατή η σύνδεση στην υπηρεσία <xliff:g id="SERVICE">%1$s</xliff:g>. Δοκιμάστε ξανά αργότερα."\n"(Λεπτομέρειες: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"Δεν έγινε προσθήκη της λίστας."</string>
+    <string name="block_contact_failed">"Δεν έγινε αποκλεισμός της επαφής."</string>
+    <string name="unblock_contact_failed">"Δεν έγινε κατάργηση αποκλεισμού της επαφής."</string>
+    <string name="select_contact">"Επιλέξτε πρώτα μια επαφή."</string>
+    <string name="disconnected">"Χωρίς σύνδεση!"\n</string>
+    <string name="service_error">"Σφάλμα υπηρεσίας!"</string>
+    <string name="load_contact_list_failed">"Δεν έγινε φόρτωση της λίστας επαφών."</string>
+    <string name="cant_connect_to_server">"Δεν είναι δυνατή η σύνδεση με τον διακομιστή. Ελέγξτε τη σύνδεσή σας."</string>
+    <string name="contact_already_exist">"Ο χρήστης <xliff:g id="USER">%1$s</xliff:g> υπάρχει ήδη στη λίστα επαφών σας."</string>
+    <string name="contact_blocked">"Έγινε αποκλεισμός της επαφής \"<xliff:g id="USER">%1$s</xliff:g>\"."</string>
+    <string name="contact_not_loaded">"Περιμένετε μέχρι να φορτώσει η λίστα επαφών σας."</string>
+    <string name="network_error">"Προέκυψε σφάλμα δικτύου."</string>
+    <string name="service_not_support">"Ο διακομιστής δεν υποστηρίζει αυτήν τη δυνατότητα."</string>
+    <string name="invalid_password">"Ο κωδικός πρόσβασης που εισάγατε δεν είναι έγκυρος."</string>
+    <string name="internal_server_error">"Παρουσιάστηκε σφάλμα στον διακομιστή."</string>
+    <string name="not_implemented">"Ο διακομιστής δεν υποστηρίζει αυτήν τη δυνατότητα."</string>
+    <string name="service_unavaiable">"Ο διακομιστής δεν είναι διαθέσιμος αυτήν τη στιγμή."</string>
+    <string name="timeout">"Η περίοδος σύνδεσης με τον διακομιστή έληξε."</string>
+    <string name="version_not_supported">"Ο διακομιστής δεν υποστηρίζει την τρέχουσα έκδοση."</string>
+    <string name="message_queue_full">"Η ουρά μηνυμάτων είναι πλήρης."</string>
+    <string name="domain_not_supported">"Ο διακομιστής δεν υποστηρίζει την προώθηση προς τον τομέα διαδικτύου."</string>
+    <string name="unknown_user">"Το όνομα χρήστη που εισάγατε δεν αναγνωρίζεται."</string>
+    <string name="recipient_blocked_the_user">"Λυπούμαστε, αλλά έχετε αποκλειστεί από τον χρήστη."</string>
+    <string name="session_expired">"Η περίοδος σύνδεσης έληξε, συνδεθείτε ξανά."</string>
+    <string name="forced_logout">"συνδεθήκατε από άλλο πρόγραμμα-πελάτη."</string>
+    <string name="already_logged_in">"έχετε ήδη συνδεθεί από άλλο πρόγραμμα-πελάτη."</string>
+    <string name="msisdn_error">"Λυπούμαστε, δεν είναι δυνατή η ανάγνωση του αριθμού τηλεφώνου από την κάρτα SIM. Επικοινωνήστε με την εταιρεία κινητής τηλεφωνίας για βοήθεια."</string>
+    <string name="not_signed_in">"Δεν είστε συνδεδεμένοι αυτήν τη στιγμή."</string>
+    <string name="general_error">"Κωδικός σφάλματος <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"Είμαι χαρούμενος"</item>
+    <item>"Είμαι λυπημένος"</item>
+    <item>"Κλείνω το μάτι"</item>
+    <item>"Κοροϊδεύω"</item>
+    <item>"Είμαι έκπληκτος"</item>
+    <item>"Φιλάω"</item>
+    <item>"Φωνάζω"</item>
+    <item>"Cool"</item>
+    <item>"Κάνω τα λόγια μου πράξη"</item>
+    <item>"Είπα χαζομάρα"</item>
+    <item>"Ντρέπομαι"</item>
+    <item>"Αγγελούδι"</item>
+    <item>"Δεν έχω αποφασίσει"</item>
+    <item>"Κλαίω"</item>
+    <item>"Δεν αποκαλύπτω τίποτα"</item>
+    <item>"Γελάω"</item>
+    <item>"Είμαι μπερδεμένος"</item>
+  </string-array>
+</resources>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">"Chatt"</string>
+    <string name="menu_cancel_signin">"Avbryt inloggning"</string>
+    <string name="menu_add_contact">"Lägg till kontakt"</string>
+    <string name="menu_remove_contact">"Ta bort kontakt"</string>
+    <string name="menu_block_contact">"Blockera kontakt"</string>
+    <string name="menu_view_blocked">"Blockerad"</string>
+    <string name="menu_view_accounts">"Kontolista"</string>
+    <string name="menu_settings">"Inställningar"</string>
+    <string name="menu_start_chat">"Öppna chatt"</string>
+    <string name="menu_sign_out">"Logga ut"</string>
+    <string name="menu_view_profile">"Visa profil"</string>
+    <string name="menu_end_conversation">"Avsluta chatt"</string>
+    <string name="menu_view_contact_list">"Kontaktlista"</string>
+    <string name="menu_invite_contact">"Bjud in…"</string>
+    <string name="menu_switch_chats">"Byt chatt"</string>
+    <string name="menu_insert_smiley">"Infoga känsloikon"</string>
+    <string name="menu_plus">"Meny+"</string>
+    <string name="default_input_title">"Indata"</string>
+    <string name="confirm">"Bekräfta"</string>
+    <string name="confirm_delete_contact">"Kontakten <xliff:g id="USER">%1$s</xliff:g> tas bort."</string>
+    <string name="confirm_block_contact">"Kontakten <xliff:g id="USER">%1$s</xliff:g> blockeras."</string>
+    <string name="confirm_unblock_contact">"Blockering hävs för kontakten <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="ok">"OK"</string>
+    <string name="cancel">"Avbryt"</string>
+    <string name="yes">"OK"</string>
+    <string name="no">"Avbryt"</string>
+    <string name="signed_out_prompt">"Du har loggats ut från <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
+    <string name="signed_out_prompt_with_error">"Du har loggats ut från <xliff:g id="ACCOUNT">%1$s</xliff:g> eftersom <xliff:g id="REASON">%2$s</xliff:g>."</string>
+    <string name="add_account">"Lägg till kontot <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="label_username">"Användarnamn:"</string>
+    <string name="label_password">"Lösenord"</string>
+    <string name="remember_password">"Kom ihåg mitt lösenord."</string>
+    <string name="keep_me_signed_in">"Logga in mig automatiskt."</string>
+    <string name="sign_up">"Har du inget konto?"</string>
+    <string name="check_auto_sign_in">"Det här alternativet loggar in dig automatiskt varje gång du öppnar programmet. Om du vill inaktivera alternativet loggar du ut och avmarkerar kryssrutan Logga in mig automatiskt."</string>
+    <string name="sign_in">"Logga in"</string>
+    <string name="signing_in_to">"Loggar in på <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_wait">"Loggar in…"</string>
+    <string name="bg_data_prompt_title">"Bakgrundsdata inaktiverat"</string>
+    <string name="bg_data_prompt_message">"<xliff:g id="PROVIDER">%1$s</xliff:g> fungerar bara om bakgrundsdata är aktiverat."</string>
+    <string name="bg_data_prompt_ok">"Aktivera"</string>
+    <string name="bg_data_prompt_cancel">"Avsluta"</string>
+    <string name="ongoing_conversation">"Pågående chattar (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
+    <string name="subscriptions">"Kompisinbjudningar"</string>
+    <string name="unknown_contact">"("<i>"Okänd"</i>")"</string>
+    <string name="empty_contact_group">"Logga ut"</string>
+    <string name="empty_conversation_group">"Inga konversationer"</string>
+    <string name="contacts_picker_title">"Välj vilka kontakter du vill bjuda in"</string>
+    <string name="contact_filter_hint">"Skriv för att hitta kontakt"</string>
+    <string name="empty_contact_list">"Hittade inga kontakter."</string>
+    <string name="blocked_list_title">"Blockerade kontakter – <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Inga blockerade kontakter."</string>
+    <string name="contact_profile_title">"Kontaktprofil"</string>
+    <string name="label_status">"Status:"</string>
+    <string name="label_client_type">"Klienttyp:"</string>
+    <string name="client_type_computer">"Dator"</string>
+    <string name="client_type_mobile">"Mobil"</string>
+    <string name="presence_available">"Online"</string>
+    <string name="presence_busy">"Upptagen"</string>
+    <string name="presence_away">"Borta"</string>
+    <string name="presence_idle">"Inaktiv"</string>
+    <string name="presence_offline">"Offline"</string>
+    <string name="presence_invisible">"Visa som offline"</string>
+    <string name="chat_with">"Chatt med <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="me">"Jag"</string>
+    <string name="compose_hint">"Börja skriva"</string>
+    <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> är online"</string>
+    <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> är borta"</string>
+    <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> är upptagen"</string>
+    <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> är offline"</string>
+    <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> är med"</string>
+    <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> har lämnat chatten"</string>
+    <string name="time_stamp" format="date">"'Skickades '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' den '<xliff:g id="DATE">EEEE</xliff:g>"</string>
+    <string name="send">"Skicka"</string>
+    <string name="msg_sent_failed">"Det gick inte att skicka meddelandet."</string>
+    <string name="disconnected_warning">"Anslutningen till servern bröts. Meddelandena skickas när du är online igen."</string>
+    <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> är offline. Meddelanden som du skickar levereras när <xliff:g id="USER_1">%1$s</xliff:g> är online igen."</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> är inte med i din Kontaktlista."</string>
+    <string name="select_link_title">"Välj länk"</string>
+    <string name="empty_chat_list">"Ingen aktiv chatt."</string>
+    <string name="add_contact_title">"Lägg till kontakt"</string>
+    <string name="input_contact_label">"E-postadress till den du vill bjuda in:"</string>
+    <string name="choose_list_label">"Välj en lista:"</string>
+    <string name="invite_instruction">"Ange ett namn som du vill lägga till från Kontakter."</string>
+    <string name="invite_label">"Skicka inbjudan"</string>
+    <string name="setting_title">"Allmänna inställningar"</string>
+    <string name="hide_offline_contacts">"Dölj kontakter som är offline"</string>
+    <string name="notification_group_title">"Aviseringsinställningar"</string>
+    <string name="notification_enabled_title">"Chattavisering"</string>
+    <string name="notification_enabled_summary">"Avisering i statusfältet när jag får chattmeddelanden"</string>
+    <string name="notification_vibrate_title">"Vibrera"</string>
+    <string name="notification_vibrate_summary">"Vibrera även när jag får chattmeddelanden"</string>
+    <string name="notification_sound_title">"Ljud"</string>
+    <string name="notification_sound_summary">"Spela ringsignalen även när jag får chattmeddelande"</string>
+    <string name="notification_ringtone_title">"Välj ringsignal"</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> har bjudit in dig till en gruppchatt."</string>
+    <string name="invitation_sent_prompt">"Inbjudan har skickats till <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="accept_invitation">"Acceptera"</string>
+    <string name="decline_invitation">"Avvisa"</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> har bjudit in dig till sin Kontaktlista."</string>
+    <string name="approve_subscription">"Acceptera"</string>
+    <string name="decline_subscription">"Avvisa"</string>
+    <string name="approve_subscription_error">"Det gick inte att godkänna prenumeration från <xliff:g id="USER">%1$s</xliff:g>. Försök igen lite senare."</string>
+    <string name="decline_subscription_error">"Det gick inte att avvisa prenumeration från <xliff:g id="USER">%1$s</xliff:g>. Försök igen senare."</string>
+    <string name="newMessages_label">"Nya meddelanden från <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> olästa chattar"</string>
+    <string name="subscription_notify_text">"Ny kompisinbjudan från <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Inbjudan till gruppchatt"</string>
+    <string name="group_chat_invite_notify_text">"Ny inbjudan till gruppchatt från <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="add_contact_success">"Kontakten <xliff:g id="USER">%1$s</xliff:g> har lagts till."</string>
+    <string name="delete_contact_success">"Kontakten <xliff:g id="USER">%1$s</xliff:g> har tagits bort."</string>
+    <string name="block_contact_success">"Kontakten <xliff:g id="USER">%1$s</xliff:g> är blockerad."</string>
+    <string name="unblock_contact_success">"Blockering hävs för kontakten <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="perm_label">"öppna chattjänsten"</string>
+    <string name="perm_desc">"Tillåter att ett program avsiktligen öppnar chattjänsten."</string>
+    <string name="error">"Obs!"</string>
+    <string name="login_service_failed">"Det gick inte att logga in till tjänsten <xliff:g id="SERVICE">%1$s</xliff:g>. Försök igen senare."\n"(Information: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"Det gick inte att lägga till listan."</string>
+    <string name="block_contact_failed">"Kontakten blockerades inte."</string>
+    <string name="unblock_contact_failed">"Blockeringen hävdes inte för kontakten."</string>
+    <string name="select_contact">"Du måste välja en kontakt först."</string>
+    <string name="disconnected">"Frånkopplad!"\n</string>
+    <string name="service_error">"Fel på tjänsten!"</string>
+    <string name="load_contact_list_failed">"Det gick inte att hämta kontaktlistan."</string>
+    <string name="cant_connect_to_server">"Det går inte att ansluta till servern. Kontrollera anslutningen."</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> finns redan i din Kontaktlista."</string>
+    <string name="contact_blocked">"Kontakten <xliff:g id="USER">%1$s</xliff:g> har blockerats."</string>
+    <string name="contact_not_loaded">"Vänta medan vi hämtar din Kontaktlista."</string>
+    <string name="network_error">"Ett nätverksfel har inträffat."</string>
+    <string name="service_not_support">"Servern stöder inte den här funktionen."</string>
+    <string name="invalid_password">"Lösenordet som du angav är ogiltigt."</string>
+    <string name="internal_server_error">"Servern upptäckte ett fel."</string>
+    <string name="not_implemented">"Servern stöder inte den här funktionen."</string>
+    <string name="service_unavaiable">"Servern är inte tillgänglig för tillfället."</string>
+    <string name="timeout">"Tidsgränsen för servern har överskridits."</string>
+    <string name="version_not_supported">"Servern stöder inte den aktuella versionen."</string>
+    <string name="message_queue_full">"Meddelandekön är full."</string>
+    <string name="domain_not_supported">"Servern stöder inte vidarebefordran till domänen."</string>
+    <string name="unknown_user">"Användarnamnet som du angav är okänt."</string>
+    <string name="recipient_blocked_the_user">"Du har tyvärr blockerats av användaren."</string>
+    <string name="session_expired">"Besöket har upphört att gälla. Logga in igen."</string>
+    <string name="forced_logout">"du har loggat in från en annan klient."</string>
+    <string name="already_logged_in">"du redan har loggat in från en annan klient."</string>
+    <string name="msisdn_error">"Det går tyvärr inte att läsa telefonnumret från ditt SIM-kort. Kontakta din operatör."</string>
+    <string name="not_signed_in">"Du är inte inloggad för närvarande."</string>
+    <string name="general_error">"Felkod <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"Glad"</item>
+    <item>"Ledsen"</item>
+    <item>"Blinkar"</item>
+    <item>"Lipar"</item>
+    <item>"Förvånad"</item>
+    <item>"Pussar"</item>
+    <item>"Skriker"</item>
+    <item>"Cool"</item>
+    <item>"Dollarmun"</item>
+    <item>"Bortgjord"</item>
+    <item>"Generad"</item>
+    <item>"Ängel"</item>
+    <item>"Tveksam"</item>
+    <item>"Gråter"</item>
+    <item>"Hemlis"</item>
+    <item>"Skrattar"</item>
+    <item>"Förvirrad"</item>
+  </string-array>
+</resources>
