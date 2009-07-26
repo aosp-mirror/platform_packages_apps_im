@@ -30,7 +30,7 @@
     <string name="menu_view_contact_list">"Elenco contatti"</string>
     <string name="menu_invite_contact">"Invita..."</string>
     <string name="menu_switch_chats">"Cambia conversazione"</string>
-    <string name="menu_insert_smiley">"Inserisci emoticon"</string>
+    <string name="menu_insert_smiley">"Inserisci smile"</string>
     <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Input"</string>
     <string name="confirm">"Conferma"</string>
@@ -75,13 +75,13 @@
     <string name="client_type_mobile">"Portatile"</string>
     <string name="presence_available">"Online"</string>
     <string name="presence_busy">"Occupato"</string>
-    <string name="presence_away">"Assente"</string>
+    <string name="presence_away">"Non al computer"</string>
     <string name="presence_idle">"Inattivo"</string>
     <string name="presence_offline">"Offline"</string>
     <string name="presence_invisible">"Invisibile"</string>
     <string name="chat_with">"Conversazione con <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Io"</string>
-    <string name="compose_hint">"Digita qui per scrivere"</string>
+    <string name="compose_hint">"Digita per comporre"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> è online"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> non è al computer"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> è occupato"</string>

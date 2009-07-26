@@ -85,7 +85,7 @@ LOCAL_SHARED_LIBRARIES +=   \
     libutils                \
     libexpat
 
-LOCAL_MODULE_TAGS := tests
+LOCAL_MODULE_TAGS := optional
 
 LOCAL_MODULE := wbxmltest
 

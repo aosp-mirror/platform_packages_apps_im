@@ -102,7 +102,7 @@
     <string name="invite_instruction">"Escribe el nombre del contacto que quieras añadir."</string>
     <string name="invite_label">"Enviar invitación"</string>
     <string name="setting_title">"Configuración general"</string>
-    <string name="hide_offline_contacts">"Ocultar desconectados"</string>
+    <string name="hide_offline_contacts">"Ocultar contactos desconectados"</string>
     <string name="notification_group_title">"Configuración de notificaciones"</string>
     <string name="notification_enabled_title">"Notificaciones de MI"</string>
     <string name="notification_enabled_summary">"Avisar en la barra de estado al recibir un mensaje instantáneo"</string>

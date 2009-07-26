@@ -30,7 +30,7 @@
     <string name="menu_view_contact_list">"Liste de contacts"</string>
     <string name="menu_invite_contact">"Inviter..."</string>
     <string name="menu_switch_chats">"Changer de chat"</string>
-    <string name="menu_insert_smiley">"Insérer une émoticône"</string>
+    <string name="menu_insert_smiley">"Insérer un émoticône"</string>
     <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Entrée"</string>
     <string name="confirm">"Confirmer"</string>
@@ -72,7 +72,7 @@
     <string name="label_status">"État :"</string>
     <string name="label_client_type">"Type de client :"</string>
     <string name="client_type_computer">"Ordinateur"</string>
-    <string name="client_type_mobile">"Portable"</string>
+    <string name="client_type_mobile">"Mobile"</string>
     <string name="presence_available">"En ligne"</string>
     <string name="presence_busy">"Occupé"</string>
     <string name="presence_away">"Absent"</string>
@@ -81,7 +81,7 @@
     <string name="presence_invisible">"Apparaître hors ligne"</string>
     <string name="chat_with">"Chatter avec <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Moi"</string>
-    <string name="compose_hint">"Saisissez votre message"</string>
+    <string name="compose_hint">"Cliquer pour composer"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> est en ligne"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> est absent"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> est occupé"</string>
@@ -102,7 +102,7 @@
     <string name="invite_instruction">"Saisissez un nom à ajouter à partir de vos contacts"</string>
     <string name="invite_label">"Envoyer une invitation"</string>
     <string name="setting_title">"Paramètres généraux"</string>
-    <string name="hide_offline_contacts">"Masquer contacts hors ligne"</string>
+    <string name="hide_offline_contacts">"Masquer les contacts hors ligne"</string>
     <string name="notification_group_title">"Paramètres des notifications"</string>
     <string name="notification_enabled_title">"Notifications de chat"</string>
     <string name="notification_enabled_summary">"Signaler la réception d\'un chat dans la barre d\'état"</string>
