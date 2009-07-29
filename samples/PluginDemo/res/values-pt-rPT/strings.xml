@@ -15,42 +15,42 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"Adicionar contato"</string>
-    <string name="menu_remove_contact">"Excluir contato"</string>
+    <string name="menu_add_contact">"Adicionar contacto"</string>
+    <string name="menu_remove_contact">"Eliminar contacto"</string>
     <string name="menu_block_contact">"Bloquear"</string>
-    <string name="menu_contact_list">"Lista de contatos"</string>
-    <string name="menu_start_chat">"Enviar mensagem instantânea"</string>
+    <string name="menu_contact_list">"Lista de contactos"</string>
+    <string name="menu_start_chat">"Enviar MI"</string>
     <string name="menu_view_profile">"Informações do amigo"</string>
-    <string name="menu_end_conversation">"Encerrar conversa"</string>
-    <string name="menu_switch_chats">"Alternar bate-papos"</string>
-    <string name="menu_insert_smiley">"Inserir emoticons"</string>
+    <string name="menu_end_conversation">"Terminar conversa"</string>
+    <string name="menu_switch_chats">"Trocar chats"</string>
+    <string name="menu_insert_smiley">"Inserir ícones expressivos"</string>
     <string name="sign_up">"Obter uma nova conta"</string>
-    <string name="check_save_password">"Para a sua segurança, se o seu telefone for perdido ou roubado, acesse o site no seu computador e altere a sua senha."</string>
-    <string name="buddy_list_title">"Lista de contatos - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"Nome de usuário:"</string>
+    <string name="check_save_password">"Para sua segurança, caso perca o telefone ou este seja roubado, aceda ao Web site no computador e altere a sua palavra-passe."</string>
+    <string name="buddy_list_title">"Lista de contactos - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"Nome de utilizador:"</string>
     <string name="ongoing_conversation">"Conversas (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="contact_profile_title">"Informações de contato"</string>
+    <string name="contact_profile_title">"Informações de contacto"</string>
     <string name="presence_available">"Disponível"</string>
-    <string name="add_contact_title">"Adicionar contato"</string>
-    <string name="input_contact_label">"Apelido da pessoa que você deseja adicionar:"</string>
+    <string name="add_contact_title">"Adicionar contacto"</string>
+    <string name="input_contact_label">"Pseudónimo da pessoa que pretende adicionar:"</string>
     <string name="invite_label">"Adicionar amigo"</string>
   <string-array name="smiley_names">
     <item>"Feliz"</item>
     <item>"Triste"</item>
-    <item>"Piscando"</item>
-    <item>"Mostrando a língua"</item>
-    <item>"Surpreso"</item>
-    <item>"Beijando"</item>
-    <item>"Gritando"</item>
-    <item>"Tranquilo"</item>
-    <item>"Louco por dinheiro"</item>
-    <item>"Falei besteira"</item>
+    <item>"A piscar o olho"</item>
+    <item>"Língua de fora"</item>
+    <item>"Surpreendido"</item>
+    <item>"Beijoqueiro"</item>
+    <item>"A gritar"</item>
+    <item>"Fixe"</item>
+    <item>"Interesseiro"</item>
+    <item>"Arrependido"</item>
     <item>"Envergonhado"</item>
     <item>"Anjo"</item>
     <item>"Indeciso"</item>
-    <item>"Chorando"</item>
+    <item>"Chorão"</item>
     <item>"Boca fechada"</item>
-    <item>"Rindo"</item>
+    <item>"Risonho"</item>
     <item>"Confuso"</item>
   </string-array>
   <string-array name="smiley_texts">

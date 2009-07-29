@@ -32,7 +32,7 @@
     <string name="contact_profile_title">"Información de contacto"</string>
     <string name="presence_available">"Disponible"</string>
     <string name="add_contact_title">"Agregar contacto"</string>
-    <string name="input_contact_label">"Nombre en pantalla de la persona que deseas agregar:"</string>
+    <string name="input_contact_label">"Nombre de pantalla de la persona que deseas agregar:"</string>
     <string name="invite_label">"Agregar Buddy"</string>
   <string-array name="smiley_names">
     <item>"Feliz"</item>
