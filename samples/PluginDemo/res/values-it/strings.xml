@@ -15,61 +15,61 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"Aggiungi contatto"</string>
-    <string name="menu_remove_contact">"Elimina contatto"</string>
-    <string name="menu_block_contact">"Blocca"</string>
-    <string name="menu_contact_list">"Elenco contatti"</string>
-    <string name="menu_start_chat">"Invia msg chat"</string>
-    <string name="menu_view_profile">"Info amico"</string>
-    <string name="menu_end_conversation">"Termina conversazione"</string>
-    <string name="menu_switch_chats">"Cambia conversazione"</string>
-    <string name="menu_insert_smiley">"Inserisci emoticon"</string>
-    <string name="sign_up">"Ottieni un nuovo account"</string>
-    <string name="check_save_password">"Per la tua sicurezza, in caso di perdita o furto del telefono visita il sito web da un computer e cambia la password."</string>
-    <string name="buddy_list_title">"Elenco contatti - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"Nome utente:"</string>
-    <string name="ongoing_conversation">"Conversazioni (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="contact_profile_title">"Info contatto"</string>
-    <string name="presence_available">"Disponibile"</string>
-    <string name="add_contact_title">"Aggiungi contatto"</string>
-    <string name="input_contact_label">"Nome visualizzato della persona da aggiungere:"</string>
-    <string name="invite_label">"Aggiungi amico"</string>
+    <string name="menu_add_contact" msgid="1577617821180977339">"Aggiungi contatto"</string>
+    <string name="menu_remove_contact" msgid="1438737309746209943">"Elimina contatto"</string>
+    <string name="menu_block_contact" msgid="1418576909122458824">"Blocca"</string>
+    <string name="menu_contact_list" msgid="7408048984312793527">"Elenco contatti"</string>
+    <string name="menu_start_chat" msgid="1942461880426180926">"Invia msg chat"</string>
+    <string name="menu_view_profile" msgid="4594617426877626560">"Info amico"</string>
+    <string name="menu_end_conversation" msgid="215067667186746690">"Termina conversazione"</string>
+    <string name="menu_switch_chats" msgid="4616221788780459133">"Cambia conversazione"</string>
+    <string name="menu_insert_smiley" msgid="6880772056965363205">"Inserisci emoticon"</string>
+    <string name="sign_up" msgid="3944276728278864333">"Ottieni un nuovo account"</string>
+    <string name="check_save_password" msgid="3554564072443242779">"Per la tua sicurezza, in caso di perdita o furto del telefono visita il sito web da un computer e cambia la password."</string>
+    <string name="buddy_list_title" msgid="5837732412636822107">"Elenco contatti - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username" msgid="7905168188814604370">"Nome utente:"</string>
+    <string name="ongoing_conversation" msgid="9097832769731811986">"Conversazioni (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title" msgid="5203284525412697232">"Info contatto"</string>
+    <string name="presence_available" msgid="1184051402868736726">"Disponibile"</string>
+    <string name="add_contact_title" msgid="292217657045373736">"Aggiungi contatto"</string>
+    <string name="input_contact_label" msgid="2583915568413164449">"Nome visualizzato della persona da aggiungere:"</string>
+    <string name="invite_label" msgid="907494221148096012">"Aggiungi amico"</string>
   <string-array name="smiley_names">
-    <item>"Felice"</item>
-    <item>"Triste"</item>
-    <item>"Occhiolino"</item>
-    <item>"Linguaccia"</item>
-    <item>"Sorpreso"</item>
-    <item>"Bacio"</item>
-    <item>"Urlo"</item>
-    <item>"Fico"</item>
-    <item>"Fatti, non parole"</item>
-    <item>"Gaffe"</item>
-    <item>"Imbarazzato"</item>
-    <item>"Angelo"</item>
-    <item>"Indeciso"</item>
-    <item>"Piango"</item>
-    <item>"Labbra cucite"</item>
-    <item>"Risata"</item>
-    <item>"Confuso"</item>
+    <item msgid="811476776139578986">"Felice"</item>
+    <item msgid="2764363456492352853">"Triste"</item>
+    <item msgid="416624764294712159">"Occhiolino"</item>
+    <item msgid="7152979870122929989">"Linguaccia"</item>
+    <item msgid="5784780866600056743">"Sorpreso"</item>
+    <item msgid="5454185003381226454">"Bacio"</item>
+    <item msgid="1413668617851210441">"Urlo"</item>
+    <item msgid="232246158381043538">"Fico"</item>
+    <item msgid="2440257511131202785">"Fatti, non parole"</item>
+    <item msgid="4571282940807190133">"Gaffe"</item>
+    <item msgid="3260099163589753993">"Imbarazzato"</item>
+    <item msgid="3042531792218744865">"Angelo"</item>
+    <item msgid="5227319381647888452">"Indeciso"</item>
+    <item msgid="6952104030566994554">"Piango"</item>
+    <item msgid="9199616532683270084">"Labbra cucite"</item>
+    <item msgid="4338502150254517147">"Risata"</item>
+    <item msgid="1014703928300075245">"Confuso"</item>
   </string-array>
   <string-array name="smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
+    <item msgid="6682271134385564589">":-)"</item>
+    <item msgid="5242689844155076377">":-("</item>
+    <item msgid="521632995149320343">";-)"</item>
+    <item msgid="3442897533435789796">":-P"</item>
+    <item msgid="682698687423187022">"=-O"</item>
+    <item msgid="1531701168660725626">":-*"</item>
+    <item msgid="7958357467119008619">":O"</item>
+    <item msgid="4638775565490840154">"B-)"</item>
+    <item msgid="6225545209385623235">":-$"</item>
+    <item msgid="5725425598368680891">":-!"</item>
+    <item msgid="5365880622794795497">":-["</item>
+    <item msgid="8260692119195572132">"O:-)"</item>
+    <item msgid="6879285154649424413">":-\\"</item>
+    <item msgid="554517875650930417">":\'("</item>
+    <item msgid="8169228040168187510">":-X"</item>
+    <item msgid="5444890977206638254">":-D"</item>
+    <item msgid="8814856019116253585">"o_O"</item>
   </string-array>
 </resources>

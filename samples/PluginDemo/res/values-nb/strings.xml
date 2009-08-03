@@ -15,61 +15,61 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"Legg til kontakt"</string>
-    <string name="menu_remove_contact">"Fjern kontakt"</string>
-    <string name="menu_block_contact">"Blokker kontakt"</string>
-    <string name="menu_contact_list">"Kontaktliste"</string>
-    <string name="menu_start_chat">"Start samtale"</string>
-    <string name="menu_view_profile">"Vis profil"</string>
-    <string name="menu_end_conversation">"Avslutt samtale"</string>
-    <string name="menu_switch_chats">"Bytt mellom samtaler"</string>
-    <string name="menu_insert_smiley">"Sett inn smilefjes"</string>
-    <string name="sign_up">"Mangler du konto?"</string>
-    <string name="check_save_password">"Av sikkerhetsgrunner, gå til nettstedet og endre passordet om telefonen blir tapt eller stjåler."</string>
-    <string name="buddy_list_title">"Kontaktliste - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"Brukernavn:"</string>
-    <string name="ongoing_conversation">"Pågående samtaler (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="contact_profile_title">"Kontaktprofil"</string>
-    <string name="presence_available">"Tilgjengelig"</string>
-    <string name="add_contact_title">"Legg til kontakt"</string>
-    <string name="input_contact_label">"E-postadresse til den du ønsker å invitere:"</string>
-    <string name="invite_label">"Send invitasjon"</string>
+    <string name="menu_add_contact" msgid="1577617821180977339">"Legg til kontakt"</string>
+    <string name="menu_remove_contact" msgid="1438737309746209943">"Fjern kontakt"</string>
+    <string name="menu_block_contact" msgid="1418576909122458824">"Blokker kontakt"</string>
+    <string name="menu_contact_list" msgid="7408048984312793527">"Kontaktliste"</string>
+    <string name="menu_start_chat" msgid="1942461880426180926">"Start samtale"</string>
+    <string name="menu_view_profile" msgid="4594617426877626560">"Vis profil"</string>
+    <string name="menu_end_conversation" msgid="215067667186746690">"Avslutt samtale"</string>
+    <string name="menu_switch_chats" msgid="4616221788780459133">"Bytt mellom samtaler"</string>
+    <string name="menu_insert_smiley" msgid="6880772056965363205">"Sett inn smilefjes"</string>
+    <string name="sign_up" msgid="3944276728278864333">"Mangler du konto?"</string>
+    <string name="check_save_password" msgid="3554564072443242779">"Av sikkerhetsgrunner, gå til nettstedet og endre passordet om telefonen blir tapt eller stjåler."</string>
+    <string name="buddy_list_title" msgid="5837732412636822107">"Kontaktliste - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username" msgid="7905168188814604370">"Brukernavn:"</string>
+    <string name="ongoing_conversation" msgid="9097832769731811986">"Pågående samtaler (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title" msgid="5203284525412697232">"Kontaktprofil"</string>
+    <string name="presence_available" msgid="1184051402868736726">"Tilgjengelig"</string>
+    <string name="add_contact_title" msgid="292217657045373736">"Legg til kontakt"</string>
+    <string name="input_contact_label" msgid="2583915568413164449">"E-postadresse til den du ønsker å invitere:"</string>
+    <string name="invite_label" msgid="907494221148096012">"Send invitasjon"</string>
   <string-array name="smiley_names">
-    <item>"Glad"</item>
-    <item>"Trist"</item>
-    <item>"Blunker"</item>
-    <item>"Rekker tunge"</item>
-    <item>"Overrasket"</item>
-    <item>"Kyss"</item>
-    <item>"Roper"</item>
-    <item>"Kul"</item>
-    <item>"Pengemunn"</item>
-    <item>"Fot i munnen"</item>
-    <item>"Flau"</item>
-    <item>"Engel"</item>
-    <item>"Usikker"</item>
-    <item>"Gråter"</item>
-    <item>"Stille som graven"</item>
-    <item>"Ler"</item>
-    <item>"Forvirret"</item>
+    <item msgid="811476776139578986">"Glad"</item>
+    <item msgid="2764363456492352853">"Trist"</item>
+    <item msgid="416624764294712159">"Blunker"</item>
+    <item msgid="7152979870122929989">"Rekker tunge"</item>
+    <item msgid="5784780866600056743">"Overrasket"</item>
+    <item msgid="5454185003381226454">"Kyss"</item>
+    <item msgid="1413668617851210441">"Roper"</item>
+    <item msgid="232246158381043538">"Kul"</item>
+    <item msgid="2440257511131202785">"Pengemunn"</item>
+    <item msgid="4571282940807190133">"Fot i munnen"</item>
+    <item msgid="3260099163589753993">"Flau"</item>
+    <item msgid="3042531792218744865">"Engel"</item>
+    <item msgid="5227319381647888452">"Usikker"</item>
+    <item msgid="6952104030566994554">"Gråter"</item>
+    <item msgid="9199616532683270084">"Stille som graven"</item>
+    <item msgid="4338502150254517147">"Ler"</item>
+    <item msgid="1014703928300075245">"Forvirret"</item>
   </string-array>
   <string-array name="smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
+    <item msgid="6682271134385564589">":-)"</item>
+    <item msgid="5242689844155076377">":-("</item>
+    <item msgid="521632995149320343">";-)"</item>
+    <item msgid="3442897533435789796">":-P"</item>
+    <item msgid="682698687423187022">"=-O"</item>
+    <item msgid="1531701168660725626">":-*"</item>
+    <item msgid="7958357467119008619">":O"</item>
+    <item msgid="4638775565490840154">"B-)"</item>
+    <item msgid="6225545209385623235">":-$"</item>
+    <item msgid="5725425598368680891">":-!"</item>
+    <item msgid="5365880622794795497">":-["</item>
+    <item msgid="8260692119195572132">"O:-)"</item>
+    <item msgid="6879285154649424413">":-\\\\"</item>
+    <item msgid="554517875650930417">":\'("</item>
+    <item msgid="8169228040168187510">":-X"</item>
+    <item msgid="5444890977206638254">":-D"</item>
+    <item msgid="8814856019116253585">"o_O"</item>
   </string-array>
 </resources>
