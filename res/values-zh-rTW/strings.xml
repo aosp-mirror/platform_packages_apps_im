@@ -31,7 +31,7 @@
     <string name="menu_invite_contact" msgid="4669830812552484236">"邀請…"</string>
     <string name="menu_switch_chats" msgid="5113455126377025717">"切換即時通訊"</string>
     <string name="menu_insert_smiley" msgid="2555290958985391105">"插入表情符號"</string>
-    <string name="menu_plus" msgid="5000617247235760106">"[選單] +"</string>
+    <string name="menu_plus" msgid="5000617247235760106">"[Menu] +"</string>
     <string name="default_input_title" msgid="6182729628894599563">"輸入"</string>
     <string name="confirm" msgid="3229086014444547636">"確認"</string>
     <string name="confirm_delete_contact" msgid="1364595657359357114">"刪除「<xliff:g id="USER">%1$s</xliff:g>」？"</string>
