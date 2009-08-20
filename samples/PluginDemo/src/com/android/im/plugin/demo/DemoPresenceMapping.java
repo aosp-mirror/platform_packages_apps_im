@@ -17,7 +17,7 @@
 package com.android.im.plugin.demo;
 
 import com.android.im.plugin.ImPluginConstants;
-import com.android.im.plugin.IPresenceMapping;
+import com.android.im.plugin.PresenceMapping;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ import java.util.Map;
  * A simple implementation of PresenceMaping for the provider.
  *
  */
-public class DemoPresenceMapping extends IPresenceMapping.Stub {
+public class DemoPresenceMapping implements PresenceMapping {
 
     public int[] getSupportedPresenceStatus() {
         return new int[] {

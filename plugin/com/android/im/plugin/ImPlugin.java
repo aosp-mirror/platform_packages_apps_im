@@ -16,7 +16,9 @@
  */
 package com.android.im.plugin;
 
-interface IImPlugin {
+import java.util.Map;
+
+public interface ImPlugin {
     /**
      * Gets a map of branding resources for the provider. The keys are defined
      * in {@link com.android.im.plugin.BrandingResourceIDs}. The values are the
@@ -24,7 +26,7 @@ interface IImPlugin {
      *
      * @return The map of branding resources.
      */
-    Map getResourceMap();
+    Map<Integer, Integer> getResourceMap();
 
     /**
      * Gets an array of IDs of the smiley icons. The sequence of the IDs must
@@ -42,5 +44,5 @@ interface IImPlugin {
      *
      * @return the configuration for the provider.
      */
-    Map getProviderConfig();
+    Map<String, String> getProviderConfig();
 }

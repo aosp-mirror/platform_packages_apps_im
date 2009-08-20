@@ -62,6 +62,7 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
     @Override
     public synchronized void connect() throws ImException {
         try {
+            mDone = false;
             connectServer();
             mCirThread = new Thread(this, "TcpCirChannel");
             mCirThread.setDaemon(true);
@@ -86,8 +87,8 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
             ImpsLog.log(mUser + " Shutting down CIR channel");
         }
         mDone = true;
-        synchronized (mReconnectLock) {
-            if (mReconnecting) {
+        if (mReconnecting) {
+            synchronized (mReconnectLock) {
                 mReconnecting = false;
                 mReconnectLock.notify();
             }
@@ -104,6 +105,10 @@ class TcpCirChannel extends CirChannel implements Runnable, HeartbeatService.Cal
         if (heartbeatService != null) {
             heartbeatService.stopHeartbeat(this);
         }
+    }
+
+    public boolean isShutdown() {
+        return mDone;
     }
 
     public void run() {

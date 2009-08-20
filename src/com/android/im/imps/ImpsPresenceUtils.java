@@ -18,6 +18,8 @@
 package com.android.im.imps;
 
 import com.android.im.engine.Presence;
+import com.android.im.plugin.PresenceMapping;
+
 import org.apache.commons.codec.binary.Base64;
 
 import android.os.Base64Utils;
@@ -151,7 +153,7 @@ public class ImpsPresenceUtils {
             if (value instanceof String) {
                 elem.setContents((String)value);
             } else if (value instanceof Map) {
-                mapToPrimitives((Map)value, elem.getChildren());
+                mapToPrimitives((Map<String, Object>)value, elem.getChildren());
             }
             elems.add(elem);
         }

@@ -16,6 +16,8 @@
  */
 package com.android.im.imps;
 
+import android.util.Log;
+
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.ImException;
 import com.android.im.engine.SmsService;
@@ -41,13 +43,17 @@ public class SmsCirChannel extends CirChannel
 
     @Override
     public void connect() throws ImException {
-        if (mAddr == null || mAddr.length() == 0) {
-            throw new ImException(ImpsErrorInfo.UNKNOWN_SERVER,
-                    "Invalid sms addr");
-        }
         mSmsService = SystemService.getDefault().getSmsService();
-        mSmsService.addSmsListener(mAddr, mPort, this);
-        sendHelo();
+        if (mAddr != null) {
+            mSmsService.addSmsListener(mAddr, mPort, this);
+            sendHelo();
+        } else {
+            mSmsService.addSmsListener(SmsService.ANY_ADDRESS, mPort, this);
+        }
+    }
+
+    public boolean isShutdown() {
+        return false;
     }
 
     @Override
@@ -59,23 +65,23 @@ public class SmsCirChannel extends CirChannel
         // It's safe to assume that each character is encoded into 7-bit since
         // all characters in CIR are in gsm 7-bit alphabet.
         int lengthSeptets = data.length * 8 / 7;
-        int numPaddingBits = data.length * 8 % 7;
         String s = GsmAlphabet.gsm7BitPackedToString(data, 0,
-                lengthSeptets, numPaddingBits);
+                lengthSeptets, 0);
         // CIR format: WVCI <version> <session cookie>
         if (!s.startsWith("WVCI")) {
             // not a valid CIR, ignore.
+            Log.w("SmsCir", "Received a non-CIR SMS, ignore!");
             return;
         }
-        String[] fields = s.split(" ");
-        if (fields.length != 3) {
-            // Not a valid CIR, ignore
-            return;
-        }
+
         String sessionCookie = mConnection.getSession().getCookie();
-        if (sessionCookie.equalsIgnoreCase(fields[2])) {
-            mConnection.sendPollingRequest();
+        String[] fields = s.split(" ");
+        if (fields.length != 3 || !sessionCookie.equalsIgnoreCase(fields[2])) {
+            // Not a valid CIR, ignore
+            Log.w("SmsCir", "The CIR format is not correct or session cookie" +
+                    " does not match");
         }
+        mConnection.sendPollingRequest();
     }
 
     public void onFailure(int errorCode) {

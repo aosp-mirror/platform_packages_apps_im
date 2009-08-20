@@ -17,7 +17,8 @@
 
 package com.android.im.service;
 
-import com.android.im.engine.HeartbeatService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -31,6 +32,8 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.util.SparseArray;
 
+import com.android.im.engine.HeartbeatService;
+
 public class AndroidHeartBeatService extends BroadcastReceiver
         implements HeartbeatService {
 
@@ -43,16 +46,18 @@ public class AndroidHeartBeatService extends BroadcastReceiver
     private static final String HEARTBEAT_CONTENT_TYPE
             = "vnd.android.im/heartbeat";
 
-    private Context mContext;
-    private AlarmManager mAlarmManager;
-    private PowerManager.WakeLock mWakeLock;
+    private static final ExecutorService sExecutor = Executors.newSingleThreadExecutor();
+
+    private final Context mContext;
+    private final AlarmManager mAlarmManager;
+    /*package*/ PowerManager.WakeLock mWakeLock;
 
     static class Alarm {
         public PendingIntent mAlaramSender;
         public Callback mCallback;
     }
 
-    private SparseArray<Alarm> mAlarms;
+    private final SparseArray<Alarm> mAlarms;
 
     public AndroidHeartBeatService(Context context) {
         mContext = context;
@@ -72,7 +77,8 @@ public class AndroidHeartBeatService extends BroadcastReceiver
             int id = nextId();
             alarm.mCallback = callback;
             Uri data = ContentUris.withAppendedId(HEARTBEAT_CONTENT_URI, id);
-            Intent i = new Intent().setDataAndType(data, HEARTBEAT_CONTENT_TYPE);
+            Intent i = new Intent(HEARTBEAT_INTENT_ACTION)
+                            .setDataAndType(data, HEARTBEAT_CONTENT_TYPE);
             alarm.mAlaramSender = PendingIntent.getBroadcast(mContext, 0, i, 0);
             if (mAlarms.size() == 0) {
                 mContext.registerReceiver(this, IntentFilter.create(
@@ -99,22 +105,34 @@ public class AndroidHeartBeatService extends BroadcastReceiver
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        mWakeLock.acquire();
-        try {
-            int id = (int)ContentUris.parseId(intent.getData());
-            Alarm alarm = mAlarms.get(id);
-            if (alarm == null) {
-                return;
+        int id = (int)ContentUris.parseId(intent.getData());
+        Alarm alarm = mAlarms.get(id);
+        if (alarm == null) {
+            return;
+        }
+        sExecutor.execute(new Worker(alarm));
+    }
+
+    private class Worker implements Runnable {
+        private final Alarm mAlarm;
+
+        public Worker(Alarm alarm) {
+            mAlarm = alarm;
+        }
+
+        public void run() {
+            mWakeLock.acquire();
+            try {
+                Callback callback = mAlarm.mCallback;
+                long nextSchedule = callback.sendHeartbeat();
+                if (nextSchedule <= 0) {
+                    cancelAlarm(mAlarm);
+                } else {
+                    setAlarm(mAlarm, nextSchedule);
+                }
+            } finally {
+                mWakeLock.release();
             }
-            Callback callback = alarm.mCallback;
-            long nextSchedule = callback.sendHeartbeat();
-            if (nextSchedule <= 0) {
-                cancelAlarm(alarm);
-            } else {
-                setAlarm(alarm, nextSchedule);
-            }
-        } finally {
-            mWakeLock.release();
         }
     }
 
@@ -128,13 +146,13 @@ public class AndroidHeartBeatService extends BroadcastReceiver
         return null;
     }
 
-    private void setAlarm(Alarm alarm, long offset) {
+    /*package*/ synchronized void setAlarm(Alarm alarm, long offset) {
         long triggerAtTime = SystemClock.elapsedRealtime() + offset;
         mAlarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime,
                 alarm.mAlaramSender);
     }
 
-    private void cancelAlarm(Alarm alarm) {
+    /*package*/  synchronized void cancelAlarm(Alarm alarm) {
         mAlarmManager.cancel(alarm.mAlaramSender);
         int index = mAlarms.indexOfValue(alarm);
         if (index >= 0) {

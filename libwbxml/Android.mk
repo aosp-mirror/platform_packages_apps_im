@@ -9,6 +9,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES :=          \
     src/wbxml_parser.cpp    \
+    src/wbxml_encoder.cpp   \
     src/imps_encoder.cpp    \
     src/csp13tags_hash.c    \
     src/csp13values_hash.c  \
@@ -29,7 +30,7 @@ LOCAL_MODULE_TAGS := $(wbxml_module_tags)
 
 LOCAL_MODULE := libwbxml
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 
 # xml2wbxml library: libxml2wbxml.so
 # ---------------------------------------
@@ -49,8 +50,9 @@ LOCAL_CFLAGS += -DPLATFORM_ANDROID
 
 LOCAL_SHARED_LIBRARIES +=   \
     libutils                \
-    libwbxml                \
     libexpat
+
+LOCAL_STATIC_LIBRARIES := libwbxml
 
 LOCAL_MODULE_TAGS := $(wbxml_module_tags)
 
@@ -79,13 +81,14 @@ LOCAL_CFLAGS += -DSUPPORT_SYNCML
 LOCAL_SRC_FILES += test/syncml_parser_test.cpp
 
 LOCAL_SHARED_LIBRARIES +=   \
-    libwbxml                \
     libxml2wbxml            \
     libembunit              \
     libutils                \
     libexpat
 
-LOCAL_MODULE_TAGS := optional
+LOCAL_STATIC_LIBRARIES := libwbxml
+
+LOCAL_MODULE_TAGS := tests
 
 LOCAL_MODULE := wbxmltest
 
@@ -100,16 +103,15 @@ LOCAL_SRC_FILES :=      \
 
 LOCAL_C_INCLUDES :=         \
     $(LOCAL_PATH)/include   \
-    external/expat/lib \
     $(JNI_H_INCLUDE)
 
 LOCAL_CFLAGS += -DPLATFORM_ANDROID
 
 LOCAL_SHARED_LIBRARIES +=   \
-    libwbxml                \
     libutils                \
     libcutils                \
-    libexpat
+
+LOCAL_STATIC_LIBRARIES := libwbxml
 
 LOCAL_MODULE_TAGS := $(wbxml_module_tags)
 
