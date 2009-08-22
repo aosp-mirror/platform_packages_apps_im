@@ -32,6 +32,9 @@ LOCAL_JAVA_LIBRARIES := android.test.runner \
 # LOCAL_REQUIRED_MODULES must go before BUILD_PACKAGE
 LOCAL_REQUIRED_MODULES := libwbxml libwbxml_jni ImProvider
 
-include $(BUILD_PACKAGE)
+#Disable building the APK; we are checking in the pre-built version which
+#contains the credential plug-in instead. Note the libwbxml_jni has to be
+#enabled because so won't be extracted from the system APK
+#include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
