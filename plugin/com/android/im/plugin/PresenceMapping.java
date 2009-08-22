@@ -14,10 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.im.imps;
+package com.android.im.plugin;
 
 import java.util.Map;
 
+/**
+ * The methods used to map presence value sent in protocol to predefined
+ * presence status.
+ */
 public interface PresenceMapping {
     /**
      * Tells if the mapping needs all presence values sent in protocol. If this
@@ -41,7 +45,7 @@ public interface PresenceMapping {
      * @see #requireAllPresenceValues()
      */
     int getPresenceStatus(boolean onlineStatus, String userAvailability,
-             Map<String, Object> allValues);
+            Map<String, Object> allValues);
 
     /**
      * Gets the value of &lt;OnlineStatus&gt; will be sent to the server when

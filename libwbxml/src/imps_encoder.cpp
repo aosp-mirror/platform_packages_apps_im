@@ -42,34 +42,14 @@ static const XmlnsPrefix csp13xmlns[] = {
     { "http://www.openmobilealliance.org/DTD/IMPS-TRC", 0x0d },
 };
 
-static bool isXmlWhitespace(int ch)
-{
-    return ch == ' ' || ch == 9 || ch == 0xd || ch == 0xa;
-}
-
 static bool isDatetimeElement(const char *name)
 {
     return (strcmp("DateTime", name) == 0 || strcmp("DeliveryTime", name) == 0);
 }
 
-static bool parseUint(const char * s, int len, uint32_t *res)
-{
-    string str(s, len);
-    char *end;
-    long long val = strtoll(str.c_str(), &end, 10);
-    if (*end != 0 || val < 0 || val > 0xFFFFFFFFU) {
-        return false;
-    }
-    *res = (uint32_t)val;
-    return true;
-}
-
 void ImpsWbxmlEncoder::reset()
 {
-    // WBXML 1.3, UTF-8, no string table
-    char header[4] = {0x03, (char)mPublicId, 0x6A, 0x00};
-    mResult.clear();
-    mResult.append(header, sizeof(header));
+    clearResult();
 
     mTagCodePage = 0;
     mCurrElement.clear();
@@ -82,9 +62,11 @@ EncoderError ImpsWbxmlEncoder::startElement(const char *name, const char **atts)
         return ERROR_INVALID_DATA;
     }
 
+    bool isUnknownTag = false;
     int stag = csp13TagNameToKey(name);
     if (stag == -1) {
-        return ERROR_UNSUPPORTED_TAG;
+        stag = TOKEN_LITERAL;
+        isUnknownTag = true;
     }
     mDepth++;
     mCurrElement = name;
@@ -102,6 +84,11 @@ EncoderError ImpsWbxmlEncoder::startElement(const char *name, const char **atts)
         stag |= 0x80;   // has attribute
     }
     appendResult(stag);
+
+    if (isUnknownTag) {
+        int index = appendToStringTable(name);
+        encodeMbuint(index);
+    }
     if (stag & 0x80) {
         for (size_t i = 0; atts[i]; i += 2) {
             EncoderError err = encodeAttrib(atts[i], atts[i + 1]);
@@ -164,69 +151,9 @@ EncoderError ImpsWbxmlEncoder::endElement()
     }
     appendResult(TOKEN_END);
     mCurrElement.clear();
-    if (mDepth == 0 && mHandler) {
-        mHandler->wbxmlData(mResult.c_str(), mResult.size());
+    if (mDepth == 0) {
+        sendResult();
     }
-    return NO_ERROR;
-}
-
-EncoderError ImpsWbxmlEncoder::encodeInteger(const char *chars, int len)
-{
-    uint32_t val;
-    if (!parseUint(chars, len, &val)) {
-        return ERROR_INVALID_INTEGER_VALUE;
-    }
-
-    appendResult(TOKEN_OPAQUE);
-    uint32_t mask = 0xff000000U;
-    int numBytes = 4;
-    while (!(val & mask) && mask) {
-        numBytes--;
-        mask >>= 8;
-    }
-    if (!numBytes) {
-        // Zero value. We generate at least 1 byte OPAQUE data.
-        // libwbxml2 generates 0 byte long OPAQUE data (0xC3 0x00) in this case.
-        numBytes = 1;
-    }
-
-    appendResult(numBytes);
-    while (numBytes) {
-        numBytes--;
-        appendResult((val >> (numBytes * 8)) & 0xff);
-    }
-
-    return NO_ERROR;
-}
-
-EncoderError ImpsWbxmlEncoder::encodeDatetime(const char *chars, int len)
-{
-    // to make life easier we accept only yyyymmddThhmmssZ
-    if (len != 16 || chars[8] != 'T' || chars[15] != 'Z') {
-        return ERROR_INVALID_DATETIME_VALUE;
-    }
-    appendResult(TOKEN_OPAQUE);
-    appendResult(6);
-
-    uint32_t year, month, day, hour, min, sec;
-    if (!parseUint(chars, 4, &year)
-            || !parseUint(chars + 4, 2, &month)
-            || !parseUint(chars + 6, 2, &day)
-            || !parseUint(chars + 9, 2, &hour)
-            || !parseUint(chars + 11,2, &min)
-            || !parseUint(chars + 13,2, &sec)) {
-        return ERROR_INVALID_DATETIME_VALUE;
-    }
-    if (year > 4095 || month > 12 || day > 31 || hour > 23 || min > 59 || sec > 59) {
-        return ERROR_INVALID_DATETIME_VALUE;
-    }
-
-    appendResult(year >> 6);
-    appendResult(((year & 0x3f) << 2) | (month >> 2));
-    appendResult(((month & 0x3) << 6) | (day << 1) | (hour >> 4));
-    appendResult(((hour & 0xf) << 4) | (min >> 2));
-    appendResult(((min & 0x2) << 6) | sec);
-    appendResult('Z');
     return NO_ERROR;
 }
 
@@ -251,7 +178,9 @@ EncoderError ImpsWbxmlEncoder::encodeAttrib(const char *name, const char *value)
         return ERROR_UNSUPPORTED_ATTR;
     }
     int valueLen = strlen(value);
-    for (size_t i = 0; i < sizeof(csp13xmlns) / sizeof(csp13xmlns[0]); i++) {
+    size_t csp13xmlnsCount = sizeof(csp13xmlns) / sizeof(csp13xmlns[0]);
+    size_t i;
+    for (i = 0; i < csp13xmlnsCount; i++) {
         const char * prefix = csp13xmlns[i].prefix;
         int prefixLen = strlen(csp13xmlns[i].prefix);
         if (strncmp(prefix, value, prefixLen) == 0) {
@@ -262,31 +191,12 @@ EncoderError ImpsWbxmlEncoder::encodeAttrib(const char *name, const char *value)
             return NO_ERROR;
         }
     }
+    if (i == csp13xmlnsCount) {
+        // not predefined attribute
+        appendResult(TOKEN_LITERAL);
+        int index = appendToStringTable(name);
+        encodeMbuint(index);
+    }
     encodeInlinedStr(value, valueLen);
     return NO_ERROR;
 }
-
-void ImpsWbxmlEncoder::encodeInlinedStr(const char *s, int len)
-{
-    // TODO: move this to WbxmlEncoder
-    // TODO: handle ENTITY
-    appendResult(TOKEN_STR_I);
-    appendResult(s, len);
-    appendResult('\0');
-}
-
-void ImpsWbxmlEncoder::encodeMbuint(uint32_t val)
-{
-    char buf[32 / 7 + 1];   // each byte holds up to 7 bits
-    int i = sizeof(buf);
-
-    buf[--i] = val & 0x7f;
-    val >>= 7;
-    while ((i > 0) && (val & 0x7f)) {
-        buf[--i] = 0x80 | (val & 0x7f);
-        val >>= 7;
-    }
-
-    appendResult(buf + i, sizeof(buf) - i);
-}
-

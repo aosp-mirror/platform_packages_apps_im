@@ -76,6 +76,7 @@
 
     <ExpandableListView android:id="@+id/contactsList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:nextFocusUp="@id/statusDropDownButton" />
 
 </com.android.im.app.ContactListView>

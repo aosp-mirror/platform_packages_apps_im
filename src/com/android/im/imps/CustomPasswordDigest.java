@@ -17,21 +17,19 @@
 package com.android.im.imps;
 
 import com.android.im.engine.ImException;
-import com.android.im.plugin.IPasswordDigest;
-
-import android.os.RemoteException;
+import com.android.im.plugin.PasswordDigest;
 
 import dalvik.system.PathClassLoader;
 
 public class CustomPasswordDigest implements PasswordDigest {
 
-    private IPasswordDigest mPasswordDigest;
+    private PasswordDigest mPasswordDigest;
     public CustomPasswordDigest(String pluginPath, String implClass) throws ImException {
         PathClassLoader classLoader = new PathClassLoader(pluginPath,
                 getClass().getClassLoader());
         try {
-            Class cls = classLoader.loadClass(implClass);
-            mPasswordDigest = (IPasswordDigest)cls.newInstance();
+            Class<?> cls = classLoader.loadClass(implClass);
+            mPasswordDigest = (PasswordDigest)cls.newInstance();
         } catch (ClassNotFoundException e) {
             throw new ImException(e);
         } catch (IllegalAccessException e) {
@@ -41,19 +39,11 @@ public class CustomPasswordDigest implements PasswordDigest {
         }
     }
     public String digest(String schema, String nonce, String password) throws ImException {
-        try {
-            return mPasswordDigest.digest(schema, nonce, password);
-        } catch (RemoteException e) {
-            throw new ImException(e);
-        }
+        return mPasswordDigest.digest(schema, nonce, password);
     }
 
     public String[] getSupportedDigestSchema() {
-        try {
-            return mPasswordDigest.getSupportedDigestSchema();
-        } catch (RemoteException e) {
-            return new String[0];
-        }
+        return mPasswordDigest.getSupportedDigestSchema();
     }
 
 }

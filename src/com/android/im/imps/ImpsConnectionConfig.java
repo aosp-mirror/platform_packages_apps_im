@@ -23,6 +23,8 @@ import com.android.im.engine.ConnectionConfig;
 import com.android.im.engine.ImException;
 import com.android.im.imps.ImpsConstants.ImpsVersion;
 import com.android.im.plugin.ImpsConfigNames;
+import com.android.im.plugin.PasswordDigest;
+import com.android.im.plugin.PresenceMapping;
 
 /**
  * The configuration for IMPS connection.

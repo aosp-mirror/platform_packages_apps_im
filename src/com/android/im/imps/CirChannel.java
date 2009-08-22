@@ -41,8 +41,16 @@ abstract class CirChannel {
      */
     public abstract void connect() throws ImException;
 
+    /**
+     * Re-establish the connection and drop the old one.
+     */
     public void reconnect(){
     }
+
+    /**
+     * Tells if the CIR has been shutdown or not.
+     */
+    public abstract boolean isShutdown();
 
     /**
      * Shutdown the CIR channel, stops to listen to CIR requests from the server.

@@ -44,16 +44,6 @@
              android:label="@string/im_label"
              android:icon="@drawable/ic_launcher_im"
              android:taskAffinity="android.task.im">
-        <uses-library android:name="com.android.im.plugin" />
-        <!-- TODO: Remove dependency of application on the test runner
-             (android.test) library. -->
-        <uses-library android:name="android.test.runner" />
-
-        <service android:name=".app.FrontDoorPlugin">
-            <intent-filter>
-                <action android:name="android.im.plugin" />
-            </intent-filter>
-        </service>
 
         <service android:name=".service.RemoteImService"
             android:process="android.process.im"
@@ -93,7 +83,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.AccountActivity">
+        <activity android:name=".app.LandingPage">
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/im-providers" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".app.AccountActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateUnchanged">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -108,7 +114,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.SigningInActivity">
+        <activity android:name=".app.SigningInActivity"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -206,6 +213,22 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <!--Plug-in Sevice started-->
+        <!--
+        <service android:name="com.android.im.plugin.demo.DemoImPlugin">
+            <intent-filter>
+                <action android:name="com.android.im.plugin" />
+            </intent-filter>
+            <meta-data android:name="com.android.im.provider_name"
+                android:value="Demo"/>
+            <meta-data android:name="com.android.im.provider_full_name"
+                android:value="Demo IM Provider"/>
+            <meta-data android:name="com.android.im.signup_url"
+                android:value="http://xxx.xxx.xxx"/>
+        </service>
+        -->
+        <!--Plug-in Service end-->
 
     </application>
 

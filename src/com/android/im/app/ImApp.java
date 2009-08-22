@@ -29,6 +29,7 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -51,6 +52,7 @@ import com.android.im.app.adapter.ConnectionListenerAdapter;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.plugin.ImPlugin;
 import com.android.im.plugin.ImPluginConstants;
 import com.android.im.plugin.ImPluginInfo;
 import com.android.im.service.ImServiceConstants;
@@ -59,6 +61,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class ImApp extends Application {
     public static final String LOG_TAG = "ImApp";
@@ -173,8 +176,6 @@ public class ImApp extends Application {
         super.onCreate();
         mBroadcaster = new Broadcaster();
         loadDefaultBrandingRes();
-        mBrandingResources = new HashMap<String, BrandingResources>();
-        loadThirdPartyResources();
     }
 
     @Override
@@ -294,7 +295,7 @@ public class ImApp extends Application {
         if (mProviders != null) {
             return;
         }
-        
+
         mProviders = new HashMap<Long, ProviderDef>();
         ContentResolver cr = getContentResolver();
 
@@ -401,40 +402,28 @@ public class ImApp extends Application {
     }
 
     private void loadThirdPartyResources() {
+        ImPluginHelper helper = ImPluginHelper.getInstance(this);
+        helper.loadAvaiablePlugins();
+        ArrayList<ImPlugin> pluginList = helper.getPluginObjects();
+        ArrayList<ImPluginInfo> infoList = helper.getPluginsInfo();
+        int N = pluginList.size();
         PackageManager pm = getPackageManager();
-        List<ResolveInfo> plugins = pm.queryIntentServices(
-                new Intent(ImPluginConstants.PLUGIN_ACTION_NAME), PackageManager.GET_META_DATA);
-        for (ResolveInfo info : plugins) {
-            Log.d(LOG_TAG, "Found plugin " + info);
+        for (int i = 0; i < N; i++) {
+            ImPlugin plugin = pluginList.get(i);
+            ImPluginInfo pluginInfo = infoList.get(i);
 
-            ServiceInfo serviceInfo = info.serviceInfo;
-            if (serviceInfo == null) {
-                Log.e(LOG_TAG, "Ignore bad IM plugin: " + info);
-                continue;
-            }
-            String providerName = null;
-            String providerFullName = null;
-            Bundle metaData = serviceInfo.metaData;
-            if (metaData != null) {
-                providerName = metaData.getString(
-                        ImPluginConstants.METADATA_PROVIDER_NAME);
-                providerFullName = metaData.getString(
-                        ImPluginConstants.METADATA_PROVIDER_FULL_NAME);
-            }
-            if (TextUtils.isEmpty(providerName)
-                    || TextUtils.isEmpty(providerFullName)) {
-                Log.e(LOG_TAG, "Ignore bad IM plugin: " + info
-                        + ". Lack of required meta data");
-                continue;
-            }
+            try {
+                Resources packageRes = pm.getResourcesForApplication(pluginInfo.mPackageName);
 
-            ImPluginInfo pluginInfo = new ImPluginInfo(providerName,
-                    serviceInfo.packageName, serviceInfo.name,
-                    serviceInfo.applicationInfo.sourceDir);
+                Map<Integer, Integer> resMap = plugin.getResourceMap();
+                int[] smileyIcons = plugin.getSmileyIconIds();
 
-            BrandingResources res = new BrandingResources(this, pluginInfo,
-                    mDefaultBrandingResources);
-            mBrandingResources.put(providerName, res);
+                BrandingResources res = new BrandingResources(packageRes, resMap,
+                        smileyIcons, mDefaultBrandingResources);
+                mBrandingResources.put(pluginInfo.mProviderName, res);
+            } catch (NameNotFoundException e) {
+                Log.e(LOG_TAG, "Failed to load third party resources.", e);
+            }
         }
     }
 
@@ -464,6 +453,10 @@ public class ImApp extends Application {
         ProviderDef provider = getProvider(providerId);
         if (provider == null) {
             return mDefaultBrandingResources;
+        }
+        if (mBrandingResources == null) {
+            mBrandingResources = new HashMap<String, BrandingResources>();
+            loadThirdPartyResources();
         }
         BrandingResources res = mBrandingResources.get(provider.mName);
         return res == null ? mDefaultBrandingResources : res;
@@ -670,6 +663,9 @@ public class ImApp extends Application {
 
                 case ImConnection.LOGGING_OUT:
                     what = EVENT_CONNECTION_LOGGING_OUT;
+                    synchronized (mConnections) {
+                        mConnections.remove(providerId);
+                    }
                     break;
 
                 case ImConnection.DISCONNECTED:

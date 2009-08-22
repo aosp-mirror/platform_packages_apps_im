@@ -25,7 +25,7 @@ class ImpsWbxmlEncoder : public WbxmlEncoder
 {
 public:
     ImpsWbxmlEncoder(int publicid) :
-        mPublicId(publicid)
+        WbxmlEncoder(publicid)
     {
         reset();
     }
@@ -53,28 +53,12 @@ public:
     EncoderError endElement();
 
 private:
-    int mPublicId;
     int mTagCodePage;
-    string mResult;
     string mCurrElement;
     int mDepth;
 
-    EncoderError encodeInteger(const char *chars, int len);
-    EncoderError encodeDatetime(const char *chars, int len);
     EncoderError encodeString(const char *chars, int len);
     EncoderError encodeAttrib(const char *name, const char *value);
-    void encodeInlinedStr(const char *s, int len);
-    void encodeMbuint(uint32_t i);
-
-    void appendResult(int ch)
-    {
-        mResult += (char)ch;
-    }
-
-    void appendResult(const char *s, int len)
-    {
-        mResult.append(s, len);
-    }
 };
 
 #endif
