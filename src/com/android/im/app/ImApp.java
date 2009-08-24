@@ -17,6 +17,12 @@
 
 package com.android.im.app;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentName;
@@ -27,21 +33,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Broadcaster;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.provider.Im;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.im.IConnectionCreationListener;
@@ -53,15 +55,8 @@ import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
 import com.android.im.plugin.ImPlugin;
-import com.android.im.plugin.ImPluginConstants;
 import com.android.im.plugin.ImPluginInfo;
 import com.android.im.service.ImServiceConstants;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class ImApp extends Application {
     public static final String LOG_TAG = "ImApp";

@@ -102,8 +102,8 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
 
         mProviderCursor = managedQuery(Im.Provider.CONTENT_URI_WITH_ACCOUNT,
                 PROVIDER_PROJECTION,
-                null /* selection */,
-                null /* selection args */,
+                Im.Provider.CATEGORY + "=?" /* selection */,
+                new String[]{ ImApp.IMPS_CATEGORY } /* selection args */,
                 Im.Provider.DEFAULT_SORT_ORDER);
         mAdapter = new ProviderAdapter(this, mProviderCursor);
         setListAdapter(mAdapter);

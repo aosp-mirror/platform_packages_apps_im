@@ -251,7 +251,6 @@ public class ImPluginHelper {
         return providerId;
     }
 
-    @SuppressWarnings("unchecked")
     private Map<String, String> loadConfiguration(ImPlugin plugin,
             ImPluginInfo info) {
         Map<String, String> config = null;
