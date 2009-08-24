@@ -18,6 +18,7 @@
 package com.android.im.app;
 
 import com.android.im.R;
+import com.android.im.plugin.BrandingResourceIDs;
 
 import android.graphics.drawable.Drawable;
 import android.widget.LinearLayout;
@@ -27,7 +28,6 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.im.BrandingResourceIDs;
 import android.content.res.ColorStateList;
 import android.view.View;
 import android.provider.Im;

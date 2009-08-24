@@ -20,7 +20,37 @@ package com.android.im.plugin;
  * Defines the IDs of branding resources.
  *
  */
-public interface BrandingResourceIDs extends android.im.BrandingResourceIDs {
+public interface BrandingResourceIDs {
+
+    /**
+     * The logo icon of the provider which is displayed in the landing page.
+     */
+    public static final int DRAWABLE_LOGO                = 100;
+    /**
+     * The icon of online presence status.
+     */
+    public static final int DRAWABLE_PRESENCE_ONLINE     = 102;
+    /**
+     * The icon of busy presence status.
+     */
+    public static final int DRAWABLE_PRESENCE_BUSY       = 103;
+    /**
+     * The icon of away presence status.
+     */
+    public static final int DRAWABLE_PRESENCE_AWAY       = 104;
+    /**
+     * The icon of invisible presence status.
+     */
+    public static final int DRAWABLE_PRESENCE_INVISIBLE  = 105;
+    /**
+     * The icon of offline presence status.
+     */
+    public static final int DRAWABLE_PRESENCE_OFFLINE    = 106;
+    /**
+     * The label of the menu to go to the contact list screen.
+     */
+    public static final int STRING_MENU_CONTACT_LIST     = 107;
+
     /**
      * The image displayed on the splash screen while logging in.
      */
