@@ -40,7 +40,7 @@
     <!-- The title of the landing page.-->
     <string name="choose_account_title">Chat - Select an account</string>
     <!-- Displays the number of ongoing chats on the landing page.-->
-    <string name="conversations">(%1$d)</string>
+    <string name="conversations">(<xliff:g id="number" example="27">%1$d</xliff:g>)</string>
 
     <!-- Sign in progress screen menu items.-->
     <!-- Screen menu item on the sign-in progress screen. It allows the user to cancel signing in.-->
