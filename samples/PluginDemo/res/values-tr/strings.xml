@@ -15,61 +15,61 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"Kişi Ekle"</string>
-    <string name="menu_remove_contact">"Kişiyi Sil"</string>
-    <string name="menu_block_contact">"Engelle"</string>
-    <string name="menu_contact_list">"Kişi Listesi"</string>
-    <string name="menu_start_chat">"IM Gönder"</string>
-    <string name="menu_view_profile">"Arkadaş Bilgileri"</string>
-    <string name="menu_end_conversation">"İleti Dizisini Sonlandır"</string>
-    <string name="menu_switch_chats">"Sohbetler Arasında Geçiş Yap"</string>
-    <string name="menu_insert_smiley">"İfade Ekle"</string>
-    <string name="sign_up">"Yeni hesap al"</string>
-    <string name="check_save_password">"Telefonunuz kaybolur veya çalınırsa, güvenliğiniz için bilgisayarınızdan Web sitesine gidin ve şifrenizi değiştirin."</string>
-    <string name="buddy_list_title">"Kişi Listesi - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"Kullanıcı adı:"</string>
-    <string name="ongoing_conversation">"Konuşmalar (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="contact_profile_title">"Kişi Bilgileri"</string>
-    <string name="presence_available">"Müsait"</string>
-    <string name="add_contact_title">"Kişi Ekle"</string>
-    <string name="input_contact_label">"Eklemek istediğiniz kişinin ekran adı:"</string>
-    <string name="invite_label">"Arkadaş Ekle"</string>
+    <string name="menu_add_contact" msgid="1577617821180977339">"Kişi Ekle"</string>
+    <string name="menu_remove_contact" msgid="1438737309746209943">"Kişiyi Sil"</string>
+    <string name="menu_block_contact" msgid="1418576909122458824">"Engelle"</string>
+    <string name="menu_contact_list" msgid="7408048984312793527">"Kişi Listesi"</string>
+    <string name="menu_start_chat" msgid="1942461880426180926">"IM Gönder"</string>
+    <string name="menu_view_profile" msgid="4594617426877626560">"Arkadaş Bilgileri"</string>
+    <string name="menu_end_conversation" msgid="215067667186746690">"İleti Dizisini Sonlandır"</string>
+    <string name="menu_switch_chats" msgid="4616221788780459133">"Sohbetler Arasında Geçiş Yap"</string>
+    <string name="menu_insert_smiley" msgid="6880772056965363205">"İfade Ekle"</string>
+    <string name="sign_up" msgid="3944276728278864333">"Yeni hesap al"</string>
+    <string name="check_save_password" msgid="3554564072443242779">"Telefonunuz kaybolur veya çalınırsa, güvenliğiniz için bilgisayarınızdan Web sitesine gidin ve şifrenizi değiştirin."</string>
+    <string name="buddy_list_title" msgid="5837732412636822107">"Kişi Listesi - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username" msgid="7905168188814604370">"Kullanıcı adı:"</string>
+    <string name="ongoing_conversation" msgid="9097832769731811986">"Konuşmalar (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title" msgid="5203284525412697232">"Kişi Bilgileri"</string>
+    <string name="presence_available" msgid="1184051402868736726">"Müsait"</string>
+    <string name="add_contact_title" msgid="292217657045373736">"Kişi Ekle"</string>
+    <string name="input_contact_label" msgid="2583915568413164449">"Eklemek istediğiniz kişinin ekran adı:"</string>
+    <string name="invite_label" msgid="907494221148096012">"Arkadaş Ekle"</string>
   <string-array name="smiley_names">
-    <item>"Mutlu"</item>
-    <item>"Üzgün"</item>
-    <item>"Göz Kırpma"</item>
-    <item>"Dil çıkarmış"</item>
-    <item>"Şaşırmış"</item>
-    <item>"Öpücük"</item>
-    <item>"Bağırma"</item>
-    <item>"Sakin"</item>
-    <item>"Para ağızlı"</item>
-    <item>"Ayak ağızda"</item>
-    <item>"Utanmış"</item>
-    <item>"Melek"</item>
-    <item>"Kararsız"</item>
-    <item>"Ağlama"</item>
-    <item>"Dudakları mühürlü"</item>
-    <item>"Gülme"</item>
-    <item>"Kafası karışmış"</item>
+    <item msgid="811476776139578986">"Mutlu"</item>
+    <item msgid="2764363456492352853">"Üzgün"</item>
+    <item msgid="416624764294712159">"Göz Kırpma"</item>
+    <item msgid="7152979870122929989">"Dil çıkarmış"</item>
+    <item msgid="5784780866600056743">"Şaşırmış"</item>
+    <item msgid="5454185003381226454">"Öpücük"</item>
+    <item msgid="1413668617851210441">"Bağırma"</item>
+    <item msgid="232246158381043538">"Sakin"</item>
+    <item msgid="2440257511131202785">"Para ağızlı"</item>
+    <item msgid="4571282940807190133">"Ayak ağızda"</item>
+    <item msgid="3260099163589753993">"Utanmış"</item>
+    <item msgid="3042531792218744865">"Melek"</item>
+    <item msgid="5227319381647888452">"Kararsız"</item>
+    <item msgid="6952104030566994554">"Ağlama"</item>
+    <item msgid="9199616532683270084">"Dudakları mühürlü"</item>
+    <item msgid="4338502150254517147">"Gülme"</item>
+    <item msgid="1014703928300075245">"Kafası karışmış"</item>
   </string-array>
   <string-array name="smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
+    <item msgid="6682271134385564589">":-)"</item>
+    <item msgid="5242689844155076377">":-("</item>
+    <item msgid="521632995149320343">";-)"</item>
+    <item msgid="3442897533435789796">":-P"</item>
+    <item msgid="682698687423187022">"=-O"</item>
+    <item msgid="1531701168660725626">":-*"</item>
+    <item msgid="7958357467119008619">":O"</item>
+    <item msgid="4638775565490840154">"B-)"</item>
+    <item msgid="6225545209385623235">":-$"</item>
+    <item msgid="5725425598368680891">":-!"</item>
+    <item msgid="5365880622794795497">":-["</item>
+    <item msgid="8260692119195572132">"O:-)"</item>
+    <item msgid="6879285154649424413">":-\\"</item>
+    <item msgid="554517875650930417">":\'("</item>
+    <item msgid="8169228040168187510">":-X"</item>
+    <item msgid="5444890977206638254">":-D"</item>
+    <item msgid="8814856019116253585">"o_O"</item>
   </string-array>
 </resources>

@@ -15,61 +15,61 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"Kontakt hinzufügen"</string>
-    <string name="menu_remove_contact">"Kontakt löschen"</string>
-    <string name="menu_block_contact">"Blockieren"</string>
-    <string name="menu_contact_list">"Kontaktliste"</string>
-    <string name="menu_start_chat">"IM senden"</string>
-    <string name="menu_view_profile">"Buddy Info"</string>
-    <string name="menu_end_conversation">"Gespräch beenden"</string>
-    <string name="menu_switch_chats">"Chats wechseln"</string>
-    <string name="menu_insert_smiley">"Emoticons einfügen"</string>
-    <string name="sign_up">"Ein neues Konto erhalten"</string>
-    <string name="check_save_password">"Zu Ihrer Sicherheit: Wenn Sie Ihr Telefon verloren haben oder es gestohlen wurde, rufen Sie die Website auf Ihrem Computer auf und ändern Sie Ihr Passwort."</string>
-    <string name="buddy_list_title">"Kontaktliste - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"Benutzername:"</string>
-    <string name="ongoing_conversation">"Gespräche (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
-    <string name="contact_profile_title">"Kontaktinformationen"</string>
-    <string name="presence_available">"Verfügbar"</string>
-    <string name="add_contact_title">"Kontakt hinzufügen"</string>
-    <string name="input_contact_label">"Displayname der Person, die Sie hinzufügen möchten:"</string>
-    <string name="invite_label">"Buddy hinzufügen"</string>
+    <string name="menu_add_contact" msgid="1577617821180977339">"Kontakt hinzufügen"</string>
+    <string name="menu_remove_contact" msgid="1438737309746209943">"Kontakt löschen"</string>
+    <string name="menu_block_contact" msgid="1418576909122458824">"Blockieren"</string>
+    <string name="menu_contact_list" msgid="7408048984312793527">"Kontaktliste"</string>
+    <string name="menu_start_chat" msgid="1942461880426180926">"IM senden"</string>
+    <string name="menu_view_profile" msgid="4594617426877626560">"Buddy Info"</string>
+    <string name="menu_end_conversation" msgid="215067667186746690">"Gespräch beenden"</string>
+    <string name="menu_switch_chats" msgid="4616221788780459133">"Chats wechseln"</string>
+    <string name="menu_insert_smiley" msgid="6880772056965363205">"Emoticons einfügen"</string>
+    <string name="sign_up" msgid="3944276728278864333">"Ein neues Konto erhalten"</string>
+    <string name="check_save_password" msgid="3554564072443242779">"Zu Ihrer Sicherheit: Wenn Sie Ihr Telefon verloren haben oder es gestohlen wurde, rufen Sie die Website auf Ihrem Computer auf und ändern Sie Ihr Passwort."</string>
+    <string name="buddy_list_title" msgid="5837732412636822107">"Kontaktliste - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username" msgid="7905168188814604370">"Benutzername:"</string>
+    <string name="ongoing_conversation" msgid="9097832769731811986">"Gespräche (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title" msgid="5203284525412697232">"Kontaktinformationen"</string>
+    <string name="presence_available" msgid="1184051402868736726">"Verfügbar"</string>
+    <string name="add_contact_title" msgid="292217657045373736">"Kontakt hinzufügen"</string>
+    <string name="input_contact_label" msgid="2583915568413164449">"Displayname der Person, die Sie hinzufügen möchten:"</string>
+    <string name="invite_label" msgid="907494221148096012">"Buddy hinzufügen"</string>
   <string-array name="smiley_names">
-    <item>"Glücklich"</item>
-    <item>"Traurig"</item>
-    <item>"Zwinkern"</item>
-    <item>"Zunge rausstrecken"</item>
-    <item>"Überrascht"</item>
-    <item>"Kuss"</item>
-    <item>"Schreien"</item>
-    <item>"Cool"</item>
-    <item>"Lass Taten sprechen"</item>
-    <item>"Fettnäpfchen"</item>
-    <item>"Peinlich berührt"</item>
-    <item>"Engel"</item>
-    <item>"Unentschlossen"</item>
-    <item>"Weinen"</item>
-    <item>"Versiegelte Lippen"</item>
-    <item>"Lachen"</item>
-    <item>"Verwirrt"</item>
+    <item msgid="811476776139578986">"Glücklich"</item>
+    <item msgid="2764363456492352853">"Traurig"</item>
+    <item msgid="416624764294712159">"Zwinkern"</item>
+    <item msgid="7152979870122929989">"Zunge rausstrecken"</item>
+    <item msgid="5784780866600056743">"Überrascht"</item>
+    <item msgid="5454185003381226454">"Kuss"</item>
+    <item msgid="1413668617851210441">"Schreien"</item>
+    <item msgid="232246158381043538">"Cool"</item>
+    <item msgid="2440257511131202785">"Lass Taten sprechen"</item>
+    <item msgid="4571282940807190133">"Fettnäpfchen"</item>
+    <item msgid="3260099163589753993">"Peinlich berührt"</item>
+    <item msgid="3042531792218744865">"Engel"</item>
+    <item msgid="5227319381647888452">"Unentschlossen"</item>
+    <item msgid="6952104030566994554">"Weinen"</item>
+    <item msgid="9199616532683270084">"Versiegelte Lippen"</item>
+    <item msgid="4338502150254517147">"Lachen"</item>
+    <item msgid="1014703928300075245">"Verwirrt"</item>
   </string-array>
   <string-array name="smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
+    <item msgid="6682271134385564589">":-)"</item>
+    <item msgid="5242689844155076377">":-("</item>
+    <item msgid="521632995149320343">";-)"</item>
+    <item msgid="3442897533435789796">":-P"</item>
+    <item msgid="682698687423187022">"=-O"</item>
+    <item msgid="1531701168660725626">":-*"</item>
+    <item msgid="7958357467119008619">":O"</item>
+    <item msgid="4638775565490840154">"B-)"</item>
+    <item msgid="6225545209385623235">":-$"</item>
+    <item msgid="5725425598368680891">":-!"</item>
+    <item msgid="5365880622794795497">":-["</item>
+    <item msgid="8260692119195572132">"O:-)"</item>
+    <item msgid="6879285154649424413">":-\\"</item>
+    <item msgid="554517875650930417">":\'("</item>
+    <item msgid="8169228040168187510">":-X"</item>
+    <item msgid="5444890977206638254">":-D"</item>
+    <item msgid="8814856019116253585">"o_O"</item>
   </string-array>
 </resources>

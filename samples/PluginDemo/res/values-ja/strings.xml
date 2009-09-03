@@ -15,61 +15,61 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="menu_add_contact">"連絡先を追加"</string>
-    <string name="menu_remove_contact">"連絡先を削除"</string>
-    <string name="menu_block_contact">"ブロック"</string>
-    <string name="menu_contact_list">"連絡先リスト"</string>
-    <string name="menu_start_chat">"チャットを送信"</string>
-    <string name="menu_view_profile">"友だち情報"</string>
-    <string name="menu_end_conversation">"チャット終了"</string>
-    <string name="menu_switch_chats">"チャットを切り替え"</string>
-    <string name="menu_insert_smiley">"絵文字を挿入"</string>
-    <string name="sign_up">"新しいアカウントを取得"</string>
-    <string name="check_save_password">"セキュリティ保護のため、携帯電話を紛失したり盗まれたりした場合は、パソコンからウェブサイトにアクセスしてパスワードを変更してください。"</string>
-    <string name="buddy_list_title">"連絡先リスト - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
-    <string name="label_username">"ユーザー名:"</string>
-    <string name="ongoing_conversation">"チャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
-    <string name="contact_profile_title">"連絡先情報"</string>
-    <string name="presence_available">"オンライン"</string>
-    <string name="add_contact_title">"連絡先を追加"</string>
-    <string name="input_contact_label">"追加する人のスクリーンネーム:"</string>
-    <string name="invite_label">"友だちを追加"</string>
+    <string name="menu_add_contact" msgid="1577617821180977339">"連絡先を追加"</string>
+    <string name="menu_remove_contact" msgid="1438737309746209943">"連絡先を削除"</string>
+    <string name="menu_block_contact" msgid="1418576909122458824">"ブロック"</string>
+    <string name="menu_contact_list" msgid="7408048984312793527">"連絡先リスト"</string>
+    <string name="menu_start_chat" msgid="1942461880426180926">"チャットを送信"</string>
+    <string name="menu_view_profile" msgid="4594617426877626560">"友だち情報"</string>
+    <string name="menu_end_conversation" msgid="215067667186746690">"チャット終了"</string>
+    <string name="menu_switch_chats" msgid="4616221788780459133">"チャットを切り替え"</string>
+    <string name="menu_insert_smiley" msgid="6880772056965363205">"絵文字を挿入"</string>
+    <string name="sign_up" msgid="3944276728278864333">"新しいアカウントを取得"</string>
+    <string name="check_save_password" msgid="3554564072443242779">"セキュリティ保護のため、携帯電話を紛失したり盗まれたりした場合は、パソコンからウェブサイトにアクセスしてパスワードを変更してください。"</string>
+    <string name="buddy_list_title" msgid="5837732412636822107">"連絡先リスト - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username" msgid="7905168188814604370">"ユーザー名:"</string>
+    <string name="ongoing_conversation" msgid="9097832769731811986">"チャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
+    <string name="contact_profile_title" msgid="5203284525412697232">"連絡先情報"</string>
+    <string name="presence_available" msgid="1184051402868736726">"オンライン"</string>
+    <string name="add_contact_title" msgid="292217657045373736">"連絡先を追加"</string>
+    <string name="input_contact_label" msgid="2583915568413164449">"追加する人のスクリーンネーム:"</string>
+    <string name="invite_label" msgid="907494221148096012">"友だちを追加"</string>
   <string-array name="smiley_names">
-    <item>"ハッピー"</item>
-    <item>"悲しい"</item>
-    <item>"ウィンク"</item>
-    <item>"アッカンベー"</item>
-    <item>"びっくり"</item>
-    <item>"キス"</item>
-    <item>"激怒"</item>
-    <item>"クール"</item>
-    <item>"気持ち悪い"</item>
-    <item>"しまった"</item>
-    <item>"恥ずかしい"</item>
-    <item>"天使"</item>
-    <item>"迷う"</item>
-    <item>"泣く"</item>
-    <item>"お口にチャック"</item>
-    <item>"笑顔"</item>
-    <item>"混乱"</item>
+    <item msgid="811476776139578986">"ハッピー"</item>
+    <item msgid="2764363456492352853">"悲しい"</item>
+    <item msgid="416624764294712159">"ウィンク"</item>
+    <item msgid="7152979870122929989">"アッカンベー"</item>
+    <item msgid="5784780866600056743">"びっくり"</item>
+    <item msgid="5454185003381226454">"キス"</item>
+    <item msgid="1413668617851210441">"激怒"</item>
+    <item msgid="232246158381043538">"クール"</item>
+    <item msgid="2440257511131202785">"気持ち悪い"</item>
+    <item msgid="4571282940807190133">"しまった"</item>
+    <item msgid="3260099163589753993">"恥ずかしい"</item>
+    <item msgid="3042531792218744865">"天使"</item>
+    <item msgid="5227319381647888452">"迷う"</item>
+    <item msgid="6952104030566994554">"泣く"</item>
+    <item msgid="9199616532683270084">"お口にチャック"</item>
+    <item msgid="4338502150254517147">"笑顔"</item>
+    <item msgid="1014703928300075245">"混乱"</item>
   </string-array>
   <string-array name="smiley_texts">
-    <item>":-)"</item>
-    <item>":-("</item>
-    <item>";-)"</item>
-    <item>":-P"</item>
-    <item>"=-O"</item>
-    <item>":-*"</item>
-    <item>":O"</item>
-    <item>"B-)"</item>
-    <item>":-$"</item>
-    <item>":-!"</item>
-    <item>":-["</item>
-    <item>"O:-)"</item>
-    <item>":-\\"</item>
-    <item>":\'("</item>
-    <item>":-X"</item>
-    <item>":-D"</item>
-    <item>"o_O"</item>
+    <item msgid="6682271134385564589">":-)"</item>
+    <item msgid="5242689844155076377">":-("</item>
+    <item msgid="521632995149320343">";-)"</item>
+    <item msgid="3442897533435789796">":-P"</item>
+    <item msgid="682698687423187022">"=-O"</item>
+    <item msgid="1531701168660725626">":-*"</item>
+    <item msgid="7958357467119008619">":O"</item>
+    <item msgid="4638775565490840154">"B-)"</item>
+    <item msgid="6225545209385623235">":-$"</item>
+    <item msgid="5725425598368680891">":-!"</item>
+    <item msgid="5365880622794795497">":-["</item>
+    <item msgid="8260692119195572132">"O:-)"</item>
+    <item msgid="6879285154649424413">":-\\"</item>
+    <item msgid="554517875650930417">":\'("</item>
+    <item msgid="8169228040168187510">":-X"</item>
+    <item msgid="5444890977206638254">":-D"</item>
+    <item msgid="8814856019116253585">"o_O"</item>
   </string-array>
 </resources>
