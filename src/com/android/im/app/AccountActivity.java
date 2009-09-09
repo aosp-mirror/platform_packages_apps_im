@@ -19,6 +19,7 @@ package com.android.im.app;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,7 +32,6 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Im;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -59,11 +59,11 @@ public class AccountActivity extends Activity {
     static final int REQUEST_SIGN_IN = RESULT_FIRST_USER + 1;
 
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PROVIDER,
-        Im.Account.USERNAME,
-        Im.Account.PASSWORD,
-        Im.Account.KEEP_SIGNED_IN,
+        Imps.Account._ID,
+        Imps.Account.PROVIDER,
+        Imps.Account.USERNAME,
+        Imps.Account.PASSWORD,
+        Imps.Account.KEEP_SIGNED_IN,
     };
 
     private static final int ACCOUNT_PROVIDER_COLUMN = 1;
@@ -117,7 +117,7 @@ public class AccountActivity extends Activity {
             ContentResolver cr = getContentResolver();
             Uri uri = i.getData();
 
-            if ((uri == null) || !Im.Account.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
+            if ((uri == null) || !Imps.Account.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
                 Log.w(ImApp.LOG_TAG, "<AccountActivity>Bad data");
                 return;
             }
@@ -193,7 +193,7 @@ public class AccountActivity extends Activity {
 
                 long accountId = ImApp.insertOrUpdateAccount(cr, providerId, username,
                         rememberPass ? pass : null);
-                mAccountUri = ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId);
+                mAccountUri = ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId);
 
                 if (!origUserName.equals(username) && shouldShowTermOfUse(brandingRes)) {
                     comfirmTermsOfUse(brandingRes, new DialogInterface.OnClickListener() {
@@ -276,7 +276,7 @@ public class AccountActivity extends Activity {
                 updateKeepSignedIn(false);
                 mEditPass.setText("");
                 ContentValues values = new ContentValues();
-                values.put(Im.Account.PASSWORD, (String) null);
+                values.put(Imps.Account.PASSWORD, (String) null);
                 getContentResolver().update(mAccountUri, values, null, null);
             }
         }
@@ -284,7 +284,7 @@ public class AccountActivity extends Activity {
 
     void updateKeepSignedIn(boolean keepSignIn) {
         ContentValues values = new ContentValues();
-        values.put(Im.Account.KEEP_SIGNED_IN, keepSignIn ? 1 : 0);
+        values.put(Imps.Account.KEEP_SIGNED_IN, keepSignIn ? 1 : 0);
         getContentResolver().update(mAccountUri, values, null, null);
     }
 

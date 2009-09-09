@@ -21,6 +21,7 @@ import com.android.im.R;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.Presence;
 import com.android.im.plugin.ImpsConfigNames;
+import com.android.im.provider.Imps;
 import com.google.android.collect.Lists;
 
 import android.app.Activity;
@@ -29,7 +30,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -100,8 +100,8 @@ public class UserPresenceView extends LinearLayout {
             int[] supportedStatus = mConn.getSupportedPresenceStatus();
             for (int i = 0; i < supportedStatus.length; i++) {
                 int s = PresenceUtils.convertStatus(supportedStatus[i]);
-                if (s == Im.Presence.OFFLINE) {
-                    s = Im.Presence.INVISIBLE;
+                if (s == Imps.Presence.OFFLINE) {
+                    s = Imps.Presence.INVISIBLE;
                 }
                 ImApp app = ImApp.getApplication((Activity)mContext);
                 BrandingResources brandingRes = app.getBrandingResource(mProviderId);
@@ -162,14 +162,14 @@ public class UserPresenceView extends LinearLayout {
         // the AIM and MSN server don't support it now.
         ProviderDef provider = app.getProvider(mProviderId);
         String providerName = provider == null ? null : provider.mName;
-        if (Im.ProviderNames.AIM.equals(providerName)
-                || Im.ProviderNames.MSN.equals(providerName)) {
+        if (Imps.ProviderNames.AIM.equals(providerName)
+                || Imps.ProviderNames.MSN.equals(providerName)) {
             mStatusBar.setFocusable(false);
         }
     }
 
     private TextView initStatusBar(long providerId) {
-        String value = Im.ProviderSettings.getStringValue(
+        String value = Imps.ProviderSettings.getStringValue(
                             mContext.getContentResolver(), providerId,
                             ImpsConfigNames.SUPPORT_USER_DEFINED_PRESENCE);
 

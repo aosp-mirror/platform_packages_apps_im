@@ -24,7 +24,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Im;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +36,7 @@ import com.android.im.imps.ImpsConnectionConfig.EncodingType;
 import com.android.im.imps.ImpsConnectionConfig.TransportType;
 import com.android.im.plugin.ImConfigNames;
 import com.android.im.plugin.ImpsConfigNames;
+import com.android.im.provider.Imps;
 
 public class PreferenceActivity extends Activity {
 
@@ -121,7 +121,7 @@ public class PreferenceActivity extends Activity {
             finish();
         } else {
             Cursor c = getContentResolver().query(i.getData(),
-                    new String[]{Im.Provider._ID, Im.Provider.NAME}, null, null, null);
+                    new String[]{Imps.Provider._ID, Imps.Provider.NAME}, null, null, null);
             if (c == null || !c.moveToFirst()) {
                 Log.w(ImApp.LOG_TAG, "Can't query data from given URI.");
                 finish();
@@ -131,7 +131,7 @@ public class PreferenceActivity extends Activity {
 
                 c.close();
 
-                mPref = Im.ProviderSettings.queryProviderSettings(getContentResolver(), mProviderId);
+                mPref = Imps.ProviderSettings.queryProviderSettings(getContentResolver(), mProviderId);
             }
         }
     }
@@ -203,16 +203,16 @@ public class PreferenceActivity extends Activity {
         valuesList[4] = getValues(ImpsConfigNames.HOST, host);
         valuesList[6] = getValues(ImpsConfigNames.MSISDN, msisdn);
 
-        getContentResolver().bulkInsert(Im.ProviderSettings.CONTENT_URI, valuesList);
+        getContentResolver().bulkInsert(Imps.ProviderSettings.CONTENT_URI, valuesList);
 
         finish();
     }
 
     private ContentValues getValues(String name, String value) {
         ContentValues values = new ContentValues();
-        values.put(Im.ProviderSettings.PROVIDER, mProviderId);
-        values.put(Im.ProviderSettings.NAME, name);
-        values.put(Im.ProviderSettings.VALUE, value);
+        values.put(Imps.ProviderSettings.PROVIDER, mProviderId);
+        values.put(Imps.ProviderSettings.NAME, name);
+        values.put(Imps.ProviderSettings.VALUE, value);
 
         return values;
     }
