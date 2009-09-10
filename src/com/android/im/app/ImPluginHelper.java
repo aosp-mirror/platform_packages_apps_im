@@ -33,7 +33,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteFullException;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -41,6 +40,7 @@ import com.android.im.plugin.ImConfigNames;
 import com.android.im.plugin.ImPlugin;
 import com.android.im.plugin.ImPluginConstants;
 import com.android.im.plugin.ImPluginInfo;
+import com.android.im.provider.Imps;
 
 public class ImPluginHelper {
 
@@ -185,9 +185,9 @@ public class ImPluginHelper {
 
         long providerId = 0;
         ContentResolver cr = mContext.getContentResolver();
-        String where = Im.Provider.NAME + "=?";
+        String where = Imps.Provider.NAME + "=?";
         String[] selectionArgs = new String[]{info.mProviderName};
-        Cursor c = cr.query(Im.Provider.CONTENT_URI,
+        Cursor c = cr.query(Imps.Provider.CONTENT_URI,
                 null /* projection */,
                 where,
                 selectionArgs,
@@ -196,7 +196,7 @@ public class ImPluginHelper {
         boolean pluginChanged;
         try {
             if (c.moveToFirst()) {
-                providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
+                providerId = c.getLong(c.getColumnIndexOrThrow(Imps.Provider._ID));
                 pluginChanged = isPluginChanged(cr, providerId, config);
                 if (pluginChanged) {
                     // Update the full name, signup url and category each time when the plugin change
@@ -205,20 +205,20 @@ public class ImPluginHelper {
                     // Note that we don't update the provider name because it's used as
                     // identifier at some place and the plugin should never change it.
                     ContentValues values = new ContentValues(3);
-                    values.put(Im.Provider.FULLNAME, providerFullName);
-                    values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-                    values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-                    Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
+                    values.put(Imps.Provider.FULLNAME, providerFullName);
+                    values.put(Imps.Provider.SIGNUP_URL, signUpUrl);
+                    values.put(Imps.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+                    Uri uri = ContentUris.withAppendedId(Imps.Provider.CONTENT_URI, providerId);
                     cr.update(uri, values, null, null);
                 }
             } else {
                 ContentValues values = new ContentValues(3);
-                values.put(Im.Provider.NAME, info.mProviderName);
-                values.put(Im.Provider.FULLNAME, providerFullName);
-                values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-                values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+                values.put(Imps.Provider.NAME, info.mProviderName);
+                values.put(Imps.Provider.FULLNAME, providerFullName);
+                values.put(Imps.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+                values.put(Imps.Provider.SIGNUP_URL, signUpUrl);
 
-                Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
+                Uri result = cr.insert(Imps.Provider.CONTENT_URI, values);
                 providerId = ContentUris.parseId(result);
                 pluginChanged = true;
             }
@@ -231,7 +231,7 @@ public class ImPluginHelper {
         if (pluginChanged) {
             // Remove all the old settings
             cr.delete(ContentUris.withAppendedId(
-                    Im.ProviderSettings.CONTENT_URI, providerId),
+                    Imps.ProviderSettings.CONTENT_URI, providerId),
                     null, /*where*/
                     null /*selectionArgs*/);
 
@@ -240,12 +240,12 @@ public class ImPluginHelper {
             int index = 0;
             for (Map.Entry<String, String> entry : config.entrySet()) {
                 ContentValues settingValue = new ContentValues();
-                settingValue.put(Im.ProviderSettings.PROVIDER, providerId);
-                settingValue.put(Im.ProviderSettings.NAME, entry.getKey());
-                settingValue.put(Im.ProviderSettings.VALUE, entry.getValue());
+                settingValue.put(Imps.ProviderSettings.PROVIDER, providerId);
+                settingValue.put(Imps.ProviderSettings.NAME, entry.getKey());
+                settingValue.put(Imps.ProviderSettings.VALUE, entry.getValue());
                 settingValues[index++] = settingValue;
             }
-            cr.bulkInsert(Im.ProviderSettings.CONTENT_URI, settingValues);
+            cr.bulkInsert(Imps.ProviderSettings.CONTENT_URI, settingValues);
         }
 
         return providerId;
@@ -266,7 +266,7 @@ public class ImPluginHelper {
 
     private boolean isPluginChanged(ContentResolver cr, long providerId,
             Map<String, String> config) {
-        String origVersion = Im.ProviderSettings.getStringValue(cr, providerId,
+        String origVersion = Imps.ProviderSettings.getStringValue(cr, providerId,
                 ImConfigNames.PLUGIN_VERSION);
 
         if (origVersion == null) {

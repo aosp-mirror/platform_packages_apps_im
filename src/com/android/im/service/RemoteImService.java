@@ -44,7 +44,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.SystemProperties;
-import android.provider.Im;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -61,15 +60,16 @@ import com.android.im.imps.ImpsConnectionConfig;
 import com.android.im.plugin.ImConfigNames;
 import com.android.im.plugin.ImPluginInfo;
 import com.android.im.plugin.ImpsConfigNames;
+import com.android.im.provider.Imps;
 
 
 public class RemoteImService extends Service {
 
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PROVIDER,
-        Im.Account.USERNAME,
-        Im.Account.PASSWORD,
+        Imps.Account._ID,
+        Imps.Account.PROVIDER,
+        Imps.Account.USERNAME,
+        Imps.Account.PASSWORD,
     };
     private static final int ACCOUNT_ID_COLUMN = 0;
     private static final int ACCOUNT_PROVIDER_COLUMN = 1;
@@ -146,8 +146,8 @@ public class RemoteImService extends Service {
 
         ContentResolver resolver = getContentResolver();
 
-        String where = Im.Account.KEEP_SIGNED_IN + "=1 AND " + Im.Account.ACTIVE + "=1";
-        Cursor cursor = resolver.query(Im.Account.CONTENT_URI,
+        String where = Imps.Account.KEEP_SIGNED_IN + "=1 AND " + Imps.Account.ACTIVE + "=1";
+        Cursor cursor = resolver.query(Imps.Account.CONTENT_URI,
                 ACCOUNT_PROJECTION, where, null, null);
         if (cursor == null) {
             Log.w(TAG, "Can't query account!");
@@ -172,7 +172,7 @@ public class RemoteImService extends Service {
 
     private Map<String, String> loadProviderSettings(long providerId) {
         ContentResolver cr = getContentResolver();
-        Map<String, String> settings = Im.ProviderSettings.queryProviderSettings(cr, providerId);
+        Map<String, String> settings = Imps.ProviderSettings.queryProviderSettings(cr, providerId);
 
         NetworkInfo networkInfo = mNetworkConnectivityListener.getNetworkInfo();
         // Insert a fake msisdn on emulator. We don't need this on device

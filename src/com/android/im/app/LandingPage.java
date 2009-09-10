@@ -28,7 +28,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -45,6 +44,7 @@ import android.widget.ListView;
 import com.android.im.IImConnection;
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 public class LandingPage extends ListActivity implements View.OnCreateContextMenuListener {
     private static final String TAG = ImApp.LOG_TAG;
@@ -64,17 +64,17 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
     private SimpleAlertHandler mHandler;
 
     private static final String[] PROVIDER_PROJECTION = {
-            Im.Provider._ID,
-            Im.Provider.NAME,
-            Im.Provider.FULLNAME,
-            Im.Provider.CATEGORY,
-            Im.Provider.ACTIVE_ACCOUNT_ID,
-            Im.Provider.ACTIVE_ACCOUNT_USERNAME,
-            Im.Provider.ACTIVE_ACCOUNT_PW,
-            Im.Provider.ACTIVE_ACCOUNT_LOCKED,
-            Im.Provider.ACTIVE_ACCOUNT_KEEP_SIGNED_IN,
-            Im.Provider.ACCOUNT_PRESENCE_STATUS,
-            Im.Provider.ACCOUNT_CONNECTION_STATUS,
+            Imps.Provider._ID,
+            Imps.Provider.NAME,
+            Imps.Provider.FULLNAME,
+            Imps.Provider.CATEGORY,
+            Imps.Provider.ACTIVE_ACCOUNT_ID,
+            Imps.Provider.ACTIVE_ACCOUNT_USERNAME,
+            Imps.Provider.ACTIVE_ACCOUNT_PW,
+            Imps.Provider.ACTIVE_ACCOUNT_LOCKED,
+            Imps.Provider.ACTIVE_ACCOUNT_KEEP_SIGNED_IN,
+            Imps.Provider.ACCOUNT_PRESENCE_STATUS,
+            Imps.Provider.ACCOUNT_CONNECTION_STATUS,
     };
 
     static final int PROVIDER_ID_COLUMN = 0;
@@ -100,11 +100,11 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
 
         ImPluginHelper.getInstance(this).loadAvaiablePlugins();
 
-        mProviderCursor = managedQuery(Im.Provider.CONTENT_URI_WITH_ACCOUNT,
+        mProviderCursor = managedQuery(Imps.Provider.CONTENT_URI_WITH_ACCOUNT,
                 PROVIDER_PROJECTION,
-                Im.Provider.CATEGORY + "=?" /* selection */,
+                Imps.Provider.CATEGORY + "=?" /* selection */,
                 new String[]{ ImApp.IMPS_CATEGORY } /* selection args */,
-                Im.Provider.DEFAULT_SORT_ORDER);
+                Imps.Provider.DEFAULT_SORT_ORDER);
         mAdapter = new ProviderAdapter(this, mProviderCursor);
         setListAdapter(mAdapter);
 
@@ -142,18 +142,18 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
         }
 
         Intent intent = new Intent(this, SigningInActivity.class);
-        intent.setData(ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId));
+        intent.setData(ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId));
         startActivity(intent);
     }
 
     boolean isSigningIn(Cursor cursor) {
         int connectionStatus = cursor.getInt(ACCOUNT_CONNECTION_STATUS);
-        return connectionStatus == Im.ConnectionStatus.CONNECTING;
+        return connectionStatus == Imps.ConnectionStatus.CONNECTING;
     }
 
     private boolean isSignedIn(Cursor cursor) {
         int connectionStatus = cursor.getInt(ACCOUNT_CONNECTION_STATUS);
-        return connectionStatus == Im.ConnectionStatus.ONLINE;
+        return connectionStatus == Imps.ConnectionStatus.ONLINE;
     }
 
     private boolean allAccountsSignedOut() {
@@ -295,7 +295,7 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
 
             case ID_REMOVE_ACCOUNT:
             {
-                Uri accountUri = ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId);
+                Uri accountUri = ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId);
                 getContentResolver().delete(accountUri, null, null);
                 // Requery the cursor to force refreshing screen
                 providerCursor.requery();
@@ -329,7 +329,7 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
 
             case ID_SETTINGS:
             {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Im.ProviderSettings.CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Imps.ProviderSettings.CONTENT_URI);
                 intent.addCategory(getProviderCategory(providerCursor));
                 intent.putExtra("providerId", providerId);
                 startActivity(intent);
@@ -353,7 +353,7 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
             int state = mProviderCursor.getInt(ACCOUNT_CONNECTION_STATUS);
             long accountId = mProviderCursor.getLong(ACTIVE_ACCOUNT_ID_COLUMN);
 
-            if (state == Im.ConnectionStatus.OFFLINE) {
+            if (state == Imps.ConnectionStatus.OFFLINE) {
                 boolean isKeepSignedIn = mProviderCursor.getInt(ACTIVE_ACCOUNT_KEEP_SIGNED_IN) != 0;
                 boolean isAccountEditible = mProviderCursor.getInt(ACTIVE_ACCOUNT_LOCKED) == 0;
                 if (isKeepSignedIn) {
@@ -361,7 +361,7 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
                 } else if(isAccountEditible) {
                     intent = getEditAccountIntent();
                 }
-            } else if (state == Im.ConnectionStatus.CONNECTING) {
+            } else if (state == Imps.ConnectionStatus.CONNECTING) {
                 signIn(accountId);
             } else {
                 intent = getViewContactsIntent();
@@ -378,14 +378,14 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
         intent.setAction(Intent.ACTION_INSERT);
 
         long providerId = mProviderCursor.getLong(PROVIDER_ID_COLUMN);
-        intent.setData(ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId));
+        intent.setData(ContentUris.withAppendedId(Imps.Provider.CONTENT_URI, providerId));
         intent.addCategory(getProviderCategory(mProviderCursor));
         return intent;
     }
 
     Intent getEditAccountIntent() {
         Intent intent = new Intent(Intent.ACTION_EDIT,
-                ContentUris.withAppendedId(Im.Account.CONTENT_URI,
+                ContentUris.withAppendedId(Imps.Account.CONTENT_URI,
                         mProviderCursor.getLong(ACTIVE_ACCOUNT_ID_COLUMN)));
         intent.addCategory(getProviderCategory(mProviderCursor));
         return intent;
@@ -393,7 +393,7 @@ public class LandingPage extends ListActivity implements View.OnCreateContextMen
 
     Intent getViewContactsIntent() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Im.Contacts.CONTENT_URI);
+        intent.setData(Imps.Contacts.CONTENT_URI);
         intent.addCategory(getProviderCategory(mProviderCursor));
         intent.putExtra("accountId", mProviderCursor.getLong(ACTIVE_ACCOUNT_ID_COLUMN));
         return intent;

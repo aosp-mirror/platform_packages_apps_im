@@ -19,6 +19,7 @@ package com.android.im.app;
 import com.android.im.IImConnection;
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
@@ -31,7 +32,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -72,7 +72,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
     boolean mIsFiltering;
 
-    Im.ProviderSettings.QueryMap mSettingMap;
+    Imps.ProviderSettings.QueryMap mSettingMap;
     boolean mDestroyed;
 
     @Override
@@ -96,7 +96,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         mApp = ImApp.getApplication(this);
 
         ContentResolver cr = getContentResolver();
-        Cursor c = cr.query(ContentUris.withAppendedId(Im.Account.CONTENT_URI, mAccountId),
+        Cursor c = cr.query(ContentUris.withAppendedId(Imps.Account.CONTENT_URI, mAccountId),
                 null, null, null, null);
         if (c == null) {
             finish();
@@ -108,9 +108,9 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
             return;
         }
 
-        mProviderId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
+        mProviderId = c.getLong(c.getColumnIndexOrThrow(Imps.Account.PROVIDER));
         mHandler = new MyHandler(this);
-        String username = c.getString(c.getColumnIndexOrThrow(Im.Account.USERNAME));
+        String username = c.getString(c.getColumnIndexOrThrow(Imps.Account.USERNAME));
 
         BrandingResources brandingRes = mApp.getBrandingResource(mProviderId);
         setTitle(brandingRes.getString(
@@ -118,7 +118,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         getWindow().setFeatureDrawable(Window.FEATURE_LEFT_ICON,
                 brandingRes.getDrawable(BrandingResourceIDs.DRAWABLE_LOGO));
 
-        mSettingMap = new Im.ProviderSettings.QueryMap(
+        mSettingMap = new Imps.ProviderSettings.QueryMap(
                 getContentResolver(), mProviderId, true, null);
 
         mApp.callWhenServiceConnected(mHandler, new Runnable(){
@@ -177,7 +177,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 return true;
 
             case R.id.menu_blocked_contacts:
-                Uri.Builder builder = Im.BlockedList.CONTENT_URI.buildUpon();
+                Uri.Builder builder = Imps.BlockedList.CONTENT_URI.buildUpon();
                 ContentUris.appendId(builder, mProviderId);
                 ContentUris.appendId(builder, mAccountId);
                 startActivity(new Intent(Intent.ACTION_VIEW, builder.build()));
@@ -185,7 +185,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
             case R.id.menu_view_accounts:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setType(Im.Provider.CONTENT_TYPE);
+                intent.setType(Imps.Provider.CONTENT_TYPE);
                 startActivity(intent);
                 finish();
                 return true;
@@ -276,8 +276,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                     R.layout.contact_list_filter_view, null);
             mFilterView.getListView().setOnCreateContextMenuListener(this);
         }
-        Uri uri = mSettingMap.getHideOfflineContacts() ? Im.Contacts.CONTENT_URI_ONLINE_CONTACTS_BY
-                : Im.Contacts.CONTENT_URI_CONTACTS_BY;
+        Uri uri = mSettingMap.getHideOfflineContacts() ? Imps.Contacts.CONTENT_URI_ONLINE_CONTACTS_BY
+                : Imps.Contacts.CONTENT_URI_CONTACTS_BY;
         uri = ContentUris.withAppendedId(uri, mProviderId);
         uri = ContentUris.withAppendedId(uri, mAccountId);
         mFilterView.doFilter(uri, null);
@@ -346,12 +346,12 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         if (contactCursor != null) {
             //XXX HACK: Yahoo! doesn't allow to block a friend. We can only block a temporary contact.
             ProviderDef provider = mApp.getProvider(mProviderId);
-            if (Im.ProviderNames.YAHOO.equals(provider.mName)) {
-                int type = contactCursor.getInt(contactCursor.getColumnIndexOrThrow(Im.Contacts.TYPE));
-                allowBlock = (type == Im.Contacts.TYPE_TEMPORARY);
+            if (Imps.ProviderNames.YAHOO.equals(provider.mName)) {
+                int type = contactCursor.getInt(contactCursor.getColumnIndexOrThrow(Imps.Contacts.TYPE));
+                allowBlock = (type == Imps.Contacts.TYPE_TEMPORARY);
             }
 
-            int nickNameIndex = contactCursor.getColumnIndexOrThrow(Im.Contacts.NICKNAME);
+            int nickNameIndex = contactCursor.getColumnIndexOrThrow(Imps.Contacts.NICKNAME);
 
             menu.setHeaderTitle(contactCursor.getString(nickNameIndex));
         }
@@ -402,11 +402,11 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         ContentResolver cr = getContentResolver();
         ContentValues values = new ContentValues(3);
 
-        values.put(Im.AccountStatus.ACCOUNT, mAccountId);
-        values.put(Im.AccountStatus.PRESENCE_STATUS, Im.Presence.OFFLINE);
-        values.put(Im.AccountStatus.CONNECTION_STATUS, Im.ConnectionStatus.OFFLINE);
+        values.put(Imps.AccountStatus.ACCOUNT, mAccountId);
+        values.put(Imps.AccountStatus.PRESENCE_STATUS, Imps.Presence.OFFLINE);
+        values.put(Imps.AccountStatus.CONNECTION_STATUS, Imps.ConnectionStatus.OFFLINE);
         // insert on the "account_status" uri actually replaces the existing value 
-        cr.insert(Im.AccountStatus.CONTENT_URI, values);
+        cr.insert(Imps.AccountStatus.CONTENT_URI, values);
     }
 
     final class ContextMenuHandler implements MenuItem.OnMenuItemClickListener {

@@ -17,7 +17,6 @@
 package com.android.im.app;
 
 import android.app.Activity;
-import android.provider.Im;
 import android.os.Handler;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -28,13 +27,14 @@ import android.net.Uri;
 import android.util.Log;
 import android.database.Cursor;
 import com.android.im.IImConnection;
+import com.android.im.provider.Imps;
 
 
 public class SignoutActivity extends Activity {
 
     private String[] ACCOUNT_SELECTION = new String[] {
-            Im.Account._ID,
-            Im.Account.PROVIDER,
+            Imps.Account._ID,
+            Imps.Account.PROVIDER,
     };
 
     private ImApp mApp;
@@ -69,8 +69,8 @@ public class SignoutActivity extends Activity {
                 return;
             }
 
-            providerId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
-            accountId = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
+            providerId = c.getLong(c.getColumnIndexOrThrow(Imps.Account.PROVIDER));
+            accountId = c.getLong(c.getColumnIndexOrThrow(Imps.Account._ID));
         } finally {
             c.close();
         }
@@ -94,12 +94,12 @@ public class SignoutActivity extends Activity {
                 // status will never be updated. Clear the status in this case
                 // to make it recoverable from the crash.
                 ContentValues values = new ContentValues(2);
-                values.put(Im.AccountStatus.PRESENCE_STATUS,
-                        Im.Presence.OFFLINE);
-                values.put(Im.AccountStatus.CONNECTION_STATUS,
-                        Im.ConnectionStatus.OFFLINE);
-                String where = Im.AccountStatus.ACCOUNT + "=?";
-                getContentResolver().update(Im.AccountStatus.CONTENT_URI,
+                values.put(Imps.AccountStatus.PRESENCE_STATUS,
+                        Imps.Presence.OFFLINE);
+                values.put(Imps.AccountStatus.CONNECTION_STATUS,
+                        Imps.ConnectionStatus.OFFLINE);
+                String where = Imps.AccountStatus.ACCOUNT + "=?";
+                getContentResolver().update(Imps.AccountStatus.CONTENT_URI,
                         values, where,
                         new String[] { Long.toString(accountId) });
             }

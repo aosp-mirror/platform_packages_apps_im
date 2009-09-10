@@ -18,6 +18,16 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="ro_perm_label">read instant messages</string>
+    <string name="ro_perm_desc">
+        Allows applications to read data from the IM content provider.
+    </string>
+
+    <string name="wo_perm_label">write instant messages</string>
+    <string name="wo_perm_desc">
+        Allows applications to write data to the IM content provider.
+    </string>
+
     <!-- The application label. This appears in the application launcher on the
     Home screen. This is a noun. -->
     <string name="im_label">IM</string>

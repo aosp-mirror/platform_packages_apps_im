@@ -23,7 +23,6 @@ import java.util.Date;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.provider.Im;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -36,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.im.R;
+import com.android.im.provider.Imps;
 
 public class MessageView extends LinearLayout {
 
@@ -132,20 +132,20 @@ public class MessageView extends LinearLayout {
             boolean isGroupChat, boolean scrolling) {
         String body;
         switch (type) {
-            case Im.MessageType.PRESENCE_AVAILABLE:
+            case Imps.MessageType.PRESENCE_AVAILABLE:
                 body = mResources.getString(isGroupChat ? R.string.contact_joined
                         : R.string.contact_online, contact);
                 break;
 
-            case Im.MessageType.PRESENCE_AWAY:
+            case Imps.MessageType.PRESENCE_AWAY:
                 body = mResources.getString(R.string.contact_away, contact);
                 break;
 
-            case Im.MessageType.PRESENCE_DND:
+            case Imps.MessageType.PRESENCE_DND:
                 body = mResources.getString(R.string.contact_busy, contact);
                 break;
 
-            case Im.MessageType.PRESENCE_UNAVAILABLE:
+            case Imps.MessageType.PRESENCE_UNAVAILABLE:
                 body = mResources.getString(isGroupChat ? R.string.contact_left
                         : R.string.contact_offline, contact);
                 break;

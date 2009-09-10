@@ -18,6 +18,7 @@
 package com.android.im.app;
 
 import com.android.im.R;
+import com.android.im.provider.Imps;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -26,7 +27,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Im;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -89,7 +89,7 @@ public class ContactsPickerActivity extends ListActivity {
         }
         mExcludeClause = buildExcludeClause(i.getStringArrayExtra(EXTRA_EXCLUDED_CONTACTS));
         Cursor cursor = managedQuery(mData, ContactView.CONTACT_PROJECTION,
-                mExcludeClause, Im.Contacts.DEFAULT_SORT_ORDER);
+                mExcludeClause, Imps.Contacts.DEFAULT_SORT_ORDER);
         if (cursor == null) {
             return false;
         }
@@ -116,7 +116,7 @@ public class ContactsPickerActivity extends ListActivity {
         }
 
         StringBuilder clause = new StringBuilder();
-        clause.append(Im.Contacts.USERNAME);
+        clause.append(Imps.Contacts.USERNAME);
         clause.append(" NOT IN (");
         int len = excluded.length;
         for (int i = 0; i < len - 1; i++) {
@@ -138,14 +138,14 @@ public class ContactsPickerActivity extends ListActivity {
                 buf.append(mExcludeClause).append(" AND ");
             }
 
-            buf.append(Im.Contacts.NICKNAME);
+            buf.append(Imps.Contacts.NICKNAME);
             buf.append(" LIKE ");
             DatabaseUtils.appendValueToSql(buf, "%" + constraint + "%");
 
             where = buf.toString();
         }
         return managedQuery(mData, ContactView.CONTACT_PROJECTION, where,
-                Im.Contacts.DEFAULT_SORT_ORDER);
+                Imps.Contacts.DEFAULT_SORT_ORDER);
     }
 
     private class ContactsAdapter extends ResourceCursorAdapter {

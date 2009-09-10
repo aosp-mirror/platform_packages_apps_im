@@ -29,7 +29,6 @@ import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +42,7 @@ import android.widget.AbsListView.OnScrollListener;
 import com.android.im.IImConnection;
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -52,8 +52,8 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
         implements AbsListView.OnScrollListener{
 
     private static final String[] CONTACT_LIST_PROJECTION = {
-            Im.ContactList._ID,
-            Im.ContactList.NAME,
+            Imps.ContactList._ID,
+            Imps.ContactList.NAME,
     };
 
     private static final int COLUMN_CONTACT_LIST_ID = 0;
@@ -80,22 +80,22 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
     private static final int TOKEN_SUBSCRITPTION = -3;
 
     private static final String NON_CHAT_AND_BLOCKED_CONTACTS = "("
-        + Im.Contacts.LAST_MESSAGE_DATE + " IS NULL) AND ("
-        + Im.Contacts.TYPE + "!=" + Im.Contacts.TYPE_BLOCKED + ")";
+        + Imps.Contacts.LAST_MESSAGE_DATE + " IS NULL) AND ("
+        + Imps.Contacts.TYPE + "!=" + Imps.Contacts.TYPE_BLOCKED + ")";
 
-    private static final String CONTACTS_SELECTION = Im.Contacts.CONTACTLIST
+    private static final String CONTACTS_SELECTION = Imps.Contacts.CONTACTLIST
             + "=? AND " + NON_CHAT_AND_BLOCKED_CONTACTS;
 
     private static final String ONLINE_CONTACT_SELECTION = CONTACTS_SELECTION
-            + " AND "+ Im.Contacts.PRESENCE_STATUS + " != " + Im.Presence.OFFLINE;
+            + " AND "+ Imps.Contacts.PRESENCE_STATUS + " != " + Imps.Presence.OFFLINE;
 
     static final void log(String msg) {
         Log.d(ImApp.LOG_TAG, "<ContactListAdapter>" + msg);
     }
 
     static final String[] CONTACT_COUNT_PROJECTION = {
-        Im.Contacts.CONTACTLIST,
-        Im.Contacts._COUNT,
+        Imps.Contacts.CONTACTLIST,
+        Imps.Contacts._COUNT,
     };
 
     ContentQueryMap mOnlineContactsCountMap;
@@ -211,12 +211,12 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
             log("startQueryContactLists()");
         }
 
-        Uri uri = Im.ContactList.CONTENT_URI;
+        Uri uri = Imps.ContactList.CONTENT_URI;
         uri = ContentUris.withAppendedId(uri, mProviderId);
         uri = ContentUris.withAppendedId(uri, mAccountId);
 
         mQueryHandler.startQuery(TOKEN_CONTACT_LISTS, null, uri, CONTACT_LIST_PROJECTION,
-                null, null, Im.ContactList.DEFAULT_SORT_ORDER);
+                null, null, Imps.ContactList.DEFAULT_SORT_ORDER);
     }
 
     void startQueryOngoingConversations() {
@@ -224,12 +224,12 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
             log("startQueryOngoingConversations()");
         }
 
-        Uri uri = Im.Contacts.CONTENT_URI_CHAT_CONTACTS_BY;
+        Uri uri = Imps.Contacts.CONTENT_URI_CHAT_CONTACTS_BY;
         uri = ContentUris.withAppendedId(uri, mProviderId);
         uri = ContentUris.withAppendedId(uri, mAccountId);
 
         mQueryHandler.startQuery(TOKEN_ONGOING_CONVERSATION, null, uri,
-                ContactView.CONTACT_PROJECTION, null, null, Im.Contacts.DEFAULT_SORT_ORDER);
+                ContactView.CONTACT_PROJECTION, null, null, Imps.Contacts.DEFAULT_SORT_ORDER);
     }
 
     void startQuerySubscriptions() {
@@ -237,16 +237,16 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
             log("startQuerySubscriptions()");
         }
 
-        Uri uri = Im.Contacts.CONTENT_URI_CONTACTS_BY;
+        Uri uri = Imps.Contacts.CONTENT_URI_CONTACTS_BY;
         uri = ContentUris.withAppendedId(uri, mProviderId);
         uri = ContentUris.withAppendedId(uri, mAccountId);
 
         mQueryHandler.startQuery(TOKEN_SUBSCRITPTION, null, uri,
                 ContactView.CONTACT_PROJECTION,
                 String.format("%s=%d AND %s=%d",
-                    Im.Contacts.SUBSCRIPTION_STATUS, Im.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING,
-                    Im.Contacts.SUBSCRIPTION_TYPE, Im.Contacts.SUBSCRIPTION_TYPE_FROM),
-                null,Im.Contacts.DEFAULT_SORT_ORDER);
+                    Imps.Contacts.SUBSCRIPTION_STATUS, Imps.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING,
+                    Imps.Contacts.SUBSCRIPTION_TYPE, Imps.Contacts.SUBSCRIPTION_TYPE_FROM),
+                null,Imps.Contacts.DEFAULT_SORT_ORDER);
     }
 
     void startQueryContacts(long listId) {
@@ -257,8 +257,8 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
         String selection = mHideOfflineContacts ? ONLINE_CONTACT_SELECTION : CONTACTS_SELECTION;
         String[] args = { Long.toString(listId) };
         int token = (int)listId;
-        mQueryHandler.startQuery(token, null, Im.Contacts.CONTENT_URI,
-                ContactView.CONTACT_PROJECTION, selection, args, Im.Contacts.DEFAULT_SORT_ORDER);
+        mQueryHandler.startQuery(token, null, Imps.Contacts.CONTENT_URI,
+                ContactView.CONTACT_PROJECTION, selection, args, Imps.Contacts.DEFAULT_SORT_ORDER);
     }
 
     public Object getChild(int groupPosition, int childPosition) {
@@ -640,20 +640,20 @@ public class ContactListTreeAdapter extends BaseExpandableListAdapter
         private int getOnlineChildCount(Cursor groupCursor) {
             long listId = groupCursor.getLong(COLUMN_CONTACT_LIST_ID);
             if (mOnlineContactsCountMap == null) {
-                String where = Im.Contacts.ACCOUNT + "=" + mAccountId;
+                String where = Imps.Contacts.ACCOUNT + "=" + mAccountId;
                 ContentResolver cr = mActivity.getContentResolver();
 
-                Cursor c = cr.query(Im.Contacts.CONTENT_URI_ONLINE_COUNT,
+                Cursor c = cr.query(Imps.Contacts.CONTENT_URI_ONLINE_COUNT,
                         CONTACT_COUNT_PROJECTION, where, null, null);
                 mOnlineContactsCountMap = new ContentQueryMap(c,
-                        Im.Contacts.CONTACTLIST, true, mHandler);
+                        Imps.Contacts.CONTACTLIST, true, mHandler);
                 mOnlineContactsCountMap.addObserver(new Observer(){
                     public void update(Observable observable, Object data) {
                         notifyDataSetChanged();
                     }});
             }
             ContentValues value = mOnlineContactsCountMap.getValues(String.valueOf(listId));
-            return  value == null ? 0 : value.getAsInteger(Im.Contacts._COUNT);
+            return  value == null ? 0 : value.getAsInteger(Imps.Contacts._COUNT);
         }
 
         @Override

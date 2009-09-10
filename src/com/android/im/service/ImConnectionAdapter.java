@@ -27,7 +27,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.Log;
 
 import com.android.im.IChatSessionManager;
@@ -46,13 +45,14 @@ import com.android.im.engine.Invitation;
 import com.android.im.engine.InvitationListener;
 import com.android.im.engine.LoginInfo;
 import com.android.im.engine.Presence;
+import com.android.im.provider.Imps;
 
 public class ImConnectionAdapter extends IImConnection.Stub {
     private static final String TAG = RemoteImService.TAG;
 
     private static final String[] SESSION_COOKIE_PROJECTION = {
-        Im.SessionCookies.NAME,
-        Im.SessionCookies.VALUE,
+        Imps.SessionCookies.NAME,
+        Imps.SessionCookies.VALUE,
     };
 
     private static final int COLUMN_SESSION_COOKIE_NAME = 0;
@@ -133,7 +133,7 @@ public class ImConnectionAdapter extends IImConnection.Stub {
     }
 
     private Uri getSessionCookiesUri() {
-        Uri.Builder builder = Im.SessionCookies.CONTENT_URI_SESSION_COOKIES_BY.buildUpon();
+        Uri.Builder builder = Imps.SessionCookies.CONTENT_URI_SESSION_COOKIES_BY.buildUpon();
         ContentUris.appendId(builder, mProviderId);
         ContentUris.appendId(builder, mAccountId);
 
@@ -258,21 +258,21 @@ public class ImConnectionAdapter extends IImConnection.Stub {
             return;
         }
         ContentResolver cr = mService.getContentResolver();
-        Cursor c = cr.query(ContentUris.withAppendedId(Im.Invitation.CONTENT_URI, id), null, null, null, null);
+        Cursor c = cr.query(ContentUris.withAppendedId(Imps.Invitation.CONTENT_URI, id), null, null, null, null);
         if(c == null) {
             return;
         }
         if(c.moveToFirst()) {
-            String inviteId = c.getString(c.getColumnIndexOrThrow(Im.Invitation.INVITE_ID));
+            String inviteId = c.getString(c.getColumnIndexOrThrow(Imps.Invitation.INVITE_ID));
             int status;
             if(accept) {
                 mGroupManager.acceptInvitationAsync(inviteId);
-                status = Im.Invitation.STATUS_ACCEPTED;
+                status = Imps.Invitation.STATUS_ACCEPTED;
             } else {
                 mGroupManager.rejectInvitationAsync(inviteId);
-                status = Im.Invitation.STATUS_REJECTED;
+                status = Imps.Invitation.STATUS_REJECTED;
             }
-            c.updateInt(c.getColumnIndexOrThrow(Im.Invitation.STATUS), status);
+            c.updateInt(c.getColumnIndexOrThrow(Imps.Invitation.STATUS), status);
             c.commitUpdates();
         }
         c.close();
@@ -287,8 +287,8 @@ public class ImConnectionAdapter extends IImConnection.Stub {
         for(Map.Entry<String,String> entry : cookies.entrySet()){
             ContentValues values = new ContentValues(2);
 
-            values.put(Im.SessionCookies.NAME, entry.getKey());
-            values.put(Im.SessionCookies.VALUE, entry.getValue());
+            values.put(Imps.SessionCookies.NAME, entry.getKey());
+            values.put(Imps.SessionCookies.VALUE, entry.getValue());
 
             valuesList[i++] = values;
         }
@@ -302,7 +302,7 @@ public class ImConnectionAdapter extends IImConnection.Stub {
 
     void updateAccountStatusInDb() {
         Presence p = getUserPresence();
-        int presenceStatus = Im.Presence.OFFLINE;
+        int presenceStatus = Imps.Presence.OFFLINE;
         int connectionStatus = convertConnStateForDb(mConnectionState);
 
         if (p != null) {
@@ -310,12 +310,12 @@ public class ImConnectionAdapter extends IImConnection.Stub {
         }
 
         ContentResolver cr = mService.getContentResolver();
-        Uri uri = Im.AccountStatus.CONTENT_URI;
+        Uri uri = Imps.AccountStatus.CONTENT_URI;
         ContentValues values = new ContentValues();
 
-        values.put(Im.AccountStatus.ACCOUNT, mAccountId);
-        values.put(Im.AccountStatus.PRESENCE_STATUS, presenceStatus);
-        values.put(Im.AccountStatus.CONNECTION_STATUS, connectionStatus);
+        values.put(Imps.AccountStatus.ACCOUNT, mAccountId);
+        values.put(Imps.AccountStatus.PRESENCE_STATUS, presenceStatus);
+        values.put(Imps.AccountStatus.CONNECTION_STATUS, connectionStatus);
 
         cr.insert(uri, values);
     }
@@ -324,20 +324,20 @@ public class ImConnectionAdapter extends IImConnection.Stub {
         switch (state) {
         case ImConnection.DISCONNECTED:
         case ImConnection.LOGGING_OUT:
-            return Im.ConnectionStatus.OFFLINE;
+            return Imps.ConnectionStatus.OFFLINE;
 
         case ImConnection.LOGGING_IN:
-            return Im.ConnectionStatus.CONNECTING;
+            return Imps.ConnectionStatus.CONNECTING;
 
         case ImConnection.LOGGED_IN:
-            return Im.ConnectionStatus.ONLINE;
+            return Imps.ConnectionStatus.ONLINE;
 
         case ImConnection.SUSPENDED:
         case ImConnection.SUSPENDING:
-            return Im.ConnectionStatus.SUSPENDED;
+            return Imps.ConnectionStatus.SUSPENDED;
 
         default:
-            return Im.ConnectionStatus.OFFLINE;
+            return Imps.ConnectionStatus.OFFLINE;
         }
     }
 
@@ -449,15 +449,15 @@ public class ImConnectionAdapter extends IImConnection.Stub {
         public void onGroupInvitation(Invitation invitation) {
             String sender = invitation.getSender().getScreenName();
             ContentValues values = new ContentValues(7);
-            values.put(Im.Invitation.PROVIDER, mProviderId);
-            values.put(Im.Invitation.ACCOUNT, mAccountId);
-            values.put(Im.Invitation.INVITE_ID, invitation.getInviteID());
-            values.put(Im.Invitation.SENDER, sender);
-            values.put(Im.Invitation.GROUP_NAME, invitation.getGroupAddress().getScreenName());
-            values.put(Im.Invitation.NOTE, invitation.getReason());
-            values.put(Im.Invitation.STATUS, Im.Invitation.STATUS_PENDING);
+            values.put(Imps.Invitation.PROVIDER, mProviderId);
+            values.put(Imps.Invitation.ACCOUNT, mAccountId);
+            values.put(Imps.Invitation.INVITE_ID, invitation.getInviteID());
+            values.put(Imps.Invitation.SENDER, sender);
+            values.put(Imps.Invitation.GROUP_NAME, invitation.getGroupAddress().getScreenName());
+            values.put(Imps.Invitation.NOTE, invitation.getReason());
+            values.put(Imps.Invitation.STATUS, Imps.Invitation.STATUS_PENDING);
             ContentResolver resolver = mService.getContentResolver();
-            Uri uri = resolver.insert(Im.Invitation.CONTENT_URI, values);
+            Uri uri = resolver.insert(Imps.Invitation.CONTENT_URI, values);
             long id = ContentUris.parseId(uri);
             try {
                 if (mRemoteListener != null) {

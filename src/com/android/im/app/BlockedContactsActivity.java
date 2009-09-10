@@ -28,7 +28,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -40,18 +39,19 @@ import com.android.im.IContactListManager;
 import com.android.im.IImConnection;
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 public class BlockedContactsActivity extends ListActivity {
     ImApp mApp;
     SimpleAlertHandler mHandler;
 
     private static final String[] PROJECTION = {
-        Im.BlockedList._ID,
-        Im.BlockedList.ACCOUNT,
-        Im.BlockedList.PROVIDER,
-        Im.BlockedList.NICKNAME,
-        Im.BlockedList.USERNAME,
-        Im.BlockedList.AVATAR_DATA,
+        Imps.BlockedList._ID,
+        Imps.BlockedList.ACCOUNT,
+        Imps.BlockedList.PROVIDER,
+        Imps.BlockedList.NICKNAME,
+        Imps.BlockedList.USERNAME,
+        Imps.BlockedList.AVATAR_DATA,
     };
 
     static final int ACCOUNT_COLUMN  = 1;
@@ -99,7 +99,7 @@ public class BlockedContactsActivity extends ListActivity {
         }
 
         long accountId = ContentUris.parseId(uri);
-        Uri accountUri = ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId);
+        Uri accountUri = ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId);
         Cursor accountCursor = getContentResolver().query(accountUri, null, null, null, null);
         if (accountCursor == null) {
             warning("Bad account");
@@ -112,9 +112,9 @@ public class BlockedContactsActivity extends ListActivity {
         }
 
         long providerId = accountCursor.getLong(
-                accountCursor.getColumnIndexOrThrow(Im.Account.PROVIDER));
+                accountCursor.getColumnIndexOrThrow(Imps.Account.PROVIDER));
         String username = accountCursor.getString(
-                accountCursor.getColumnIndexOrThrow(Im.Account.USERNAME));
+                accountCursor.getColumnIndexOrThrow(Imps.Account.USERNAME));
 
         BrandingResources brandingRes = mApp.getBrandingResource(providerId);
         getWindow().setFeatureDrawable(Window.FEATURE_LEFT_ICON,
@@ -123,7 +123,7 @@ public class BlockedContactsActivity extends ListActivity {
         setTitle(getResources().getString(R.string.blocked_list_title, username));
         accountCursor.close();
 
-        Cursor c = managedQuery(uri, PROJECTION, null, Im.BlockedList.DEFAULT_SORT_ORDER);
+        Cursor c = managedQuery(uri, PROJECTION, null, Imps.BlockedList.DEFAULT_SORT_ORDER);
         if (c == null) {
             warning("Database error when query " + uri);
             return false;
