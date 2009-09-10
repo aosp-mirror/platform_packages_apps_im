@@ -17,6 +17,7 @@
 
 package com.android.im.app;
 
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
@@ -24,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.RingtonePreference;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -47,7 +47,7 @@ public class ImRingtonePreference extends RingtonePreference {
 
     @Override
     protected Uri onRestoreRingtone() {
-        final Im.ProviderSettings.QueryMap settings = new Im.ProviderSettings.QueryMap(
+        final Imps.ProviderSettings.QueryMap settings = new Imps.ProviderSettings.QueryMap(
                 getContext().getContentResolver(), mProviderId, 
                 false /* keep updated */, null /* no handler */);
         
@@ -70,7 +70,7 @@ public class ImRingtonePreference extends RingtonePreference {
 
     @Override
     protected void onSaveRingtone(Uri ringtoneUri) {
-        final Im.ProviderSettings.QueryMap settings = new Im.ProviderSettings.QueryMap(
+        final Imps.ProviderSettings.QueryMap settings = new Imps.ProviderSettings.QueryMap(
                 getContext().getContentResolver(), mProviderId, 
                false /* keep updated */, null /* no handler */);
         

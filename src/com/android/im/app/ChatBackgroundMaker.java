@@ -18,12 +18,12 @@
 package com.android.im.app;
 
 import com.android.im.R;
+import com.android.im.provider.Imps;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.provider.Im;
 import android.view.View;
 
 public class ChatBackgroundMaker {
@@ -43,13 +43,13 @@ public class ChatBackgroundMaker {
         View msgText = view.findViewById(R.id.message);
 
         switch (type) {
-            case Im.MessageType.INCOMING:
+            case Imps.MessageType.INCOMING:
                 // TODO: set color according different contact
                 msgText.setBackgroundDrawable(mIncomingBg);
                 break;
 
-            case Im.MessageType.OUTGOING:
-            case Im.MessageType.POSTPONED:
+            case Imps.MessageType.OUTGOING:
+            case Imps.MessageType.POSTPONED:
                 msgText.setBackgroundDrawable(null);
                 msgText.setPadding(mPadding.left, mPadding.top, mPadding.right,
                       mPadding.bottom);

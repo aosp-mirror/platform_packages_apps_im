@@ -25,7 +25,6 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Im;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
@@ -36,6 +35,7 @@ import android.widget.TextView;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 public class ContactPresenceActivity extends Activity {
 
@@ -70,19 +70,19 @@ public class ContactPresenceActivity extends Activity {
         }
 
         if(c.moveToFirst()) {
-            long providerId = c.getLong(c.getColumnIndexOrThrow(Im.Contacts.PROVIDER));
-            String username = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
-            String nickname   = c.getString(c.getColumnIndexOrThrow(Im.Contacts.NICKNAME));
-            int status    = c.getInt(c.getColumnIndexOrThrow(Im.Contacts.PRESENCE_STATUS));
-            int clientType = c.getInt(c.getColumnIndexOrThrow(Im.Contacts.CLIENT_TYPE));
-            String customStatus = c.getString(c.getColumnIndexOrThrow(Im.Contacts.PRESENCE_CUSTOM_STATUS));
+            long providerId = c.getLong(c.getColumnIndexOrThrow(Imps.Contacts.PROVIDER));
+            String username = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.USERNAME));
+            String nickname   = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.NICKNAME));
+            int status    = c.getInt(c.getColumnIndexOrThrow(Imps.Contacts.PRESENCE_STATUS));
+            int clientType = c.getInt(c.getColumnIndexOrThrow(Imps.Contacts.CLIENT_TYPE));
+            String customStatus = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.PRESENCE_CUSTOM_STATUS));
 
             ImApp app = ImApp.getApplication(this);
             BrandingResources brandingRes = app.getBrandingResource(providerId);
             setTitle(brandingRes.getString(BrandingResourceIDs.STRING_CONTACT_INFO_TITLE));
 
             Drawable avatar = DatabaseUtils.getAvatarFromCursor(c,
-                    c.getColumnIndexOrThrow(Im.Contacts.AVATAR_DATA));
+                    c.getColumnIndexOrThrow(Imps.Contacts.AVATAR_DATA));
             if (avatar != null) {
                 imgAvatar.setImageDrawable(avatar);
             } else {
@@ -119,7 +119,7 @@ public class ContactPresenceActivity extends Activity {
     private String getClientTypeString(int clientType) {
         Resources res = getResources();
         switch (clientType) {
-            case Im.Contacts.CLIENT_TYPE_MOBILE:
+            case Imps.Contacts.CLIENT_TYPE_MOBILE:
                 return res.getString(R.string.client_type_mobile);
 
             default:

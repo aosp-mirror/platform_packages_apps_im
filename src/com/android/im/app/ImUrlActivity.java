@@ -20,6 +20,8 @@ import com.android.im.IChatSession;
 import com.android.im.IChatSessionManager;
 import com.android.im.IImConnection;
 import com.android.im.engine.ImConnection;
+import com.android.im.provider.Imps;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -29,7 +31,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -38,8 +39,8 @@ import java.util.Set;
 
 public class ImUrlActivity extends Activity {
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PASSWORD,
+        Imps.Account._ID,
+        Imps.Account.PASSWORD,
     };
     private static final int ACCOUNT_ID_COLUMN = 0;
     private static final int ACCOUNT_PW_COLUMN = 1;
@@ -78,7 +79,7 @@ public class ImUrlActivity extends Activity {
 
     void handleIntent() {
         ContentResolver cr = getContentResolver();
-        long providerId = Im.Provider.getProviderIdForName(cr, mProviderName);
+        long providerId = Imps.Provider.getProviderIdForName(cr, mProviderName);
         long accountId;
 
         mConn= mApp.getConnection(providerId);
@@ -119,13 +120,13 @@ public class ImUrlActivity extends Activity {
     private void addAccount(long providerId) {
         Intent  intent = new Intent(this, AccountActivity.class);
         intent.setAction(Intent.ACTION_INSERT);
-        intent.setData(ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId));
+        intent.setData(ContentUris.withAppendedId(Imps.Provider.CONTENT_URI, providerId));
         intent.putExtra(ImApp.EXTRA_INTENT_SEND_TO_USER, mToAddress);
         startActivity(intent);
     }
 
     private void editAccount(long accountId) {
-        Uri accountUri = ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId);
+        Uri accountUri = ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId);
         Intent intent = new Intent(this, AccountActivity.class);
         intent.setAction(Intent.ACTION_EDIT);
         intent.setData(accountUri);
@@ -134,7 +135,7 @@ public class ImUrlActivity extends Activity {
     }
 
     private void signInAccount(long accountId) {
-        Uri accountUri = ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId);
+        Uri accountUri = ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId);
         Intent intent = new Intent(this, SigningInActivity.class);
         intent.setData(accountUri);
         intent.putExtra(ImApp.EXTRA_INTENT_SEND_TO_USER, mToAddress);
@@ -143,7 +144,7 @@ public class ImUrlActivity extends Activity {
 
     private void showContactList(long accountId) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Im.Contacts.CONTENT_URI);
+        intent.setData(Imps.Contacts.CONTENT_URI);
         intent.addCategory(ImApp.IMPS_CATEGORY);
         intent.putExtra("accountId", accountId);
 
@@ -158,7 +159,7 @@ public class ImUrlActivity extends Activity {
                 session = manager.createChatSession(mToAddress);
             }
 
-            Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, session.getId());
+            Uri data = ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, session.getId());
             Intent i = new Intent(Intent.ACTION_VIEW, data);
             i.putExtra("from", mToAddress);
             i.putExtra("providerId", provider);
@@ -225,11 +226,11 @@ public class ImUrlActivity extends Activity {
     private String getProviderNameForCategory(String providerCategory) {
         if (providerCategory != null) {
             if (providerCategory.equalsIgnoreCase("com.android.im.category.AIM")) {
-                return Im.ProviderNames.AIM;
+                return Imps.ProviderNames.AIM;
             } else if (providerCategory.equalsIgnoreCase("com.android.im.category.MSN")) {
-                return Im.ProviderNames.MSN;
+                return Imps.ProviderNames.MSN;
             } else if (providerCategory.equalsIgnoreCase("com.android.im.category.YAHOO")) {
-                return Im.ProviderNames.YAHOO;
+                return Imps.ProviderNames.YAHOO;
             }
         }
 
@@ -241,16 +242,16 @@ public class ImUrlActivity extends Activity {
             return null;
         }
 
-        if (Im.ProviderNames.AIM.equalsIgnoreCase(provider)) {
-            return Im.ProviderNames.AIM;
+        if (Imps.ProviderNames.AIM.equalsIgnoreCase(provider)) {
+            return Imps.ProviderNames.AIM;
         }
 
-        if (Im.ProviderNames.MSN.equalsIgnoreCase(provider)) {
-            return Im.ProviderNames.MSN;
+        if (Imps.ProviderNames.MSN.equalsIgnoreCase(provider)) {
+            return Imps.ProviderNames.MSN;
         }
 
-        if (Im.ProviderNames.YAHOO.equalsIgnoreCase(provider)) {
-            return Im.ProviderNames.YAHOO;
+        if (Imps.ProviderNames.YAHOO.equalsIgnoreCase(provider)) {
+            return Imps.ProviderNames.YAHOO;
         }
 
         return null;

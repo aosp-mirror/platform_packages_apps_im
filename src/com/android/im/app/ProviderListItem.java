@@ -19,6 +19,7 @@ package com.android.im.app;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import android.graphics.drawable.Drawable;
 import android.widget.LinearLayout;
@@ -30,7 +31,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.content.res.ColorStateList;
 import android.view.View;
-import android.provider.Im;
 import android.util.Log;
 
 public class ProviderListItem extends LinearLayout {
@@ -72,16 +72,16 @@ public class ProviderListItem extends LinearLayout {
         mBubbleDrawable = getResources().getDrawable(R.drawable.bubble);
         mDefaultBackground = getResources().getDrawable(R.drawable.default_background);
 
-        mProviderIdColumn = c.getColumnIndexOrThrow(Im.Provider._ID);
-        mProviderFullnameColumn = c.getColumnIndexOrThrow(Im.Provider.FULLNAME);
+        mProviderIdColumn = c.getColumnIndexOrThrow(Imps.Provider._ID);
+        mProviderFullnameColumn = c.getColumnIndexOrThrow(Imps.Provider.FULLNAME);
         mActiveAccountIdColumn = c.getColumnIndexOrThrow(
-                Im.Provider.ACTIVE_ACCOUNT_ID);
+                Imps.Provider.ACTIVE_ACCOUNT_ID);
         mActiveAccountUserNameColumn = c.getColumnIndexOrThrow(
-                Im.Provider.ACTIVE_ACCOUNT_USERNAME);
+                Imps.Provider.ACTIVE_ACCOUNT_USERNAME);
         mAccountPresenceStatusColumn = c.getColumnIndexOrThrow(
-                Im.Provider.ACCOUNT_PRESENCE_STATUS);
+                Imps.Provider.ACCOUNT_PRESENCE_STATUS);
         mAccountConnectionStatusColumn = c.getColumnIndexOrThrow(
-                Im.Provider.ACCOUNT_CONNECTION_STATUS);
+                Imps.Provider.ACCOUNT_CONNECTION_STATUS);
 
         mProviderNameColors = mProviderName.getTextColors();
         mLoginNameColors = mLoginName.getTextColors();
@@ -124,11 +124,11 @@ public class ProviderListItem extends LinearLayout {
             chatView.setVisibility(View.GONE);
 
             switch (connectionStatus) {
-                case Im.ConnectionStatus.CONNECTING:
+                case Imps.ConnectionStatus.CONNECTING:
                     secondRowText = r.getString(R.string.signing_in_wait);
                     break;
 
-                case Im.ConnectionStatus.ONLINE:
+                case Imps.ConnectionStatus.ONLINE:
                     int presenceIconId = getPresenceIconId(cursor);
                     statusIcon.setImageDrawable(
                             brandingRes.getDrawable(presenceIconId));
@@ -170,14 +170,14 @@ public class ProviderListItem extends LinearLayout {
         // TODO: this is code used to get Google Talk's chat count. Not sure if this will work
         // for IMPS chat count.
         StringBuilder where = new StringBuilder();
-        where.append(Im.Chats.CONTACT_ID);
+        where.append(Imps.Chats.CONTACT_ID);
         where.append(" in (select _id from contacts where ");
-        where.append(Im.Contacts.ACCOUNT);
+        where.append(Imps.Contacts.ACCOUNT);
         where.append("=");
         where.append(accountId);
         where.append(")");
 
-        Cursor cursor = cr.query(Im.Chats.CONTENT_URI, null, where.toString(), null, null);
+        Cursor cursor = cr.query(Imps.Chats.CONTENT_URI, null, where.toString(), null, null);
 
         try {
             return cursor.getCount();
@@ -192,17 +192,17 @@ public class ProviderListItem extends LinearLayout {
         if (LOCAL_DEBUG) log("getPresenceIconId: presenceStatus=" + presenceStatus);
 
         switch (presenceStatus) {
-            case Im.Presence.AVAILABLE:
+            case Imps.Presence.AVAILABLE:
                 return BrandingResourceIDs.DRAWABLE_PRESENCE_ONLINE;
 
-            case Im.Presence.IDLE:
-            case Im.Presence.AWAY:
+            case Imps.Presence.IDLE:
+            case Imps.Presence.AWAY:
                 return BrandingResourceIDs.DRAWABLE_PRESENCE_AWAY;
 
-            case Im.Presence.DO_NOT_DISTURB:
+            case Imps.Presence.DO_NOT_DISTURB:
                 return BrandingResourceIDs.DRAWABLE_PRESENCE_BUSY;
 
-            case Im.Presence.INVISIBLE:
+            case Imps.Presence.INVISIBLE:
                 return BrandingResourceIDs.DRAWABLE_PRESENCE_INVISIBLE;
 
             default:

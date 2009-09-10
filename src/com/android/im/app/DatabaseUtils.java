@@ -18,6 +18,7 @@
 package com.android.im.app;
 
 import com.android.im.plugin.ImConfigNames;
+import com.android.im.provider.Imps;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -28,7 +29,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.Im;
 import android.util.Log;
 
 import java.util.Map;
@@ -42,9 +42,9 @@ public class DatabaseUtils {
 
     public static Cursor queryAccountsForProvider(ContentResolver cr,
             String[] projection, long providerId) {
-        StringBuilder where = new StringBuilder(Im.Account.ACTIVE);
-        where.append("=1 AND ").append(Im.Account.PROVIDER).append('=').append(providerId);
-        Cursor c = cr.query(Im.Account.CONTENT_URI, projection, where.toString(), null, null);
+        StringBuilder where = new StringBuilder(Imps.Account.ACTIVE);
+        where.append("=1 AND ").append(Imps.Account.PROVIDER).append('=').append(providerId);
+        Cursor c = cr.query(Imps.Account.CONTENT_URI, projection, where.toString(), null, null);
         if (c != null && !c.moveToFirst()) {
             c.close();
             return null;
@@ -116,9 +116,9 @@ public class DatabaseUtils {
     private static void updateAvatarBlob(ContentResolver resolver, Uri updateUri, byte[] data,
             String username) {
         ContentValues values = new ContentValues(3);
-        values.put(Im.Avatars.DATA, data);
+        values.put(Imps.Avatars.DATA, data);
 
-        StringBuilder buf = new StringBuilder(Im.Avatars.CONTACT);
+        StringBuilder buf = new StringBuilder(Imps.Avatars.CONTACT);
         buf.append("=?");
 
         String[] selectionArgs = new String[] {
@@ -149,7 +149,7 @@ public class DatabaseUtils {
         boolean versionChanged;
 
         // query provider data
-        long providerId = Im.Provider.getProviderIdForName(cr, providerName);
+        long providerId = Imps.Provider.getProviderIdForName(cr, providerName);
         if (providerId > 0) {
             // already loaded, check if version changed
             String pluginVersion = config.get(ImConfigNames.PLUGIN_VERSION);
@@ -183,10 +183,10 @@ public class DatabaseUtils {
      */
     private static int clearBrandingResourceMapCache(ContentResolver cr, long providerId) {
         StringBuilder where = new StringBuilder();
-        where.append(Im.BrandingResourceMapCache.PROVIDER_ID);
+        where.append(Imps.BrandingResourceMapCache.PROVIDER_ID);
         where.append('=');
         where.append(providerId);
-        return cr.delete(Im.BrandingResourceMapCache.CONTENT_URI, where.toString(), null);
+        return cr.delete(Imps.BrandingResourceMapCache.CONTENT_URI, where.toString(), null);
     }
 
     /**
@@ -198,12 +198,12 @@ public class DatabaseUtils {
         int index = 0;
         for (Map.Entry<String, String> entry : config.entrySet()) {
             ContentValues settingValue = new ContentValues();
-            settingValue.put(Im.ProviderSettings.PROVIDER, providerId);
-            settingValue.put(Im.ProviderSettings.NAME, entry.getKey());
-            settingValue.put(Im.ProviderSettings.VALUE, entry.getValue());
+            settingValue.put(Imps.ProviderSettings.PROVIDER, providerId);
+            settingValue.put(Imps.ProviderSettings.NAME, entry.getKey());
+            settingValue.put(Imps.ProviderSettings.VALUE, entry.getValue());
             settingValues[index++] = settingValue;
         }
-        return cr.bulkInsert(Im.ProviderSettings.CONTENT_URI, settingValues);
+        return cr.bulkInsert(Imps.ProviderSettings.CONTENT_URI, settingValues);
     }
 
     /**
@@ -212,11 +212,11 @@ public class DatabaseUtils {
     private static long insertProviderRow(ContentResolver cr, String providerName,
             String providerFullName, String signUpUrl) {
         ContentValues values = new ContentValues(3);
-        values.put(Im.Provider.NAME, providerName);
-        values.put(Im.Provider.FULLNAME, providerFullName);
-        values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-        values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-        Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
+        values.put(Imps.Provider.NAME, providerName);
+        values.put(Imps.Provider.FULLNAME, providerFullName);
+        values.put(Imps.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+        values.put(Imps.Provider.SIGNUP_URL, signUpUrl);
+        Uri result = cr.insert(Imps.Provider.CONTENT_URI, values);
         return ContentUris.parseId(result);
     }
 
@@ -231,10 +231,10 @@ public class DatabaseUtils {
         // Note that we don't update the provider name because it's used as
         // identifier at some place and the plugin should never change it.
         ContentValues values = new ContentValues(3);
-        values.put(Im.Provider.FULLNAME, providerFullName);
-        values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-        values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
-        Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
+        values.put(Imps.Provider.FULLNAME, providerFullName);
+        values.put(Imps.Provider.SIGNUP_URL, signUpUrl);
+        values.put(Imps.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+        Uri uri = ContentUris.withAppendedId(Imps.Provider.CONTENT_URI, providerId);
         return cr.update(uri, values, null, null);
     }
 
@@ -243,7 +243,7 @@ public class DatabaseUtils {
      */
     private static boolean isPluginVersionChanged(ContentResolver cr, long providerId,
             String newVersion) {
-        String oldVersion = Im.ProviderSettings.getStringValue(cr, providerId,
+        String oldVersion = Imps.ProviderSettings.getStringValue(cr, providerId,
                 ImConfigNames.PLUGIN_VERSION);
         if (oldVersion == null) {
             return true;

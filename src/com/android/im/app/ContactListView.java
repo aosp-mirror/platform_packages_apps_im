@@ -27,6 +27,7 @@ import com.android.im.app.adapter.ContactListListenerAdapter;
 import com.android.im.engine.Contact;
 import com.android.im.engine.ContactListManager;
 import com.android.im.engine.ImErrorInfo;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
@@ -42,7 +43,6 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -176,8 +176,8 @@ public class ContactListView extends LinearLayout {
 
     void startChat(Cursor c) {
         if (c != null) {
-            long id = c.getLong(c.getColumnIndexOrThrow(Im.Contacts._ID));
-            String username = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            long id = c.getLong(c.getColumnIndexOrThrow(Imps.Contacts._ID));
+            String username = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.USERNAME));
             try {
                 IChatSessionManager manager = mConn.getChatSessionManager();
                 IChatSession session = manager.getChatSession(username);
@@ -185,7 +185,7 @@ public class ContactListView extends LinearLayout {
                     manager.createChatSession(username);
                 }
 
-                Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, id);
+                Uri data = ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, id);
                 Intent i = new Intent(Intent.ACTION_VIEW, data);
                 i.addCategory(ImApp.IMPS_CATEGORY);
                 mScreen.startActivity(i);
@@ -215,7 +215,7 @@ public class ContactListView extends LinearLayout {
 
     void endChat(Cursor c) {
         if(c != null) {
-            String username = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            String username = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.USERNAME));
             try {
                 IChatSessionManager manager = mConn.getChatSessionManager();
                 IChatSession session = manager.getChatSession(username);
@@ -239,8 +239,8 @@ public class ContactListView extends LinearLayout {
 
     public void viewContactPresence(Cursor c) {
         if (c != null) {
-            long id = c.getLong(c.getColumnIndexOrThrow(Im.Contacts._ID));
-            Uri data = ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, id);
+            long id = c.getLong(c.getColumnIndexOrThrow(Imps.Contacts._ID));
+            Uri data = ContentUris.withAppendedId(Imps.Contacts.CONTENT_URI, id);
             Intent i = new Intent(Intent.ACTION_VIEW, data);
             mScreen.startActivity(i);
         }
@@ -292,8 +292,8 @@ public class ContactListView extends LinearLayout {
         if (c == null) {
             mHandler.showAlert(R.string.error, R.string.select_contact);
         } else {
-            String nickname = c.getString(c.getColumnIndexOrThrow(Im.Contacts.NICKNAME));
-            final String address = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            String nickname = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.NICKNAME));
+            final String address = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.USERNAME));
             DialogInterface.OnClickListener confirmListener = new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int whichButton) {
                     try {
@@ -334,8 +334,8 @@ public class ContactListView extends LinearLayout {
         if (c == null) {
             mHandler.showAlert(R.string.error, R.string.select_contact);
         } else {
-            String nickname = c.getString(c.getColumnIndexOrThrow(Im.Contacts.NICKNAME));
-            final String address = c.getString(c.getColumnIndexOrThrow(Im.Contacts.USERNAME));
+            String nickname = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.NICKNAME));
+            final String address = c.getString(c.getColumnIndexOrThrow(Imps.Contacts.USERNAME));
             DialogInterface.OnClickListener confirmListener = new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int whichButton) {
                     try {
@@ -394,7 +394,7 @@ public class ContactListView extends LinearLayout {
         if (cursor == null) {
             return null;
         }
-        return cursor.getString(cursor.getColumnIndexOrThrow(Im.ContactList.NAME));
+        return cursor.getString(cursor.getColumnIndexOrThrow(Imps.ContactList.NAME));
     }
 
     private void registerListeners() {
@@ -432,12 +432,12 @@ public class ContactListView extends LinearLayout {
             
             int subscriptionType = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_TYPE);
             int subscriptionStatus = cursor.getInt(ContactView.COLUMN_SUBSCRIPTION_STATUS);
-            if ((subscriptionType == Im.Contacts.SUBSCRIPTION_TYPE_FROM)
-                    && (subscriptionStatus == Im.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING)){
+            if ((subscriptionType == Imps.Contacts.SUBSCRIPTION_TYPE_FROM)
+                    && (subscriptionStatus == Imps.Contacts.SUBSCRIPTION_STATUS_SUBSCRIBE_PENDING)){
                 long providerId = cursor.getLong(ContactView.COLUMN_CONTACT_PROVIDER);
                 String username = cursor.getString(ContactView.COLUMN_CONTACT_USERNAME);
                 Intent intent = new Intent(ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION,
-                        ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, id));
+                        ContentUris.withAppendedId(Imps.Contacts.CONTENT_URI, id));
                 intent.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, providerId);
                 intent.putExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS, username);
                 mScreen.startActivity(intent);

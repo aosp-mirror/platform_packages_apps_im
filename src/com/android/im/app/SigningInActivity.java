@@ -25,6 +25,7 @@ import com.android.im.app.adapter.ConnectionListenerAdapter;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
@@ -40,7 +41,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.Handler;
-import android.provider.Im;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -102,13 +102,13 @@ public class SigningInActivity extends Activity {
             return;
         }
 
-        mProviderId = c.getLong(c.getColumnIndexOrThrow(Im.Account.PROVIDER));
-        mAccountId = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
-        mUserName = c.getString(c.getColumnIndexOrThrow(Im.Account.USERNAME));
+        mProviderId = c.getLong(c.getColumnIndexOrThrow(Imps.Account.PROVIDER));
+        mAccountId = c.getLong(c.getColumnIndexOrThrow(Imps.Account._ID));
+        mUserName = c.getString(c.getColumnIndexOrThrow(Imps.Account.USERNAME));
         String pwExtra = intent.getStringExtra(ImApp.EXTRA_INTENT_PASSWORD);
         mPassword = pwExtra != null ? pwExtra
-                : c.getString(c.getColumnIndexOrThrow(Im.Account.PASSWORD));
-        final boolean isActive = c.getInt(c.getColumnIndexOrThrow(Im.Account.ACTIVE)) == 1;
+                : c.getString(c.getColumnIndexOrThrow(Imps.Account.PASSWORD));
+        final boolean isActive = c.getInt(c.getColumnIndexOrThrow(Imps.Account.ACTIVE)) == 1;
 
         c.close();
         mApp = ImApp.getApplication(this);
@@ -196,13 +196,13 @@ public class SigningInActivity extends Activity {
         // this provider to inactive first and then update this
         // account to active.
         ContentValues values = new ContentValues(1);
-        values.put(Im.Account.ACTIVE, 0);
+        values.put(Imps.Account.ACTIVE, 0);
         ContentResolver cr = getContentResolver();
-        cr.update(Im.Account.CONTENT_URI, values,
-                Im.Account.PROVIDER + "=" + providerId, null);
+        cr.update(Imps.Account.CONTENT_URI, values,
+                Imps.Account.PROVIDER + "=" + providerId, null);
 
-        values.put(Im.Account.ACTIVE, 1);
-        cr.update(ContentUris.withAppendedId(Im.Account.CONTENT_URI, accountId),
+        values.put(Imps.Account.ACTIVE, 1);
+        cr.update(ContentUris.withAppendedId(Imps.Account.CONTENT_URI, accountId),
                 values, null, null);
     }
 
@@ -307,7 +307,7 @@ public class SigningInActivity extends Activity {
                     if(session == null) {
                         session = manager.createChatSession(mToAddress);
                     }
-                    Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, session.getId());
+                    Uri data = ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, session.getId());
                     intent = new Intent(Intent.ACTION_VIEW, data);
                     intent.putExtra("from", mToAddress);
                     intent.putExtra("providerId", mProviderId);

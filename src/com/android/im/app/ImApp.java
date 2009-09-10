@@ -43,7 +43,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.util.Log;
 
 import com.android.im.IConnectionCreationListener;
@@ -56,6 +55,7 @@ import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
 import com.android.im.plugin.ImPlugin;
 import com.android.im.plugin.ImPluginInfo;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 public class ImApp extends Application {
@@ -98,18 +98,18 @@ public class ImApp extends Application {
     public static final int EVENT_UPDATE_USER_PRESENCE_ERROR = 301;
 
     private static final String[] PROVIDER_PROJECTION = {
-        Im.Provider._ID,
-        Im.Provider.NAME,
-        Im.Provider.FULLNAME,
-        Im.Provider.SIGNUP_URL,
+        Imps.Provider._ID,
+        Imps.Provider.NAME,
+        Imps.Provider.FULLNAME,
+        Imps.Provider.SIGNUP_URL,
     };
 
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PROVIDER,
-        Im.Account.NAME,
-        Im.Account.USERNAME,
-        Im.Account.PASSWORD,
+        Imps.Account._ID,
+        Imps.Account.PROVIDER,
+        Imps.Account.NAME,
+        Imps.Account.USERNAME,
+        Imps.Account.PASSWORD,
     };
 
     static final void log(String log) {
@@ -261,27 +261,27 @@ public class ImApp extends Application {
 
     public static long insertOrUpdateAccount(ContentResolver cr,
             long providerId, String userName, String pw) {
-        String selection = Im.Account.PROVIDER + "=? AND " + Im.Account.USERNAME + "=?";
+        String selection = Imps.Account.PROVIDER + "=? AND " + Imps.Account.USERNAME + "=?";
         String[] selectionArgs = {Long.toString(providerId), userName };
 
-        Cursor c = cr.query(Im.Account.CONTENT_URI, ACCOUNT_PROJECTION,
+        Cursor c = cr.query(Imps.Account.CONTENT_URI, ACCOUNT_PROJECTION,
                 selection, selectionArgs, null);
         if (c != null && c.moveToFirst()) {
             // Update the password
-            c.updateString(c.getColumnIndexOrThrow(Im.Account.PASSWORD), pw);
+            c.updateString(c.getColumnIndexOrThrow(Imps.Account.PASSWORD), pw);
             c.commitUpdates();
 
-            long id = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
+            long id = c.getLong(c.getColumnIndexOrThrow(Imps.Account._ID));
             c.close();
             return id;
         } else {
             ContentValues values = new ContentValues(4);
-            values.put(Im.Account.PROVIDER, providerId);
-            values.put(Im.Account.NAME, userName);
-            values.put(Im.Account.USERNAME, userName);
-            values.put(Im.Account.PASSWORD, pw);
+            values.put(Imps.Account.PROVIDER, providerId);
+            values.put(Imps.Account.NAME, userName);
+            values.put(Imps.Account.USERNAME, userName);
+            values.put(Imps.Account.PASSWORD, pw);
 
-            Uri result = cr.insert(Im.Account.CONTENT_URI, values);
+            Uri result = cr.insert(Imps.Account.CONTENT_URI, values);
             return ContentUris.parseId(result);
         }
     }
@@ -297,8 +297,8 @@ public class ImApp extends Application {
         String selectionArgs[] = new String[1];
         selectionArgs[0] = ImApp.IMPS_CATEGORY;
 
-        Cursor c = cr.query(Im.Provider.CONTENT_URI, PROVIDER_PROJECTION,
-                Im.Provider.CATEGORY+"=?", selectionArgs, null);
+        Cursor c = cr.query(Imps.Provider.CONTENT_URI, PROVIDER_PROJECTION,
+                Imps.Provider.CATEGORY+"=?", selectionArgs, null);
         if (c == null) {
             return;
         }
