@@ -15,16 +15,22 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label" msgid="6289028202073124911">"메신저"</string>
-    <!-- no translation found for landing_page_title (8575938257482637474) -->
+    <!-- no translation found for ro_perm_label (4791213266570841712) -->
     <skip />
+    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
+    <skip />
+    <!-- no translation found for wo_perm_label (2275102271914312340) -->
+    <skip />
+    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
+    <skip />
+    <string name="im_label" msgid="6289028202073124911">"메신저"</string>
+    <string name="landing_page_title" msgid="8575938257482637474">"채팅 - 계정 선택"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"계정 추가"</string>
-    <string name="menu_edit_account" msgid="2909998494159263063">"계정 편집"</string>
-    <string name="menu_remove_account" msgid="6821008426177540869">"계정 제거"</string>
+    <string name="menu_edit_account" msgid="2909998494159263063">"계정 수정"</string>
+    <string name="menu_remove_account" msgid="6821008426177540869">"계정 삭제"</string>
     <string name="menu_sign_out_all" msgid="4796813055998684330">"모두 로그아웃"</string>
     <string name="choose_account_title" msgid="6660096418433575680">"채팅 - 계정 선택"</string>
-    <!-- no translation found for conversations (7338245838564623519) -->
-    <skip />
+    <string name="conversations" msgid="7338245838564623519">"(<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="menu_cancel_signin" msgid="146078926243968887">"로그인 취소"</string>
     <string name="menu_add_contact" msgid="6315091944808434095">"연락처 추가"</string>
     <string name="menu_remove_contact" msgid="3306468526492774925">"연락처 삭제"</string>
@@ -43,8 +49,7 @@
     <string name="menu_plus" msgid="5000617247235760106">"Menu+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"입력"</string>
     <string name="confirm" msgid="3229086014444547636">"확인"</string>
-    <!-- no translation found for signout_all_confirm_message (4442995839737460513) -->
-    <skip />
+    <string name="signout_all_confirm_message" msgid="4442995839737460513">"모든 서비스에서 로그아웃하시겠습니까?"</string>
     <string name="confirm_delete_contact" msgid="1364595657359357114">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 삭제됩니다."</string>
     <string name="confirm_block_contact" msgid="2490910366424078491">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 차단됩니다."</string>
     <string name="confirm_unblock_contact" msgid="2194464819104507216">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 차단 해제됩니다."</string>
