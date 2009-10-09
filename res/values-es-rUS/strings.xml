@@ -18,7 +18,7 @@
     <string name="ro_perm_label" msgid="4791213266570841712">"leer mensajes instantáneos"</string>
     <string name="ro_perm_desc" msgid="2030191017293726405">"Permite que las aplicaciones lean datos del proveedor de contenido de mensajería instantánea"</string>
     <string name="wo_perm_label" msgid="2275102271914312340">"escribir mensajes instantáneos"</string>
-    <string name="wo_perm_desc" msgid="4332792325927331086">"Permite que las aplicaciones introduzcan datos en el proveedor de contenido de mensajería instantánea"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Permite que las aplicaciones ingresen datos en el proveedor de contenido de mensajería instantánea"</string>
     <string name="im_label" msgid="6289028202073124911">"Mensajería instantánea"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"Chat - Seleccionar una cuenta"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"Agregar cuenta"</string>
