@@ -126,19 +126,21 @@ public class RemoteImService extends Service {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
-        mNeedCheckAutoLogin = intent.getBooleanExtra(ImServiceConstants.EXTRA_CHECK_AUTO_LOGIN, false);
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            mNeedCheckAutoLogin = intent.getBooleanExtra(ImServiceConstants.EXTRA_CHECK_AUTO_LOGIN, false);
 
-        Log.d(TAG, "ImService.onStart, checkAutoLogin=" + mNeedCheckAutoLogin);
+            Log.d(TAG, "ImService.onStart, checkAutoLogin=" + mNeedCheckAutoLogin);
 
-        // Check and login accounts if network is ready, otherwise it's checked
-        // when the network becomes available.
-        if (mNeedCheckAutoLogin &&
-                mNetworkConnectivityListener.getState() == State.CONNECTED) {
-            mNeedCheckAutoLogin = false;
-            autoLogin();
+            // Check and login accounts if network is ready, otherwise it's checked
+            // when the network becomes available.
+            if (mNeedCheckAutoLogin &&
+                    mNetworkConnectivityListener.getState() == State.CONNECTED) {
+                mNeedCheckAutoLogin = false;
+                autoLogin();
+            }
         }
+        return super.onStartCommand(intent, flags, startId);
     }
 
     private void autoLogin() {
