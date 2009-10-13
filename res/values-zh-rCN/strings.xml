@@ -53,7 +53,7 @@
     <string name="sign_in" msgid="6204326200860136567">"登录"</string>
     <string name="signing_in_to" msgid="2689649632858697221">"正在登录 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait" msgid="987357161364666888">"正在登录..."</string>
-    <string name="bg_data_prompt_title" msgid="4861800723853178111">"背景数据已禁用"</string>
+    <string name="bg_data_prompt_title" msgid="4861800723853178111">"已停用背景数据"</string>
     <string name="bg_data_prompt_message" msgid="2343305645142823544">"<xliff:g id="PROVIDER">%1$s</xliff:g> 需要启用背景数据。"</string>
     <string name="bg_data_prompt_ok" msgid="3443385427882751532">"启用"</string>
     <string name="bg_data_prompt_cancel" msgid="7206105589826174638">"退出"</string>
