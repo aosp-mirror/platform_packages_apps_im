@@ -15,14 +15,10 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for ro_perm_label (4791213266570841712) -->
-    <skip />
-    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
-    <skip />
-    <!-- no translation found for wo_perm_label (2275102271914312340) -->
-    <skip />
-    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
-    <skip />
+    <string name="ro_perm_label" msgid="4791213266570841712">"ανάγνωση άμεσων μηνυμάτων"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"Επιτρέπει στις εφαρμογές την ανάγνωση δεδομένων από τον πάροχο περιεχομένου ανταλλαγής άμεσων μηνυμάτων (IM)."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"εγγραφή άμεσων μηνυμάτων"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Επιτρέπει στις εφαρμογές την εγγραφή δεδομένων από τον πάροχο της υπηρεσίας άμεσων μηνυμάτων (IM)."</string>
     <string name="im_label" msgid="6289028202073124911">"Ανταλ.άμεσων μην.(IM)"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"Συζήτηση - Επιλογή λογαριασμού"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"Προσθήκη λογαριασμού"</string>

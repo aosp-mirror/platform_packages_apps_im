@@ -15,14 +15,10 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for ro_perm_label (4791213266570841712) -->
-    <skip />
-    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
-    <skip />
-    <!-- no translation found for wo_perm_label (2275102271914312340) -->
-    <skip />
-    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
-    <skip />
+    <string name="ro_perm_label" msgid="4791213266570841712">"ler mensagens instantâneas"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"Permite que as aplicações leiam dados a partir do fornecedor de conteúdo de MI."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"escrever mensagens instantâneas"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Permite que as aplicações escrevam dados para o fornecedor de conteúdo de MI."</string>
     <string name="im_label" msgid="6289028202073124911">"MI"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"Chat - Seleccione uma conta"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"Adicionar conta"</string>

@@ -15,14 +15,10 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for ro_perm_label (4791213266570841712) -->
-    <skip />
-    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
-    <skip />
-    <!-- no translation found for wo_perm_label (2275102271914312340) -->
-    <skip />
-    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
-    <skip />
+    <string name="ro_perm_label" msgid="4791213266570841712">"인스턴트 메시지 읽기"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"응용프로그램이 메신저 콘텐츠 제공업체에서 제공한 데이터를 읽을 수 있도록 합니다."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"인스턴트 메시지 쓰기"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"응용프로그램이 메신저 콘텐츠 제공업체에 데이터를 쓸 수 있도록 합니다."</string>
     <string name="im_label" msgid="6289028202073124911">"메신저"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"채팅 - 계정 선택"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"계정 추가"</string>
