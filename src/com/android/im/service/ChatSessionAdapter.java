@@ -31,6 +31,7 @@ import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.Message;
 import com.android.im.engine.MessageListener;
 import com.android.im.engine.Presence;
+import com.android.im.provider.Imps;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -40,7 +41,6 @@ import android.net.Uri;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
-import android.provider.Im;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -49,9 +49,9 @@ import java.util.List;
 
 public class ChatSessionAdapter extends IChatSession.Stub {
 
-    private static final String NON_CHAT_MESSAGE_SELECTION = Im.BaseMessageColumns.TYPE
-            + "!=" + Im.MessageType.INCOMING + " AND " + Im.BaseMessageColumns.TYPE
-            + "!=" + Im.MessageType.OUTGOING;
+    private static final String NON_CHAT_MESSAGE_SELECTION = Imps.Messages.TYPE
+            + "!=" + Imps.MessageType.INCOMING + " AND " + Imps.Messages.TYPE
+            + "!=" + Imps.MessageType.OUTGOING;
 
     static final String TAG = RemoteImService.TAG;
 
@@ -106,9 +106,8 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         mIsGroupChat = true;
         long groupId = insertGroupContactInDb(group);
         group.addMemberListener(mListenerAdapter);
-        mMessageURI = ContentUris.withAppendedId(
-                Im.GroupMessages.CONTENT_URI_GROUP_MESSAGES_BY, groupId);
-        mChatURI = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, groupId);
+        mMessageURI = Imps.Messages.getContentUriByThreadId(groupId);
+        mChatURI = ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, groupId);
         insertOrUpdateChat(null);
 
         for (Contact c : group.getMembers()) {
@@ -122,11 +121,8 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             (ContactListManagerAdapter) mConnection.getContactListManager();
         long contactId = listManager.queryOrInsertContact(contact);
 
-        long provider = mConnection.getProviderId();
-        long account  = mConnection.getAccountId();
-        String address = contact.getAddress().getFullName();
-        mMessageURI = Im.Messages.getContentUriByContact(provider, account, address);
-        mChatURI = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, contactId);
+        mMessageURI = Imps.Messages.getContentUriByThreadId(contactId);
+        mChatURI = ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, contactId);
         insertOrUpdateChat(null);
 
         mContactStatusMap.put(contact.getName(), contact.getPresence().getStatus());
@@ -215,10 +211,9 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     public void leave() {
         if (mIsGroupChat) {
             getGroupManager().leaveChatGroupAsync((ChatGroup)mAdaptee.getParticipant());
-            mContentResolver.delete(mMessageURI, null, null);
-        } else {
-            mContentResolver.delete(mMessageURI, null, null);
         }
+
+        mContentResolver.delete(mMessageURI, null, null);
         mContentResolver.delete(mChatURI, null, null);
         mStatusBarNotifier.dismissChatNotification(
                 mConnection.getProviderId(), getAddress());
@@ -234,27 +229,27 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     public void sendMessage(String text) {
         if (mConnection.getState() == ImConnection.SUSPENDED) {
             // connection has been suspended, save the message without send it
-            insertMessageInDb(null, text, -1, Im.MessageType.POSTPONED);
+            insertMessageInDb(null, text, -1, Imps.MessageType.POSTPONED);
             return;
         }
 
         Message msg = new Message(text);
         mAdaptee.sendMessageAsync(msg);
         long now = System.currentTimeMillis();
-        insertMessageInDb(null, text, now, Im.MessageType.OUTGOING);
+        insertMessageInDb(null, text, now, Imps.MessageType.OUTGOING);
     }
 
     void sendPostponedMessages() {
         String[] projection = new String[] {
             BaseColumns._ID,
-            Im.BaseMessageColumns.BODY,
-            Im.BaseMessageColumns.DATE,
-            Im.BaseMessageColumns.TYPE,
+            Imps.Messages.BODY,
+            Imps.Messages.DATE,
+            Imps.Messages.TYPE,
         };
-        String selection = Im.BaseMessageColumns.TYPE + "=?";
+        String selection = "messages.type=?";
 
         Cursor c = mContentResolver.query(mMessageURI, projection, selection,
-                new String[]{Integer.toString(Im.MessageType.POSTPONED)}, null);
+                new String[]{Integer.toString(Imps.MessageType.POSTPONED)}, null);
         if (c == null) {
             Log.e(TAG, "Query error while querying postponed messages");
             return;
@@ -265,7 +260,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             mAdaptee.sendMessageAsync(new Message(body));
 
             c.updateLong(2, System.currentTimeMillis());
-            c.updateInt(3, Im.MessageType.OUTGOING);
+            c.updateInt(3, Imps.MessageType.OUTGOING);
         }
         c.commitUpdates();
         c.close();
@@ -286,7 +281,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     public void markAsRead() {
         if (mHasUnreadMessages) {
             ContentValues values = new ContentValues(1);
-            values.put(Im.Chats.LAST_UNREAD_MESSAGE, (String) null);
+            values.put(Imps.Chats.LAST_UNREAD_MESSAGE, (String) null);
             mConnection.getContext().getContentResolver().update(mChatURI, values, null, null);
 
             mStatusBarNotifier.dismissChatNotification(mConnection.getProviderId(), getAddress());
@@ -340,15 +335,15 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             String contact = incoming ? oldParticipant.getName() : null;
             long time = msg.getDateTime().getTime();
             insertMessageInDb(contact, msg.getBody(), time,
-                    incoming ? Im.MessageType.INCOMING : Im.MessageType.OUTGOING);
+                    incoming ? Imps.MessageType.INCOMING : Imps.MessageType.OUTGOING);
         }
     }
 
     void insertOrUpdateChat(String message) {
         ContentValues values = new ContentValues(2);
 
-        values.put(Im.Chats.LAST_MESSAGE_DATE, System.currentTimeMillis());
-        values.put(Im.Chats.LAST_UNREAD_MESSAGE, message);
+        values.put(Imps.Chats.LAST_MESSAGE_DATE, System.currentTimeMillis());
+        values.put(Imps.Chats.LAST_UNREAD_MESSAGE, message);
         // ImProvider.insert() will replace the chat if it already exist.
         mContentResolver.insert(mChatURI, values);
     }
@@ -356,13 +351,13 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     private long insertGroupContactInDb(ChatGroup group) {
         // Insert a record in contacts table
         ContentValues values = new ContentValues(4);
-        values.put(Im.Contacts.USERNAME, group.getAddress().getFullName());
-        values.put(Im.Contacts.NICKNAME, group.getName());
-        values.put(Im.Contacts.CONTACTLIST, ContactListManagerAdapter.FAKE_TEMPORARY_LIST_ID);
-        values.put(Im.Contacts.TYPE, Im.Contacts.TYPE_GROUP);
+        values.put(Imps.Contacts.USERNAME, group.getAddress().getFullName());
+        values.put(Imps.Contacts.NICKNAME, group.getName());
+        values.put(Imps.Contacts.CONTACTLIST, ContactListManagerAdapter.FAKE_TEMPORARY_LIST_ID);
+        values.put(Imps.Contacts.TYPE, Imps.Contacts.TYPE_GROUP);
 
         Uri contactUri = ContentUris.withAppendedId(ContentUris.withAppendedId(
-                Im.Contacts.CONTENT_URI, mConnection.mProviderId), mConnection.mAccountId);
+                Imps.Contacts.CONTENT_URI, mConnection.mProviderId), mConnection.mAccountId);
         long id = ContentUris.parseId(mContentResolver.insert(contactUri, values));
 
         ArrayList<ContentValues> memberValues = new ArrayList<ContentValues>();
@@ -370,9 +365,9 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         for (Contact member : group.getMembers()) {
             if (!member.equals(self)) { // avoid to insert the user himself
                 ContentValues memberValue = new ContentValues(2);
-                memberValue.put(Im.GroupMembers.USERNAME,
+                memberValue.put(Imps.GroupMembers.USERNAME,
                         member.getAddress().getFullName());
-                memberValue.put(Im.GroupMembers.NICKNAME,
+                memberValue.put(Imps.GroupMembers.NICKNAME,
                         member.getName());
                 memberValues.add(memberValue);
             }
@@ -380,7 +375,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         if (!memberValues.isEmpty()) {
             ContentValues[] result = new ContentValues[memberValues.size()];
             memberValues.toArray(result);
-            Uri memberUri = ContentUris.withAppendedId(Im.GroupMembers.CONTENT_URI, id);
+            Uri memberUri = ContentUris.withAppendedId(Imps.GroupMembers.CONTENT_URI, id);
             mContentResolver.bulkInsert(memberUri, result);
         }
         return id;
@@ -388,27 +383,27 @@ public class ChatSessionAdapter extends IChatSession.Stub {
 
     void insertGroupMemberInDb(Contact member) {
         ContentValues values1 = new ContentValues(2);
-        values1.put(Im.GroupMembers.USERNAME, member.getAddress().getFullName());
-        values1.put(Im.GroupMembers.NICKNAME, member.getName());
+        values1.put(Imps.GroupMembers.USERNAME, member.getAddress().getFullName());
+        values1.put(Imps.GroupMembers.NICKNAME, member.getName());
         ContentValues values = values1;
 
         long groupId = ContentUris.parseId(mChatURI);
-        Uri uri = ContentUris.withAppendedId(Im.GroupMembers.CONTENT_URI, groupId);
+        Uri uri = ContentUris.withAppendedId(Imps.GroupMembers.CONTENT_URI, groupId);
         mContentResolver.insert(uri, values);
 
         insertMessageInDb(member.getName(), null, System.currentTimeMillis(),
-                Im.MessageType.PRESENCE_AVAILABLE);
+                Imps.MessageType.PRESENCE_AVAILABLE);
     }
 
     void deleteGroupMemberInDb(Contact member) {
-        String where = Im.GroupMembers.USERNAME + "=?";
+        String where = Imps.GroupMembers.USERNAME + "=?";
         String[] selectionArgs = { member.getAddress().getFullName() };
         long groupId = ContentUris.parseId(mChatURI);
-        Uri uri = ContentUris.withAppendedId(Im.GroupMembers.CONTENT_URI, groupId);
+        Uri uri = ContentUris.withAppendedId(Imps.GroupMembers.CONTENT_URI, groupId);
         mContentResolver.delete(uri, where, selectionArgs);
 
         insertMessageInDb(member.getName(), null, System.currentTimeMillis(),
-                Im.MessageType.PRESENCE_UNAVAILABLE);
+                Imps.MessageType.PRESENCE_UNAVAILABLE);
     }
 
     void insertPresenceUpdatesMsg(String contact, Presence presence) {
@@ -425,20 +420,20 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         int messageType;
         switch (status) {
             case Presence.AVAILABLE:
-                messageType = Im.MessageType.PRESENCE_AVAILABLE;
+                messageType = Imps.MessageType.PRESENCE_AVAILABLE;
                 break;
 
             case Presence.AWAY:
             case Presence.IDLE:
-                messageType = Im.MessageType.PRESENCE_AWAY;
+                messageType = Imps.MessageType.PRESENCE_AWAY;
                 break;
 
             case Presence.DO_NOT_DISTURB:
-                messageType = Im.MessageType.PRESENCE_DND;
+                messageType = Imps.MessageType.PRESENCE_DND;
                 break;
 
             default:
-                messageType = Im.MessageType.PRESENCE_UNAVAILABLE;
+                messageType = Imps.MessageType.PRESENCE_UNAVAILABLE;
                 break;
         }
 
@@ -450,7 +445,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     }
 
     void removeMessageInDb(int type) {
-        mContentResolver.delete(mMessageURI, Im.BaseMessageColumns.TYPE + "=?",
+        mContentResolver.delete(mMessageURI, Imps.Messages.TYPE + "=?",
                 new String[]{Integer.toString(type)});
     }
 
@@ -460,12 +455,13 @@ public class ChatSessionAdapter extends IChatSession.Stub {
 
     Uri insertMessageInDb(String contact, String body, long time, int type, int errCode) {
         ContentValues values = new ContentValues(mIsGroupChat ? 4 : 3);
-        values.put(Im.BaseMessageColumns.BODY, body);
-        values.put(Im.BaseMessageColumns.DATE, time);
-        values.put(Im.BaseMessageColumns.TYPE, type);
-        values.put(Im.BaseMessageColumns.ERROR_CODE, errCode);
+        values.put(Imps.Messages.BODY, body);
+        values.put(Imps.Messages.DATE, time);
+        values.put(Imps.Messages.TYPE, type);
+        values.put(Imps.Messages.ERROR_CODE, errCode);
         if (mIsGroupChat) {
-            values.put(Im.BaseMessageColumns.CONTACT, contact);
+            values.put(Imps.Messages.NICKNAME, contact);
+            values.put(Imps.Messages.IS_GROUP_CHAT, 1);
         }
 
         return mContentResolver.insert(mMessageURI, values);
@@ -483,7 +479,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             } else {
                 insertOrUpdateChat(body);
             }
-            insertMessageInDb(nickname, body, time, Im.MessageType.INCOMING);
+            insertMessageInDb(nickname, body, time, Imps.MessageType.INCOMING);
 
             int N = mRemoteListeners.beginBroadcast();
             for (int i = 0; i < N; i++) {
@@ -506,7 +502,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
         public void onSendMessageError(ChatSession ses, final Message msg,
                 final ImErrorInfo error) {
             insertMessageInDb(null, null, System.currentTimeMillis(),
-                    Im.MessageType.OUTGOING, error.getCode());
+                    Imps.MessageType.OUTGOING, error.getCode());
 
             final int N = mRemoteListeners.beginBroadcast();
             for (int i = 0; i < N; i++) {

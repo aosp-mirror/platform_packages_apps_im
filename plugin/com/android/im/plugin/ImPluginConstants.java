@@ -25,7 +25,7 @@ public class ImPluginConstants {
 
     /**
      * The name of the provider. It should match the values defined in
-     * {@link android.provider.Im.ProviderNames}.
+     * {@link com.android.im.provider.Imps.ProviderNames}.
      */
     public static final String METADATA_PROVIDER_NAME = "com.android.im.provider_name";
 

@@ -20,6 +20,8 @@ package com.android.im.engine;
  * An abstract interface to access system SMS service.
  */
 public interface SmsService {
+    public static final String ANY_ADDRESS = "*";
+
     /**
      * The listener which will be notified when an incoming SMS is received.
      *

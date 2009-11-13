@@ -16,25 +16,25 @@
  */
 package com.android.im.imps;
 
-import com.android.im.engine.ImException;
-import com.android.im.plugin.IPresenceMapping;
-import com.android.im.plugin.ImPluginConstants;
-
-import dalvik.system.PathClassLoader;
+import java.util.Map;
 
 import android.os.RemoteException;
 
-import java.util.Map;
+import com.android.im.engine.ImException;
+import com.android.im.plugin.ImPluginConstants;
+import com.android.im.plugin.PresenceMapping;
+
+import dalvik.system.PathClassLoader;
 
 public class CustomPresenceMapping implements PresenceMapping {
-    private IPresenceMapping mPresenceMapping;
+    private PresenceMapping mPresenceMapping;
 
     public CustomPresenceMapping(String pluginPath, String implClass) throws ImException {
         PathClassLoader classLoader = new PathClassLoader(pluginPath,
                 getClass().getClassLoader());
         try {
-            Class cls = classLoader.loadClass(implClass);
-            mPresenceMapping = (IPresenceMapping)cls.newInstance();
+            Class<?> cls = classLoader.loadClass(implClass);
+            mPresenceMapping = (PresenceMapping)cls.newInstance();
         } catch (ClassNotFoundException e) {
             throw new ImException(e);
         } catch (IllegalAccessException e) {
@@ -45,52 +45,28 @@ public class CustomPresenceMapping implements PresenceMapping {
     }
 
     public Map<String, Object> getExtra(int status) {
-        try {
-            return mPresenceMapping.getExtra(status);
-        } catch (RemoteException e) {
-            return null;
-        }
+        return mPresenceMapping.getExtra(status);
     }
 
     public boolean getOnlineStatus(int status) {
-        try {
-            return mPresenceMapping.getOnlineStatus(status);
-        } catch (RemoteException e) {
-            return false;
-        }
+        return mPresenceMapping.getOnlineStatus(status);
     }
 
     public int getPresenceStatus(boolean onlineStatus, String userAvailability,
             Map<String, Object> allValues) {
-        try {
-            return mPresenceMapping.getPresenceStatus(onlineStatus, userAvailability, allValues);
-        } catch (RemoteException e) {
-            return ImPluginConstants.PRESENCE_OFFLINE;
-        }
+        return mPresenceMapping.getPresenceStatus(onlineStatus, userAvailability, allValues);
     }
 
     public int[] getSupportedPresenceStatus() {
-        try {
-            return mPresenceMapping.getSupportedPresenceStatus();
-        } catch (RemoteException e) {
-            return new int[0];
-        }
+        return mPresenceMapping.getSupportedPresenceStatus();
     }
 
     public String getUserAvaibility(int status) {
-        try {
-            return mPresenceMapping.getUserAvaibility(status);
-        } catch (RemoteException e) {
-            return ImPluginConstants.PA_NOT_AVAILABLE;
-        }
+        return mPresenceMapping.getUserAvaibility(status);
     }
 
     public boolean requireAllPresenceValues() {
-        try {
-            return mPresenceMapping.requireAllPresenceValues();
-        } catch (RemoteException e) {
-            return false;
-        }
+        return mPresenceMapping.requireAllPresenceValues();
     }
 
 }

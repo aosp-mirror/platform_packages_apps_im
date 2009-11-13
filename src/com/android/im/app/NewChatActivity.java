@@ -26,6 +26,7 @@ import com.android.im.IChatSession;
 import com.android.im.R;
 import com.android.im.app.adapter.ChatListenerAdapter;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -39,7 +40,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -134,9 +134,9 @@ public class NewChatActivity extends Activity {
         } else {
             Uri data = intent.getData();
             String type = getContentResolver().getType(data);
-            if (Im.Chats.CONTENT_ITEM_TYPE.equals(type)) {
+            if (Imps.Chats.CONTENT_ITEM_TYPE.equals(type)) {
                 mChatView.bindChat(ContentUris.parseId(data));
-            } else if (Im.Invitation.CONTENT_ITEM_TYPE.equals(type)) {
+            } else if (Imps.Invitation.CONTENT_ITEM_TYPE.equals(type)) {
                 mChatView.bindInvitation(ContentUris.parseId(data));
             }
         }
@@ -173,8 +173,8 @@ public class NewChatActivity extends Activity {
 
         //XXX HACK: Yahoo! doesn't allow to block a friend. We can only block a temporary contact.
         ProviderDef provider = mApp.getProvider(mChatView.getProviderId());
-        if ((provider != null) && Im.ProviderNames.YAHOO.equals(provider.mName)) {
-            if (Im.Contacts.TYPE_TEMPORARY != mChatView.mType) {
+        if ((provider != null) && Imps.ProviderNames.YAHOO.equals(provider.mName)) {
+            if (Imps.Contacts.TYPE_TEMPORARY != mChatView.mType) {
                 menu.findItem(R.id.menu_block_contact).setVisible(false);
             }
         }
@@ -347,7 +347,7 @@ public class NewChatActivity extends Activity {
     }
 
     private void startContactPicker() {
-        Uri.Builder builder = Im.Contacts.CONTENT_URI_ONLINE_CONTACTS_BY.buildUpon();
+        Uri.Builder builder = Imps.Contacts.CONTENT_URI_ONLINE_CONTACTS_BY.buildUpon();
         ContentUris.appendId(builder, mChatView.getProviderId());
         ContentUris.appendId(builder, mChatView.getAccountId());
         Uri data = builder.build();

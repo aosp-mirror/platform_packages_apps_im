@@ -17,6 +17,7 @@
 package com.android.im.imps;
 
 import com.android.im.plugin.ImPluginConstants;
+import com.android.im.plugin.PresenceMapping;
 
 import java.util.Map;
 

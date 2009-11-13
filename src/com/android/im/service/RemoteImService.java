@@ -28,14 +28,9 @@ import java.util.Vector;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkConnectivityListener;
@@ -49,34 +44,32 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.SystemProperties;
-import android.provider.Im;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.im.app.DatabaseUtils;
 import com.android.im.IConnectionCreationListener;
 import com.android.im.IImConnection;
 import com.android.im.IRemoteImService;
+import com.android.im.app.ImPluginHelper;
 import com.android.im.engine.ConnectionFactory;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImException;
 import com.android.im.imps.ImpsConnectionConfig;
-import com.android.im.plugin.IImPlugin;
 import com.android.im.plugin.ImConfigNames;
-import com.android.im.plugin.ImPluginConstants;
 import com.android.im.plugin.ImPluginInfo;
 import com.android.im.plugin.ImpsConfigNames;
-import dalvik.system.PathClassLoader;
+import com.android.im.provider.Imps;
+
 
 public class RemoteImService extends Service {
 
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PROVIDER,
-        Im.Account.USERNAME,
-        Im.Account.PASSWORD,
+        Imps.Account._ID,
+        Imps.Account.PROVIDER,
+        Imps.Account.USERNAME,
+        Imps.Account.PASSWORD,
     };
     private static final int ACCOUNT_ID_COLUMN = 0;
     private static final int ACCOUNT_PROVIDER_COLUMN = 1;
@@ -98,15 +91,14 @@ public class RemoteImService extends Service {
 
     private SettingsMonitor mSettingsMonitor;
 
+    private ImPluginHelper mPluginHelper;
     Vector<ImConnectionAdapter> mConnections;
     final RemoteCallbackList<IConnectionCreationListener> mRemoteListeners
             = new RemoteCallbackList<IConnectionCreationListener>();
 
-    private HashMap<Long, ImPluginInfo> mPlugins;
 
     public RemoteImService() {
         mConnections = new Vector<ImConnectionAdapter>();
-        mPlugins = new HashMap<Long, ImPluginInfo>();
     }
 
     @Override
@@ -128,87 +120,9 @@ public class RemoteImService extends Service {
             = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         setBackgroundData(manager.getBackgroundDataSetting());
 
-        findAvaiablePlugins();
+        mPluginHelper = ImPluginHelper.getInstance(this);
+        mPluginHelper.loadAvaiablePlugins();
         AndroidSystemService.getInstance().initialize(this);
-    }
-
-    private void findAvaiablePlugins() {
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> plugins = pm.queryIntentServices(
-                new Intent(ImPluginConstants.PLUGIN_ACTION_NAME), PackageManager.GET_META_DATA);
-        for (ResolveInfo info : plugins) {
-            Log.d(TAG, "Found plugin " + info);
-
-            ServiceInfo serviceInfo = info.serviceInfo;
-            if (serviceInfo == null) {
-                Log.e(TAG, "Ignore bad IM plugin: " + info);
-                continue;
-            }
-            String providerName = null;
-            String providerFullName = null;
-            String signUpUrl = null;
-            Bundle metaData = serviceInfo.metaData;
-            if (metaData != null) {
-                providerName = metaData.getString(ImPluginConstants.METADATA_PROVIDER_NAME);
-                providerFullName = metaData.getString(ImPluginConstants.METADATA_PROVIDER_FULL_NAME);
-                signUpUrl = metaData.getString(ImPluginConstants.METADATA_SIGN_UP_URL);
-            }
-            if (TextUtils.isEmpty(providerName) || TextUtils.isEmpty(providerFullName)) {
-                Log.e(TAG, "Ignore bad IM plugin: " + info + ". Lack of required meta data");
-                continue;
-            }
-
-            ImPluginInfo pluginInfo = new ImPluginInfo(providerName, serviceInfo.packageName,
-                    serviceInfo.name, serviceInfo.applicationInfo.sourceDir);
-
-            Map<String, String> config = loadProviderConfigFromPlugin(pluginInfo);
-            if (config == null) {
-                Log.e(TAG, "Ignore bad IM plugin");
-                break;
-            }
-
-            config.put(ImConfigNames.PLUGIN_PATH, pluginInfo.mSrcPath);
-            config.put(ImConfigNames.PLUGIN_CLASS, pluginInfo.mClassName);
-            long providerId = DatabaseUtils.updateProviderDb(getContentResolver(),
-                    providerName, providerFullName, signUpUrl, config);
-            mPlugins.put(providerId, pluginInfo);
-        }
-    }
-
-    private Map<String, String> loadProviderConfigFromPlugin(ImPluginInfo pluginInfo) {
-        // XXX Load the plug-in implementation directly from the apk rather than
-        // binding to the service and call through IPC Binder API. This is much
-        // more effective since we don't need to start the service in other
-        // process. We can not run the plug-in service in the same process as a
-        // local service because that the interface is defined in a shared
-        // library in order to compile the plug-in separately. In this case, the
-        // interface will be loaded by two class loader separately and a
-        // ClassCastException will be thrown if we cast the binder to the
-        // interface.
-        PathClassLoader loader = new PathClassLoader(pluginInfo.mSrcPath, getClassLoader());
-        try {
-            Class cls = loader.loadClass(pluginInfo.mClassName);
-            Method m = cls.getMethod("onBind", Intent.class);
-            IImPlugin plugin = (IImPlugin)m.invoke(cls.newInstance(), new Object[]{null});
-            return plugin.getProviderConfig();
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, "Could not find plugin class", e);
-        } catch (IllegalAccessException e) {
-            Log.e(TAG, "Could not create plugin instance", e);
-        } catch (InstantiationException e) {
-            Log.e(TAG, "Could not create plugin instance", e);
-        } catch (SecurityException e) {
-            Log.e(TAG, "Could not load config from the plugin", e);
-        } catch (NoSuchMethodException e) {
-            Log.e(TAG, "Could not load config from the plugin", e);
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Could not load config from the plugin", e);
-        } catch (InvocationTargetException e) {
-            Log.e(TAG, "Could not load config from the plugin", e);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Could not load config from the plugin", e);
-        }
-        return null;
     }
 
     @Override
@@ -232,8 +146,8 @@ public class RemoteImService extends Service {
 
         ContentResolver resolver = getContentResolver();
 
-        String where = Im.Account.KEEP_SIGNED_IN + "=1 AND " + Im.Account.ACTIVE + "=1";
-        Cursor cursor = resolver.query(Im.Account.CONTENT_URI,
+        String where = Imps.Account.KEEP_SIGNED_IN + "=1 AND " + Imps.Account.ACTIVE + "=1";
+        Cursor cursor = resolver.query(Imps.Account.CONTENT_URI,
                 ACCOUNT_PROJECTION, where, null, null);
         if (cursor == null) {
             Log.w(TAG, "Can't query account!");
@@ -258,7 +172,7 @@ public class RemoteImService extends Service {
 
     private Map<String, String> loadProviderSettings(long providerId) {
         ContentResolver cr = getContentResolver();
-        Map<String, String> settings = Im.ProviderSettings.queryProviderSettings(cr, providerId);
+        Map<String, String> settings = Imps.ProviderSettings.queryProviderSettings(cr, providerId);
 
         NetworkInfo networkInfo = mNetworkConnectivityListener.getNetworkInfo();
         // Insert a fake msisdn on emulator. We don't need this on device
@@ -454,8 +368,8 @@ public class RemoteImService extends Service {
 
     private final IRemoteImService.Stub mBinder = new IRemoteImService.Stub() {
 
-        public List getAllPlugins() {
-            return new ArrayList(mPlugins.values());
+        public List<ImPluginInfo> getAllPlugins() {
+            return new ArrayList<ImPluginInfo>(mPluginHelper.getPluginsInfo());
         }
 
         public void addConnectionCreatedListener(IConnectionCreationListener listener) {

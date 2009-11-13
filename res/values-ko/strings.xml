@@ -15,7 +15,18 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="ro_perm_label" msgid="4791213266570841712">"인스턴트 메시지 읽기"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"응용프로그램이 메신저 콘텐츠 제공업체에서 제공한 데이터를 읽을 수 있도록 합니다."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"인스턴트 메시지 쓰기"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"응용프로그램이 메신저 콘텐츠 제공업체에 데이터를 쓸 수 있도록 합니다."</string>
     <string name="im_label" msgid="6289028202073124911">"메신저"</string>
+    <string name="landing_page_title" msgid="8575938257482637474">"채팅 - 계정 선택"</string>
+    <string name="menu_add_account" msgid="5762363412622888397">"계정 추가"</string>
+    <string name="menu_edit_account" msgid="2909998494159263063">"계정 수정"</string>
+    <string name="menu_remove_account" msgid="6821008426177540869">"계정 삭제"</string>
+    <string name="menu_sign_out_all" msgid="4796813055998684330">"모두 로그아웃"</string>
+    <string name="choose_account_title" msgid="6660096418433575680">"채팅 - 계정 선택"</string>
+    <string name="conversations" msgid="7338245838564623519">"(<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="menu_cancel_signin" msgid="146078926243968887">"로그인 취소"</string>
     <string name="menu_add_contact" msgid="6315091944808434095">"연락처 추가"</string>
     <string name="menu_remove_contact" msgid="3306468526492774925">"연락처 삭제"</string>
@@ -34,6 +45,7 @@
     <string name="menu_plus" msgid="5000617247235760106">"Menu+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"입력"</string>
     <string name="confirm" msgid="3229086014444547636">"확인"</string>
+    <string name="signout_all_confirm_message" msgid="4442995839737460513">"모든 서비스에서 로그아웃하시겠습니까?"</string>
     <string name="confirm_delete_contact" msgid="1364595657359357114">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 삭제됩니다."</string>
     <string name="confirm_block_contact" msgid="2490910366424078491">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 차단됩니다."</string>
     <string name="confirm_unblock_contact" msgid="2194464819104507216">"연락처 \'<xliff:g id="USER">%1$s</xliff:g>\'이(가) 차단 해제됩니다."</string>

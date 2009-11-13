@@ -22,8 +22,8 @@
     package="com.android.im" android:sharedUserId="android.uid.im"
     android:sharedUserLabel="@string/perm_label">
 
-    <uses-permission android:name="com.android.providers.im.permission.READ_ONLY" />
-    <uses-permission android:name="com.android.providers.im.permission.WRITE_ONLY" />
+    <uses-permission android:name="com.android.providers.imps.permission.READ_ONLY" />
+    <uses-permission android:name="com.android.providers.imps.permission.WRITE_ONLY" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -40,20 +40,22 @@
             android:label="@string/perm_label"
             android:description="@string/perm_desc" />
 
+    <permission android:name="com.android.providers.imps.permission.READ_ONLY"
+        android:permissionGroup="android.permission-group.MESSAGES"
+        android:protectionLevel="dangerous"
+        android:label="@string/ro_perm_label"
+        android:description="@string/ro_perm_desc" />
+
+    <permission android:name="com.android.providers.imps.permission.WRITE_ONLY"
+        android:permissionGroup="android.permission-group.MESSAGES"
+        android:protectionLevel="dangerous"
+        android:label="@string/wo_perm_label"
+        android:description="@string/wo_perm_desc" />
+
     <application android:name=".app.ImApp"
              android:label="@string/im_label"
              android:icon="@drawable/ic_launcher_im"
              android:taskAffinity="android.task.im">
-        <uses-library android:name="com.android.im.plugin" />
-        <!-- TODO: Remove dependency of application on the test runner
-             (android.test) library. -->
-        <uses-library android:name="android.test.runner" />
-
-        <service android:name=".app.FrontDoorPlugin">
-            <intent-filter>
-                <action android:name="android.im.plugin" />
-            </intent-filter>
-        </service>
 
         <service android:name=".service.RemoteImService"
             android:process="android.process.im"
@@ -64,6 +66,14 @@
                 <action android:name="com.android.im.SERVICE" />
             </intent-filter>
         </service>
+
+        <provider android:name=".provider.ImpsProvider"
+            android:authorities="imps"
+            android:process="android.process.im"
+            android:multiprocess="false"
+            android:readPermission="com.android.providers.imps.permission.READ_ONLY"
+            android:writePermission="com.android.providers.imps.permission.WRITE_ONLY"
+            android:grantUriPermissions="true" />
 
         <activity android:name=".app.ChooseAccountActivity"
                 android:theme="@android:style/Theme.NoDisplay">
@@ -93,22 +103,39 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.AccountActivity">
+        <activity android:name=".app.LandingPage">
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/imps-providers" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".app.AccountActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateUnchanged">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.android.im.IMPS_CATEGORY" />
-                <data android:mimeType="vnd.android.cursor.item/im-accounts" />
+                <data android:mimeType="vnd.android.cursor.item/imps-accounts" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.android.im.IMPS_CATEGORY" />
-                <data android:mimeType="vnd.android.cursor.item/im-providers" />
+                <data android:mimeType="vnd.android.cursor.item/imps-providers" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.SigningInActivity">
+        <activity android:name=".app.SigningInActivity"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -127,7 +154,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="com.android.im.IMPS_CATEGORY" />
-                <data android:mimeType="vnd.android.cursor.dir/im-contacts"/>
+                <data android:mimeType="vnd.android.cursor.dir/imps-contacts"/>
             </intent-filter>
         </activity>
 
@@ -141,17 +168,17 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.android.im.IMPS_CATEGORY" />
-                <data android:mimeType="vnd.android.cursor.item/im-chats" />
+                <data android:mimeType="vnd.android.cursor.item/imps-chats" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/im-invitations" />
+                <data android:mimeType="vnd.android.cursor.item/imps-invitations" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.IM_MANAGE_SUBSCRIPTION"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.item/im-contacts"/>
+                <data android:mimeType="vnd.android.cursor.item/imps-contacts"/>
             </intent-filter>
         </activity>
 
@@ -159,7 +186,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/im-contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/imps-contacts" />
             </intent-filter>
         </activity>
 
@@ -167,7 +194,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/im-blockedList" />
+                <data android:mimeType="vnd.android.cursor.dir/imps-blockedList" />
             </intent-filter>
         </activity>
 
@@ -175,7 +202,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/im-contacts" />
+                <data android:mimeType="vnd.android.cursor.item/imps-contacts" />
             </intent-filter>
         </activity>
 
@@ -190,7 +217,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="com.android.im.IMPS_CATEGORY" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android-dir/im-providerSettings" />
+                <data android:mimeType="vnd.android-dir/imps-providerSettings" />
             </intent-filter>
         </activity>
 
@@ -206,6 +233,22 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <!--Plug-in Sevice started-->
+        <!--
+        <service android:name="com.android.im.plugin.demo.DemoImPlugin">
+            <intent-filter>
+                <action android:name="com.android.im.plugin" />
+            </intent-filter>
+            <meta-data android:name="com.android.im.provider_name"
+                android:value="Demo"/>
+            <meta-data android:name="com.android.im.provider_full_name"
+                android:value="Demo IM Provider"/>
+            <meta-data android:name="com.android.im.signup_url"
+                android:value="http://xxx.xxx.xxx"/>
+        </service>
+        -->
+        <!--Plug-in Service end-->
 
     </application>
 

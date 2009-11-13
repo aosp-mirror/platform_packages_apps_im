@@ -17,13 +17,13 @@
 
 package com.android.im.receiver;
 
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.BroadcastReceiver;
 import android.database.Cursor;
-import android.provider.Im;
 import android.util.Log;
 
 public class ImServiceAutoStarter extends BroadcastReceiver {
@@ -34,10 +34,10 @@ public class ImServiceAutoStarter extends BroadcastReceiver {
         // Received intent only when the system boot is completed
         Log.d(TAG, "onReceiveIntent");
 
-        String selection = Im.Account.KEEP_SIGNED_IN + "=1 AND "
-                + Im.Account.ACTIVE + "=1";
-        Cursor cursor = context.getContentResolver().query(Im.Account.CONTENT_URI,
-                new String[]{Im.Account._ID}, selection, null, null);
+        String selection = Imps.Account.KEEP_SIGNED_IN + "=1 AND "
+                + Imps.Account.ACTIVE + "=1";
+        Cursor cursor = context.getContentResolver().query(Imps.Account.CONTENT_URI,
+                new String[]{Imps.Account._ID}, selection, null, null);
         if (cursor != null) {
             if (cursor.getCount() > 0) {
                 Log.d(TAG, "start service");

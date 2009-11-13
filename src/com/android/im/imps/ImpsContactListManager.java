@@ -32,6 +32,7 @@ import com.android.im.engine.ImException;
 import com.android.im.engine.Presence;
 import com.android.im.engine.SubscriptionRequestListener;
 import com.android.im.imps.ImpsConstants.ImpsVersion;
+import com.android.im.plugin.PresenceMapping;
 
 /**
  * An implementation of ContactListManager of Wireless Village IMPS protocol.
