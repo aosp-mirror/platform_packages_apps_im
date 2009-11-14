@@ -31,7 +31,7 @@
     <string name="menu_add_contact" msgid="6315091944808434095">"Lägg till kontakt"</string>
     <string name="menu_remove_contact" msgid="3306468526492774925">"Ta bort kontakt"</string>
     <string name="menu_block_contact" msgid="727204732836017804">"Blockera kontakt"</string>
-    <string name="menu_view_blocked" msgid="7567355003496935631">"Blockerad"</string>
+    <string name="menu_view_blocked" msgid="7567355003496935631">"Blockerade"</string>
     <string name="menu_view_accounts" msgid="2876518557188672305">"Kontolista"</string>
     <string name="menu_settings" msgid="4609084900756093288">"Inställningar"</string>
     <string name="menu_start_chat" msgid="6188262479212139863">"Öppna chatt"</string>
@@ -42,7 +42,7 @@
     <string name="menu_invite_contact" msgid="4669830812552484236">"Bjud in…"</string>
     <string name="menu_switch_chats" msgid="5113455126377025717">"Byt chatt"</string>
     <string name="menu_insert_smiley" msgid="2555290958985391105">"Infoga känsloikon"</string>
-    <string name="menu_plus" msgid="5000617247235760106">"Meny+"</string>
+    <string name="menu_plus" msgid="5000617247235760106">"Menu+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"Indata"</string>
     <string name="confirm" msgid="3229086014444547636">"Bekräfta"</string>
     <string name="signout_all_confirm_message" msgid="4442995839737460513">"Vill du logga ut från alla tjänster?"</string>
