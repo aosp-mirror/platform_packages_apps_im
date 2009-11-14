@@ -56,7 +56,7 @@
     <string name="signed_out_prompt" msgid="8832702403969474634">"Sie wurden von <xliff:g id="ACCOUNT">%1$s</xliff:g> abgemeldet."</string>
     <string name="signed_out_prompt_with_error" msgid="7747094436931805456">"Sie wurden aus folgendem Grund von <xliff:g id="ACCOUNT">%1$s</xliff:g> abgemeldet: <xliff:g id="REASON">%2$s</xliff:g>."</string>
     <string name="add_account" msgid="3402105687785864337">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-Konto hinzufügen"</string>
-    <string name="label_username" msgid="8704597829337399952">"Benutzername:"</string>
+    <string name="label_username" msgid="8704597829337399952">"Nutzername:"</string>
     <string name="label_password" msgid="7809879599377131899">"Kennwort:"</string>
     <string name="remember_password" msgid="4090719436666073946">"Kennwort speichern"</string>
     <string name="keep_me_signed_in" msgid="2883914867912933061">"Automatisch anmelden"</string>
@@ -166,8 +166,8 @@
     <string name="version_not_supported" msgid="4342010736606775264">"Die aktuelle Version wird vom Server nicht unterstützt."</string>
     <string name="message_queue_full" msgid="7501019992527859517">"Die Nachrichtenwarteschlange ist voll."</string>
     <string name="domain_not_supported" msgid="7715663042901606605">"Das Weiterleiten an die Domäne wird vom Server nicht unterstützt."</string>
-    <string name="unknown_user" msgid="6680215792586778118">"Der eingegebene Benutzername wird nicht erkannt."</string>
-    <string name="recipient_blocked_the_user" msgid="8438323314518151118">"Sie werden leider vom Benutzer gesperrt."</string>
+    <string name="unknown_user" msgid="6680215792586778118">"Der eingegebene Nutzername wird nicht erkannt."</string>
+    <string name="recipient_blocked_the_user" msgid="8438323314518151118">"Sie werden leider vom Nutzer gesperrt."</string>
     <string name="session_expired" msgid="1999103420742299764">"Die Sitzung ist abgelaufen, bitte melden Sie sich erneut an."</string>
     <string name="forced_logout" msgid="4914497176506037105">"Sie haben sich von einem anderen Client aus angemeldet."</string>
     <string name="already_logged_in" msgid="1907391913706263174">"Sie haben sich bereits von einem anderen Client aus angemeldet."</string>

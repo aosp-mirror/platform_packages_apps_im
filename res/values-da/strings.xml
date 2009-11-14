@@ -16,9 +16,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="ro_perm_label" msgid="4791213266570841712">"læs chatbeskeder"</string>
-    <string name="ro_perm_desc" msgid="2030191017293726405">"Tillader programmer at læse data fra IM-indholdsleverandøren."</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"Tillader, at programmer læser data fra IM-indholdsleverandøren."</string>
     <string name="wo_perm_label" msgid="2275102271914312340">"skriv chatbeskeder"</string>
-    <string name="wo_perm_desc" msgid="4332792325927331086">"Tillader programmer at skrive data til IM-indholdsleverandøren."</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Tillader, at programmer skriver data til IM-indholdsleverandøren."</string>
     <string name="im_label" msgid="6289028202073124911">"IM"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"Chat – Vælg en konto"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"Tilføj konto"</string>
@@ -40,7 +40,7 @@
     <string name="menu_end_conversation" msgid="3556567768336552622">"Afslut chat"</string>
     <string name="menu_view_contact_list" msgid="4630377976475003130">"Liste over kontakter"</string>
     <string name="menu_invite_contact" msgid="4669830812552484236">"Inviter ..."</string>
-    <string name="menu_switch_chats" msgid="5113455126377025717">"Skift chats"</string>
+    <string name="menu_switch_chats" msgid="5113455126377025717">"Skift chatsamtale"</string>
     <string name="menu_insert_smiley" msgid="2555290958985391105">"Indsæt smiley"</string>
     <string name="menu_plus" msgid="5000617247235760106">"Menu+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"Input"</string>
@@ -61,7 +61,7 @@
     <string name="remember_password" msgid="4090719436666073946">"Husk min adgangskode."</string>
     <string name="keep_me_signed_in" msgid="2883914867912933061">"Log mig automatisk ind."</string>
     <string name="sign_up" msgid="7071654280992136839">"Har du ikke en konto?"</string>
-    <string name="check_auto_sign_in" msgid="308461891031463647">"Denne valgmulighed logger dig automatisk ind, hver gang du åbner dette program. For at deaktivere denne valgmulighed skal du logge ud og så fjerne markeringen i afkrydsningsfeltet \"Log mig ind automatisk\"."</string>
+    <string name="check_auto_sign_in" msgid="308461891031463647">"Denne indstilling logger dig automatisk ind, hver gang du åbner dette program. For at deaktivere denne indstilling skal du logge ud og derefter fjerne markeringen i afkrydsningsfeltet \"Log mig ind automatisk\"."</string>
     <string name="sign_in" msgid="6204326200860136567">"Log ind"</string>
     <string name="signing_in_to" msgid="2689649632858697221">"Logger ind på <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait" msgid="987357161364666888">"Logger ind ..."</string>
@@ -69,7 +69,7 @@
     <string name="bg_data_prompt_message" msgid="2343305645142823544">"<xliff:g id="PROVIDER">%1$s</xliff:g> kræver, at baggrundsdata aktiveres."</string>
     <string name="bg_data_prompt_ok" msgid="3443385427882751532">"Aktiver"</string>
     <string name="bg_data_prompt_cancel" msgid="7206105589826174638">"Afslut"</string>
-    <string name="ongoing_conversation" msgid="6523428329676936109">"Igangværende chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="ongoing_conversation" msgid="6523428329676936109">"Igangværende chatsamtaler (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count" msgid="5007781327712739543">"<xliff:g id="NUMBER">%1$d</xliff:g> er online"</string>
     <string name="subscriptions" msgid="2039801939162848292">"Venneinvitationer"</string>
     <string name="unknown_contact" msgid="3493840718873032803">"("<i>"Ukendt"</i>")"</string>
@@ -93,12 +93,12 @@
     <string name="presence_invisible" msgid="1485652711495491831">"Vis som offline"</string>
     <string name="chat_with" msgid="8562954189958846831">"Chat med <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me" msgid="8421609599685404593">"Mig"</string>
-    <string name="compose_hint" msgid="1735533889811320962">"Indtast for at skrive"</string>
+    <string name="compose_hint" msgid="1735533889811320962">"Indtast tekst"</string>
     <string name="contact_online" msgid="4241843267436748586">"<xliff:g id="USER">%1$s</xliff:g> er online"</string>
     <string name="contact_away" msgid="2333627320542883164">"<xliff:g id="USER">%1$s</xliff:g> er ikke til stede"</string>
     <string name="contact_busy" msgid="9175172991334146704">"<xliff:g id="USER">%1$s</xliff:g> er optaget"</string>
     <string name="contact_offline" msgid="7054903259540426223">"<xliff:g id="USER">%1$s</xliff:g> er offline"</string>
-    <string name="contact_joined" msgid="6713312815095658394">"<xliff:g id="USER">%1$s</xliff:g> har tilsluttet sig"</string>
+    <string name="contact_joined" msgid="6713312815095658394">"<xliff:g id="USER">%1$s</xliff:g> deltager nu"</string>
     <string name="contact_left" msgid="3020686291216941829">"<xliff:g id="USER">%1$s</xliff:g> er gået"</string>
     <string name="time_stamp" format="date" msgid="8952691401963972802">"'Sendt klokken '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' den '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send" msgid="2726588254020771734">"Send"</string>
@@ -107,21 +107,21 @@
     <string name="contact_offline_warning" msgid="8822964251595561504">"<xliff:g id="USER_0">%1$s</xliff:g> er offline. Dine sendte beskeder sendes, når <xliff:g id="USER_1">%1$s</xliff:g> er online igen."</string>
     <string name="contact_not_in_list_warning" msgid="2411313232707156524">"<xliff:g id="USER">%1$s</xliff:g> er ikke på din liste over kontakter."</string>
     <string name="select_link_title" msgid="5020179468567358399">"Vælg link"</string>
-    <string name="empty_chat_list" msgid="7268903855432844937">"Der er ingen aktive chats."</string>
+    <string name="empty_chat_list" msgid="7268903855432844937">"Der er ingen aktive chatsamtaler."</string>
     <string name="add_contact_title" msgid="8541795892456911186">"Tilføj kontakt"</string>
     <string name="input_contact_label" msgid="395294356081431462">"E-mail-adresse på den person, du ønsker at invitere:"</string>
     <string name="choose_list_label" msgid="1430489448508574145">"Vælg en liste:"</string>
     <string name="invite_instruction" msgid="8262403243657760155">"Indtast et navn for at tilføje fra Kontakter."</string>
     <string name="invite_label" msgid="6229798754682424899">"Send invitation"</string>
     <string name="setting_title" msgid="6676157178613673420">"Generelle indstillinger"</string>
-    <string name="hide_offline_contacts" msgid="8017909244732772990">"Skjul offline kontakter"</string>
-    <string name="notification_group_title" msgid="4944275706770811080">"Meddelelsesindstillinger"</string>
+    <string name="hide_offline_contacts" msgid="8017909244732772990">"Skjul kontakter, der er offline"</string>
+    <string name="notification_group_title" msgid="4944275706770811080">"Indstillinger for meddelelser"</string>
     <string name="notification_enabled_title" msgid="6447889693376465773">"IM-meddelelser"</string>
-    <string name="notification_enabled_summary" msgid="2090889893066171466">"Underret i statuslinjen, når der kommer en IM"</string>
-    <string name="notification_vibrate_title" msgid="5603532186091800924">"Vibrer"</string>
-    <string name="notification_vibrate_summary" msgid="1875275321875946598">"Vibrer også, når der kommer en IM"</string>
+    <string name="notification_enabled_summary" msgid="2090889893066171466">"Vis i statuslinjen, når der kommer en IM"</string>
+    <string name="notification_vibrate_title" msgid="5603532186091800924">"Vibration"</string>
+    <string name="notification_vibrate_summary" msgid="1875275321875946598">"Vibration ved ny IM"</string>
     <string name="notification_sound_title" msgid="8367990268592958299">"Lyd"</string>
-    <string name="notification_sound_summary" msgid="3634976543811200858">"Spil også ringetone, når der kommer en IM"</string>
+    <string name="notification_sound_summary" msgid="3634976543811200858">"Afspil ringetone, når der kommer en IM"</string>
     <string name="notification_ringtone_title" msgid="4847700898968990954">"Vælg ringetone"</string>
     <string name="invitation_prompt" msgid="1776461436395016582">"<xliff:g id="USER">%1$s</xliff:g> har inviteret dig til at deltage i en gruppechat."</string>
     <string name="invitation_sent_prompt" msgid="2542342110609014148">"Invitationen er sendt til <xliff:g id="USER">%1$s</xliff:g>."</string>
@@ -131,18 +131,18 @@
     <string name="approve_subscription" msgid="2035288988418082224">"Accepter"</string>
     <string name="decline_subscription" msgid="3069941120905061191">"Afvis"</string>
     <string name="approve_subscription_error" msgid="7653225198395861289">"Tilmelding fra <xliff:g id="USER">%1$s</xliff:g> kunne ikke godkendes. Prøv igen senere."</string>
-    <string name="decline_subscription_error" msgid="7593921535412836089">"Tilmelding fra <xliff:g id="USER">%1$s</xliff:g> kunne ikke afvises. Prøv igen senere."</string>
+    <string name="decline_subscription_error" msgid="7593921535412836089">"Tilmeldingen fra <xliff:g id="USER">%1$s</xliff:g> kunne ikke afvises. Prøv igen senere."</string>
     <string name="newMessages_label" msgid="2180971062715087738">"Nye <xliff:g id="PROVIDER">%1$s</xliff:g>-beskeder"</string>
-    <string name="num_unread_chats" msgid="728064925131396221">"<xliff:g id="NUMBER">%1$d</xliff:g> ulæste chats"</string>
+    <string name="num_unread_chats" msgid="728064925131396221">"<xliff:g id="NUMBER">%1$d</xliff:g> ulæste chatbeskeder"</string>
     <string name="subscription_notify_text" msgid="6742004636596633323">"Ny venneinvitation fra <xliff:g id="USER">%s</xliff:g>"</string>
-    <string name="notify_groupchat_label" msgid="4200552751080182984">"Gruppechatinvitation"</string>
-    <string name="group_chat_invite_notify_text" msgid="2115253984204158370">"Ny gruppechatinvitation fra <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label" msgid="4200552751080182984">"Invitation til gruppechat"</string>
+    <string name="group_chat_invite_notify_text" msgid="2115253984204158370">"Ny invitation til gruppechat fra <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="add_contact_success" msgid="6760968462242659207">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" er tilføjet."</string>
     <string name="delete_contact_success" msgid="4451989113378349412">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" er slettet."</string>
     <string name="block_contact_success" msgid="301279568695040166">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" er blokeret."</string>
     <string name="unblock_contact_success" msgid="5506870117106713456">"Kontakten \"<xliff:g id="USER">%1$s</xliff:g>\" er ikke længere blokeret."</string>
     <string name="perm_label" msgid="203411797893865789">"start IM-tjeneste"</string>
-    <string name="perm_desc" msgid="6978187394092498941">"Lader programmer starte IM-tjeneste efter hensigt."</string>
+    <string name="perm_desc" msgid="6978187394092498941">"Tillader, at programmer starter IM-tjenesten efter hensigt."</string>
     <string name="error" msgid="4778856523246532623">"Bemærk"</string>
     <string name="login_service_failed" msgid="3883751713470046349">"Der kunne ikke logges ind på tjenesten <xliff:g id="SERVICE">%1$s</xliff:g>. Prøv igen senere."\n"(Detalje: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed" msgid="5659371594032378190">"Listen blev ikke tilføjet."</string>
@@ -150,7 +150,7 @@
     <string name="unblock_contact_failed" msgid="7761060327693183076">"Blokeringen af kontakten blev ikke ophævet."</string>
     <string name="select_contact" msgid="5804415466346460387">"Vælg en kontakt først."</string>
     <string name="disconnected" msgid="7731840958629349414">"Afbrudt!"\n</string>
-    <string name="service_error" msgid="4578570332742070464">"Servicefejl!"</string>
+    <string name="service_error" msgid="4578570332742070464">"Tjenestefejl!"</string>
     <string name="load_contact_list_failed" msgid="6395594768879404874">"Listen over kontakter blev ikke indlæst."</string>
     <string name="cant_connect_to_server" msgid="3188697382173578199">"Der kan ikke oprettes forbindelse til serveren. Kontroller din forbindelse."</string>
     <string name="contact_already_exist" msgid="4982433960953410393">"<xliff:g id="USER">%1$s</xliff:g> findes allerede på din liste over kontakter."</string>
@@ -167,7 +167,7 @@
     <string name="message_queue_full" msgid="7501019992527859517">"Beskedkøen er fuld."</string>
     <string name="domain_not_supported" msgid="7715663042901606605">"Serveren understøtter ikke videresendelse til domænet."</string>
     <string name="unknown_user" msgid="6680215792586778118">"Det indtastede brugernavn kunne ikke genkendes."</string>
-    <string name="recipient_blocked_the_user" msgid="8438323314518151118">"Beklager! Du er blokeret af brugeren."</string>
+    <string name="recipient_blocked_the_user" msgid="8438323314518151118">"Beklager! Brugeren har blokeret dig."</string>
     <string name="session_expired" msgid="1999103420742299764">"Sessionen er udløbet. Log ind igen."</string>
     <string name="forced_logout" msgid="4914497176506037105">"du er logget ind fra en anden klient."</string>
     <string name="already_logged_in" msgid="1907391913706263174">"du er allerede logget ind fra en anden klient."</string>
