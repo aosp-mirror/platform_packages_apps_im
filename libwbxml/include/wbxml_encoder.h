@@ -20,6 +20,8 @@
 
 #include <stdint.h>
 #include "wbxml_const.h"
+#include "wbxml_stl.h"
+
 
 class WbxmlHandler
 {
@@ -43,6 +45,8 @@ enum EncoderError {
 class WbxmlEncoder
 {
 public:
+    WbxmlEncoder(int publicId):mPublicId(publicId) {}
+
     virtual ~WbxmlEncoder() {}
 
     void setWbxmlHandler(WbxmlHandler * handler)
@@ -60,8 +64,44 @@ public:
      */
     virtual void reset() = 0;
 
+    static bool isXmlWhitespace(int ch);
+    static bool parseUint(const char * s, int len, uint32_t *res);
+
 protected:
     WbxmlHandler * mHandler;
+    int mPublicId;
+
+    EncoderError encodeInteger(const char *chars, int len);
+    EncoderError encodeDatetime(const char *chars, int len);
+    void encodeInlinedStr(const char *s, int len);
+    void encodeMbuint(uint32_t i);
+
+    void clearResult()
+    {
+        mResult.clear();
+    }
+
+    void appendResult(int ch)
+    {
+        mResult += (char)ch;
+    }
+
+    void appendResult(const char *s, int len)
+    {
+        mResult.append(s, len);
+    }
+
+    void sendResult();
+
+    /**
+     * Append a string into the string table, return the index of the string in
+     * the string table.
+     */
+    int appendToStringTable(const char *s);
+
+private:
+    string mResult;
+    vector<string> mStringTable;
 };
 
 #endif

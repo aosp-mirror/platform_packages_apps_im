@@ -49,6 +49,7 @@ public class AndroidSmsService implements SmsService {
     private Context mContext;
     private SmsReceiver mSmsReceiver;
     private IntentFilter mIntentFilter;
+    private boolean mStarted;
     /*package*/HashMap<Integer, ListenerList> mListeners;
     /*package*/HashMap<Long, SmsSendFailureCallback> mFailureCallbacks;
 
@@ -110,11 +111,17 @@ public class AndroidSmsService implements SmsService {
         if (l == null) {
             l = new ListenerList(port);
             mListeners.put(port, l);
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                log("Register SMS receiver on port " + port);
+            }
 
             // We didn't listen on the port yet, register the receiver with the
             // additional port.
             mIntentFilter.addDataAuthority("*", String.valueOf(port));
             mContext.registerReceiver(mSmsReceiver, mIntentFilter);
+            synchronized (this) {
+                mStarted = true;
+            }
         }
         l.addListener(from, listener);
     }
@@ -130,8 +137,11 @@ public class AndroidSmsService implements SmsService {
         }
     }
 
-    public void stop() {
-        mContext.unregisterReceiver(mSmsReceiver);
+    public synchronized void stop() {
+        if (mStarted) {
+            mContext.unregisterReceiver(mSmsReceiver);
+            mStarted = false;
+        }
     }
 
     private static long sNextMsgId = 0;
@@ -166,6 +176,11 @@ public class AndroidSmsService implements SmsService {
             } else if (DATA_SMS_RECEIVED_ACTION.equals(intent.getAction())){
                 Uri uri = intent.getData();
                 int port = uri.getPort();
+
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    log("Received sms on port:" + port);
+                }
+
                 ListenerList listeners = mListeners.get(port);
                 if (listeners == null) {
                     if (Log.isLoggable(TAG, Log.DEBUG)) {
@@ -219,7 +234,10 @@ public class AndroidSmsService implements SmsService {
         public void notifySms(String addr, byte[] data) {
             int N = mListenerList.size();
             for (int i = 0; i < N; i++) {
-                if (PhoneNumberUtils.compare(addr, mAddrList.get(i))) {
+                String listenAddr = mAddrList.get(i);
+                if (ANY_ADDRESS.equals(listenAddr)
+                        || addr.equals(listenAddr)
+                        || PhoneNumberUtils.compare(addr, listenAddr)) {
                     mListenerList.get(i).onIncomingSms(data);
                 }
             }

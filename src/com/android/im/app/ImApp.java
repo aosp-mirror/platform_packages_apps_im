@@ -17,6 +17,12 @@
 
 package com.android.im.app;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentName;
@@ -27,20 +33,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Broadcaster;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.provider.Im;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.im.IConnectionCreationListener;
@@ -51,14 +53,10 @@ import com.android.im.app.adapter.ConnectionListenerAdapter;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
-import com.android.im.plugin.ImPluginConstants;
+import com.android.im.plugin.ImPlugin;
 import com.android.im.plugin.ImPluginInfo;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 
 public class ImApp extends Application {
     public static final String LOG_TAG = "ImApp";
@@ -100,18 +98,18 @@ public class ImApp extends Application {
     public static final int EVENT_UPDATE_USER_PRESENCE_ERROR = 301;
 
     private static final String[] PROVIDER_PROJECTION = {
-        Im.Provider._ID,
-        Im.Provider.NAME,
-        Im.Provider.FULLNAME,
-        Im.Provider.SIGNUP_URL,
+        Imps.Provider._ID,
+        Imps.Provider.NAME,
+        Imps.Provider.FULLNAME,
+        Imps.Provider.SIGNUP_URL,
     };
 
     private static final String[] ACCOUNT_PROJECTION = {
-        Im.Account._ID,
-        Im.Account.PROVIDER,
-        Im.Account.NAME,
-        Im.Account.USERNAME,
-        Im.Account.PASSWORD,
+        Imps.Account._ID,
+        Imps.Account.PROVIDER,
+        Imps.Account.NAME,
+        Imps.Account.USERNAME,
+        Imps.Account.PASSWORD,
     };
 
     static final void log(String log) {
@@ -173,8 +171,6 @@ public class ImApp extends Application {
         super.onCreate();
         mBroadcaster = new Broadcaster();
         loadDefaultBrandingRes();
-        mBrandingResources = new HashMap<String, BrandingResources>();
-        loadThirdPartyResources();
     }
 
     @Override
@@ -265,27 +261,27 @@ public class ImApp extends Application {
 
     public static long insertOrUpdateAccount(ContentResolver cr,
             long providerId, String userName, String pw) {
-        String selection = Im.Account.PROVIDER + "=? AND " + Im.Account.USERNAME + "=?";
+        String selection = Imps.Account.PROVIDER + "=? AND " + Imps.Account.USERNAME + "=?";
         String[] selectionArgs = {Long.toString(providerId), userName };
 
-        Cursor c = cr.query(Im.Account.CONTENT_URI, ACCOUNT_PROJECTION,
+        Cursor c = cr.query(Imps.Account.CONTENT_URI, ACCOUNT_PROJECTION,
                 selection, selectionArgs, null);
         if (c != null && c.moveToFirst()) {
             // Update the password
-            c.updateString(c.getColumnIndexOrThrow(Im.Account.PASSWORD), pw);
+            c.updateString(c.getColumnIndexOrThrow(Imps.Account.PASSWORD), pw);
             c.commitUpdates();
 
-            long id = c.getLong(c.getColumnIndexOrThrow(Im.Account._ID));
+            long id = c.getLong(c.getColumnIndexOrThrow(Imps.Account._ID));
             c.close();
             return id;
         } else {
             ContentValues values = new ContentValues(4);
-            values.put(Im.Account.PROVIDER, providerId);
-            values.put(Im.Account.NAME, userName);
-            values.put(Im.Account.USERNAME, userName);
-            values.put(Im.Account.PASSWORD, pw);
+            values.put(Imps.Account.PROVIDER, providerId);
+            values.put(Imps.Account.NAME, userName);
+            values.put(Imps.Account.USERNAME, userName);
+            values.put(Imps.Account.PASSWORD, pw);
 
-            Uri result = cr.insert(Im.Account.CONTENT_URI, values);
+            Uri result = cr.insert(Imps.Account.CONTENT_URI, values);
             return ContentUris.parseId(result);
         }
     }
@@ -294,15 +290,15 @@ public class ImApp extends Application {
         if (mProviders != null) {
             return;
         }
-        
+
         mProviders = new HashMap<Long, ProviderDef>();
         ContentResolver cr = getContentResolver();
 
         String selectionArgs[] = new String[1];
         selectionArgs[0] = ImApp.IMPS_CATEGORY;
 
-        Cursor c = cr.query(Im.Provider.CONTENT_URI, PROVIDER_PROJECTION,
-                Im.Provider.CATEGORY+"=?", selectionArgs, null);
+        Cursor c = cr.query(Imps.Provider.CONTENT_URI, PROVIDER_PROJECTION,
+                Imps.Provider.CATEGORY+"=?", selectionArgs, null);
         if (c == null) {
             return;
         }
@@ -401,40 +397,28 @@ public class ImApp extends Application {
     }
 
     private void loadThirdPartyResources() {
+        ImPluginHelper helper = ImPluginHelper.getInstance(this);
+        helper.loadAvaiablePlugins();
+        ArrayList<ImPlugin> pluginList = helper.getPluginObjects();
+        ArrayList<ImPluginInfo> infoList = helper.getPluginsInfo();
+        int N = pluginList.size();
         PackageManager pm = getPackageManager();
-        List<ResolveInfo> plugins = pm.queryIntentServices(
-                new Intent(ImPluginConstants.PLUGIN_ACTION_NAME), PackageManager.GET_META_DATA);
-        for (ResolveInfo info : plugins) {
-            Log.d(LOG_TAG, "Found plugin " + info);
+        for (int i = 0; i < N; i++) {
+            ImPlugin plugin = pluginList.get(i);
+            ImPluginInfo pluginInfo = infoList.get(i);
 
-            ServiceInfo serviceInfo = info.serviceInfo;
-            if (serviceInfo == null) {
-                Log.e(LOG_TAG, "Ignore bad IM plugin: " + info);
-                continue;
-            }
-            String providerName = null;
-            String providerFullName = null;
-            Bundle metaData = serviceInfo.metaData;
-            if (metaData != null) {
-                providerName = metaData.getString(
-                        ImPluginConstants.METADATA_PROVIDER_NAME);
-                providerFullName = metaData.getString(
-                        ImPluginConstants.METADATA_PROVIDER_FULL_NAME);
-            }
-            if (TextUtils.isEmpty(providerName)
-                    || TextUtils.isEmpty(providerFullName)) {
-                Log.e(LOG_TAG, "Ignore bad IM plugin: " + info
-                        + ". Lack of required meta data");
-                continue;
-            }
+            try {
+                Resources packageRes = pm.getResourcesForApplication(pluginInfo.mPackageName);
 
-            ImPluginInfo pluginInfo = new ImPluginInfo(providerName,
-                    serviceInfo.packageName, serviceInfo.name,
-                    serviceInfo.applicationInfo.sourceDir);
+                Map<Integer, Integer> resMap = plugin.getResourceMap();
+                int[] smileyIcons = plugin.getSmileyIconIds();
 
-            BrandingResources res = new BrandingResources(this, pluginInfo,
-                    mDefaultBrandingResources);
-            mBrandingResources.put(providerName, res);
+                BrandingResources res = new BrandingResources(packageRes, resMap,
+                        smileyIcons, mDefaultBrandingResources);
+                mBrandingResources.put(pluginInfo.mProviderName, res);
+            } catch (NameNotFoundException e) {
+                Log.e(LOG_TAG, "Failed to load third party resources.", e);
+            }
         }
     }
 
@@ -464,6 +448,10 @@ public class ImApp extends Application {
         ProviderDef provider = getProvider(providerId);
         if (provider == null) {
             return mDefaultBrandingResources;
+        }
+        if (mBrandingResources == null) {
+            mBrandingResources = new HashMap<String, BrandingResources>();
+            loadThirdPartyResources();
         }
         BrandingResources res = mBrandingResources.get(provider.mName);
         return res == null ? mDefaultBrandingResources : res;
@@ -670,6 +658,9 @@ public class ImApp extends Application {
 
                 case ImConnection.LOGGING_OUT:
                     what = EVENT_CONNECTION_LOGGING_OUT;
+                    synchronized (mConnections) {
+                        mConnections.remove(providerId);
+                    }
                     break;
 
                 case ImConnection.DISCONNECTED:

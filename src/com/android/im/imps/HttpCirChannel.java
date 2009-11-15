@@ -45,7 +45,7 @@ class HttpCirChannel extends CirChannel implements Runnable {
     }
 
     @Override
-    public void connect() {
+    public synchronized void connect() {
         ImpsSession session = mConnection.getSession();
         try {
             if (session.getCirHttpAddress() != null) {
@@ -56,13 +56,18 @@ class HttpCirChannel extends CirChannel implements Runnable {
         }
         mServerPollMin = session.getServerPollMin() * 1000;
 
+        mStopped = false;
         mPollingTask = new Thread(this, "HTTPCIRChannel");
         mPollingTask.setDaemon(true);
         mPollingTask.start();
     }
 
+    public synchronized boolean isShutdown() {
+        return mStopped;
+    }
+
     @Override
-    public void shutdown() {
+    public synchronized void shutdown() {
         mStopped = true;
     }
 

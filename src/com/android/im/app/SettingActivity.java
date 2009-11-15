@@ -22,10 +22,10 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.CheckBoxPreference;
-import android.provider.Im;
 import android.util.Log;
 
 import com.android.im.R;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 public class SettingActivity extends android.preference.PreferenceActivity {
@@ -50,7 +50,7 @@ public class SettingActivity extends android.preference.PreferenceActivity {
     }
 
     private void setInitialValues() {
-        Im.ProviderSettings.QueryMap settings = new Im.ProviderSettings.QueryMap(
+        Imps.ProviderSettings.QueryMap settings = new Imps.ProviderSettings.QueryMap(
                 getContentResolver(), mProviderId,
                 false /* keep updated */, null /* no handler */);
 
@@ -71,7 +71,7 @@ public class SettingActivity extends android.preference.PreferenceActivity {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference instanceof CheckBoxPreference) {
-            final Im.ProviderSettings.QueryMap settings = new Im.ProviderSettings.QueryMap(
+            final Imps.ProviderSettings.QueryMap settings = new Imps.ProviderSettings.QueryMap(
                     getContentResolver(), mProviderId,
                     false /* keep updated */, null /* no handler */);
             String key = preference.getKey();

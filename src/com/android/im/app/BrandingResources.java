@@ -17,7 +17,7 @@
 
 package com.android.im.app;
 
-import com.android.im.plugin.IImPlugin;
+import com.android.im.plugin.ImPlugin;
 import com.android.im.plugin.ImPluginInfo;
 import dalvik.system.PathClassLoader;
 
@@ -68,12 +68,11 @@ public class BrandingResources {
         // Load the plug-in directly from the apk instead of binding the service
         // and calling through the IPC binder API. It's more effective in this way
         // and we can avoid the async behaviors of binding service.
-        PathClassLoader classLoader = new PathClassLoader(pluginInfo.mSrcPath,
-                context.getClassLoader());
+        ClassLoader classLoader = context.getClassLoader();
         try {
             Class cls = classLoader.loadClass(pluginInfo.mClassName);
             Method m = cls.getMethod("onBind", Intent.class);
-            IImPlugin plugin = (IImPlugin)m.invoke(cls.newInstance(), new Object[]{null});
+            ImPlugin plugin = (ImPlugin)m.invoke(cls.newInstance(), new Object[]{null});
             mResMapping = plugin.getResourceMap();
             mSmileyIcons = plugin.getSmileyIconIds();
         } catch (ClassNotFoundException e) {
@@ -90,8 +89,6 @@ public class BrandingResources {
             Log.e(TAG, "Failed load the plugin resource map", e);
         } catch (InvocationTargetException e) {
             Log.e(TAG, "Failed load the plugin resource map", e);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Failed load the plugin resource map", e);
         }
     }
 
@@ -104,8 +101,14 @@ public class BrandingResources {
      */
     public BrandingResources(Context context, Map<Integer, Integer> resMapping,
             BrandingResources defaultRes) {
-        mPackageRes = context.getResources();
+        this(context.getResources(), resMapping, null, defaultRes);
+    }
+
+    public BrandingResources(Resources packageRes, Map<Integer, Integer> resMapping,
+            int[] smileyIcons, BrandingResources defaultRes) {
+        mPackageRes = packageRes;
         mResMapping = resMapping;
+        mSmileyIcons = smileyIcons;
         mDefaultRes = defaultRes;
     }
 

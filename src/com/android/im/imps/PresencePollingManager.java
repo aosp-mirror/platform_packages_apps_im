@@ -86,7 +86,9 @@ public class PresencePollingManager implements Runnable {
                         // poll. Fetch the presence of all contacts in list.
                         pollingAddress = getContactLists();
                     }
-                    mManager.fetchPresence(pollingAddress);
+                    if (pollingAddress != null) {
+                        mManager.fetchPresence(pollingAddress);
+                    }
                 }
 
                 try {

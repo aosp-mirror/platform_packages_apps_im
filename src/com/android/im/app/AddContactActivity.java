@@ -29,7 +29,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.provider.Im;
 import android.provider.Contacts.ContactMethods;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -51,6 +50,7 @@ import com.android.im.R;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
 import com.android.im.plugin.ImpsConfigNames;
+import com.android.im.provider.Imps;
 import com.android.im.service.ImServiceConstants;
 
 import java.util.List;
@@ -58,8 +58,8 @@ import java.util.List;
 public class AddContactActivity extends Activity {
 
     private static final String[] CONTACT_LIST_PROJECTION = {
-        Im.ContactList._ID,
-        Im.ContactList.NAME,
+        Imps.ContactList._ID,
+        Imps.ContactList.NAME,
     };
     private static final int CONTACT_LIST_NAME_COLUMN = 1;
 
@@ -102,7 +102,7 @@ public class AddContactActivity extends Activity {
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 c,
-                new String[] {Im.ContactList.NAME},
+                new String[] {Imps.ContactList.NAME},
                 new int[] {android.R.id.text1});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mListSpinner.setAdapter(adapter);
@@ -116,7 +116,7 @@ public class AddContactActivity extends Activity {
     }
 
     private Cursor queryContactLists() {
-        Uri uri = Im.ContactList.CONTENT_URI;
+        Uri uri = Imps.ContactList.CONTENT_URI;
         uri = ContentUris.withAppendedId(uri, mProviderId);
         uri = ContentUris.withAppendedId(uri, mAccountId);
         Cursor c = managedQuery(uri, CONTACT_LIST_PROJECTION, null, null);
@@ -141,7 +141,7 @@ public class AddContactActivity extends Activity {
                 ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, -1);
         mAccountId = intent.getLongExtra(
                 ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, -1);
-        mDefaultDomain = Im.ProviderSettings.getStringValue(getContentResolver(),
+        mDefaultDomain = Imps.ProviderSettings.getStringValue(getContentResolver(),
                 mProviderId, ImpsConfigNames.DEFAULT_DOMAIN);
     }
 

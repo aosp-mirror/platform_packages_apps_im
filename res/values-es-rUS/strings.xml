@@ -15,7 +15,18 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="ro_perm_label" msgid="4791213266570841712">"leer mensajes instantáneos"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"Permite que las aplicaciones lean datos del proveedor de contenido de mensajería instantánea"</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"escribir mensajes instantáneos"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Permite que las aplicaciones ingresen datos en el proveedor de contenido de mensajería instantánea"</string>
     <string name="im_label" msgid="6289028202073124911">"Mensajería instantánea"</string>
+    <string name="landing_page_title" msgid="8575938257482637474">"Chat - Seleccionar una cuenta"</string>
+    <string name="menu_add_account" msgid="5762363412622888397">"Agregar cuenta"</string>
+    <string name="menu_edit_account" msgid="2909998494159263063">"Editar cuenta"</string>
+    <string name="menu_remove_account" msgid="6821008426177540869">"Eliminar cuenta"</string>
+    <string name="menu_sign_out_all" msgid="4796813055998684330">"Cerrar sesión de todo"</string>
+    <string name="choose_account_title" msgid="6660096418433575680">"Chat - Seleccionar una cuenta"</string>
+    <string name="conversations" msgid="7338245838564623519">"(<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="menu_cancel_signin" msgid="146078926243968887">"Cancelar inicio de sesión"</string>
     <string name="menu_add_contact" msgid="6315091944808434095">"Agregar contacto"</string>
     <string name="menu_remove_contact" msgid="3306468526492774925">"Eliminar contacto"</string>
@@ -34,6 +45,7 @@
     <string name="menu_plus" msgid="5000617247235760106">"Menú+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"Entrada"</string>
     <string name="confirm" msgid="3229086014444547636">"Confirmar"</string>
+    <string name="signout_all_confirm_message" msgid="4442995839737460513">"¿Deseas salir de todos los servicios?"</string>
     <string name="confirm_delete_contact" msgid="1364595657359357114">"El contacto \"<xliff:g id="USER">%1$s</xliff:g>\" se eliminará."</string>
     <string name="confirm_block_contact" msgid="2490910366424078491">"El contacto \"<xliff:g id="USER">%1$s</xliff:g>\" se bloqueará."</string>
     <string name="confirm_unblock_contact" msgid="2194464819104507216">"El contacto \"<xliff:g id="USER">%1$s</xliff:g>\" se desbloqueará."</string>

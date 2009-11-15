@@ -21,7 +21,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
-import android.provider.Im;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +31,7 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.android.im.R;
+import com.android.im.provider.Imps;
 
 public class ContactListFilterView extends LinearLayout {
 
@@ -95,18 +95,18 @@ public class ContactListFilterView extends LinearLayout {
         StringBuilder buf = new StringBuilder();
 
         // exclude chatting contact
-        buf.append(Im.Chats.LAST_MESSAGE_DATE);
+        buf.append(Imps.Chats.LAST_MESSAGE_DATE);
         buf.append(" IS NULL");
 
         if (constraint != null) {
             buf.append(" AND ");
-            buf.append(Im.Contacts.NICKNAME);
+            buf.append(Imps.Contacts.NICKNAME);
             buf.append(" LIKE ");
             DatabaseUtils.appendValueToSql(buf, "%" + constraint + "%");
         }
 
         return mContext.getContentResolver().query(mUri, ContactView.CONTACT_PROJECTION,
-                buf == null ? null : buf.toString(), null, Im.Contacts.DEFAULT_SORT_ORDER);
+                buf == null ? null : buf.toString(), null, Imps.Contacts.DEFAULT_SORT_ORDER);
     }
 
     private class ContactAdapter extends ResourceCursorAdapter {

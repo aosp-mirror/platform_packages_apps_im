@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -33,7 +34,6 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -51,7 +51,7 @@ public class ChatSwitcher {
     private static final boolean LOCAL_DEBUG = true;
 
     private static final String[] PROVIDER_CATEGORY_PROJECTION = new String[] {
-            Im.Provider.CATEGORY
+            Imps.Provider.CATEGORY
     };
     private static final int PROVIDER_CATEGORY_COLUMN = 0;
 
@@ -130,7 +130,7 @@ public class ChatSwitcher {
         mQueryHandler.startQuery(
                 sQueryToken,
                 runnable,
-                Im.Contacts.CONTENT_URI_CHAT_CONTACTS,
+                Imps.Contacts.CONTENT_URI_CHAT_CONTACTS,
                 null, /*projection*/
                 mQuerySelection,
                 mQuerySelectionArgs,
@@ -452,17 +452,17 @@ public class ChatSwitcher {
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
 
                 if (cursor != null) {
-                    mContactIdColumn = cursor.getColumnIndexOrThrow(Im.Contacts._ID);
-                    mProviderIdColumn = cursor.getColumnIndexOrThrow(Im.Contacts.PROVIDER);
-                    mAccountIdColumn = cursor.getColumnIndexOrThrow(Im.Contacts.ACCOUNT);
-                    mUsernameColumn = cursor.getColumnIndexOrThrow(Im.Contacts.USERNAME);
-                    mNicknameColumn = cursor.getColumnIndexOrThrow(Im.Contacts.NICKNAME);
-                    mPresenceStatusColumn = cursor.getColumnIndexOrThrow(Im.Contacts.PRESENCE_STATUS);
-                    mLastUnreadMessageColumn = cursor.getColumnIndexOrThrow(Im.Chats.LAST_UNREAD_MESSAGE);
-                    mAvatarDataColumn = cursor.getColumnIndexOrThrow(Im.Contacts.AVATAR_DATA);
-                    mShortcutColumn = cursor.getColumnIndexOrThrow(Im.Chats.SHORTCUT);
-                    mLastChatColumn = cursor.getColumnIndexOrThrow(Im.Chats.LAST_MESSAGE_DATE);
-                    mGroupChatColumn = cursor.getColumnIndexOrThrow(Im.Chats.GROUP_CHAT);
+                    mContactIdColumn = cursor.getColumnIndexOrThrow(Imps.Contacts._ID);
+                    mProviderIdColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.PROVIDER);
+                    mAccountIdColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.ACCOUNT);
+                    mUsernameColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.USERNAME);
+                    mNicknameColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.NICKNAME);
+                    mPresenceStatusColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.PRESENCE_STATUS);
+                    mLastUnreadMessageColumn = cursor.getColumnIndexOrThrow(Imps.Chats.LAST_UNREAD_MESSAGE);
+                    mAvatarDataColumn = cursor.getColumnIndexOrThrow(Imps.Contacts.AVATAR_DATA);
+                    mShortcutColumn = cursor.getColumnIndexOrThrow(Imps.Chats.SHORTCUT);
+                    mLastChatColumn = cursor.getColumnIndexOrThrow(Imps.Chats.LAST_MESSAGE_DATE);
+                    mGroupChatColumn = cursor.getColumnIndexOrThrow(Imps.Chats.GROUP_CHAT);
                 }
 
                 mOkToShowEmptyView = true;
@@ -496,7 +496,7 @@ public class ChatSwitcher {
                 buf.append(" OR ");
             }
             
-            buf.append(Im.Contacts.PROVIDER).append("=?");
+            buf.append(Imps.Contacts.PROVIDER).append("=?");
             mQuerySelectionArgs[i] = String.valueOf(providerDef.mId);
             i++;
         }
@@ -510,7 +510,7 @@ public class ChatSwitcher {
     private static String findCategory(ContentResolver resolver, long providerId) {
         // find the provider category for this chat
         Cursor providerCursor = resolver.query(
-                Im.Provider.CONTENT_URI,
+                Imps.Provider.CONTENT_URI,
                 PROVIDER_CATEGORY_PROJECTION,
                 "_id = " + providerId,
                 null /* selection args */,
@@ -532,7 +532,7 @@ public class ChatSwitcher {
     public static Intent makeChatIntent(ContentResolver resolver, long provider, long account,
             String contact, long contactId, int groupChat) {
         Intent i = new Intent(Intent.ACTION_VIEW,
-                ContentUris.withAppendedId(Im.Chats.CONTENT_URI, contactId));
+                ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, contactId));
         i.addCategory(findCategory(resolver, provider));
         i.putExtra("from", contact);
         i.putExtra("providerId", provider);

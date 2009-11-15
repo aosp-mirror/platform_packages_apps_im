@@ -42,7 +42,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.os.RemoteException;
 import android.provider.Browser;
-import android.provider.Im;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -84,18 +83,19 @@ import com.android.im.engine.Contact;
 import com.android.im.engine.ImConnection;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 public class ChatView extends LinearLayout {
     // This projection and index are set for the query of active chats
     static final String[] CHAT_PROJECTION = {
-        Im.Contacts._ID,
-        Im.Contacts.ACCOUNT,
-        Im.Contacts.PROVIDER,
-        Im.Contacts.USERNAME,
-        Im.Contacts.NICKNAME,
-        Im.Contacts.TYPE,
-        Im.Presence.PRESENCE_STATUS,
-        Im.Chats.LAST_UNREAD_MESSAGE,
+        Imps.Contacts._ID,
+        Imps.Contacts.ACCOUNT,
+        Imps.Contacts.PROVIDER,
+        Imps.Contacts.USERNAME,
+        Imps.Contacts.NICKNAME,
+        Imps.Contacts.TYPE,
+        Imps.Presence.PRESENCE_STATUS,
+        Imps.Chats.LAST_UNREAD_MESSAGE,
     };
     static final int CONTACT_ID_COLUMN             = 0;
     static final int ACCOUNT_COLUMN                = 1;
@@ -107,9 +107,9 @@ public class ChatView extends LinearLayout {
     static final int LAST_UNREAD_MESSAGE_COLUMN    = 7;
 
     static final String[] INVITATION_PROJECT = {
-        Im.Invitation._ID,
-        Im.Invitation.PROVIDER,
-        Im.Invitation.SENDER,
+        Imps.Invitation._ID,
+        Imps.Invitation.PROVIDER,
+        Imps.Invitation.SENDER,
     };
     static final int INVITATION_ID_COLUMN = 0;
     static final int INVITATION_PROVIDER_COLUMN = 1;
@@ -480,9 +480,9 @@ public class ChatView extends LinearLayout {
     }
 
     private void setTitle() {
-        if (mType == Im.Contacts.TYPE_GROUP) {
-            final String[] projection = {Im.GroupMembers.NICKNAME};
-            Uri memberUri = ContentUris.withAppendedId(Im.GroupMembers.CONTENT_URI, mChatId);
+        if (mType == Imps.Contacts.TYPE_GROUP) {
+            final String[] projection = {Imps.GroupMembers.NICKNAME};
+            Uri memberUri = ContentUris.withAppendedId(Imps.GroupMembers.CONTENT_URI, mChatId);
             ContentResolver cr = mScreen.getContentResolver();
             Cursor c = cr.query(memberUri, projection, null, null, null);
             StringBuilder buf = new StringBuilder();
@@ -502,7 +502,7 @@ public class ChatView extends LinearLayout {
     }
 
     private void setStatusIcon() {
-        if (mType == Im.Contacts.TYPE_GROUP) {
+        if (mType == Imps.Contacts.TYPE_GROUP) {
             // hide the status icon for group chat.
             mStatusIcon.setVisibility(GONE);
         } else {
@@ -517,7 +517,7 @@ public class ChatView extends LinearLayout {
         if (mCursor != null) {
             mCursor.deactivate();
         }
-        Uri contactUri = ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, chatId);
+        Uri contactUri = ContentUris.withAppendedId(Imps.Contacts.CONTENT_URI, chatId);
         mCursor = mScreen.managedQuery(contactUri, CHAT_PROJECTION, null, null);
         if (mCursor == null || !mCursor.moveToFirst()) {
             if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)){
@@ -533,7 +533,7 @@ public class ChatView extends LinearLayout {
     }
 
     public void bindInvitation(long invitationId) {
-        Uri uri = ContentUris.withAppendedId(Im.Invitation.CONTENT_URI, invitationId);
+        Uri uri = ContentUris.withAppendedId(Imps.Invitation.CONTENT_URI, invitationId);
         ContentResolver cr = mScreen.getContentResolver();
         Cursor cursor = cr.query(uri, INVITATION_PROJECT, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
@@ -656,12 +656,7 @@ public class ChatView extends LinearLayout {
             mQueryHandler.cancelOperation(QUERY_TOKEN);
         }
 
-        Uri uri;
-        if (Im.Contacts.TYPE_GROUP == mType) {
-            uri = ContentUris.withAppendedId(Im.GroupMessages.CONTENT_URI_GROUP_MESSAGES_BY, mChatId);
-        } else {
-            uri = Im.Messages.getContentUriByContact(mProviderId, mAccountId, mUserName);
-        }
+        Uri uri = Imps.Messages.getContentUriByThreadId(mChatId);
 
         if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)){
             log("queryCursor: uri=" + uri);
@@ -728,7 +723,7 @@ public class ChatView extends LinearLayout {
         } else {
             // the conversation is already closed, clear data in database
             ContentResolver cr = mContext.getContentResolver();
-            cr.delete(ContentUris.withAppendedId(Im.Chats.CONTENT_URI, mChatId),
+            cr.delete(ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, mChatId),
                     null, null);
         }
         mScreen.finish();
@@ -745,7 +740,7 @@ public class ChatView extends LinearLayout {
     }
 
     public void viewProfile() {
-        Uri data = ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, mChatId);
+        Uri data = ContentUris.withAppendedId(Imps.Contacts.CONTENT_URI, mChatId);
         Intent intent = new Intent(Intent.ACTION_VIEW, data);
         mScreen.startActivity(intent);
     }
@@ -833,7 +828,7 @@ public class ChatView extends LinearLayout {
     }
 
     boolean isGroupChat() {
-        return Im.Contacts.TYPE_GROUP == mType;
+        return Imps.Contacts.TYPE_GROUP == mType;
     }
 
     void sendMessage() {
@@ -943,10 +938,10 @@ public class ChatView extends LinearLayout {
         }
 
         if (isConnected) {
-            if (mType == Im.Contacts.TYPE_TEMPORARY) {
+            if (mType == Imps.Contacts.TYPE_TEMPORARY) {
                 visibility = View.VISIBLE;
                 message = mContext.getString(R.string.contact_not_in_list_warning, mNickName);
-            } else if (mPresenceStatus == Im.Presence.OFFLINE) {
+            } else if (mPresenceStatus == Imps.Presence.OFFLINE) {
                 visibility = View.VISIBLE;
                 message = mContext.getString(R.string.contact_offline_warning, mNickName);
             }
@@ -1054,7 +1049,7 @@ public class ChatView extends LinearLayout {
 
             for (int i = 0 ; i < len ; i++) {
                 mColumnNames[i] = columnNames[i];
-                if (mColumnNames[i].equals(Im.BaseMessageColumns.DATE)) {
+                if (mColumnNames[i].equals(Imps.Messages.DATE)) {
                     mDateColumn = i;
                 }
             }
@@ -1418,7 +1413,7 @@ public class ChatView extends LinearLayout {
         private int mScrollState;
         private boolean mNeedRequeryCursor;
 
-        private int mContactColumn;
+        private int mNicknameColumn;
         private int mBodyColumn;
         private int mDateColumn;
         private int mTypeColumn;
@@ -1438,11 +1433,11 @@ public class ChatView extends LinearLayout {
         }
 
         private void resolveColumnIndex(Cursor c) {
-            mContactColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.CONTACT);
-            mBodyColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.BODY);
-            mDateColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.DATE);
-            mTypeColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.TYPE);
-            mErrCodeColumn = c.getColumnIndexOrThrow(Im.BaseMessageColumns.ERROR_CODE);
+            mNicknameColumn = c.getColumnIndexOrThrow(Imps.Messages.NICKNAME);
+            mBodyColumn = c.getColumnIndexOrThrow(Imps.Messages.BODY);
+            mDateColumn = c.getColumnIndexOrThrow(Imps.Messages.DATE);
+            mTypeColumn = c.getColumnIndexOrThrow(Imps.Messages.TYPE);
+            mErrCodeColumn = c.getColumnIndexOrThrow(Imps.Messages.ERROR_CODE);
             mDeltaColumn = c.getColumnIndexOrThrow(DeltaCursor.DELTA_COLUMN_NAME);
         }
 
@@ -1464,19 +1459,19 @@ public class ChatView extends LinearLayout {
             MessageView chatMsgView = (MessageView) view;
 
             int type = cursor.getInt(mTypeColumn);
-            String contact = isGroupChat() ? cursor.getString(mContactColumn) : mNickName;
+            String contact = isGroupChat() ? cursor.getString(mNicknameColumn) : mNickName;
             String body = cursor.getString(mBodyColumn);
             long delta = cursor.getLong(mDeltaColumn);
             boolean showTimeStamp = (delta > SHOW_TIME_STAMP_INTERVAL);
             Date date = showTimeStamp ? new Date(cursor.getLong(mDateColumn)) : null;
 
             switch (type) {
-                case Im.MessageType.INCOMING:
+                case Imps.MessageType.INCOMING:
                     chatMsgView.bindIncomingMessage(contact, body, date, mMarkup, isScrolling());
                     break;
 
-                case Im.MessageType.OUTGOING:
-                case Im.MessageType.POSTPONED:
+                case Imps.MessageType.OUTGOING:
+                case Imps.MessageType.POSTPONED:
                     int errCode = cursor.getInt(mErrCodeColumn);
                     if (errCode != 0) {
                         chatMsgView.bindErrorMessage(errCode);

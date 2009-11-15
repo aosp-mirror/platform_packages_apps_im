@@ -28,13 +28,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.im.R;
 import com.android.im.app.ContactListActivity;
 import com.android.im.app.NewChatActivity;
+import com.android.im.provider.Imps;
 
 public class StatusBarNotifier {
     private static final boolean DBG = false;
@@ -46,7 +46,7 @@ public class StatusBarNotifier {
     private Context mContext;
     private NotificationManager mNotificationManager;
 
-    private HashMap<Long, Im.ProviderSettings.QueryMap> mSettings;
+    private HashMap<Long, Imps.ProviderSettings.QueryMap> mSettings;
     private Handler mHandler;
     private HashMap<Long, NotificationInfo> mNotificationInfos;
     private long mLastSoundPlayedMs;
@@ -55,13 +55,13 @@ public class StatusBarNotifier {
         mContext = context;
         mNotificationManager = (NotificationManager) context.getSystemService(
                 Context.NOTIFICATION_SERVICE);
-        mSettings = new HashMap<Long, Im.ProviderSettings.QueryMap>();
+        mSettings = new HashMap<Long, Imps.ProviderSettings.QueryMap>();
         mHandler = new Handler();
         mNotificationInfos = new HashMap<Long, NotificationInfo>();
     }
 
     public void onServiceStop() {
-        for(Im.ProviderSettings.QueryMap queryMap : mSettings.values()) {
+        for(Imps.ProviderSettings.QueryMap queryMap : mSettings.values()) {
             queryMap.close();
         }
     }
@@ -76,7 +76,7 @@ public class StatusBarNotifier {
         String title = nickname;
         String snippet = nickname + ": " + msg;
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                ContentUris.withAppendedId(Im.Chats.CONTENT_URI, chatId));
+                ContentUris.withAppendedId(Imps.Chats.CONTENT_URI, chatId));
         intent.addCategory(com.android.im.app.ImApp.IMPS_CATEGORY);
         notify(username, title, snippet, msg, providerId, accountId, intent, lightWeightNotify);
     }
@@ -90,7 +90,7 @@ public class StatusBarNotifier {
         String title = nickname;
         String message = mContext.getString(R.string.subscription_notify_text, nickname);
         Intent intent = new Intent(ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION,
-                ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, contactId));
+                ContentUris.withAppendedId(Imps.Contacts.CONTENT_URI, contactId));
         intent.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, providerId);
         intent.putExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS, username);
         notify(username, title, message, message, providerId, accountId, intent, false);
@@ -100,7 +100,7 @@ public class StatusBarNotifier {
             long invitationId, String username) {
 
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                ContentUris.withAppendedId(Im.Invitation.CONTENT_URI, invitationId));
+                ContentUris.withAppendedId(Imps.Invitation.CONTENT_URI, invitationId));
 
         String title = mContext.getString(R.string.notify_groupchat_label);
         String message = mContext.getString(
@@ -146,10 +146,10 @@ public class StatusBarNotifier {
         }
     }
 
-    private Im.ProviderSettings.QueryMap getProviderSettings(long providerId) {
-        Im.ProviderSettings.QueryMap res = mSettings.get(providerId);
+    private Imps.ProviderSettings.QueryMap getProviderSettings(long providerId) {
+        Imps.ProviderSettings.QueryMap res = mSettings.get(providerId);
         if (res == null) {
-            res = new Im.ProviderSettings.QueryMap(mContext.getContentResolver(),
+            res = new Imps.ProviderSettings.QueryMap(mContext.getContentResolver(),
                     providerId, true, mHandler);
             mSettings.put(providerId, res);
         }
@@ -157,7 +157,7 @@ public class StatusBarNotifier {
     }
 
     private boolean isNotificationEnabled(long providerId) {
-        Im.ProviderSettings.QueryMap settings = getProviderSettings(providerId);
+        Imps.ProviderSettings.QueryMap settings = getProviderSettings(providerId);
         return settings.getEnableNotification();
     }
 
@@ -178,7 +178,7 @@ public class StatusBarNotifier {
     }
 
     private void setRinger(long providerId, Notification notification) {
-        Im.ProviderSettings.QueryMap settings = getProviderSettings(providerId);
+        Imps.ProviderSettings.QueryMap settings = getProviderSettings(providerId);
         String ringtoneUri = settings.getRingtoneURI();
         boolean vibrate = settings.getVibrate();
 
@@ -262,7 +262,7 @@ public class StatusBarNotifier {
 
         private Intent getDefaultIntent() {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setType(Im.Contacts.CONTENT_TYPE);
+            intent.setType(Imps.Contacts.CONTENT_TYPE);
             intent.setClass(mContext, ContactListActivity.class);
             intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mAccountId);
 
@@ -287,7 +287,7 @@ public class StatusBarNotifier {
                 return item.mTitle;
             } else {
                 return mContext.getString(R.string.newMessages_label,
-                        Im.Provider.getProviderNameForId(mContext.getContentResolver(), mProviderId));
+                        Imps.Provider.getProviderNameForId(mContext.getContentResolver(), mProviderId));
             }
         }
 

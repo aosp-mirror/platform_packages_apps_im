@@ -16,11 +16,11 @@
  */
 package com.android.im.app;
 
-import android.provider.Im;
 import android.util.Log;
 
 import com.android.im.engine.Presence;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 public final class PresenceUtils {
     private PresenceUtils() {}
@@ -28,44 +28,44 @@ public final class PresenceUtils {
     public static int convertStatus(int status) {
         switch (status) {
         case Presence.AVAILABLE:
-            return Im.Presence.AVAILABLE;
+            return Imps.Presence.AVAILABLE;
 
         case Presence.AWAY:
-            return Im.Presence.AWAY;
+            return Imps.Presence.AWAY;
 
         case Presence.DO_NOT_DISTURB:
-            return Im.Presence.DO_NOT_DISTURB;
+            return Imps.Presence.DO_NOT_DISTURB;
 
         case Presence.IDLE:
-            return Im.Presence.IDLE;
+            return Imps.Presence.IDLE;
 
         case Presence.OFFLINE:
-            return Im.Presence.OFFLINE;
+            return Imps.Presence.OFFLINE;
 
         default:
             Log.w(ImApp.LOG_TAG, "[ContactView] Unknown presence status " + status);
-            return Im.Presence.AVAILABLE;
+            return Imps.Presence.AVAILABLE;
         }
     }
 
     public static int getStatusStringRes(int status) {
         switch (status) {
-        case Im.Presence.AVAILABLE:
+        case Imps.Presence.AVAILABLE:
             return BrandingResourceIDs.STRING_PRESENCE_AVAILABLE;
 
-        case Im.Presence.AWAY:
+        case Imps.Presence.AWAY:
             return BrandingResourceIDs.STRING_PRESENCE_AWAY;
 
-        case Im.Presence.DO_NOT_DISTURB:
+        case Imps.Presence.DO_NOT_DISTURB:
             return BrandingResourceIDs.STRING_PRESENCE_BUSY;
 
-        case Im.Presence.IDLE:
+        case Imps.Presence.IDLE:
             return BrandingResourceIDs.STRING_PRESENCE_IDLE;
 
-        case Im.Presence.INVISIBLE:
+        case Imps.Presence.INVISIBLE:
             return BrandingResourceIDs.STRING_PRESENCE_INVISIBLE;
 
-        case Im.Presence.OFFLINE:
+        case Imps.Presence.OFFLINE:
             return BrandingResourceIDs.STRING_PRESENCE_OFFLINE;
 
         default:
@@ -75,19 +75,19 @@ public final class PresenceUtils {
 
     public static int getStatusIconId(int status) {
         switch (status) {
-        case Im.Presence.AVAILABLE:
+        case Imps.Presence.AVAILABLE:
             return BrandingResourceIDs.DRAWABLE_PRESENCE_ONLINE;
 
-        case Im.Presence.IDLE:
+        case Imps.Presence.IDLE:
             return BrandingResourceIDs.DRAWABLE_PRESENCE_AWAY;
 
-        case Im.Presence.AWAY:
+        case Imps.Presence.AWAY:
             return BrandingResourceIDs.DRAWABLE_PRESENCE_AWAY;
 
-        case Im.Presence.DO_NOT_DISTURB:
+        case Imps.Presence.DO_NOT_DISTURB:
             return BrandingResourceIDs.DRAWABLE_PRESENCE_BUSY;
 
-        case Im.Presence.INVISIBLE:
+        case Imps.Presence.INVISIBLE:
             return BrandingResourceIDs.DRAWABLE_PRESENCE_INVISIBLE;
 
         default:

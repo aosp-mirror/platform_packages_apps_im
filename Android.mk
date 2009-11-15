@@ -16,22 +16,13 @@ LOCAL_SRC_FILES := $(call all-subdir-java-files) \
 			src/com/android/im/ISubscriptionListener.aidl \
 			src/com/android/im/IConnectionCreationListener.aidl \
 
-# Filter out the plugin and samples when build IM.apk
-LOCAL_SRC_FILES := $(filter-out \
-                       plugin/% samples/% \
-                       ,$(LOCAL_SRC_FILES))
-
 LOCAL_PACKAGE_NAME := IM
 
-# TODO: Remove dependency of application on the test runner (android.test.runner)
-# library.
-LOCAL_JAVA_LIBRARIES := android.test.runner \
-                        com.android.im.plugin \
-#                        com.android.providers.im.plugin
+LOCAL_JNI_SHARED_LIBRARIES := libwbxml_jni
 
-# LOCAL_REQUIRED_MODULES must go before BUILD_PACKAGE
-LOCAL_REQUIRED_MODULES := libwbxml libwbxml_jni ImProvider
-
-include $(BUILD_PACKAGE)
+#Disable building the APK; we are checking in the pre-built version which
+#contains the credential plug-in instead. Note the libwbxml_jni has to be
+#enabled because so won't be extracted from the system APK
+#include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))

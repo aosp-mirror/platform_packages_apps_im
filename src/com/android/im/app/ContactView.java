@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.Im;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -40,24 +39,25 @@ import android.graphics.drawable.Drawable;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
+import com.android.im.provider.Imps;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 
 public class ContactView extends LinearLayout {
     static final String[] CONTACT_PROJECTION = {
-        Im.Contacts._ID,
-        Im.Contacts.PROVIDER,
-        Im.Contacts.ACCOUNT,
-        Im.Contacts.USERNAME,
-        Im.Contacts.NICKNAME,
-        Im.Contacts.TYPE,
-        Im.Contacts.SUBSCRIPTION_TYPE,
-        Im.Contacts.SUBSCRIPTION_STATUS,
-        Im.Presence.PRESENCE_STATUS,
-        Im.Presence.PRESENCE_CUSTOM_STATUS,
-        Im.Chats.LAST_MESSAGE_DATE,
-        Im.Chats.LAST_UNREAD_MESSAGE,
+        Imps.Contacts._ID,
+        Imps.Contacts.PROVIDER,
+        Imps.Contacts.ACCOUNT,
+        Imps.Contacts.USERNAME,
+        Imps.Contacts.NICKNAME,
+        Imps.Contacts.TYPE,
+        Imps.Contacts.SUBSCRIPTION_TYPE,
+        Imps.Contacts.SUBSCRIPTION_STATUS,
+        Imps.Presence.PRESENCE_STATUS,
+        Imps.Presence.PRESENCE_CUSTOM_STATUS,
+        Imps.Chats.LAST_MESSAGE_DATE,
+        Imps.Chats.LAST_UNREAD_MESSAGE,
     };
 
     static final int COLUMN_CONTACT_ID = 0;
@@ -116,7 +116,7 @@ public class ContactView extends LinearLayout {
 
         // status icon
 
-        if (Im.Contacts.TYPE_GROUP == type) {
+        if (Imps.Contacts.TYPE_GROUP == type) {
             iconId = lastMsg == null ? R.drawable.group_chat : R.drawable.group_chat_new;
         } else if (hasChat) {
             iconId = lastMsg == null ? BrandingResourceIDs.DRAWABLE_READ_CHAT
@@ -130,7 +130,7 @@ public class ContactView extends LinearLayout {
 
         // line1
         CharSequence line1;
-        if (Im.Contacts.TYPE_GROUP == type) {
+        if (Imps.Contacts.TYPE_GROUP == type) {
             ContentResolver resolver = getContext().getContentResolver();
             long id = cursor.getLong(ContactView.COLUMN_CONTACT_ID);
             line1 = queryGroupMembers(resolver, id);
@@ -151,7 +151,7 @@ public class ContactView extends LinearLayout {
                 }
             }
 
-            if (Im.Contacts.TYPE_TEMPORARY == type) {
+            if (Imps.Contacts.TYPE_TEMPORARY == type) {
                 // Add a mark at the front of name if it's only a temporary
                 // contact.
                 SpannableStringBuilder str = new SpannableStringBuilder(
@@ -182,7 +182,7 @@ public class ContactView extends LinearLayout {
         }
 
         if (TextUtils.isEmpty(line2)){
-            if (Im.Contacts.TYPE_GROUP == type) {
+            if (Imps.Contacts.TYPE_GROUP == type) {
                 // Show nothing in line2 if it's a group and don't
                 // have any unread message.
                 line2 = null;
@@ -214,8 +214,8 @@ public class ContactView extends LinearLayout {
     }
 
     private String queryGroupMembers(ContentResolver resolver, long groupId) {
-        String[] projection = { Im.GroupMembers.NICKNAME };
-        Uri uri = ContentUris.withAppendedId(Im.GroupMembers.CONTENT_URI, groupId);
+        String[] projection = { Imps.GroupMembers.NICKNAME };
+        Uri uri = ContentUris.withAppendedId(Imps.GroupMembers.CONTENT_URI, groupId);
         Cursor c = resolver.query(uri, projection, null, null, null);
         StringBuilder buf = new StringBuilder();
         if(c != null) {

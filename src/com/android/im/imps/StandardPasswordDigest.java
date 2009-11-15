@@ -18,6 +18,7 @@
 package com.android.im.imps;
 
 import com.android.im.engine.ImException;
+import com.android.im.plugin.PasswordDigest;
 
 import org.apache.commons.codec.binary.Base64;
 

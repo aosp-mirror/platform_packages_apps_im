@@ -17,10 +17,11 @@
 
 package com.android.im.app;
 
+import com.android.im.provider.Imps;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.provider.Im;
 
 public class ChooseAccountActivity extends Activity {
     @Override
@@ -28,7 +29,7 @@ public class ChooseAccountActivity extends Activity {
         super.onCreate(icicle);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setType(Im.Provider.CONTENT_TYPE);
+        intent.setType(Imps.Provider.CONTENT_TYPE);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
