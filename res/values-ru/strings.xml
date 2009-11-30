@@ -117,7 +117,7 @@
     <string name="hide_offline_contacts" msgid="8017909244732772990">"Скрыть контакты, отсутствующие в сети"</string>
     <string name="notification_group_title" msgid="4944275706770811080">"Настройки уведомлений"</string>
     <string name="notification_enabled_title" msgid="6447889693376465773">"Уведомления чата"</string>
-    <string name="notification_enabled_summary" msgid="2090889893066171466">"Уведомлять о получении сообщения чата в строке состояния"</string>
+    <string name="notification_enabled_summary" msgid="2090889893066171466">"Показывать уведомления в строке состояния при получении новых соообщений"</string>
     <string name="notification_vibrate_title" msgid="5603532186091800924">"Вибрация"</string>
     <string name="notification_vibrate_summary" msgid="1875275321875946598">"Сигнал вибрации при получении сообщения чата"</string>
     <string name="notification_sound_title" msgid="8367990268592958299">"Звуковой сигнал"</string>

@@ -94,10 +94,10 @@
     <string name="chat_with" msgid="8562954189958846831">"Chat s uživatelem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me" msgid="8421609599685404593">"Já"</string>
     <string name="compose_hint" msgid="1735533889811320962">"Sem zadejte zprávu"</string>
-    <string name="contact_online" msgid="4241843267436748586">"uživatel <xliff:g id="USER">%1$s</xliff:g> je online"</string>
+    <string name="contact_online" msgid="4241843267436748586">"<xliff:g id="USER">%1$s</xliff:g> je online"</string>
     <string name="contact_away" msgid="2333627320542883164">"uživatel <xliff:g id="USER">%1$s</xliff:g> je pryč"</string>
     <string name="contact_busy" msgid="9175172991334146704">"<xliff:g id="USER">%1$s</xliff:g> je zaneprázdněn"</string>
-    <string name="contact_offline" msgid="7054903259540426223">"uživatel <xliff:g id="USER">%1$s</xliff:g> je offline"</string>
+    <string name="contact_offline" msgid="7054903259540426223">"<xliff:g id="USER">%1$s</xliff:g> je offline"</string>
     <string name="contact_joined" msgid="6713312815095658394">"Uživatel <xliff:g id="USER">%1$s</xliff:g> se připojil"</string>
     <string name="contact_left" msgid="3020686291216941829">"uživatel <xliff:g id="USER">%1$s</xliff:g> odešel"</string>
     <string name="time_stamp" format="date" msgid="8952691401963972802">"'Odesláno v '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' dne '<xliff:g id="DATE">EEEE</xliff:g>"</string>
@@ -176,21 +176,21 @@
     <string name="general_error" msgid="2784900425265121080">"Kód chyby: <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
     <item msgid="1496436377093882868">"Happy"</item>
-    <item msgid="4535010061202018372">"Smutný"</item>
-    <item msgid="9126439186030536335">"Mrkající"</item>
+    <item msgid="4535010061202018372">"Ach jo"</item>
+    <item msgid="9126439186030536335">"Mrknutí"</item>
     <item msgid="850866187116359823">"Vypláznutý jazyk"</item>
     <item msgid="394905071090547502">"Překvapený"</item>
     <item msgid="154223719974718360">"Pusa"</item>
-    <item msgid="7922997411177141520">"Hej!"</item>
+    <item msgid="7922997411177141520">"Zlobím se!"</item>
     <item msgid="2507841103887006866">"Cool"</item>
     <item msgid="7305800612774038776">"Cinkání zlaťáků"</item>
-    <item msgid="8019801991256267534">"Šlápota v úsměvu"</item>
+    <item msgid="8019801991256267534">"Trapas!"</item>
     <item msgid="6054214980935551183">"V rozpacích"</item>
     <item msgid="6425740366789820735">"Andílek"</item>
     <item msgid="6790879686860830930">"Nerozhodný"</item>
-    <item msgid="8487432187298106600">"Rozplakaný"</item>
+    <item msgid="8487432187298106600">"Bůůů, fňuk, fňuk"</item>
     <item msgid="1697327406585784541">"Ani muk"</item>
-    <item msgid="4623875498872672218">"Smějící se"</item>
-    <item msgid="6044435333460205962">"Zmatený"</item>
+    <item msgid="4623875498872672218">"Smích"</item>
+    <item msgid="6044435333460205962">"Zmatek"</item>
   </string-array>
 </resources>
