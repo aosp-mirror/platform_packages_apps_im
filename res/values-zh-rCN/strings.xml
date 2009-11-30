@@ -41,7 +41,7 @@
     <string name="menu_view_contact_list" msgid="4630377976475003130">"联系人列表"</string>
     <string name="menu_invite_contact" msgid="4669830812552484236">"邀请..."</string>
     <string name="menu_switch_chats" msgid="5113455126377025717">"切换聊天"</string>
-    <string name="menu_insert_smiley" msgid="2555290958985391105">"插入表情符"</string>
+    <string name="menu_insert_smiley" msgid="2555290958985391105">"插入表情符号"</string>
     <string name="menu_plus" msgid="5000617247235760106">"MENU+"</string>
     <string name="default_input_title" msgid="6182729628894599563">"输入"</string>
     <string name="confirm" msgid="3229086014444547636">"确认"</string>
@@ -175,13 +175,13 @@
     <string name="not_signed_in" msgid="8894662143178849906">"您当前未登录。"</string>
     <string name="general_error" msgid="2784900425265121080">"错误代码 <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
-    <item msgid="1496436377093882868">"幸福"</item>
-    <item msgid="4535010061202018372">"悲伤"</item>
+    <item msgid="1496436377093882868">"开心"</item>
+    <item msgid="4535010061202018372">"忧伤"</item>
     <item msgid="9126439186030536335">"眨眼"</item>
-    <item msgid="850866187116359823">"吐舌头"</item>
+    <item msgid="850866187116359823">"吐舌"</item>
     <item msgid="394905071090547502">"惊讶"</item>
     <item msgid="154223719974718360">"亲吻"</item>
-    <item msgid="7922997411177141520">"大喊"</item>
+    <item msgid="7922997411177141520">"叫喊"</item>
     <item msgid="2507841103887006866">"酷"</item>
     <item msgid="7305800612774038776">"财迷"</item>
     <item msgid="8019801991256267534">"说错了话"</item>
