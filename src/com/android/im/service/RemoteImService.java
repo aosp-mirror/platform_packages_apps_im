@@ -33,9 +33,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.net.NetworkConnectivityListener;
 import android.net.Uri;
-import android.net.NetworkConnectivityListener.State;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.RemoteCallbackList;
@@ -49,6 +47,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.common.NetworkConnectivityListener;
+import com.android.common.NetworkConnectivityListener.State;
 import com.android.im.IConnectionCreationListener;
 import com.android.im.IImConnection;
 import com.android.im.IRemoteImService;
