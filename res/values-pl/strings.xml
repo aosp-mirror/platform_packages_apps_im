@@ -15,14 +15,10 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for ro_perm_label (4791213266570841712) -->
-    <skip />
-    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
-    <skip />
-    <!-- no translation found for wo_perm_label (2275102271914312340) -->
-    <skip />
-    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
-    <skip />
+    <string name="ro_perm_label" msgid="4791213266570841712">"odczytaj wiadomości czatu"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"Zezwala aplikacjom na odczytywanie danych z dostawcy zawartości czatu."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"zapisz wiadomości czatu"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"Zezwala aplikacjom na zapisywanie danych do dostawcy zawartości czatu."</string>
     <string name="im_label" msgid="6289028202073124911">"Czat"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"Czat: wybierz konto"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"Dodaj konto"</string>
@@ -66,7 +62,7 @@
     <string name="keep_me_signed_in" msgid="2883914867912933061">"Zaloguj mnie automatycznie."</string>
     <string name="sign_up" msgid="7071654280992136839">"Nie masz konta?"</string>
     <string name="check_auto_sign_in" msgid="308461891031463647">"Ta opcja powoduje automatyczne logowanie użytkownika przy każdym uruchomieniu tej aplikacji. Aby wyłączyć tę opcję, wyloguj się, a następnie usuń zaznaczenie pola wyboru „Zaloguj automatycznie”."</string>
-    <string name="sign_in" msgid="6204326200860136567">"Zaloguj"</string>
+    <string name="sign_in" msgid="6204326200860136567">"Zaloguj się"</string>
     <string name="signing_in_to" msgid="2689649632858697221">"Logowanie do konta <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait" msgid="987357161364666888">"Trwa logowanie…"</string>
     <string name="bg_data_prompt_title" msgid="4861800723853178111">"Dane w tle są wyłączone"</string>
@@ -189,12 +185,12 @@
     <item msgid="2507841103887006866">"Na luzie"</item>
     <item msgid="7305800612774038776">"Pazerny"</item>
     <item msgid="8019801991256267534">"Nietaktowny"</item>
-    <item msgid="6054214980935551183">"Zakłopotanie"</item>
+    <item msgid="6054214980935551183">"Zawstydzony"</item>
     <item msgid="6425740366789820735">"Anioł"</item>
     <item msgid="6790879686860830930">"Niezdecydowany"</item>
     <item msgid="8487432187298106600">"Płacze"</item>
     <item msgid="1697327406585784541">"Milczy jak grób"</item>
     <item msgid="4623875498872672218">"Śmieje się"</item>
-    <item msgid="6044435333460205962">"Zakłopotanie"</item>
+    <item msgid="6044435333460205962">"Zakłopotany"</item>
   </string-array>
 </resources>

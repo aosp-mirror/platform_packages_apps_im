@@ -15,14 +15,10 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for ro_perm_label (4791213266570841712) -->
-    <skip />
-    <!-- no translation found for ro_perm_desc (2030191017293726405) -->
-    <skip />
-    <!-- no translation found for wo_perm_label (2275102271914312340) -->
-    <skip />
-    <!-- no translation found for wo_perm_desc (4332792325927331086) -->
-    <skip />
+    <string name="ro_perm_label" msgid="4791213266570841712">"인스턴트 메시지 읽기"</string>
+    <string name="ro_perm_desc" msgid="2030191017293726405">"응용프로그램이 메신저 콘텐츠 제공업체에서 제공한 데이터를 읽을 수 있도록 합니다."</string>
+    <string name="wo_perm_label" msgid="2275102271914312340">"인스턴트 메시지 쓰기"</string>
+    <string name="wo_perm_desc" msgid="4332792325927331086">"응용프로그램이 메신저 콘텐츠 제공업체에 데이터를 쓸 수 있도록 합니다."</string>
     <string name="im_label" msgid="6289028202073124911">"메신저"</string>
     <string name="landing_page_title" msgid="8575938257482637474">"채팅 - 계정 선택"</string>
     <string name="menu_add_account" msgid="5762363412622888397">"계정 추가"</string>
@@ -121,11 +117,11 @@
     <string name="hide_offline_contacts" msgid="8017909244732772990">"오프라인 주소록 숨기기"</string>
     <string name="notification_group_title" msgid="4944275706770811080">"알림 설정"</string>
     <string name="notification_enabled_title" msgid="6447889693376465773">"메신저 알림"</string>
-    <string name="notification_enabled_summary" msgid="2090889893066171466">"메신저가 오면 상태 표시줄에 알림"</string>
+    <string name="notification_enabled_summary" msgid="2090889893066171466">"메시지가 오면 상태 표시줄에 알림"</string>
     <string name="notification_vibrate_title" msgid="5603532186091800924">"진동"</string>
-    <string name="notification_vibrate_summary" msgid="1875275321875946598">"메신저가 오면 진동"</string>
+    <string name="notification_vibrate_summary" msgid="1875275321875946598">"메시지가 오면 진동"</string>
     <string name="notification_sound_title" msgid="8367990268592958299">"사운드"</string>
-    <string name="notification_sound_summary" msgid="3634976543811200858">"메신저가 오면 벨소리 재생"</string>
+    <string name="notification_sound_summary" msgid="3634976543811200858">"메시지가 오면 벨소리 재생"</string>
     <string name="notification_ringtone_title" msgid="4847700898968990954">"벨소리 선택"</string>
     <string name="invitation_prompt" msgid="1776461436395016582">"<xliff:g id="USER">%1$s</xliff:g>님이 그룹 채팅에 초대하셨습니다."</string>
     <string name="invitation_sent_prompt" msgid="2542342110609014148">"<xliff:g id="USER">%1$s</xliff:g>님에게 초대장을 보냈습니다."</string>
