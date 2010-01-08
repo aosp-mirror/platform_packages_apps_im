@@ -90,9 +90,9 @@ public class SimpleInputActivity extends Activity {
             }
         });
 
-        // XXX Hack from GoogleLogin.java. The android:layout_width="fill_parent"
+        // XXX Hack from GoogleLogin.java. The android:layout_width="match_parent"
         // defined in the layout xml doesn't seem to work for LinearLayout.
-        getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+        getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
 
 }

@@ -22,12 +22,12 @@
     android:id="@+id/chatView"
     android:orientation="vertical"
     android:background="#ffffffff"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!-- The title bar -->
     <LinearLayout style="?android:attr/windowTitleBackgroundStyle"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -40,7 +40,7 @@
 
         <TextView android:id="@+id/title"
             style="?android:attr/windowTitleStyle"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
@@ -49,13 +49,13 @@
             android:layout_marginRight="20dip" />
     </LinearLayout>
 
-    <View android:layout_width="fill_parent"
+    <View android:layout_width="match_parent"
         android:layout_height="1dip"
         android:background="#ff202020" />
 
     <ListView android:id="@+id/history"
         android:cacheColorHint="#00000000"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
         android:drawSelectorOnTop="true"
@@ -65,7 +65,7 @@
         android:scrollbarAlwaysDrawVerticalTrack="true" />
 
     <LinearLayout android:id="@+id/invitationPanel"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
@@ -73,12 +73,12 @@
         android:background="@drawable/text_divider_horizontal">
 
         <TextView android:id="@+id/txtInvitation"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffad45d6"
             android:text="@string/invitation_prompt" />
 
-        <LinearLayout android:layout_width="fill_parent"
+        <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -96,7 +96,7 @@
     </LinearLayout>
 
     <LinearLayout android:id="@+id/subscription"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
@@ -104,12 +104,12 @@
         android:background="@drawable/text_divider_horizontal">
 
         <TextView android:id="@+id/txtSubscription"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffad45d6"
             android:text="@string/subscription_prompt" />
 
-        <LinearLayout android:layout_width="fill_parent"
+        <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -127,7 +127,7 @@
     </LinearLayout>
 
     <LinearLayout android:id="@+id/warning"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
@@ -136,11 +136,11 @@
 
         <ImageView android:id="@+id/warningIcon"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/ic_im_message_not_sent" />
 
         <TextView android:id="@+id/warningText"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dip"
             android:textColor="#ffff0000"
@@ -148,7 +148,7 @@
 
     </LinearLayout>
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -166,7 +166,7 @@
 
         <Button android:id="@+id/btnSend"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:text="@string/send" />
     </LinearLayout>
 </com.android.im.app.ChatView>

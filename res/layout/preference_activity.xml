@@ -18,11 +18,11 @@
  */
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView android:id="@+id/tvDataChannel"
@@ -126,7 +126,7 @@
         </RadioGroup>
 
         <LinearLayout android:id="@+id/host"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@+id/rgCirChannel"
@@ -141,7 +141,7 @@
 
             <EditText android:id="@+id/etHost"
                 android:autoText="false"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -150,7 +150,7 @@
         </LinearLayout>
 
         <LinearLayout android:id="@+id/msisdn"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@+id/host"
@@ -165,7 +165,7 @@
 
             <EditText android:id="@+id/etMsisdn"
                 android:autoText="false"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"

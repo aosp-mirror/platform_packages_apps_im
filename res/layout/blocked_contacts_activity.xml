@@ -18,21 +18,21 @@
  */
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
         <TextView android:id="@android:id/empty"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:focusable="false"
             android:text="@string/no_blocked_contact" />
 
         <ListView android:id="@android:id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 </LinearLayout>
