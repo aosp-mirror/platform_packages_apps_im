@@ -65,8 +65,8 @@
     <string name="sign_in" msgid="6204326200860136567">"Вход"</string>
     <string name="signing_in_to" msgid="2689649632858697221">"Вход в <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait" msgid="987357161364666888">"Выполняется вход..."</string>
-    <string name="bg_data_prompt_title" msgid="4861800723853178111">"Исходные данные отключены"</string>
-    <string name="bg_data_prompt_message" msgid="2343305645142823544">"<xliff:g id="PROVIDER">%1$s</xliff:g> требует, чтобы использование фоновых данных было разрешено"</string>
+    <string name="bg_data_prompt_title" msgid="4861800723853178111">"Фоновый режим обмена данными отключен"</string>
+    <string name="bg_data_prompt_message" msgid="2343305645142823544">"Для корректной работы в сети <xliff:g id="PROVIDER">%1$s</xliff:g> требуется включенный режим фонового обмена данными."</string>
     <string name="bg_data_prompt_ok" msgid="3443385427882751532">"Включить"</string>
     <string name="bg_data_prompt_cancel" msgid="7206105589826174638">"Выйти"</string>
     <string name="ongoing_conversation" msgid="6523428329676936109">"Текущих чатов: (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
@@ -117,12 +117,12 @@
     <string name="hide_offline_contacts" msgid="8017909244732772990">"Скрыть контакты, отсутствующие в сети"</string>
     <string name="notification_group_title" msgid="4944275706770811080">"Настройки уведомлений"</string>
     <string name="notification_enabled_title" msgid="6447889693376465773">"Уведомления чата"</string>
-    <string name="notification_enabled_summary" msgid="2090889893066171466">"Уведомлять о получении сообщения чата в строке состояния"</string>
-    <string name="notification_vibrate_title" msgid="5603532186091800924">"Вибрация"</string>
-    <string name="notification_vibrate_summary" msgid="1875275321875946598">"Сигнал вибрации при получении сообщения чата"</string>
+    <string name="notification_enabled_summary" msgid="2090889893066171466">"Показывать уведомления в строке состояния при получении новых соообщений"</string>
+    <string name="notification_vibrate_title" msgid="5603532186091800924">"Вибровызов"</string>
+    <string name="notification_vibrate_summary" msgid="1875275321875946598">"Вибросигнал при получении сообщения чата"</string>
     <string name="notification_sound_title" msgid="8367990268592958299">"Звуковой сигнал"</string>
     <string name="notification_sound_summary" msgid="3634976543811200858">"Воспроизводить мелодию звонка при получении сообщения чата"</string>
-    <string name="notification_ringtone_title" msgid="4847700898968990954">"Выбрать мелодию звонка"</string>
+    <string name="notification_ringtone_title" msgid="4847700898968990954">"Мелодия звонка"</string>
     <string name="invitation_prompt" msgid="1776461436395016582">"Пользователь <xliff:g id="USER">%1$s</xliff:g> приглашает вас в групповой чат."</string>
     <string name="invitation_sent_prompt" msgid="2542342110609014148">"Приглашение отправлено пользователю <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation" msgid="8852207669114500346">"Принять"</string>
