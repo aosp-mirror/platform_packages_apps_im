@@ -20,9 +20,7 @@ package com.android.im.imps;
 import com.android.im.engine.Presence;
 import com.android.im.plugin.PresenceMapping;
 
-import org.apache.commons.codec.binary.Base64;
-
-import android.os.Base64Utils;
+import com.android.common.Base64;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,7 +100,7 @@ public class ImpsPresenceUtils {
 
         byte[] avatar = newPresence.getAvatarData();
         if (avatar != null && !Arrays.equals(avatar, oldPresence.getAvatarData())) {
-            String base64Avatar = new String(Base64.encodeBase64(avatar));
+            String base64Avatar = Base64.encodeToString(avatar, Base64.NO_WRAP);
             PrimitiveElement statusContent = new PrimitiveElement(ImpsTags.StatusContent);
             statusContent.addChild(ImpsTags.Qualifier, true);
             statusContent.addChild(ImpsTags.DirectContent, base64Avatar);
@@ -194,8 +192,8 @@ public class ImpsPresenceUtils {
         PrimitiveElement statusContentElem = presenceListElem.getChild(ImpsTags.StatusContent);
         if(ImpsUtils.isQualifiedPresence(statusContentElem)) {
             String avatarStr = statusContentElem.getChildContents(ImpsTags.DirectContent);
-            if(avatarStr != null){
-                return Base64Utils.decodeBase64(avatarStr);
+            if (avatarStr != null){
+                return Base64.decode(avatarStr, Base64.DEFAULT);
             }
         }
         return null;

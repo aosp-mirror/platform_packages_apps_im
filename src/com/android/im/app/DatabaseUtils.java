@@ -20,6 +20,8 @@ package com.android.im.app;
 import com.android.im.plugin.ImConfigNames;
 import com.android.im.provider.Imps;
 
+import com.android.common.Base64;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -93,7 +95,7 @@ public class DatabaseUtils {
                 return null;
             }
 
-            rawData = android.os.Base64Utils.decodeBase64(encodedData);
+            rawData = Base64.decode(encodedData, Base64.DEFAULT);
 
             // if (DBG) {
             // log("getAvatarFromCursor for " + username + ": found encoded

@@ -16,6 +16,8 @@ LOCAL_SRC_FILES := $(call all-subdir-java-files) \
 			src/com/android/im/ISubscriptionListener.aidl \
 			src/com/android/im/IConnectionCreationListener.aidl \
 
+LOCAL_STATIC_JAVA_LIBRARIES := android-common
+
 LOCAL_PACKAGE_NAME := IM
 
 LOCAL_JNI_SHARED_LIBRARIES := libwbxml_jni
