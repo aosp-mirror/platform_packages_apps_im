@@ -22,6 +22,8 @@
     package="com.android.im" android:sharedUserId="android.uid.im"
     android:sharedUserLabel="@string/perm_label">
 
+    <original-package android:name="com.android.im" />
+
     <uses-permission android:name="com.android.providers.imps.permission.READ_ONLY" />
     <uses-permission android:name="com.android.providers.imps.permission.WRITE_ONLY" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
