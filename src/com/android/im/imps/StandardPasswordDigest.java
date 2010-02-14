@@ -20,9 +20,8 @@ package com.android.im.imps;
 import com.android.im.engine.ImException;
 import com.android.im.plugin.PasswordDigest;
 
-import org.apache.commons.codec.binary.Base64;
-
 import android.security.MessageDigest;
+import android.util.base64.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -47,7 +46,7 @@ public class StandardPasswordDigest implements PasswordDigest {
         } catch (NoSuchAlgorithmException e) {
             throw new ImException("Unsupported schema: " + schema);
         }
-        return new String(Base64.encodeBase64(digestBytes));
+        return Base64.encodeToString(digestBytes, Base64.NO_WRAP);
     }
 
     public String[] getSupportedDigestSchema() {

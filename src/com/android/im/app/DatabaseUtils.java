@@ -20,8 +20,6 @@ package com.android.im.app;
 import com.android.im.plugin.ImConfigNames;
 import com.android.im.provider.Imps;
 
-import com.android.common.Base64;
-
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -32,6 +30,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
+import android.util.base64.Base64;
 
 import java.util.Map;
 
