@@ -20,7 +20,7 @@ package com.android.im.imps;
 import com.android.im.engine.Presence;
 import com.android.im.plugin.PresenceMapping;
 
-import android.util.base64.Base64;
+import android.util.Base64;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -21,7 +21,7 @@ import com.android.im.engine.ImException;
 import com.android.im.plugin.PasswordDigest;
 
 import android.security.MessageDigest;
-import android.util.base64.Base64;
+import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
