@@ -77,7 +77,7 @@
     <string name="ongoing_conversation" msgid="6523428329676936109">"進行中的即時通訊 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count" msgid="5007781327712739543">"線上人數 <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions" msgid="2039801939162848292">"邀請朋友"</string>
-    <string name="unknown_contact" msgid="3493840718873032803">"("<i>" 未知的 "</i>")"</string>
+    <string name="unknown_contact" msgid="3493840718873032803">"("<i>"不明"</i>")"</string>
     <string name="empty_contact_group" msgid="5944413281854480292">"沒有聯絡人"</string>
     <string name="empty_conversation_group" msgid="3207190506591856738">"沒有對話"</string>
     <string name="contacts_picker_title" msgid="6681084488289812125">"選取要邀請的聯絡人"</string>
